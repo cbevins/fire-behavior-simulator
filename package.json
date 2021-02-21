@@ -1,20 +1,22 @@
 {
-  "name": "@cbevins/template-node-lib",
+  "name": "@cbevins/fire-behavior-simulator",
   "version": "0.1.0",
-  "description": "template-node-lib is a template repo for developing node library packages",
+  "description": "A complete, standalone bundle for performing BehavePlus v6 fire simulations in Node or web browsers",
   "author": "Collin D. Bevins <cbevins@montana.com>",
   "license": "MIT",
   "keywords": [
-    "template"
+    "fire behavior",
+    "wildland fire behavior",
+    "BehavePlus"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cbevins/template-node-lib.git"
+    "url": "git+https://github.com/cbevins/fire-behavior-simulator.git"
   },
   "bugs": {
-    "url": "https://github.com/cbevins/template-node-lib/issues"
+    "url": "https://github.com/cbevins/fire-behavior-simulator/issues"
   },
-  "homepage": "https://github.com/cbevins/template-node-lib/readme",
+  "homepage": "https://github.com/cbevins/fire-behavior-simulator/readme",
   "main": "./dist/bundle.cjs.js",
   "exports": "./dist/bundle.esm.js",
   "module": "./dist/bundle.esm.js",
