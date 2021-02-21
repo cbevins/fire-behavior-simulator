@@ -1,7 +1,7 @@
 {
   "name": "@cbevins/fire-behavior-simulator",
   "version": "0.1.0",
-  "description": "A complete, standalone bundle for performing BehavePlus v6 fire simulations in Node or web browsers",
+  "description": "A standalone bundle for performing BehavePlus v6 fire simulations in Node or web browsers",
   "author": "Collin D. Bevins <cbevins@montana.com>",
   "license": "MIT",
   "keywords": [
