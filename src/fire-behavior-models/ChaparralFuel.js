@@ -1,10 +1,8 @@
 /**
- * @file Exported WFSP chaparral dynamic fuel equations
- * as described by Rothermel and Philpot (1973)
+ * @file Chaparral dynamic fuel equations as described by Rothermel and Philpot (1973)
  * and as implemented by BehavePlus V6.
- * @version 0.1.0
- * @copyright Systems for Environmental Management 2020
- * @author Collin D. Bevins
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
  * @license MIT
  */
 import * as Calc from './Calc.js'

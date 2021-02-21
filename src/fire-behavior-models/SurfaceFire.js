@@ -1,5 +1,5 @@
 /**
- * @file Class of export function surface fire methods per Rothermel 1972.
+ * @file Surface fire functions as described by Rothermel 1972.
  *
  * Library of algorithms implementing the Rothermel (1972) mathematical model
  * of surface fire spread rate and direction of maximum spread from upslope.
@@ -11,8 +11,8 @@
  * All algorithms in this class are implemented as pure export function methods,
  * returning a single property.
  *
- * @author Collin D. Bevins <cbevins@montana.com>
- * @copyright 2019 Systems for Environmental Management
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
  * @license MIT
  **/
 

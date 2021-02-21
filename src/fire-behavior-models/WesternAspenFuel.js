@@ -1,8 +1,7 @@
 /**
- * @file Exported WFSP western aspen dynamic fuel model equations
+ * @file Western aspen dynamic fuel model equations
  * as described by Brown and Simmerman (1986) and implemented by BehavePlus V6.
- * @version 0.1.0
- * @copyright Systems for Environmental Management 2020
+ * @copyright 2021 Systems for Environmental Management
  * @author Collin D. Bevins
  * @license MIT
  */

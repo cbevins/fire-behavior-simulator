@@ -1,5 +1,5 @@
 import { Sim } from '../index.js'
-import * as Lib from '../../fire-behavior-models/index.js'
+import * as Lib from '../../fire-behavior-models'
 import { StorageAbstract, UpdateAbstract } from '../index.js'
 
 const cfgWindDirKey = 'configure.wind.direction'

@@ -1,4 +1,4 @@
-import { Config } from '../variant/index.js'
+import { Config } from '../variant'
 /**
  * Declares the specialized BehavePlus Config Variants.
  *

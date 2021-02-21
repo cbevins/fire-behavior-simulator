@@ -1,12 +1,10 @@
 /**
- * @file Exported WFSP fire ellipse functions
- * as described by Albini (1998) and
+ * @file Fire ellipse functions as described by Albini (1998) and
  * as implemented by BehavePlus v6.
- * @version 0.1.0
- * @copyright Systems for Environmental Management 2020
- * @author Collin D. Bevins <cbevins@montana.com>
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
  * @license MIT
- */
+*/
 
 import * as Calc from './Calc.js'
 import * as Compass from './Compass.js'

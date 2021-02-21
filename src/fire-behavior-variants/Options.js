@@ -1,5 +1,5 @@
-import { Option } from '../variant/index.js'
-import * as Lib from '../fire-behavior-models/index.js'
+import { Option } from '../variant'
+import * as Lib from '../fire-behavior-models'
 
 /**
  * Declares the specialized BehavePlus Option Variants used by nodes and equations.

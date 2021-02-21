@@ -1,8 +1,7 @@
 /**
- * @file Exported WFSP tree mortality data as implemented by BehavePlus V6 and FOFEM v6.
- * @version 0.1.0
- * @copyright Systems for Environmental Management 2020
- * @author Collin D. Bevins <cbevins@montana.com>
+ * @file Tree mortality data as implemented by BehavePlus V6 and FOFEM v6.
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
  * @license MIT
  */
 

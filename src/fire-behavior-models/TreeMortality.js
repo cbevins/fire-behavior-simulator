@@ -1,11 +1,7 @@
-/* eslint-disable no-prototype-builtins */
-/* eslint-disable brace-style */
 /**
- * @file Exported WFSP tree mortality equations
- * as implemented by BehavePlus V6 and FOFEM v6.
- * @version 0.1.0
- * @copyright Systems for Environmental Management 2020
- * @author Collin D. Bevins <cbevins@montana.com>
+ * @file Tree mortality equations as implemented by BehavePlus V6 and FOFEM v6.
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
  * @license MIT
  */
 

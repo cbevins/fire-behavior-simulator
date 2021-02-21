@@ -5,7 +5,7 @@
  * - Weighted Behave fuel models '10' (60%) and '124' (40%)
  * - Covers surface.primary.*, surface.secondary.*, and surface.weighted.*
  */
-import { SurfaceFire } from '../../../fire-behavior-models/index.js'
+import { SurfaceFire } from '../../../fire-behavior-models'
 
 export const Configs = [
   ['configure.fire.effectiveWindSpeedLimit', ['applied', 'ignored'][0]],

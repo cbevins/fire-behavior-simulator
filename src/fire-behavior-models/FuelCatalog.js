@@ -1,10 +1,9 @@
 /**
- * @file Exported BehavePlus fuel catalog accessors.
- * @version 0.1.0
- * @copyright Systems for Environmental Management 2020
- * @author Collin D. Bevins
+ * @file Fuel catalog accessors.
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
  * @license MIT
- */
+*/
 
 import * as Fuel from './FuelCatalogData.js'
 export { Domains } from './FuelCatalogData.js'

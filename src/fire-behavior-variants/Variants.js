@@ -1,4 +1,4 @@
-import { ArrayIndex, Bool, Count, Float, Fraction, Obj, Quantity, Ratio, Text } from '../variant/index.js'
+import { ArrayIndex, Bool, Count, Float, Fraction, Obj, Quantity, Ratio, Text } from '../variant'
 
 /**
  * Declares the specialized BehavePlus numeric (Quantity, Float, Integer) Variants.

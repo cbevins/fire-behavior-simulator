@@ -1,12 +1,13 @@
 /**
- * @file Exported WFSP surface fire and lightning strike ignition probability equations
+ * @file Surface fire and lightning strike ignition probability equations
  * as described by Latham () as described by Albini (1998) and
  * as implemented by BehavePlus v6.
- * @copyright Systems for Environmental Management 2019
- * @author Collin D. Bevins <cbevins@montana.com>
- * @version 0.1.0
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
  */
 import * as Calc from './Calc.js'
+
 /**
  * Calculates the probability of a surface fire firebrand starting a fire.
  *

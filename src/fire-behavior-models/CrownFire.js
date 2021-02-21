@@ -1,10 +1,8 @@
 /**
- * @file Exported WFSP crown fire functions
- * @version 0.1.0
- * as described by Rothermel () and by Scott & Reinhardt ()
+ * @file Crown fire functions as described by Rothermel () and by Scott & Reinhardt ()
  * and as implemented by BehavePlus v6.
- * @copyright Systems for Environmental Management 2020
- * @author Collin D. Bevins <cbevins@montana.com>
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
  * @license MIT
  */
 

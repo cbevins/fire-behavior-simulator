@@ -1,8 +1,7 @@
 /**
- * @file Exported WFSP math functions.
- * @version 0.1.0
- * @copyright Systems for Environmental Management 2020
- * @author Collin D. Bevins <cbevins@montana.com>
+ * @file Shared, safe math functions
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
  * @license MIT
  */
 export const divide = (...numbers) =>

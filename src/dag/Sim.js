@@ -1,4 +1,10 @@
-import { CompiledGenome } from '../fire-behavior-genome/index.js'
+/**
+ * @file Sim class
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+ */
+import { CompiledGenome } from '../fire-behavior-genome'
 import { Dag } from './Dag.js'
 
 export class Sim {

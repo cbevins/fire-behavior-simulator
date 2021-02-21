@@ -2,7 +2,7 @@
 import { Sim } from '../../index.js'
 import * as DagJest from '../../utils/matchers.js'
 import * as Test from './fireEllipse.bp6.results.js'
-import { FireEllipse } from '../../../fire-behavior-models/index.js'
+import { FireEllipse } from '../../../fire-behavior-models'
 
 const value = DagJest.value
 expect.extend({ value })

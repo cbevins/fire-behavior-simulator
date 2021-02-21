@@ -1,9 +1,8 @@
 /**
- * @file Exported WFSP palmetto-gallberry dynamic fuel model equations
+ * @file Palmetto-gallberry dynamic fuel model equations
  * as described by Hough and Albini (1978) and as implemented by BehavePlus V6.
- * @version 0.1.0
- * @copyright Systems for Environmental Management 2020
- * @author Collin D. Bevins <cbevins@montana.com>
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
  * @license MIT
  */
 import * as Calc from './Calc.js'

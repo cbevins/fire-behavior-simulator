@@ -1,8 +1,7 @@
 /**
- * @file Exported WFSP compass functions as implemented by BehavePlus v6.
- * @version 0.1.0
- * @copyright Systems for Environmental Management 2020
- * @author Collin D. Bevins <cbevins@montana.com>
+ * @file Compass functions as implemented by BehavePlus v6.
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
  * @license MIT
  */
 

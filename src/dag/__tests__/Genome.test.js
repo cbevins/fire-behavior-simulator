@@ -1,4 +1,4 @@
-import { CompiledGenome as Genome } from '../../fire-behavior-genome/index.js'
+import { CompiledGenome as Genome } from '../../fire-behavior-genome'
 
 test('1: Imported CompiledGenome properties', () => {
   expect(Array.isArray(Genome.literalArgsArray)).toEqual(true)

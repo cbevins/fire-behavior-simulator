@@ -1,5 +1,9 @@
-/* eslint-disable no-unused-vars */
-// Node updater methods that are handled internally by the Dag
+/**
+ * @file DagNode updater methods that are handled internally by the Dag
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+ */
 export function bind (value) { return value }
 export function config (value) { return value }
 export function dangler (value) { return value }

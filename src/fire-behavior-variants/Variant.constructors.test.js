@@ -1,5 +1,5 @@
 import * as V from './index.js'
-import { ArrayIndex, Bool, Config, Count, Float, Fraction, Obj, Option, Quantity, Ratio, Text } from '../variant/index.js'
+import { ArrayIndex, Bool, Config, Count, Float, Fraction, Obj, Option, Quantity, Ratio, Text } from '../variant'
 import { VariantMap } from './VariantMap.js'
 
 test('Abstract Factor and NonNegativeFactor', () => {
