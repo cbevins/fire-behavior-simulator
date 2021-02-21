@@ -1,0 +1,89 @@
+{
+  "name": "@cbevins/template-node-lib",
+  "version": "0.1.0",
+  "description": "template-node-lib is a template repo for developing node library packages",
+  "author": "Collin D. Bevins <cbevins@montana.com>",
+  "license": "MIT",
+  "keywords": [
+    "template"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cbevins/template-node-lib.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cbevins/template-node-lib/issues"
+  },
+  "homepage": "https://github.com/cbevins/template-node-lib/readme",
+  "main": "./dist/bundle.cjs.js",
+  "exports": "./dist/bundle.esm.js",
+  "module": "./dist/bundle.esm.js",
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "RELEASE_NOTES.md",
+    "LICENSE",
+    "package.json"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "prebuild": "rimraf dist",
+    "publish:github": "npm publish --registry https://npm.pkg.github.com --access public",
+    "publish:npm": "npm publish --registry https://registry.npmjs.org --access public",
+    "test": "jest",
+    "test:clear": "jest --clearCache",
+    "test:coverage": "jest --coverage",
+    "test:coveralls": "jest --coverage && coveralls < coverage/lcov.info",
+    "test:watch": "jest --watchAll"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "publishConfigGithub": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
+  "publishConfigNpm": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "<rootDir>/src/untracked"
+    ],
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/index.js",
+      "!**/coverage/**",
+      "!**/dist/**",
+      "!**/untracked/**",
+      "!**/utils/**",
+      "!**/node_modules/**",
+      "!**/.eslintrc.js",
+      "!rollup.config.js"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "~7",
+    "@babel/preset-env": "~7",
+    "@rollup/plugin-babel": "~5",
+    "@rollup/plugin-json": "~4",
+    "@rollup/plugin-node-resolve": "~9",
+    "@rollup/pluginutils": "~4",
+    "coveralls": "~3",
+    "eslint": "~7",
+    "eslint-config-standard": "~14",
+    "eslint-plugin-import": "~2",
+    "eslint-plugin-jest": "~24",
+    "eslint-plugin-node": "~11",
+    "eslint-plugin-promise": "~4",
+    "eslint-plugin-standard": "~4",
+    "jest": "~26",
+    "rimraf": "~3",
+    "rollup": "~2",
+    "rollup-plugin-terser": "~7",
+    "rollup-plugin-uglify": "~6"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "name": "some-new-library",
+  "description": "Some New Library",
+  "keywords": [],
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cbevins/some-new-library.git"
+  },
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com"
+  },
+  "bugs": {
+    "url": "https://github.com/cbevins/some-new-library/issues"
+  },
+  "homepage": "https://github.com/cbevins/some-new-library#readme",
+  "author": "Collin D. Bevins <cbevins@montana.com>",
+  "license": "MIT",
+  "main": "./dist/bundle.cjs.js",
+  "exports": "./dist/bundle.esm.js",
+  "module": "./dist/bundle.esm.js",
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "package.json"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "prebuild": "rimraf dist",
+    "test": "jest",
+    "test:clear": "jest --clearCache",
+    "test:coverage": "jest --coverage",
+    "test:coveralls": "jest --coverage && coveralls < coverage/lcov.info",
+    "test:watch": "jest --watchAll"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [],
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/index.js",
+      "!**/coverage/**",
+      "!**/dist/**",
+      "!**/node_modules/**",
+      "!**/.eslintrc.js",
+      "!rollup.config.js"
+    ]
+  },
+  "devDependencies": {}
+}
