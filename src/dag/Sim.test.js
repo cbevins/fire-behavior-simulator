@@ -1,7 +1,7 @@
 // import { Sim } from './Sim.js'
-import { CompiledGenome as Genome } from '@cbevins/fire-behavior-genome'
+import { CompiledGenome as Genome } from '../fire-behavior-genome/index.js'
 import { Sim, Dag, DagNode } from './index.js'
-import * as Lib from '@cbevins/fire-behavior-models'
+import * as Lib from '../fire-behavior-models/index.js'
 
 const cfgWindDirKey = 'configure.wind.direction'
 const cfgWindDirIdx = 24

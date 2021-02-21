@@ -1,5 +1,5 @@
 import { Quantity } from './index.js'
-import { Uom } from '@cbevins/uom'
+import { Uom } from '../uom/index.js'
 
 const rosUnits = ['ft/min', 'ch/h', 'mi/h', 'm/min', 'km/h']
 

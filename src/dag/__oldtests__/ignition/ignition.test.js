@@ -1,6 +1,6 @@
 import { Sim, StorageNodeMap } from '../../index.js'
 import * as DagJest from '../../utils/matchers.js'
-import { IgnitionProbability } from '@cbevins/fire-behavior-models'
+import { IgnitionProbability } from '../../../index.js'
 
 const value = DagJest.value
 expect.extend({ value })

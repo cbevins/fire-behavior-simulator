@@ -1,6 +1,6 @@
 import { Sim } from '../../index.js'
 import * as DagJest from '../../utils/matchers.js'
-import { FireEllipse, SurfaceFire } from '@cbevins/fire-behavior-models'
+import { FireEllipse, SurfaceFire } from '../../../fire-behavior-models/index.js'
 import { configDefault } from '../configs.js'
 
 const value = DagJest.value

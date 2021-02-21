@@ -6,8 +6,8 @@
 */
 
 import { DagNode } from './DagNode.js'
-import * as Lib from '@cbevins/fire-behavior-models'
-import { VariantMap } from '@cbevins/fire-behavior-variants'
+import * as Lib from '../fire-behavior-models/index.js'
+import { VariantMap } from '../fire-behavior-variants/index.js'
 
 export class DagPrivate {
   constructor(sim) {

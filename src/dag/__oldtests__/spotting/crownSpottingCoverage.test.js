@@ -1,6 +1,6 @@
 import { Sim, StorageNodeMap } from '../../index.js'
 import * as DagJest from '../../utils/matchers.js'
-import { CrownSpotting } from '@cbevins/fire-behavior-models'
+import { CrownSpotting } from '../../../fire-behavior-models/index.js'
 
 const value = DagJest.value
 expect.extend({ value })

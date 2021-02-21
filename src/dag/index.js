@@ -1,5 +1,3 @@
-import { Dag } from '@cbevins/fire-behavior-models'
-
 export * from './Dag.js'
 export * from './DagNode.js'
 export * from './Sim.js'

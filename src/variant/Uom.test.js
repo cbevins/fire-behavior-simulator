@@ -1,4 +1,4 @@
-import { Uom, Converter } from '@cbevins/uom'
+import { Uom, Converter } from '../uom/index.js'
 
 test('1 Uom import direct use by client', () => {
   expect(Uom.convert(1, 'ft', 'm')).toEqual(0.3048)

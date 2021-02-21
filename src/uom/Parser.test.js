@@ -1,5 +1,4 @@
-import { Parser } from './Parser.js'
-import { unitDefs } from './unitDefs.js'
+import { Parser, unitDefs } from './index.js'
 
 test('1: UomParser.parse()', () => {
   const p = new Parser(unitDefs)

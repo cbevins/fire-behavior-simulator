@@ -1,5 +1,5 @@
 import { Sim } from '../index.js'
-import { CompiledGenome as Genome } from '@cbevins/fire-behavior-genome'
+import { CompiledGenome as Genome } from '../../fire-behavior-genome/index.js'
 
 const nodeLength = Genome.genesArray.length // 1224
 

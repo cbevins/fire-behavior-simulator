@@ -1,5 +1,4 @@
-import { Compiler } from './Compiler.js'
-import { unitDefs } from './unitDefs.js'
+import { Compiler, unitDefs } from './index.js'
 
 const Uom = new Compiler(unitDefs)
 const fpm = 1 / 0.3048 // ft/m

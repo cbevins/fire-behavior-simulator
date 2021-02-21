@@ -1,4 +1,4 @@
-import { Converter } from './Converter.js'
+import { Converter } from './index.js'
 
 test('1 Converter.hasSignature()', () => {
   const converter = new Converter()

@@ -5,7 +5,7 @@
  * @license MIT
   */
 import { Float } from './Float.js'
-import { Uom } from '@cbevins/uom'
+import { Uom } from '../Uom/index.js'
 import { ValidationResult } from './ValidationResult.js'
 import { filterNonNegativeNumeric } from './filters.js'
 

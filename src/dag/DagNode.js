@@ -1,3 +1,10 @@
+/**
+ * @file DagNode class
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
+
 export class DagNode {
   constructor(geneRef, variantRef, initialValue) {
     this._dag = {

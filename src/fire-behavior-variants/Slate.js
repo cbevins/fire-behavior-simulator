@@ -1,4 +1,4 @@
-import { Quantity } from '@cbevins/variant'
+import { Quantity } from '../variant/index.js'
 /**
  * Experimental approach to setting Variant display units
  *
@@ -142,7 +142,7 @@ function applyNative(vmap) {
 
 function applyFractions(vmap, slateKey) {
   Variant_Fraction_Slate.forEach(key => {
-    console.log(key)
+    // console.log(key)
     // if (!vmap.has(key)) throw new Error(`VariantMap has no key '${key}'`)
     vmap.get(key).setDisplayUnits(slateKey)
   })

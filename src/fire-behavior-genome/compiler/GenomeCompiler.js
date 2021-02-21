@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 import { Genome } from '../genome.js'
-import * as Lib from '@cbevins/fire-behavior-models'
-import { VariantMap } from '@cbevins/fire-behavior-variants'
+import * as Lib from '../../index.js'
+import { VariantMap } from '../../index.js'
 import { dict } from './dictionary.js'
 
 const ab = [
