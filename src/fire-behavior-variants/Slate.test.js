@@ -1,0 +1,68 @@
+import { VariantMap } from './VariantMap.js'
+import { applySlate } from './Slate.js'
+
+test('SI units()', () => {
+  const vmap = new VariantMap()
+  expect(vmap.get('FireArea').displayUnits()).toEqual('ac')
+  expect(vmap.get('FireSpreadRate').displayUnits()).toEqual('ft/min')
+  expect(vmap.get('FireFlameLength').displayUnits()).toEqual('ft')
+  expect(vmap.get('FuelMoistureContent').displayUnits()).toEqual('%')
+  expect(vmap.get('WindSpeed').displayUnits()).toEqual('mi/h')
+
+  applySlate(vmap, 'si')
+  expect(vmap.get('FireArea').displayUnits()).toEqual('ha')
+  expect(vmap.get('FireSpreadRate').displayUnits()).toEqual('m/min')
+  expect(vmap.get('FireFlameLength').displayUnits()).toEqual('m')
+  expect(vmap.get('FuelMoistureContent').displayUnits()).toEqual('%')
+  expect(vmap.get('WindSpeed').displayUnits()).toEqual('km/h')
+
+  applySlate(vmap, 'us_sur')
+  expect(vmap.get('FireArea').displayUnits()).toEqual('ac')
+  expect(vmap.get('FireSpreadRate').displayUnits()).toEqual('ch/h')
+  expect(vmap.get('FireFlameLength').displayUnits()).toEqual('ft')
+  expect(vmap.get('FuelMoistureContent').displayUnits()).toEqual('%')
+  expect(vmap.get('WindSpeed').displayUnits()).toEqual('mi/h')
+
+  applySlate(vmap, 'si_gross')
+  expect(vmap.get('FireArea').displayUnits()).toEqual('km2')
+  expect(vmap.get('FireSpreadRate').displayUnits()).toEqual('km/h')
+  expect(vmap.get('FireFlameLength').displayUnits()).toEqual('m')
+  expect(vmap.get('FuelMoistureContent').displayUnits()).toEqual('%')
+  expect(vmap.get('WindSpeed').displayUnits()).toEqual('km/h')
+
+  applySlate(vmap, 'us')
+  expect(vmap.get('FireArea').displayUnits()).toEqual('ac')
+  expect(vmap.get('FireSpreadRate').displayUnits()).toEqual('ft/min')
+  expect(vmap.get('FireFlameLength').displayUnits()).toEqual('ft')
+  expect(vmap.get('FuelMoistureContent').displayUnits()).toEqual('%')
+  expect(vmap.get('WindSpeed').displayUnits()).toEqual('mi/h')
+
+  applySlate(vmap, 'us_gross')
+  expect(vmap.get('FireArea').displayUnits()).toEqual('mi2')
+  expect(vmap.get('FireSpreadRate').displayUnits()).toEqual('mi/h')
+  expect(vmap.get('FireFlameLength').displayUnits()).toEqual('ft')
+  expect(vmap.get('FuelMoistureContent').displayUnits()).toEqual('%')
+  expect(vmap.get('WindSpeed').displayUnits()).toEqual('mi/h')
+
+  applySlate(vmap)
+  expect(vmap.get('FireArea').displayUnits()).toEqual('ft2')
+  expect(vmap.get('FireSpreadRate').displayUnits()).toEqual('ft/min')
+  expect(vmap.get('FireFlameLength').displayUnits()).toEqual('ft')
+  expect(vmap.get('FuelMoistureContent').displayUnits()).toEqual('ratio')
+  expect(vmap.get('WindSpeed').displayUnits()).toEqual('ft/min')
+
+  applySlate(vmap, 'ratio')
+  expect(vmap.get('FireArea').displayUnits()).toEqual('ft2')
+  expect(vmap.get('FireSpreadRate').displayUnits()).toEqual('ft/min')
+  expect(vmap.get('FireFlameLength').displayUnits()).toEqual('ft')
+  expect(vmap.get('CrownFillFraction').displayUnits()).toEqual('ratio')
+  expect(vmap.get('FuelMoistureContent').displayUnits()).toEqual('ratio')
+  expect(vmap.get('WindSpeed').displayUnits()).toEqual('ft/min')
+
+  applySlate(vmap, '%')
+  expect(vmap.get('FireArea').displayUnits()).toEqual('ft2')
+  expect(vmap.get('FireSpreadRate').displayUnits()).toEqual('ft/min')
+  expect(vmap.get('FireFlameLength').displayUnits()).toEqual('ft')
+  expect(vmap.get('FuelMoistureContent').displayUnits()).toEqual('%')
+  expect(vmap.get('WindSpeed').displayUnits()).toEqual('ft/min')
+})
