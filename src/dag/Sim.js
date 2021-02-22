@@ -4,7 +4,7 @@
  * @author Collin D. Bevins, <cbevins@montana.com>
  * @license MIT
  */
-import { CompiledGenome } from '../fire-behavior-genome'
+import { CompiledGenome } from '../fire-behavior-genome/index.js'
 import { Dag } from './Dag.js'
 
 export class Sim {

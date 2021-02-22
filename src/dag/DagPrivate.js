@@ -6,8 +6,8 @@
 */
 
 import { DagNode } from './DagNode.js'
-import * as Lib from '../fire-behavior-models'
-import { VariantMap } from '../fire-behavior-variants'
+import * as Lib from '../fire-behavior-models/index.js'
+import { VariantMap } from '../fire-behavior-variants/index.js'
 
 export class DagPrivate {
   constructor(sim) {
@@ -115,6 +115,17 @@ export class DagPrivate {
         if (visited.has(consumerKey)) { // oops, this DagNode was already visited
           // The following lines should never be executed, but then...
           visited.add(consumerKey)
+          let str = ''
+          str = `configure.wind.direction is '${this.get('configure.wind.direction').value()}'\n`
+          str = `configure.fuel.moisture is '${this.get('configure.fuel.moisture').value()}'\n`
+          Array.from(visited).forEach(key => {
+            const n = this.get(key)
+            str += `'${key}' is consumed by:\n`
+            n._dag._consumers.forEach(c => { str += `  - '${c.key()}'\n` })
+            const cfg = n._update._config === null ? 'none' : n._update._config.key()
+            str += `  and its current config is '${cfg}\n`
+          })
+          console.log(str)
           throw new Error(`Cyclical dependency detected:\n${Array.from(visited).join(' required by ->\n')}`)
         }
         visited.add(consumerKey) // add this consumer to the Visited Set

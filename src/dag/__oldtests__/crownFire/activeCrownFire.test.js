@@ -1,6 +1,6 @@
 import { Sim } from '../../index.js'
 import * as DagJest from '../../utils/matchers.js'
-import { CrownFire } from '../../../fire-behavior-models'
+import { CrownFire } from '../../../fire-behavior-models/index.js'
 
 const value = DagJest.value
 expect.extend({ value })

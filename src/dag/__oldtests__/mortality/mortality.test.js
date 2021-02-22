@@ -1,6 +1,6 @@
 import { Sim, StorageNodeMap } from '../../index.js'
 import * as DagJest from '../../utils/matchers.js'
-import { TreeMortality } from '../../../fire-behavior-models'
+import { TreeMortality } from '../../../fire-behavior-models/index.js'
 
 const sig = DagJest.sig
 const value = DagJest.value

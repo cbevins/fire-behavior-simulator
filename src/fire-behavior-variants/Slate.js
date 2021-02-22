@@ -1,4 +1,4 @@
-import { Quantity } from '../variant'
+import { Quantity } from '../variant/index.js'
 /**
  * Experimental approach to setting Variant display units
  *
