@@ -99,7 +99,8 @@ export class GenomeCompiler {
     this.variantKeyIdxMap = new VariantMap()
     this.variantKeyArray = []
     this.variantKeyIdxMap.forEach((entry, key) => {
-      this.variantKeyIdxMap.set(key, this.variantKeyArray.length)
+      const vidx = this.variantKeyArray.length
+      this.variantKeyIdxMap.set(key, vidx)
       this.variantKeyArray.push(key)
     })
 
@@ -262,11 +263,13 @@ export class GenomeCompiler {
     })
   }
 
-  run (genomeArray, fileName) {
+  run (genomeArray, fileName=null) {
     this.compile(genomeArray)
-    this.writeFile(fileName, this.assemble())
+    const str = this.assemble()
+    if (fileName!=null) this.writeFile(fileName, str)
+    return str
   }
 }
 
 const compiler = new GenomeCompiler(dict)
-compiler.run(Genome, './src/compiler/CompiledGenome.js')
+compiler.run(Genome, './src/fire-behavior-genome/compiler/CompiledGenome.js')
