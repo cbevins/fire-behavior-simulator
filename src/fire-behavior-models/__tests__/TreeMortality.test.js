@@ -23,3 +23,7 @@ test('1: TreeMortality', () => {
   expect(TM.commonNames()).toContain('Ponderosa pine')
   expect(TM.scientificNames()).toContain('Pinus ponderosa')
 })
+
+test('2: TreeMortality.mortalityRate(fofem6Code, dbh, treeHt, baseHt, scorchHt) edge cases', () => {
+  expect(TM.mortalityRate('PICO', 30, 40, 6, 0)).toEqual(0)
+})

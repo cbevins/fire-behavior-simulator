@@ -256,3 +256,15 @@ test('5: Coverage', () => {
 
   expect(WesternAspen.deadMext()).toEqual(0.25)
 })
+
+test('6: Edge cases for unknown fuel type', () => {
+  const fuelType = 'junk'
+  const curingLevel = 0.5
+  expect(WesternAspen.depth(fuelType)).toEqual(0.01)
+  expect(WesternAspen.deadFineLoad(fuelType, curingLevel)).toEqual(0)
+  expect(WesternAspen.deadFineSavr(fuelType, curingLevel)).toEqual(1)
+  expect(WesternAspen.deadSmallLoad(fuelType, curingLevel)).toEqual(0)
+  expect(WesternAspen.liveHerbLoad(fuelType, curingLevel)).toEqual(0)
+  expect(WesternAspen.liveStemLoad(fuelType, curingLevel)).toEqual(0)
+  expect(WesternAspen.liveStemSavr(fuelType, curingLevel)).toEqual(1)
+})

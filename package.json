@@ -65,7 +65,12 @@
       "!**/utils/**",
       "!**/node_modules/**",
       "!**/.eslintrc.js",
-      "!rollup.config.js"
+      "!rollup.config.js",
+      "!**/dag/__behave_tests__/**",
+      "!**/fire-behavior-models/Contain.js",
+      "!**/fire-behavior-models/Dag.js",
+      "!**/fire-behavior-genome/compiler/**",
+      "!**/mega.js"
     ]
   },
   "devDependencies": {

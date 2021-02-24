@@ -4,7 +4,6 @@ import * as DagJest from '../../utils/matchers.js'
 const value = DagJest.value
 expect.extend({ value })
 
-
 const sim = new Sim('dag1')
 const dag = sim.getDag('dag1')
 const store = new StorageNodeMap(dag)

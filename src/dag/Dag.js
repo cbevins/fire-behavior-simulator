@@ -143,7 +143,7 @@ export class Dag extends DagPrivate {
    * @param {StorageAbstract} storageClass Instance of a class derived from StorageAbstract
    */
   setStorageClass(storageClass) {
-    if ( ! storageClass instanceof StorageAbstract) {
+    if ( ! (storageClass instanceof StorageAbstract)) {
       throw new Error(`setStorageClass() arg 1 must be an instance of StorageAbstract`)
     }
     if (storageClass._dag !== this) {
@@ -158,7 +158,7 @@ export class Dag extends DagPrivate {
    * @param {UpdateAbstract} updateClass Instance of a class derived from UpdateAbstract
    */
   setUpdateClass(updateClass) {
-    if ( ! updateClass instanceof UpdateAbstract) {
+    if ( ! (updateClass instanceof UpdateAbstract)) {
       throw new Error(`setUpdateClass() arg 1 must be an instance of UpdateAbstract`)
     }
     if (updateClass._dag !== this) {

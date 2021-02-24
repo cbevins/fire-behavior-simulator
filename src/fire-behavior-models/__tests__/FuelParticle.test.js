@@ -63,3 +63,18 @@ test('2: Coverage tests', () => {
   expect(FuelParticle.cylindricalDiameter(1200)).toEqual(4 / 1200)
   expect(() => FuelParticle.selectByDomain('junk', 1, 2, 3, 4)).toThrow()
 })
+
+test('3: FuelParticle.effectiveHeatingNumber(savr) edge cases', () => {
+  expect(FuelParticle.effectiveHeatingNumber(0)).toEqual(0)
+  expect(FuelParticle.effectiveHeatingNumber(-1)).toEqual(0)
+})
+
+test('4: FuelParticle.effectiveFuelLoadDead(savr, load) edge cases', () => {
+  expect(FuelParticle.effectiveFuelLoadDead(0, 0.1)).toEqual(0)
+  expect(FuelParticle.effectiveFuelLoadDead(-1, 0.1)).toEqual(0)
+})
+
+test('5: FuelParticle.effectiveFuelLoadLive(savr, load) edge cases', () => {
+  expect(FuelParticle.effectiveFuelLoadLive(0, 0.1)).toEqual(0)
+  expect(FuelParticle.effectiveFuelLoadLive(-1, 0.1)).toEqual(0)
+})

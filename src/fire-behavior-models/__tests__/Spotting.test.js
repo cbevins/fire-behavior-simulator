@@ -288,3 +288,15 @@ test('5: Coverage', () => {
   const ht = 4.24 * Math.pow(flameDur, 0.332) * flameHt + 0.5 * treeHt
   expect(Spotting.torchingTreesFirebrandHeight(treeHt, flameHt, flameDur)).toEqual(ht)
 })
+
+test('6:Spotting.distanceMountainTerrain(flatDistFt, locationKey, rvDistFt, rvElev) edge cases', () => {
+  const flatDistFt = 5280
+  const locationKey = 'ridgetop'
+  let rvDistFt = 0
+  let rvElev = 0
+  expect(Spotting.distanceMountainTerrain(flatDistFt, locationKey, rvDistFt, rvElev)).toEqual(flatDistFt)
+  expect(Spotting.distanceMountainTerrain(flatDistFt, locationKey, 5280, 0)).toEqual(flatDistFt)
+  expect(Spotting.distanceMountainTerrain(flatDistFt, locationKey, 5280, -1)).toEqual(flatDistFt)
+  expect(Spotting.distanceMountainTerrain(flatDistFt, locationKey, 0, 5280)).toEqual(flatDistFt)
+  expect(Spotting.distanceMountainTerrain(flatDistFt, locationKey, -1, 5280)).toEqual(flatDistFt)
+})

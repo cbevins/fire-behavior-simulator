@@ -23,10 +23,8 @@ export function age (depth, type) {
   if (type === TypeChamise) {
     return Math.exp(3.912023 * Math.sqrt(depth / 7.5))
   }
-  if (type === TypeMixedBrush) {
-    return Math.exp(3.912023 * Math.sqrt(depth / 10))
-  }
-  return 0
+  // else  (type === TypeMixedBrush) {
+  return Math.exp(3.912023 * Math.sqrt(depth / 10))
 }
 
 /**
@@ -69,7 +67,7 @@ export function totalLoad (age, type) {
     // const chamise1 = 0.0315   // Chamise load factor from Rothermel & Philpot (1973)
     const chamise2 = 0.0347 // Chamise load factor from Cohen's FIRECAST code
     tpa = age / (1.4459 + chamise2 * age)
-  } else if (type === TypeMixedBrush) {
+  } else { // if (type === TypeMixedBrush) {
     tpa = age / (0.4849 + 0.017 * age)
   }
   // Return total load in lb/ft2

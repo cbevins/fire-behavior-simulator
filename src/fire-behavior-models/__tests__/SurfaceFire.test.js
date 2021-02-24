@@ -40,3 +40,15 @@ test('4: FireEllipse.betaSpreadRate (betaHead, rosHead, eccent) ', () => {
   const eccent = 2
   expect(FE.betaSpreadRate(betaHead, rosHead, eccent)).toEqual(rosHead)
 })
+
+test('5: SurfaceFire.harmonicMeanSpreadRate(cover1, ros1, ros2) edge cases', () => {
+  expect(SF.harmonicMeanSpreadRate(0, 1, 2)).toEqual(2)
+  expect(SF.harmonicMeanSpreadRate(50, 0, 2)).toEqual(2)
+  expect(SF.harmonicMeanSpreadRate(50, 1, 0)).toEqual(1)
+
+  expect(SF.firelineIntensityFromFlameLength(0)).toEqual(0)
+  expect(SF.firelineIntensityFromFlameLength(-1)).toEqual(0)
+
+  expect(SF.flameLength(0)).toEqual(0)
+  expect(SF.flameLength(-1)).toEqual(0)
+})
