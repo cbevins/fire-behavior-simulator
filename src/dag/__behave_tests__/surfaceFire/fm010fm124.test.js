@@ -53,7 +53,7 @@ test('1: Fm010, FM124, and Weighted results validated against BP6', () => {
   const dag = sim.getDag('dag1')
 
   // Step 1 - configuration
-  dag.configure(configFm010Fm124) // Standard configuration
+  dag.configure(configFm010Fm124).run() // Standard configuration
 
   // Step 2 - selection
   dag.select(Test.primarySelections())
@@ -76,7 +76,7 @@ test('1: Fm010, FM124, and Weighted results validated against BP6', () => {
   // console.log(DagJest.arrayList(configNodes, 'Config Nodes'))
 
   // Set required input values and ensure results are as expected
-  dag.runInputs(testInputs)
+  dag.input(testInputs).run()
 
   // Validate FM010 primary fuel results
   const primaryResults = Test.primaryResults()

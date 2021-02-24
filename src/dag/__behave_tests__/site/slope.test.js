@@ -79,16 +79,16 @@ test('1: Slope direction and steepness', () => {
   expect(inputNodes.length).toEqual(2)
   expect(inputNodes).toContain(aspect)
   expect(inputNodes).toContain(ratio)
-  dag.runInputs([
+  dag.input([
     [aspect, 90],
     [ratio, 1.0]
-  ])
+  ]).run()
   expect(aspect.value()).toEqual(90)
   expect(upslope.value()).toEqual(270)
   expect(ratio.value()).toEqual(1)
 
   // Add degrees to selected list
-  dag.runSelected([[degrees, true]])
+  dag.select([degrees])
   selectedNodes = dag.selectedNodes()
   expect(selectedNodes.length).toEqual(4)
   expect(selectedNodes).toContain(aspect)
@@ -113,10 +113,10 @@ test('1: Slope direction and steepness', () => {
   expect(inputNodes.length).toEqual(2)
   expect(inputNodes).toContain(aspect)
   expect(inputNodes).toContain(ratio)
-  dag.runInputs([
+  dag.input([
     [aspect, 270],
     [ratio, 1.0]
-  ])
+  ]).run()
   expect(aspect.value()).toEqual(270)
   expect(upslope.value()).toEqual(90)
   expect(ratio.value()).toEqual(1)
@@ -130,7 +130,7 @@ test('1: Slope direction and steepness', () => {
   expect(selectedNodes).toContain(ratio)
   expect(selectedNodes).toContain(degrees)
 
-  dag.runConfigs([
+  dag.configure([
     ['configure.slope.steepness', ['ratio', 'degrees', 'map'][1]]
   ])
   expect(cfgSlp.value()).toEqual('degrees')
@@ -138,17 +138,17 @@ test('1: Slope direction and steepness', () => {
   expect(inputNodes.length).toEqual(2)
   expect(inputNodes).toContain(aspect)
   expect(inputNodes).toContain(degrees)
-  dag.runInputs([
+  dag.input([
     [aspect, 270],
     [degrees, 45]
-  ])
+  ]).run()
   expect(aspect.value()).toEqual(270)
   expect(upslope.value()).toEqual(90)
   expect(degrees.value()).toEqual(45)
   expect(ratio.value()).toBeCloseTo(1, 12)
 
   // Configure for map input
-  dag.runConfigs([
+  dag.configure([
     ['configure.slope.steepness', ['ratio', 'degrees', 'map'][2]]
   ])
   expect(cfgSlp.value()).toEqual('map')
@@ -172,13 +172,13 @@ test('1: Slope direction and steepness', () => {
   expect(inputNodes).toContain(interval)
   expect(inputNodes).toContain(contours)
   expect(inputNodes).toContain(distance)
-  dag.runInputs([
+  dag.input([
     [aspect, 270],
     [scale, 24000],
     [interval, 20],
     [contours, 5],
     [distance, 1 / 12]
-  ])
+  ]).run()
   expect(aspect.value()).toEqual(270)
   expect(upslope.value()).toEqual(90)
   expect(scale.value()).toEqual(24000)

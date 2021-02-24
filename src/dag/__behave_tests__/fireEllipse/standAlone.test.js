@@ -43,7 +43,7 @@ test('1: Head ros', () => {
   expect(inputNodes.length).toEqual(1)
   expect(inputNodes).toContain(observedRos)
   // Set the site.fire.observed.spreadRate and ensure it is passed on
-  dag.runInputs([[observedRos, 10]])
+  dag.input([[observedRos, 10]]).run()
   expect(observedRos.value()).toEqual(10)
   expect(headRos.value()).toEqual(10)
 

@@ -182,12 +182,12 @@ test('2: Fuel bed WAF with input vs estimated WAF', () => {
   expect(inputNodes).toContain(canopyCover)
   expect(inputNodes).toContain(crownBase)
   expect(inputNodes).toContain(crownHeight)
-  dag.runInputs([
+  dag.input([
     [catalogKey, '10'],
     [canopyCover, 0.5],
     [crownBase, 10],
     [crownHeight, 40]
-  ])
+  ]).run()
 
   expect(depth.value()).toBeCloseTo(1, 12)
   expect(canopyCover.value()).toBeCloseTo(0.5, 12)
@@ -206,7 +206,7 @@ test('2: Fuel bed WAF with input vs estimated WAF', () => {
   // expect(at20ft.value()).toBeCloseTo((10 / 0.1313664741590494), 12)
 
   // If fuel is unsheltered, WAF should be openWaf
-  dag.runInputs([[canopyCover, [0]]])
+  dag.input([[canopyCover, [0]]]).run()
   expect(canopyCover.value()).toBeCloseTo(0, 12)
   expect(shelteredWaf.value()).toBeCloseTo(1, 12)
   expect(sheltersFuel.value()).toEqual(false)
@@ -214,27 +214,27 @@ test('2: Fuel bed WAF with input vs estimated WAF', () => {
   expect(primaryFuelWaf.value()).toBeCloseTo(0.36210426360602416, 12)
   // expect(at20ft.value()).toBeCloseTo((10 / 0.36210426360602416), 12)
 
-  dag.runInputs([
+  dag.input([
     [canopyCover, [0.5]],
     [crownHeight, [5]]
-  ])
+  ]).run()
   expect(sheltersFuel.value()).toEqual(false)
   expect(openWaf.value()).toBeCloseTo(0.36210426360602416, 12)
   expect(primaryFuelWaf.value()).toBeCloseTo(0.36210426360602416, 12)
 
-  dag.runInputs([
+  dag.input([
     [crownBase, [40]],
     [crownHeight, [40]]
-  ])
+  ]).run()
   expect(sheltersFuel.value()).toEqual(false)
   expect(openWaf.value()).toBeCloseTo(0.36210426360602416, 12)
   expect(primaryFuelWaf.value()).toBeCloseTo(0.36210426360602416, 12)
 
-  dag.runInputs([
+  dag.input([
     [canopyCover, [0.5]],
     [crownBase, [10]],
     [crownHeight, [40]]
-  ])
+  ]).run()
   expect(sheltersFuel.value()).toEqual(true)
   expect(shelteredWaf.value()).toBeCloseTo(0.1313664741590494, 12)
   expect(openWaf.value()).toBeCloseTo(0.36210426360602416, 12)
@@ -242,7 +242,7 @@ test('2: Fuel bed WAF with input vs estimated WAF', () => {
 
   // Change primary fuel input to 'behave'
   // and we must enter the primary behave model depth parameter
-  dag.runConfigs([[cfgPrimary, 'behave']])
+  dag.configure([[cfgPrimary, 'behave']])
 
   inputNodes = dag.requiredInputNodes()
   expect(inputNodes.length).toEqual(4)
@@ -251,7 +251,7 @@ test('2: Fuel bed WAF with input vs estimated WAF', () => {
   expect(inputNodes).toContain(canopyCover)
   expect(inputNodes).toContain(behaveDepth)
 
-  dag.runInputs([[behaveDepth, [2]]])
+  dag.input([[behaveDepth, [2]]]).run()
   expect(openWaf.value()).toBeCloseTo(0.4179825632019431, 12)
   expect(primaryFuelWaf.value()).toBeCloseTo(0.1313664741590494, 12)
   // expect(at20ft.value()).toBeCloseTo((10/0.1313664741590494), 12)
@@ -259,17 +259,11 @@ test('2: Fuel bed WAF with input vs estimated WAF', () => {
 
 test('3: Fuel bed midflame wind speed', () => {
   dag.clearSelected()
-  dag.runConfigs([
+  dag.configure([
     ['configure.fuel.windSpeedAdjustmentFactor', ['input', 'estimated'][0]],
     ['configure.wind.speed', ['at10m', 'at20ft', 'atMidflame'][1]],
-    [
-      'configure.wind.direction',
-      ['sourceFromNorth', 'headingFromUpslope', 'upslope'][0]
-    ],
-    [
-      'configure.fuel.primary',
-      ['catalog', 'behave', 'chaparral', 'palmettoGallberry', 'westernAspen'][0]
-    ]
+    ['configure.wind.direction', ['sourceFromNorth', 'headingFromUpslope', 'upslope'][0]],
+    ['configure.fuel.primary', ['catalog', 'behave', 'chaparral', 'palmettoGallberry', 'westernAspen'][0]]
   ])
   // Verify initial configuration
   expect(cfgWaf.value()).toEqual('input')
@@ -277,7 +271,7 @@ test('3: Fuel bed midflame wind speed', () => {
   expect(cfgSpeed.value()).toEqual('at20ft')
 
   // Selecting fuel bed midflame wind speed
-  dag.runSelected([[primaryFuelAtMidflame, true]])
+  dag.select([primaryFuelAtMidflame])
   const selectedNodes = dag.selectedNodes()
   expect(selectedNodes.length).toEqual(1)
   expect(selectedNodes).toContain(primaryFuelAtMidflame)
@@ -294,21 +288,21 @@ test('3: Fuel bed midflame wind speed', () => {
   expect(inputNodes).toContain(siteAt20ft)
   expect(inputNodes).toContain(siteWaf)
 
-  dag.runInputs([
+  dag.input([
     [siteAt20ft, [20]],
     [siteWaf, [0.5]]
-  ])
+  ]).run()
   expect(primaryFuelAtMidflame.value()).toEqual(10)
 
-  dag.runConfigs([[cfgSpeed, 'at10m']])
-  dag.runInputs([
+  dag.configure([[cfgSpeed, 'at10m']])
+  dag.input([
     [siteAt10m, [20]],
     [siteWaf, [0.5]]
-  ])
+  ]).run()
   expect(primaryFuelAtMidflame.value()).toEqual(10 / 1.13)
 
   // Set wind speed input to 'atMidflame'
-  dag.runConfigs([[cfgSpeed, 'atMidflame']])
+  dag.configure([[cfgSpeed, 'atMidflame']])
 
   // Now the only required config is wind speed
   configNodes = dag.requiredConfigNodes()
@@ -319,11 +313,11 @@ test('3: Fuel bed midflame wind speed', () => {
   expect(inputNodes.length).toEqual(1)
   expect(inputNodes).toContain(siteAtMidflame)
 
-  dag.runInputs([[siteAtMidflame, [12.3]]])
+  dag.input([[siteAtMidflame, [12.3]]]).run()
   expect(primaryFuelAtMidflame.value()).toEqual(12.3)
 
   // Change wind speed back to 20ft
-  dag.runConfigs([[cfgSpeed, 'at20ft']])
+  dag.configure([[cfgSpeed, 'at20ft']])
 
   configNodes = dag.requiredConfigNodes()
   expect(configNodes.length).toEqual(2)
@@ -331,7 +325,7 @@ test('3: Fuel bed midflame wind speed', () => {
   expect(configNodes).toContain(cfgWaf)
 
   // Estimate the WAF, and fuel config now needed
-  dag.runConfigs([[cfgWaf, 'estimated']])
+  dag.configure([[cfgWaf, 'estimated']])
 
   configNodes = dag.requiredConfigNodes()
   expect(configNodes.length).toEqual(3)
@@ -339,7 +333,7 @@ test('3: Fuel bed midflame wind speed', () => {
   expect(configNodes).toContain(cfgWaf)
   expect(configNodes).toContain(cfgPrimary)
 
-  dag.runConfigs([[cfgPrimary, 'catalog']])
+  dag.configure([[cfgPrimary, 'catalog']])
 
   inputNodes = dag.requiredInputNodes()
   expect(inputNodes.length).toEqual(5)
@@ -349,13 +343,13 @@ test('3: Fuel bed midflame wind speed', () => {
   expect(inputNodes).toContain(catalogKey)
   expect(inputNodes).toContain(siteAt20ft)
 
-  dag.runInputs([
+  dag.input([
     [catalogKey, ['10']],
     [canopyCover, [0.5]],
     [crownBase, [10]],
     [crownHeight, [40]],
     [siteAt20ft, [10]]
-  ])
+  ]).run()
   expect(depth.value()).toBeCloseTo(1, 12)
   expect(canopyCover.value()).toBeCloseTo(0.5, 12)
   expect(crownBase.value()).toBeCloseTo(10, 12)

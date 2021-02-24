@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Sim } from '../index.js'
 import * as DagJest from './matchers.js'
 import * as Test from './fm010fm124.data.js'
@@ -35,7 +34,7 @@ test('1: Fm010, FM124, and Weighted results validated against BP6', () => {
   // console.log(DagJest.arrayList(configNodes, 'Config Nodes'))
 
   // Set required input values and ensure results are as expected
-  dag.input(testInputs)
+  dag.input(testInputs).run()
 
   // Validate FM010 primary fuel results
   const primaryResults = Test.primaryResults()
@@ -59,5 +58,5 @@ test('1: Fm010, FM124, and Weighted results validated against BP6', () => {
   })
 
   dag.clearInputs()
-  expect(dag.dna.input.size).toEqual(0)
+  expect(dag._input.size).toEqual(0)
 })

@@ -7,9 +7,9 @@ expect.extend({ value })
 const sim = new Sim('dag1')
 const dag = sim.getDag('dag1')
 
-dag.runConfigs([
+dag.configure([
   ['configure.fuel.moisture', ['individual', 'liveCategory', 'category', 'catalog'][0]]
-])
+]).run()
 
 // Moisture Nodes
 const moisCfg = dag.get('configure.fuel.moisture')
@@ -90,10 +90,10 @@ test('1: Fuel moisture configuration', () => {
   expect(inputNodes).not.toContain(moisStem)
   expect(inputNodes).toContain(moisDead)
   expect(inputNodes).toContain(moisLive)
-  dag.runInputs([
+  dag.input([
     [moisDead, 0.06],
     [moisLive, 2]
-  ])
+  ]).run()
   expect(moisTl1h.value()).toEqual(0.06)
   expect(moisTl10h.value()).toEqual(0.06)
   expect(moisTl100h.value()).toEqual(0.06)
@@ -104,7 +104,7 @@ test('1: Fuel moisture configuration', () => {
   expect(d1Mois.value()).toEqual(0.06)
   expect(l1Mois.value()).toEqual(2)
 
-  dag.runConfigs([[moisCfg, 'liveCategory']])
+  dag.configure([[moisCfg, 'liveCategory']]).run()
   expect(moisCfg.value()).toEqual('liveCategory')
   inputNodes = dag.requiredInputNodes()
   expect(inputNodes.length).toEqual(5)

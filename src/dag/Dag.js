@@ -219,23 +219,23 @@ export class Dag extends DagPrivate {
   }
 
   // DEPRECATED - included only for backwards compatability in test files
-  runConfigs(args) {
-    this.configure(args)
-    this.run()
-  }
+  // runConfigs(args) {
+  //   this.configure(args)
+  //   this.run()
+  // }
   // setConfigs(args) { this.configure(args) }
-  runInputs(args) {
-    this.input(args)
-    this.run()
-  }
+  // runInputs(args) {
+  //   this.input(args)
+  //   this.run()
+  // }
   // setInputs(args) { this.input(args) }
-  runSelected(args) {
-    this.setSelected(args)
-    this.run()
-  }
-  setSelected(args) {
-    const a = []
-    args.forEach(pair => { a.push(pair[0]) })
-    this.select(a)
-  }
+  // runSelected(args) {
+  //   this.setSelected(args)
+  //   this.run()
+  // }
+  // setSelected(args) {
+  //   const a = []
+  //   args.forEach(pair => { a.push(pair[0]) })
+  //   this.select(a)
+  // }
 }

@@ -1,3 +1,9 @@
+/**
+ * @file Common configurations and inputs used by tests and examples
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 export const configDefault = [
   ['configure.fire.effectiveWindSpeedLimit', ['applied', 'ignored'][0]],
   ['configure.fire.firelineIntensity', ['firelineIntensity', 'flameLength'][0]],

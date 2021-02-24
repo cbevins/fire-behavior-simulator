@@ -1,6 +1,11 @@
 /**
  * oneMillionRuns.js
  *
+ * REULTS for 3 test runs:       Run 1     Run 2     Run 3  Average  Percent  Percent
+ * - UpdateOrthogonalStack      41,938    41,033    41,025   41,332 1.000000  0.980245
+ * - UpdateOrthogonalRecursive  42,062    41,832    42,115   42.003 1.016234  1.000000
+ * CONCLUSION: Recursive is about 2% slower than Stack
+ *
  * Demonstrates behaveplus-radical performance for 1 million runs:
  * - 10 fuel models
  * - 10 live herb fuel moisture contents
@@ -31,7 +36,7 @@
  * 10 of Each             1,000,000   14,553   68,714 66,885 63,637
  *
  */
-import { Sim, UpdateOrthogonalStack, UpdateOrthogonalRecursive } from '../index.js'
+import { Sim, UpdateOrthogonalStack, UpdateOrthogonalRecursive } from '../dag/index.js'
 
 // Step 1 - create a BehavePlus directed acyclical graph (DAG)
 const sim = new Sim('dag1')

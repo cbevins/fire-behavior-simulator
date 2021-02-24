@@ -1,3 +1,11 @@
+/**
+ * @file Customized Jest test match functions
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
+
+// Number bar for showing decimals places
 const bar = '        : 1.23456789012'
 
 /**

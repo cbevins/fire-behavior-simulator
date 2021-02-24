@@ -51,7 +51,7 @@ test('1: Torching trees spotting distance configuration', () => {
   expect(inputNodes).toContain(dag.get('spotting.torchingTrees.height'))
 
   // firebrand drift is calculated, but no new inputs are required when it is selected
-  dag.runSelected([['spotting.torchingTrees.firebrand.drift', true]])
+  dag.select(['spotting.torchingTrees.firebrand.drift']).run()
   inputNodes = dag.requiredInputNodes()
   expect(inputNodes.length).toEqual(6)
   expect(inputNodes).toContain(dag.get('site.canopy.downwind.height'))

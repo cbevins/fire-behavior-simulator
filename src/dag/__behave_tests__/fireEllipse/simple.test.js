@@ -33,13 +33,13 @@ test('1: Bpx FireEllipse', () => {
   expect(configNodes.length).toEqual(12)
 
   // Set required input values and ensure results are as expected
-  dag.runInputs(testInputs)
+  dag.input(testInputs).run()
   Test.fireEllipseResults('fm010').forEach(result => {
     const [nodeKey, value, prec] = result
     expect(dag.get(nodeKey)).value(value, prec)
   })
 
-  dag.runInputs([['surface.primary.fuel.model.catalogKey', ['124']]])
+  dag.input([['surface.primary.fuel.model.catalogKey', ['124']]]).run()
   Test.fireEllipseResults('fm124').forEach(result => {
     const [nodeKey, value, prec] = result
     expect(dag.get(nodeKey)).value(value, prec)

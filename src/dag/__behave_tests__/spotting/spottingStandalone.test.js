@@ -128,7 +128,7 @@ test('2: Validate stand-alone with flameLength input results against BP6', () =>
   // Validate results
   const location = dag.get('site.terrain.spotSourceLocation')
   const isOpen = dag.get('site.canopy.downwind.isOpen')
-  dag.runInputs([
+  dag.input([
     // Inputs arranged in BP6 order...
     // Fuel/Vegetation, Overstory
     ['site.canopy.crown.totalHeight', [80]],
@@ -146,7 +146,7 @@ test('2: Validate stand-alone with flameLength input results against BP6', () =>
     ['spotting.burningPile.flameHeight', [20]],
     ['spotting.torchingTrees.count', [5]],
     ['site.fire.crown.flameLength', [40]]
-  ])
+  ]).run()
 
   const results = {
     torchingTrees: {

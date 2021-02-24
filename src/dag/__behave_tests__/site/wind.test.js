@@ -7,7 +7,7 @@ expect.extend({ value })
 const sim = new Sim('dag1')
 const dag = sim.getDag('dag1')
 
-dag.runConfigs([
+dag.configure([
   ['configure.wind.direction', ['sourceFromNorth', 'headingFromUpslope', 'upslope'][1]],
   ['configure.wind.speed', ['at10m', 'at20ft', 'atMidflame'][1]],
   ['configure.fuel.windSpeedAdjustmentFactor', ['input', 'estimated'][0]]
@@ -35,7 +35,7 @@ const aspect = dag.get('site.slope.direction.aspect')
 const upslope = dag.get('site.slope.direction.upslope')
 
 test('1: Wind speed and direction configurations', () => {
-  dag.runConfigs([
+  dag.configure([
     ['configure.wind.direction', ['sourceFromNorth', 'headingFromUpslope', 'upslope'][1]],
     ['configure.wind.speed', ['at10m', 'at20ft', 'atMidflame'][1]]
   ])
@@ -56,7 +56,7 @@ test('1: Wind speed and direction configurations', () => {
   expect(selectedNodes.length).toEqual(0)
 
   // Start with just wind.speed.at20ft selected
-  dag.runSelected([['site.wind.speed.at20ft', true]])
+  dag.select(['site.wind.speed.at20ft']).run()
   selectedNodes = dag.selectedNodes()
   expect(selectedNodes.length).toEqual(1)
   expect(selectedNodes).toContain(at20ft)
@@ -73,12 +73,12 @@ test('1: Wind speed and direction configurations', () => {
   let inputNodes = dag.requiredInputNodes()
   expect(inputNodes).toContain(at20ft)
 
-  dag.runInputs([[at20ft, 12.3]])
+  dag.input([[at20ft, 12.3]]).run()
   expect(at20ft.value()).toEqual(12.3)
   expect(at10m.value()).toEqual(0)
 
   // Add at10m as selected
-  dag.runSelected([[at10m, true]])
+  dag.select([at10m]).run()
   expect(at10m.value()).toEqual(12.3 * 1.13)
 
   selectedNodes = dag.selectedNodes()
@@ -100,26 +100,26 @@ test('1: Wind speed and direction configurations', () => {
   expect(inputNodes.length).toEqual(1)
   expect(inputNodes).toContain(at20ft)
 
-  dag.runInputs([[at20ft, 10]])
+  dag.input([[at20ft, 10]]).run()
   expect(at20ft.value()).toEqual(10)
   expect(at10m.value()).toBeCloseTo(11.3, 12)
   // at10m is NOT an input, so should have no effect
-  dag.runInputs([[at10m, 1234]])
+  dag.input([[at10m, 1234]]).run()
   expect(at20ft.value()).toEqual(10)
   expect(at10m.value()).toBeCloseTo(11.3, 12)
 
   // Change wind speed configuration to 'at10m'
-  dag.runConfigs([[cfgSpeed, 'at10m']])
+  dag.configure([[cfgSpeed, 'at10m']])
   inputNodes = dag.requiredInputNodes()
   expect(inputNodes.length).toEqual(1)
   expect(inputNodes).toContain(at10m)
   // at10m IS now an input, so should have effect
-  dag.runInputs([[at10m, 123]])
+  dag.input([[at10m, 123]]).run()
   expect(at10m.value()).toEqual(123)
   expect(at20ft.value()).toEqual(123 / 1.13)
 
   // Add headingFromUpslope as a selected leaf
-  dag.runSelected([[headingFromUpslope, true]])
+  dag.select([headingFromUpslope]).run()
   selectedNodes = dag.selectedNodes()
   expect(selectedNodes.length).toEqual(3)
   expect(selectedNodes).toContain(at20ft)
@@ -143,16 +143,16 @@ test('1: Wind speed and direction configurations', () => {
   expect(inputNodes.length).toEqual(2)
   expect(inputNodes).toContain(at10m)
 
-  dag.runInputs([
+  dag.input([
     [at10m, 11.3],
     [headingFromUpslope, 45]
-  ])
+  ]).run()
   expect(at10m.value()).toEqual(11.3)
   expect(at20ft.value()).toBeCloseTo(10, 12)
   expect(headingFromUpslope.value()).toEqual(45)
 
   // Add sourceFromUpslope as selected
-  dag.runSelected([[sourceFromUpslope, true]])
+  dag.select([sourceFromUpslope]).run()
   selectedNodes = dag.selectedNodes()
   expect(selectedNodes.length).toEqual(4)
   expect(selectedNodes).toContain(at20ft)
@@ -178,7 +178,7 @@ test('1: Wind speed and direction configurations', () => {
   expect(sourceFromUpslope.value()).toBeCloseTo(225, 12)
 
   // Change direction config to 'sourceFromNorth'
-  dag.runConfigs([[cfgDirection, 'sourceFromNorth']])
+  dag.configure([[cfgDirection, 'sourceFromNorth']])
   // Still just 4 selected Nodes
   selectedNodes = dag.selectedNodes()
   expect(selectedNodes.length).toEqual(4)
@@ -206,11 +206,11 @@ test('1: Wind speed and direction configurations', () => {
   expect(inputNodes).toContain(at10m)
   expect(inputNodes).toContain(aspect)
   expect(inputNodes).toContain(sourceFromNorth)
-  dag.runInputs([
+  dag.input([
     [aspect, 225],
     [sourceFromNorth, 90],
     [at10m, 30]
-  ])
+  ]).run()
   expect(aspect.value()).toEqual(225)
   expect(at10m.value()).toEqual(30)
   expect(at20ft.value()).toBeCloseTo(30 / 1.13, 12)
@@ -221,15 +221,15 @@ test('1: Wind speed and direction configurations', () => {
   expect(sourceFromUpslope.value()).toBeCloseTo(45, 12)
 
   // Select remaining directions
-  dag.runSelected([
-    [aspect, true],
-    [sourceFromNorth, true],
-    [headingFromNorth, true]
-  ])
+  dag.select([
+    aspect,
+    sourceFromNorth,
+    headingFromNorth
+  ]).run()
 
   // Change wind direction config
-  dag.runConfigs([[cfgDirection, 'headingFromUpslope']])
-  dag.runInputs([[headingFromUpslope, 45]])
+  dag.configure([[cfgDirection, 'headingFromUpslope']])
+  dag.input([[headingFromUpslope, 45]]).run()
 
   expect(aspect.value()).toEqual(225)
   expect(upslope.value()).toEqual(45)
@@ -334,15 +334,15 @@ test('2: Wind directions', () => {
     [360, 180, 360, 180, 180, 0]
   ]
   dag.clearSelected()
-  dag.runConfigs([[cfgDirection, 'headingFromUpslope']])
-  dag.runSelected([
-    [aspect, true],
-    [upslope, true],
-    [sourceFromNorth, true],
-    [sourceFromUpslope, true],
-    [headingFromNorth, true],
-    [headingFromUpslope, true]
-  ])
+  dag.configure([[cfgDirection, 'headingFromUpslope']])
+  dag.select([
+    aspect,
+    upslope,
+    sourceFromNorth,
+    sourceFromUpslope,
+    headingFromNorth,
+    headingFromUpslope
+  ]).run()
 
   expect(cfgDirection.value()).toEqual('headingFromUpslope')
 
@@ -367,10 +367,10 @@ test('2: Wind directions', () => {
   data.forEach(rec => {
     const [asp, up, hdgUp, srcUp, hdgNo, srcNo] = rec
     // console.log(asp, up, hdgUp, srcUp, hdgNo, srcNo)
-    dag.runInputs([
+    dag.input([
       [aspect, asp],
       [headingFromUpslope, hdgUp]
-    ])
+    ]).run()
     expect(aspect.value()).toBeCloseTo(asp, 12)
     expect(upslope.value()).toBeCloseTo(up, 12)
     expect(headingFromUpslope.value()).toBeCloseTo(hdgUp, 12)
@@ -382,7 +382,7 @@ test('2: Wind directions', () => {
 
 test('3: Midflame wind speed and WAF', () => {
   dag.clearSelected()
-  dag.runConfigs([
+  dag.configure([
     ['configure.wind.direction', ['sourceFromNorth', 'headingFromUpslope', 'upslope'][1]],
     ['configure.wind.speed', ['at10m', 'at20ft', 'atMidflame'][2]],
     ['configure.fuel.windSpeedAdjustmentFactor', ['input', 'estimated'][0]]
@@ -392,7 +392,7 @@ test('3: Midflame wind speed and WAF', () => {
   expect(cfgWaf.value()).toEqual('input')
 
   // Start with just wind speed at midflame height
-  dag.runSelected([[atMidflame, true]])
+  dag.select([atMidflame]).run()
 
   let selectedNodes = dag.selectedNodes()
   expect(selectedNodes.length).toEqual(1)
@@ -407,7 +407,7 @@ test('3: Midflame wind speed and WAF', () => {
   expect(inputNodes).toContain(atMidflame)
 
   // If we select at20ft
-  dag.runSelected([[at20ft, true]])
+  dag.select([at20ft]).run()
 
   selectedNodes = dag.selectedNodes()
   expect(selectedNodes.length).toEqual(2)
@@ -423,16 +423,16 @@ test('3: Midflame wind speed and WAF', () => {
   expect(inputNodes).toContain(atMidflame)
   expect(inputNodes).toContain(waf)
 
-  dag.runInputs([
+  dag.input([
     [atMidflame, 10],
     [waf, 0.5]
-  ])
+  ]).run()
   expect(atMidflame.value()).toEqual(10)
   expect(waf.value()).toEqual(0.5)
   expect(at20ft.value()).toBeCloseTo(20, 12)
 
   // If we set cfgWaf to estimated, no effect
-  dag.runConfigs([[cfgWaf, 'estimated']])
+  dag.configure([[cfgWaf, 'estimated']])
 
   configNodes = dag.requiredConfigNodes()
   expect(configNodes.length).toEqual(1)
@@ -446,7 +446,7 @@ test('3: Midflame wind speed and WAF', () => {
 
 test('4: Midflame wind speed from input waf and at20ft', () => {
   dag.clearSelected()
-  dag.runConfigs([
+  dag.configure([
     ['configure.wind.direction', ['sourceFromNorth', 'headingFromUpslope', 'upslope'][1]],
     ['configure.wind.speed', ['at10m', 'at20ft', 'atMidflame'][1]],
     ['configure.fuel.windSpeedAdjustmentFactor', ['input', 'estimated'][0]]
@@ -455,7 +455,7 @@ test('4: Midflame wind speed from input waf and at20ft', () => {
   expect(cfgWaf.value()).toEqual('input')
 
   // Start with just wind speed at midflame height
-  dag.runSelected([[atMidflame, true]])
+  dag.select([atMidflame]).run()
 
   const selectedNodes = dag.selectedNodes()
   expect(selectedNodes.length).toEqual(1)
@@ -470,10 +470,10 @@ test('4: Midflame wind speed from input waf and at20ft', () => {
   expect(inputNodes).toContain(at20ft)
   expect(inputNodes).toContain(waf)
 
-  dag.runInputs([
+  dag.input([
     [at20ft, 10],
     [waf, 0.5]
-  ])
+  ]).run()
   expect(at20ft.value()).toEqual(10)
   expect(waf.value()).toEqual(0.5)
   expect(atMidflame.value()).toEqual(5)

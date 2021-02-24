@@ -154,11 +154,11 @@ test('3: Stand-alone fire ellipse: input fire vector from north', () => {
 
   testData.forEach(data => {
     const [asp, hup, hno, vhd, vup, vno] = data
-    dag.runInputs([
+    dag.input([
       [aspect, [asp]],
       [siteFireHeadingFromUpslope, [hup]],
       [siteVectorFromNorth, [vno]]
-    ])
+    ]).run()
 
     expect(ellipseVectorFromHead.value()).toEqual(vhd)
     expect(ellipseVectorFromUpslope.value()).toEqual(vup)

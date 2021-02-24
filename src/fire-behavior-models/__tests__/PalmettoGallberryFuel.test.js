@@ -176,24 +176,24 @@ test('2: Palmetto-Gallberry constants', () => {
 
 test('3: Palmetto-Gallberry catalog', () => {
   dag.clearSelected()
-  dag.runConfigs([['configure.fuel.primary', 'catalog']])
+  dag.configure([['configure.fuel.primary', 'catalog']])
   expect(dag.get('configure.fuel.primary').value()).toEqual('catalog')
 
-  dag.runSelected([
-    [depth, true],
-    [deadFineLoad, true],
-    [deadSmallLoad, true],
-    [deadFoliageLoad, true],
-    [deadLitterLoad, true],
-    [liveFineLoad, true],
-    [liveSmallLoad, true],
-    [liveFoliageLoad, true]
-  ])
+  dag.select([
+    depth,
+    deadFineLoad,
+    deadSmallLoad,
+    deadFoliageLoad,
+    deadLitterLoad,
+    liveFineLoad,
+    liveSmallLoad,
+    liveFoliageLoad,
+  ]).run()
 
   const inputNodes = dag.requiredInputNodes()
   expect(inputNodes.length).toEqual(1)
   expect(inputNodes).toContain(catalogKey)
-  dag.runInputs([[catalogKey, 'pg/age=20/basal=120/cover=.8/height=5']])
+  dag.input([[catalogKey, 'pg/age=20/basal=120/cover=.8/height=5']]).run()
 
   expect(age.value()).toEqual(20)
   expect(basal.value()).toEqual(120)

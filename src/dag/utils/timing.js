@@ -1,3 +1,10 @@
+/**
+ * @file Performance tests for various *typeof* and *instanceof* operations
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
+
 const n = 100000000
 class A {
   constructor(x) {this.x = x}

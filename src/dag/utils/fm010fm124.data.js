@@ -1,6 +1,9 @@
-/* eslint-disable jest/no-export */
-/* eslint-disable no-undef, no-unused-vars, no-prototype-builtins */
-
+/**
+ * @file BehavePlus v6 SurfaceFire benchmark results data used by tests
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 /**
  * SurfaceFire test data for the following scenario:
  * - Weighted Behave fuel models '10' (60%) and '124' (40%)
@@ -339,7 +342,7 @@ export function secondarySelections () {
   return surfaceFireSelections('surface.secondary.fuel.')
 }
 function surfaceFireSelections (nodeKeyPrefix) {
-  return SurfaceFireData.map(datum => [`${nodeKeyPrefix}${datum[0]}`, true])
+  return SurfaceFireData.map(datum => `${nodeKeyPrefix}${datum[0]}`)
 }
 
 export function primaryResults () {
@@ -393,7 +396,7 @@ export const WeightedFireData = [
 ]
 
 export function weightedSelections () {
-  return WeightedFireData.map(datum => [datum[0], true])
+  return WeightedFireData.map(datum => datum[0])
 }
 export function weightedResults () {
   return WeightedFireData
