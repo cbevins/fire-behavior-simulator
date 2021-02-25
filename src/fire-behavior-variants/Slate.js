@@ -1,3 +1,9 @@
+/**
+ * @file Slate.js provides a way to apply units-of-measure slates across all Variants.
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 import { Quantity } from '../variant/index.js'
 /**
  * Experimental approach to setting Variant display units

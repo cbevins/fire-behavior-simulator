@@ -1,3 +1,12 @@
+/**
+ * @file GenomeCompiler.js compiles a Genome into a much smaller file.
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+ *
+ * The *uncompiled* Genome arrays (see ../utils/GenomeAlphabeticalOrder.js) are about 322k bytes,
+ * while the *compiled* genome is just 96k bytes
+*/
 import * as fs from 'fs'
 import { Genome } from '../genome.js'
 import * as Lib from '../../fire-behavior-models/index.js'

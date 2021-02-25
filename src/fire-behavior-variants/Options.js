@@ -1,3 +1,9 @@
+/**
+ * @file Options.js defines the fire simulator Option Variants
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 import { Option } from '../variant/index.js'
 import * as Lib from '../fire-behavior-models/index.js'
 

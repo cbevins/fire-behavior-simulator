@@ -1,4 +1,11 @@
 /**
+ * @file saveToFile example
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
+
+/**
  * This expands the surfaceFireOptimized.js example to write all results to a text file.
  *
  * This increases the processing time to about 1650 milliseconds, or 145,000 runs per second

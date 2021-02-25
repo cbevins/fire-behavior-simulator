@@ -4,7 +4,7 @@
  * @copyright 2021 Systems for Environmental Management
  * @author Collin D. Bevins, <cbevins@montana.com>
  */
-import { Sim } from './src/dag/Sim.js'
+import { Sim } from '../dag/Sim.js'
 
 function megaRun () {
   const sim = new Sim('dag1')

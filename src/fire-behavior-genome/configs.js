@@ -1,3 +1,9 @@
+/**
+ * @file Configuration genes
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 const module = [['ConfigModuleActive'], [['finally', 'Dag.module']]]
 const config = [['finally', 'Dag.config']]
 

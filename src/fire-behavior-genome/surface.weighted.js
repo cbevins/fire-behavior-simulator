@@ -1,3 +1,9 @@
+/**
+ * @file Surface weighted genome
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 export const genome = [
   [
     'surface.weighted.fire.primaryCover',

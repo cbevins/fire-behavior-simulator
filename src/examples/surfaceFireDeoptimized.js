@@ -1,4 +1,11 @@
 /**
+ * @file surfaceFireDeoptimized.js example and performance
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
+
+/**
  * surfaceFireDeoptimized.js
  *
  * This example manually runs each of the surfaceFireOptimized.js input cases,

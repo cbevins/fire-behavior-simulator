@@ -1,3 +1,10 @@
+/**
+ * @file Site Moisture genome
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
+
 export const genome = [
   ['site.moisture.dead.tl1h', [['FuelMoistureContent'], [
     ['when', 'configure.fuel.moisture', 'equals', 'category', 'Dag.bind', 'site.moisture.dead.category'],

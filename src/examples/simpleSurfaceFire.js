@@ -1,4 +1,11 @@
 /**
+ * @file simpleSurfaceFire.js example
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
+
+/**
  * An example of a simple, yet complete, behaveplus-radical surface fire behavior run.
  *
  * This example estimates maximum fire spread rate and flame length

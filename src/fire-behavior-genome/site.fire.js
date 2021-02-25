@@ -1,3 +1,9 @@
+/**
+ * @file Site observed fire behavior genome
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 export const genome = [
   // used by 'site.fire.observed.flameLength', 'site.fire.observed.scorchHeight',
   // 'spotting.surfaceFire.firebrand.height', 'crown.fire.surface.firelineIntensity', and

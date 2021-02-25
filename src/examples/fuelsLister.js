@@ -1,3 +1,9 @@
+/**
+ * @file fuelsLister.js generates a list of fuel model keys => labels
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 import { Alias, Model } from '../fire-behavior-models/FuelCatalogData.js'
 import * as fs from 'fs'
 

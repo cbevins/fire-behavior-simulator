@@ -1,3 +1,9 @@
+/**
+ * @file Surface fuel model behave genome
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 export function genome (prefix, fuel) {
   const behave = `${prefix}.model.behave`
   const parms = `${prefix}.model.behave.parms`

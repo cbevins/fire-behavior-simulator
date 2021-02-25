@@ -1,4 +1,11 @@
+/**
+ * @file Confgis.js defines the fire simulator Config Variants
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 import { Config } from '../variant/index.js'
+
 /**
  * Declares the specialized BehavePlus Config Variants.
  *

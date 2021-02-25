@@ -1,4 +1,11 @@
 /**
+ * @file surfaceFireOoptimized.js example and performance
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
+
+/**
  * surfaceFireOptimized.js
  *
  * An example of how behaveplus-radical internally optimizes computation order

@@ -1,3 +1,9 @@
+/**
+ * @file genesList.js generates full Genome arrays
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 import * as fs from 'fs'
 import { Genome } from '../genome.js'
 

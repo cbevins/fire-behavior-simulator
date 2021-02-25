@@ -1,3 +1,9 @@
+/**
+ * @file Surface fuel model palmettog-gallberry genome
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 export function genome (prefix, fuel) {
   return [
     [`${prefix}.model.palmettoGallberry.domain`, [['FuelModelDomainOption'], [

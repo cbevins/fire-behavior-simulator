@@ -1,3 +1,9 @@
+/**
+ * @file Surface fuel bed genome
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 import * as Life from './surface.fuel.bed.life.js'
 import * as Particle from './surface.fuel.bed.particle.js'
 

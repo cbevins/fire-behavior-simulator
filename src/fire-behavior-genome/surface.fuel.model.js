@@ -1,3 +1,9 @@
+/**
+ * @file Surface fuel model genome
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 import * as Behave from './surface.fuel.model.behave.js'
 import * as Chaparral from './surface.fuel.model.chaparral.js'
 import * as PalmettoGallberry from './surface.fuel.model.palmettoGallberry.js'

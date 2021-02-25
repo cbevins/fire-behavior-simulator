@@ -1,3 +1,9 @@
+/**
+ * @file Crown Fire genes
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 import * as Bed from './surface.fuel.bed.js'
 import * as Fire from './surface.fuel.fire.js'
 import * as Life from './surface.fuel.bed.life.js'

@@ -1,3 +1,9 @@
+/**
+ * @file Surface fuel bed genome
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 export function extinctionMoistureContent (prefix, life) {
   if (life === 'dead') {
     return prefix === 'crown.canopy.fuel'

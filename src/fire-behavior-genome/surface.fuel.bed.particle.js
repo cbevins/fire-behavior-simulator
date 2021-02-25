@@ -1,3 +1,9 @@
+/**
+ * @file Surface fuel bed particle genome
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 export function derived (prefix, life, idx) {
   const dead = [
     [`${prefix}.bed.${life}.particle.class${idx}.effectiveFuel.waterLoad`,

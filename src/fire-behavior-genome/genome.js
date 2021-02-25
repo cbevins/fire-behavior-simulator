@@ -1,3 +1,9 @@
+/**
+ * @file Top-level Genome array
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 import * as Configs from './configs.js'
 import * as Crown from './crown.js'
 import * as Docs from './docs.js'

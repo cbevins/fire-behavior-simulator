@@ -1,3 +1,10 @@
+/**
+ * @file Variants.js defines the fire simulator non-Config and non-Option Variants
+ * (i.e., all the Quantity, Bool, etc)
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 import { ArrayIndex, Bool, Count, Float, Fraction, Obj, Quantity, Ratio, Text } from '../variant/index.js'
 
 /**

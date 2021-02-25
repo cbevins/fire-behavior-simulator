@@ -1,3 +1,9 @@
+/**
+ * @file Surface fuel fire genomes
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 export function slopeRatio (prefix) {
   return prefix === 'crown.canopy.fuel'
     ? [

@@ -1,3 +1,9 @@
+/**
+ * @file Spotting distance genome
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 export const genome = [
   ['site.terrain.spotSourceLocation', [['SpottingSourceLocationOption'], [
     ['finally', 'Dag.input']

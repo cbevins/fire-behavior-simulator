@@ -1,4 +1,11 @@
 /**
+ * @file behaveplus.js sinple example
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
+
+/**
  * Example use of fire-behavior-simulator to create a simple specialized fire behavior class.
  *
  * From the main project folder:

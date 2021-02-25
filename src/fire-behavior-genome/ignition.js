@@ -1,3 +1,9 @@
+/**
+ * @file Ignition Probability genome
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 export const genome = [
   ['ignition.firebrand.probability', [['IgnitionProbability'], [
     ['finally', 'IgnitionProbability.firebrand',

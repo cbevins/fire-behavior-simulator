@@ -1,3 +1,10 @@
+/**
+ * @file dictionary.js helper file for GenomeCompiler.js
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
+
 const surf = 'surface'
 const c = 'crown'
 

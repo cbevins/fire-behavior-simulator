@@ -1,3 +1,9 @@
+/**
+ * @file Site WInd genome
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 export const genome = [
   ['site.temperature.air', [['AirTemperature'], [['finally', 'Dag.input']]]],
   ['site.temperature.fuel', [['AirTemperature'], [

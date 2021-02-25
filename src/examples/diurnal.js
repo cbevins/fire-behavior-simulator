@@ -1,3 +1,10 @@
+/**
+ * @file diurnal weather data example
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
+
 // Surface fire spread rate, flame length, and scorch height
 // over a 24-hour period of varying temperature, wind, and fine fuel moisture
 import { Sim } from '../dag/index.js'

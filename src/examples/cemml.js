@@ -1,4 +1,11 @@
 /**
+ * @file CEMML example
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
+
+/**
  * This is a prototype batch file for use by the Center for Environmental Management of Military Lands
  * at Colorado State University, Fort Collins, CO 80523-1490.
  * This increases the processing time to about 1650 milliseconds, or 145,000 runs per second

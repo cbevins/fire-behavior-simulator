@@ -1,3 +1,9 @@
+/**
+ * @file VariantMap provides a Map() of Variant instances for a Dag.
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 import * as C from './Configs.js'
 import * as O from './Options.js'
 import * as V from './Variants.js'

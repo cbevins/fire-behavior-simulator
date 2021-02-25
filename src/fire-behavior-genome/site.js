@@ -1,3 +1,9 @@
+/**
+ * @file Top-level site genome
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 import * as Canopy from './site.canopy.js'
 import * as Doc from './site.doc.js'
 import * as Fire from './site.fire.js'

@@ -1,4 +1,11 @@
 /**
+ * @file DagPathways
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
+
+/**
  * Returns a Map containing each of the independent pathways through the Dag,
  * which depends upon the current set of selected Nodes.
  *

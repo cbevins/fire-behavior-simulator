@@ -1,3 +1,9 @@
+/**
+ * @file Bp6ConfigData replicates the BehavePlys v6 Configuration tabs
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+*/
 export const bp6Surface = {
   label: 'Surface Fire Spread',
   moduleKey: 'module.surfaceFire',
