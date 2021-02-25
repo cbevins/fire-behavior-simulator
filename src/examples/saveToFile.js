@@ -7,45 +7,13 @@
  * Node.value()          3500            68,000
  * Node.displayValue()   3500            67,000
  */
-import * as fs from 'fs'
-import { Sim, StorageAbstract } from '../dag/index.js'
+import { Sim, StorageFile } from '../dag/index.js'
 
 // Step 1 - create a fire behavior simulator with 1 directed acyclical graph (DAG)
 const sim = new Sim('dag1')
 const dag = sim.getDag('dag1')
 
-// Step 2 - create a StorageFile class to write run results to a file
-// At the end of every run, fire-behavior-simulator calls the store() method
-// of a class derived from StorageAbstract.
-// The internal default simply stores the results in memory for each variable.
-// Here, though, we define a new storage class that will write results to a file
-// See Step 2b, where the DAG is instructed to use this as the storage function
-class StorageFile extends StorageAbstract {
-  constructor(dag, fileName) {
-    super(dag)
-    this._fileName = fileName
-    this._nodeArray = [] // Array of references to all DagNodes to be saved
-    this._writer = null
-  }
-  init() {
-    this._nodeArray = [...this._dag.requiredInputNodes(), ...this._dag.selectedNodes()]
-    this._writer = fs.createWriteStream(this._fileName, {flags: 'w'})
-      .on('error', function (err) { console.log('Received error:', err) })
-  }
-  store () {
-    // Collect the input and output values for this run;
-    // either unformatted (node.value()) or formatted (node.displayValue()) values
-    const fields = []
-    this._nodeArray.forEach(node => { fields.push(node.displayValue()) })
-    // Write them in comma-delimited format to the fileName
-    this._writer.write(fields.join(', ')+'\n')
-  }
-  end () {
-    this._writer.end()
-  }
-}
-
-// Step 2b - create a new StorageFile instance and inject it into the dag.
+// Step 2 - create a new StorageFile instance and inject it into the dag.
 const store = new StorageFile(dag, 'surfaceFireOptimizedResults.txt')
 dag.setStorageClass(store)
 
