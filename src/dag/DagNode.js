@@ -36,6 +36,7 @@ export class DagNode {
   // consumers () { return this._dag._consumers }
   depth () { return this._dag._depth }
   displayString () { return this._variant.displayString(this._value) }
+  displayUnits () { return this._variant.displayUnits() }
   displayValue () { return this._variant.displayValue(this._value) }
   index () { return this._gene[0] }
   isConfig () { return this._is._config }

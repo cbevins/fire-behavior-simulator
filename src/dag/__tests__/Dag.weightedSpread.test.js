@@ -93,6 +93,7 @@ test('DagNode() coverage', () => {
   expect(node2.label()).toEqual('Surface Primary Fuel Fire Spread Rate')
   expect(node2.value()).toBeCloseTo(18.551680325448835, 9)
   expect(node2.displayValue()).toEqual('18.55')
+  expect(node2.displayUnits()).toEqual('ft/min')
   expect(node2.displayString()).toEqual('18.55 ft/min')
   expect(node2.depth()).toEqual(28)
 })

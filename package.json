@@ -69,6 +69,7 @@
       "!**/.eslintrc.js",
       "!rollup.config.js",
       "!**/dag/__behave_tests__/**",
+      "!**/dev/**",
       "!**/docs/**",
       "!**/examples/**",
       "!**/fire-behavior-models/Contain.js",

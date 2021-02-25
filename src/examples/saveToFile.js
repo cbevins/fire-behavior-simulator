@@ -2,7 +2,7 @@
  * This expands the surfaceFireOptimized.js example to write all results to a text file.
  *
  * This increases the processing time to about 1650 milliseconds, or 145,000 runs per second
- 8                       Milliseconds  Runs/second
+ *                       Milliseconds  Runs/second
  * No file output        750            335,000
  * Node.value()          3500            68,000
  * Node.displayValue()   3500            67,000
@@ -26,7 +26,7 @@ class StorageFile extends StorageAbstract {
     this._fileName = fileName
     this._nodeArray = [] // Array of references to all DagNodes to be saved
     this._writer = null
-   }
+  }
   init() {
     this._nodeArray = [...this._dag.requiredInputNodes(), ...this._dag.selectedNodes()]
     this._writer = fs.createWriteStream(this._fileName, {flags: 'w'})
