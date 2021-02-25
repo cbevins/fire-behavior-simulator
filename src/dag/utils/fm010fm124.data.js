@@ -36,212 +36,78 @@ const SurfaceFireData = [
   [parms + 'dead.tl1h.ovendryLoad', { fm010: 0.138, prec: 12 }],
   [parms + 'dead.tl1h.surfaceAreaToVolumeRatio', { fm010: 2000, prec: 12 }],
   [parms + 'cured.herb.fraction', { fm010: 0.778, prec: 12 }],
-  [
-    d1 + 'effectiveFuel.heatingNumber',
-    { fm010: 0.93332668007820196, prec: 12 }
-  ],
+  [d1 + 'effectiveFuel.heatingNumber', { fm010: 0.93332668007820196, prec: 12 }],
   [d1 + 'ovendryLoad', { fm010: 0.138, prec: 12 }],
   [d1 + 'sizeClass.weightingFactor', { fm010: 0.94221105527638194, prec: 12 }],
   [d1 + 'surfaceAreaToVolumeRatio', { fm010: 2000, prec: 12 }],
-  [
-    d1 + 'surfaceArea.weightingFactor',
-    { fm010: 0.94221105527638194, prec: 12 }
-  ],
+  [d1 + 'surfaceArea.weightingFactor', { fm010: 0.94221105527638194, prec: 12 }],
   [d1 + 'surfaceArea', { fm010: 8.625, prec: 12 }],
-  [
-    d2 + 'effectiveFuel.heatingNumber',
-    { fm010: 0.28194167776446499, prec: 12 }
-  ],
+  [d2 + 'effectiveFuel.heatingNumber', { fm010: 0.28194167776446499, prec: 12 }],
   [d2 + 'sizeClass.weightingFactor', { fm010: 0.034233668341708545, prec: 12 }],
   [d2 + 'surfaceArea', { fm010: 0.313375, prec: 12 }],
-  [
-    d2 + 'surfaceArea.weightingFactor',
-    { fm010: 0.034233668341708545, prec: 12 }
-  ],
-  [
-    d3 + 'effectiveFuel.heatingNumber',
-    { fm010: 0.010051835744633586, prec: 12 }
-  ],
+  [d2 + 'surfaceArea.weightingFactor', { fm010: 0.034233668341708545, prec: 12 }],
+  [d3 + 'effectiveFuel.heatingNumber', { fm010: 0.010051835744633586, prec: 12 }],
   [d3 + 'sizeClass.weightingFactor', { fm010: 0.023555276381909549, prec: 12 }],
   [d3 + 'surfaceArea', { fm010: 0.215625, prec: 12 }],
-  [
-    d3 + 'surfaceArea.weightingFactor',
-    { fm010: 0.023555276381909549, prec: 12 }
-  ],
+  [d3 + 'surfaceArea.weightingFactor', { fm010: 0.023555276381909549, prec: 12 }],
   [d4 + 'ovendryLoad', { fm010: 0, prec: 12 }],
   [dead + 'extinction.moistureContent', { fm010: 0.25, fm124: 0.4, prec: 12 }],
   [dead + 'heatOfCombustion', { fm010: 8000, fm124: 8000, prec: 10 }],
-  [
-    dead + 'effectiveFuel.ovendryLoad',
-    { fm010: 0.15704963842638839, prec: 10 }
-  ],
-  [
-    dead + 'effectiveFuel.moistureContent',
-    { fm010: 0.05389207884883955, fm124: 0.050405399380187531, prec: 10 }
-  ],
-  [
-    dead + 'effectiveFuel.waterLoad',
-    { fm010: 0.008463731497256665, fm124: 0.0098866289779641001, prec: 10 }
-  ],
-  [
-    dead + 'mineralDamping',
-    { fm010: 0.41739692790939131, fm124: 0.41739692790939131, prec: 10 }
-  ],
-  [
-    dead + 'moistureContent',
-    { fm010: 0.051626884422110553, fm124: 0.050100676116867547, prec: 10 }
-  ],
-  [
-    dead + 'moistureDamping',
-    { fm010: 0.65206408989980214, fm124: 0.74884711762612932, prec: 10 }
-  ],
+  [dead + 'effectiveFuel.ovendryLoad', { fm010: 0.15704963842638839, prec: 10 }],
+  [dead + 'effectiveFuel.moistureContent', { fm010: 0.05389207884883955, fm124: 0.050405399380187531, prec: 10 }],
+  [dead + 'effectiveFuel.waterLoad', { fm010: 0.008463731497256665, fm124: 0.0098866289779641001, prec: 10 }],
+  [dead + 'mineralDamping', { fm010: 0.41739692790939131, fm124: 0.41739692790939131, prec: 10 }],
+  [dead + 'moistureContent', { fm010: 0.051626884422110553, fm124: 0.050100676116867547, prec: 10 }],
+  [dead + 'moistureDamping', { fm010: 0.65206408989980214, fm124: 0.74884711762612932, prec: 10 }],
   [dead + 'ovendryLoad', { fm010: 0.46, prec: 12 }],
   [dead + 'surfaceArea', { fm010: 9.154, fm124: 11.030790863177224, prec: 12 }],
-  [
-    dead + 'surfaceAreaToVolumeRatio',
-    { fm010: 1888.8602386934672, fm124: 1682.0151742581315, prec: 12 }
-  ],
-  [
-    dead + 'surfaceArea.weightingFactor',
-    { fm010: 0.67976088812980362, fm124: 0.37954847277556436, prec: 10 }
-  ],
+  [dead + 'surfaceAreaToVolumeRatio', { fm010: 1888.8602386934672, fm124: 1682.0151742581315, prec: 12 }],
+  [dead + 'surfaceArea.weightingFactor', { fm010: 0.67976088812980362, fm124: 0.37954847277556436, prec: 10 }],
   // volume: null,
   // heatOfPreignition: null,
-  [
-    dead + 'reactionIntensity',
-    { fm010: 3612.4074071954024, fm124: 7316.0935560142625, prec: 10 }
-  ],
-  [
-    dead + 'reactionIntensityDry',
-    { fm010: 5539.9575948899355, fm124: 9769.8093293148086, prec: 10 }
-  ],
+  [dead + 'reactionIntensity', { fm010: 3612.4074071954024, fm124: 7316.0935560142625, prec: 10 }],
+  [dead + 'reactionIntensityDry', { fm010: 5539.9575948899355, fm124: 9769.8093293148086, prec: 10 }],
   [dead + 'effective.mineralContent', { fm010: 0.01, fm124: 0.01, prec: 10 }],
   // sizeClass.weightingFactor: null,
-  [
-    dead + 'net.ovendryLoad',
-    {
-      fm010: (1 - 0.0555) * 0.13859233668341708,
-      fm124: (1 - 0.0555) * 0.20777819078484744,
-      prec: 10
-    }
-  ],
-
-  [
-    live + 'extinction.moistureContentFactor',
-    { fm010: 6.908948234294801, fm124: 2.1558023634049093, prec: 12 }
-  ],
-  [
-    live + 'extinction.moistureContent',
-    { fm010: 5.1935979022741359, fm124: 1.6581421656244677, prec: 12 }
-  ],
+  [dead + 'net.ovendryLoad', {fm010: (1 - 0.0555) * 0.13859233668341708, fm124: (1 - 0.0555) * 0.20777819078484744, prec: 10}],
+  [live + 'extinction.moistureContentFactor', { fm010: 6.908948234294801, fm124: 2.1558023634049093, prec: 12 }],
+  [live + 'extinction.moistureContent', { fm010: 5.1935979022741359, fm124: 1.6581421656244677, prec: 12 }],
   [live + 'heatOfCombustion', { fm010: 8000, fm124: 8000, prec: 10 }],
-  [
-    live + 'effectiveFuel.ovendryLoad',
-    { fm010: 0.065920880572788609, prec: 10 }
-  ],
-  [
-    live + 'mineralDamping',
-    { fm010: 0.41739692790939131, fm124: 0.41739692790939131, prec: 10 }
-  ],
-  [
-    live + 'moistureContent',
-    { fm010: 1.5, fm124: 1.4039058919386871, prec: 10 }
-  ],
-  [
-    live + 'moistureDamping',
-    { fm010: 0.59341294014849078, fm124: 0.33380976126895767, prec: 10 }
-  ],
-  [
-    live + 'ovendryLoad',
-    { fm010: 0.092, fm124: 0.36064279155188239, prec: 12 }
-  ],
-  [
-    live + 'surfaceArea',
-    { fm010: 4.3125, fm124: 18.032139577594119, prec: 12 }
-  ],
+  [live + 'effectiveFuel.ovendryLoad', { fm010: 0.065920880572788609, prec: 10 }],
+  [live + 'mineralDamping', { fm010: 0.41739692790939131, fm124: 0.41739692790939131, prec: 10 }],
+  [live + 'moistureContent', { fm010: 1.5, fm124: 1.4039058919386871, prec: 10 }],
+  [live + 'moistureDamping', { fm010: 0.59341294014849078, fm124: 0.33380976126895767, prec: 10 }],
+  [live + 'ovendryLoad', { fm010: 0.092, fm124: 0.36064279155188239, prec: 12 }],
+  [live + 'surfaceArea', { fm010: 4.3125, fm124: 18.032139577594119, prec: 12 }],
   [live + 'surfaceAreaToVolumeRatio', { fm010: 1500, fm124: 1600, prec: 12 }],
-  [
-    live + 'surfaceArea.weightingFactor',
-    { fm010: 0.32023911187019644, fm124: 0.62045152722443553, prec: 10 }
-  ],
+  [live + 'surfaceArea.weightingFactor', { fm010: 0.32023911187019644, fm124: 0.62045152722443553, prec: 10 }],
   // volume: null,
   // heatOfPreignition: null,
-  [
-    live + 'reactionIntensity',
-    { fm010: 2182.287993033714, fm124: 5660.5993324823157, prec: 10 }
-  ],
-  [
-    live + 'reactionIntensityDry',
-    { fm010: 3677.5200629895871, fm124: 16957.560830348066, prec: 10 }
-  ],
+  [live + 'reactionIntensity', { fm010: 2182.287993033714, fm124: 5660.5993324823157, prec: 10 }],
+  [live + 'reactionIntensityDry', { fm010: 3677.5200629895871, fm124: 16957.560830348066, prec: 10 }],
   [live + 'effective.mineralContent', { fm010: 0.01, fm124: 0.01, prec: 10 }],
   // sizeClass.weightingFactor: null,
-  [
-    live + 'net.ovendryLoad',
-    {
-      fm010: (1 - 0.0555) * 0.092,
-      fm124: (1 - 0.0555) * 0.36064279155188239,
-      prec: 10
-    }
-  ],
+  [live + 'net.ovendryLoad', {fm010: (1 - 0.0555) * 0.092, fm124: (1 - 0.0555) * 0.36064279155188239, prec: 10}],
   // fm124 load: 0.034655647382920124,
-
-  [
-    l1 + 'effectiveFuel.heatingNumber',
-    { fm010: 0.91210514954509037, prec: 12 }
-  ],
+  [l1 + 'effectiveFuel.heatingNumber', { fm010: 0.91210514954509037, prec: 12 }],
   [l1 + 'ovendryLoad', { fm010: 0, fm124: 0.034655647382920124, prec: 12 }],
   [l1 + 'surfaceAreaToVolumeRatio', { fm010: 1500, fm124: 1600, prec: 12 }],
-  [
-    l1 + 'surfaceArea.weightingFactor',
-    { fm010: 0, fm124: 0.096094108061312897, prec: 12 }
-  ],
-  [
-    l2 + 'effectiveFuel.heatingNumber',
-    { fm010: 0.91210514954509037, prec: 12 }
-  ],
+  [l1 + 'surfaceArea.weightingFactor', { fm010: 0, fm124: 0.096094108061312897, prec: 12 }],
+  [l2 + 'effectiveFuel.heatingNumber', { fm010: 0.91210514954509037, prec: 12 }],
   [l2 + 'ovendryLoad', { fm010: 0.092, fm124: (7.1 * 2000) / 43560, prec: 12 }],
   [l2 + 'surfaceAreaToVolumeRatio', { fm010: 1500, fm124: 1600, prec: 12 }],
-  [
-    l2 + 'surfaceArea.weightingFactor',
-    { fm010: 1, fm124: 0.9039058919386872, prec: 12 }
-  ],
+  [l2 + 'surfaceArea.weightingFactor', { fm010: 1, fm124: 0.9039058919386872, prec: 12 }],
   ['bed.surfaceArea', { fm010: 13.4665, fm124: 29.062930440771346, prec: 12 }],
   ['bed.bulkDensity', { fm010: 0.552, fm124: 0.27985482530937067, prec: 12 }],
   ['bed.depth', { fm010: 1.0, fm124: 2.1, prec: 12 }],
-  [
-    'bed.heatOfPreignition',
-    {
-      fm010: 746.993428042342,
-      fm124: 319.21640437931171 / 0.27985482530937067,
-      prec: 12
-    }
-  ],
-  [
-    'bed.heatSink',
-    { fm010: 412.34037227937284, fm124: 319.21640437931171, prec: 12 }
-  ],
+  ['bed.heatOfPreignition', {fm010: 746.993428042342,fm124: 319.21640437931171 / 0.27985482530937067, prec: 12}],
+  ['bed.heatSink', { fm010: 412.34037227937284, fm124: 319.21640437931171, prec: 12 }],
   ['bed.ovendryLoad', { fm010: 0.552, prec: 12 }],
-  [
-    'bed.open.windSpeedAdjustmentFactor',
-    { fm010: 0.36210426360602416, prec: 12 }
-  ],
-  [
-    'bed.packingRatio',
-    { fm010: 0.01725, fm124: 0.0087454632909178334, prec: 12 }
-  ],
-  [
-    'bed.packingRatio.optimum',
-    { fm010: 0.0073478593798598172, fm124: 0.0078357185983373434, prec: 12 }
-  ],
-  [
-    'bed.packingRatio.ratio',
-    { fm010: 2.3476224990480286, fm124: 1.11610226696675, prec: 12 }
-  ],
-  [
-    'bed.propagatingFluxRatio',
-    { fm010: 0.048317062998571636, fm124: 0.035258653482453904, prec: 12 }
-  ],
+  ['bed.open.windSpeedAdjustmentFactor', { fm010: 0.36210426360602416, prec: 12 }],
+  ['bed.packingRatio', { fm010: 0.01725, fm124: 0.0087454632909178334, prec: 12 }],
+  ['bed.packingRatio.optimum', { fm010: 0.0073478593798598172, fm124: 0.0078357185983373434, prec: 12 }],
+  ['bed.packingRatio.ratio', { fm010: 2.3476224990480286, fm124: 1.11610226696675, prec: 12 }],
+  ['bed.propagatingFluxRatio', { fm010: 0.048317062998571636, fm124: 0.035258653482453904, prec: 12 }],
   [
     'bed.reactionVelocityExponent',
     { fm010: 0.35878365060452616, fm124: 0.38177694461561407, prec: 12 }

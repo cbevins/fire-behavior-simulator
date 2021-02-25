@@ -1,4 +1,13 @@
 /**
+ * @file fire-behavior-simulator performancer tests under various conditions.
+ * @copyright 2021 Systems for Environmental Management
+ * @author Collin D. Bevins, <cbevins@montana.com>
+ * @license MIT
+ *
+ * USAGE: node oneMillionRuns.js
+ */
+
+/**
  * oneMillionRuns.js
  *
  * REULTS for 3 test runs:       Run 1     Run 2     Run 3  Average  Percent  Percent
@@ -145,12 +154,12 @@ function doSet() {
   let n = 100000
   let t = 0
   console.log('Input                Depth      Runs  Millsec  Runs/Sec')
-  t += doRun('Midflame Wind Speed      2', 'gs4', 0.5, 0.05, 0.2, fill(windSpeed, n), 90)
+  t += doRun('Midflame Wind Speed     55', 'gs4', 0.5, 0.05, 0.2, fill(windSpeed, n), 90)
   t += doRun('Wind Dir Upslope        52', 'gs4', 0.5, 0.05, 0.2, 880, fill(windDir, n))
-  t += doRun('Slope Steep Ratio       56', 'gs4', 0.5, 0.05, fill(slope, n), 880, 90)
-  t += doRun('Live Herb Moisture      66', 'gs4', fill(herb, n), 0.05, 0.2, 880, 90)
-  t += doRun('Dead 1-h Moisture       72', 'gs4', 0.5, fill(tl1h, n), 0.2, 880, 90)
-  t += doRun('Fuel Model              86', fill(fuel, n), 0.5,0.05, 0.2, 880, 90)
+  t += doRun('Slope Steep Ratio       55', 'gs4', 0.5, 0.05, fill(slope, n), 880, 90)
+  t += doRun('Live Herb Moisture      83', 'gs4', fill(herb, n), 0.05, 0.2, 880, 90)
+  t += doRun('Dead 1-h Moisture       71', 'gs4', 0.5, fill(tl1h, n), 0.2, 880, 90)
+  t += doRun('Fuel Model              85', fill(fuel, n), 0.5,0.05, 0.2, 880, 90)
   t += doRun('10 of Each                ', fuel, herb, tl1h, slope, windSpeed, windDir)
   console.log('Total Time                            ', t)
 }

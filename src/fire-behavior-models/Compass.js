@@ -119,8 +119,8 @@ export function slopeRatioMap (
   contours,
   mapDistance
 ) {
-  const reach = mapScale * mapDistance
-  const rise = contours * contourInterval
+  const reach = Math.max(0, mapScale * mapDistance)
+  const rise = Math.max(0, contours * contourInterval)
   return reach <= 0 ? 0 : rise / reach
 }
 

@@ -22,7 +22,6 @@ export class StorageNodeMap extends StorageAbstract{
     }
   }
 
-
   /**
    * Returns a reference to a DagNode given its reference, genome key, or genome numeric index
    *

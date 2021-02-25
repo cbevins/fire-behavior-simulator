@@ -75,3 +75,25 @@ test('Dag.run() with UpdateOrthogonalRecursive', () => {
   expect(dag.get('surface.weighted.fire.spreadRate').value()).toBeCloseTo(harmonicRos, 9)
 })
 
+
+test('DagNode() coverage', () => {
+  const sim = new Sim('dag1')
+  const dag = sim.getDag('dag1')
+  const node = dag.node(headRosKey)
+
+  dag.configure(configFm010Fm124)
+    .select([node, dag.node('surface.weighted.fire.arithmeticMean.spreadRate')])
+    .setUpdateClass(new UpdateOrthogonalRecursive(dag))
+    .setStorageClass(new StorageNodeMap(dag))
+    .input(inputFm010Fm124)
+    .setRunLimit(1000)
+    .run()
+
+  const node2 = dag.get('surface.primary.fuel.fire.spreadRate')
+  expect(node2.label()).toEqual('Surface Primary Fuel Fire Spread Rate')
+  expect(node2.value()).toBeCloseTo(18.551680325448835, 9)
+  expect(node2.displayValue()).toEqual('18.55')
+  expect(node2.displayString()).toEqual('18.55 ft/min')
+  expect(node2.depth()).toEqual(28)
+})
+

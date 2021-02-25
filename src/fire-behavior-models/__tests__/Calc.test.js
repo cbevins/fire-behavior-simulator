@@ -1,5 +1,5 @@
 /* eslint-disable no-undef, no-prototype-builtins */
-import { Calc } from '../index.js'
+import { Calc, Compass } from '../index.js'
 
 test('1: Calc divide()', () => {
   expect(Calc.divide()).toEqual(NaN)
@@ -87,4 +87,16 @@ test('8: Calc sumOfProducts()', () => {
   expect(Calc.sumOfProducts(1, 2, 3, 4, 5)).toEqual(11) // 1*3 + 2*4
   expect(Calc.sumOfProducts(1, 2, 3, 4, 5, 6)).toEqual(32) // 1*4 + 2*5 + 3*6
   expect(Calc.sumOfProducts(1, 2, 3, 0, 4, 5, 6, 99)).toEqual(32) // 1*4 + 2*5 + 3*6 + 0*99
+})
+
+test('Compass.slopeRatioMap(mapScale, contourInterval, contours, mapDistance) error handling', () => {
+  expect(Compass.slopeRatioMap(0, 1, 1, 1)).toEqual(0)
+  expect(Compass.slopeRatioMap(1, 0, 1, 1)).toEqual(0)
+  expect(Compass.slopeRatioMap(1, 1, 0, 1)).toEqual(0)
+  expect(Compass.slopeRatioMap(1, 1, 1, 0)).toEqual(0)
+
+  expect(Compass.slopeRatioMap(-1, 1, 1, 1)).toEqual(0)
+  expect(Compass.slopeRatioMap(1, -1, 1, 1)).toEqual(0)
+  expect(Compass.slopeRatioMap(1, 1, -1, 1)).toEqual(0)
+  expect(Compass.slopeRatioMap(1, 1, 1, -1)).toEqual(0)
 })

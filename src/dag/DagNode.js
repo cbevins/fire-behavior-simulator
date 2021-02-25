@@ -4,6 +4,7 @@
  * @author Collin D. Bevins, <cbevins@montana.com>
  * @license MIT
 */
+import {keyLabel} from '../variant/filters.js'
 
 export class DagNode {
   constructor(geneRef, variantRef, initialValue) {
@@ -33,7 +34,9 @@ export class DagNode {
 
   // accessors
   // consumers () { return this._dag._consumers }
-  // depth () { return this._dag._depth }
+  depth () { return this._dag._depth }
+  displayString () { return this._variant.displayString(this._value) }
+  displayValue () { return this._variant.displayValue(this._value) }
   index () { return this._gene[0] }
   isConfig () { return this._is._config }
   // isEnabled () { return this._is._enabled }
@@ -41,6 +44,7 @@ export class DagNode {
   isRequired () { return this._is._required }
   isSelected () { return this._is._selected }
   key () { return this._gene[1] }
+  label () { return keyLabel(this.key()) }
   method () { return this._update._method }
   // order () { return this._dag._order }
   // parms () { return this._update._parms }
