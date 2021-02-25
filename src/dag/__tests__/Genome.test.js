@@ -1,10 +1,10 @@
-import { CompiledGenome as Genome } from '../../fire-behavior-genome/index.js'
+import { CompiledGenome } from '../../fire-behavior-genome/index.js'
 
 test('1: Imported CompiledGenome properties', () => {
-  expect(Array.isArray(Genome.literalArgsArray)).toEqual(true)
-  expect(Genome.literalArgsArray.length).toEqual(68)
-  expect(Array.isArray(Genome.methodRefsArray)).toEqual(true)
-  expect(Genome.methodRefsArray.length).toEqual(219)
-  expect(Array.isArray(Genome.genesArray)).toEqual(true)
-  expect(Genome.genesArray.length).toEqual(1224)
+  expect(Array.isArray(CompiledGenome.literalArgsArray)).toEqual(true)
+  expect(CompiledGenome.literalArgsArray.length).toEqual(68)
+  expect(Array.isArray(CompiledGenome.methodRefsArray)).toEqual(true)
+  expect(CompiledGenome.methodRefsArray.length).toEqual(219)
+  expect(Array.isArray(CompiledGenome.genesArray)).toEqual(true)
+  expect(CompiledGenome.genesArray.length).toEqual(1224)
 })

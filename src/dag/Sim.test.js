@@ -1,5 +1,5 @@
 // import { Sim } from './Sim.js'
-import { CompiledGenome as Genome } from '../fire-behavior-genome/index.js'
+import { CompiledGenome } from '../fire-behavior-genome/index.js'
 import { Sim, Dag, DagNode } from './index.js'
 import * as Lib from '../fire-behavior-models/index.js'
 
@@ -11,7 +11,7 @@ const windDirUpIdx = 101
 test('new Sim()', () => {
   const sim = new Sim()
   expect(sim instanceof Sim).toEqual(true)
-  expect(sim._genome).toEqual(Genome)
+  expect(sim._genome).toEqual(CompiledGenome)
   expect(sim.dagKeys()).toEqual([])
 
   const dag1 = sim.createDag('dag1')
