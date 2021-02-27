@@ -26,6 +26,25 @@ function alphaOrder (fileName) {
   write(str, fileName)
 }
 
+function markdownFile (fileName) {
+  let lastPart = ''
+  let contents = '# ![](favicon.png) Top-level Names\n'
+  let str = ''
+  const nodeKeys = dag._node.map(node => node.key())
+  nodeKeys.sort().forEach((key, idx) => {
+    const parts = key.split('.')
+    if (parts[0] !== lastPart) {
+      lastPart = parts[0]
+      str += `---\n## ![](favicon.png) ${lastPart} Variables\n[top](#top-level-names)\n`
+      contents += `- [${lastPart} Variables](#${lastPart}-variables)\n`
+    }
+    str += `  - ${idx+1}: ${key}\n`
+  })
+  const header = '# ![](favicon.png) cbevins/fire-behavior-simulator Variable Names\n' +
+    '[README.md](./README.md)\n'
+  write(header+contents+str, fileName)
+}
+
 function recurse(obj, name, lvl) {
   const margin = ' '.padStart(2*lvl)
   const items = Object.keys(obj)
@@ -70,6 +89,7 @@ function write (str, fileName) {
   })
 }
 
-alphaOrder('./src/docs/NodeList_AlphabeticalOrder.js')
-hierarchicalOrder('./src/docs/NodeList_HierarchicalOrder.js')
-topoOrder('./src/docs/NodeList_TopologicalOrder.js')
+//alphaOrder('./src/docs/NodeList_AlphabeticalOrder.js')
+//hierarchicalOrder('./src/docs/NodeList_HierarchicalOrder.js')
+//topoOrder('./src/docs/NodeList_TopologicalOrder.js')
+markdownFile('./Variables_AlphabeticalOrder.md')

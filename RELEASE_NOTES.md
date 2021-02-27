@@ -1,4 +1,6 @@
 #  ![](favicon.png) cbevins/fire-behavior-simulator Release Notes
 
-## 0.4.0
+[README.md](./README.md)
+
+## 0.4.0 Beta
 
