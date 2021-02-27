@@ -2,9 +2,7 @@
 
 fire-behavior-simulator is a Javascript package for creating fire behavior predicition, simulation, training, and management applications that operate either with the Node.js runtime environment, or inside any modern web browser.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-
-![Status](https://github.com/cbevins/fire-behavior-simulator/actions/workflows/nodejs.yml/badge.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT) ![Status](https://github.com/cbevins/fire-behavior-simulator/actions/workflows/nodejs.yml/badge.svg)
 
 ---
 
