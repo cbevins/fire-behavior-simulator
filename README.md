@@ -4,6 +4,7 @@ fire-behavior-simulator is a Javascript package for creating fire behavior predi
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
+![example workflow](https://github.com/cbevins/fire-behavior-simulator/actions/workflows/main.yml/badge.svg)
 ---
 
 ## ![](favicon.png) Contents
