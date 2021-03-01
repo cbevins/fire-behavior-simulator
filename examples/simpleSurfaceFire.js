@@ -17,7 +17,8 @@
  * - set input variable values; and
  * - access and display the results.
  */
-import { Sim } from '../dag/index.js'
+// NOTE: Replace import to use the '@cbevins/fire-behavior-simulator' package
+import { Sim } from '../src/dag/index.js'
 
 // Step 1 - create a fire behavior simulator with 1 directed acyclical graph (DAG)
 const sim = new Sim('dag1')

@@ -7,7 +7,7 @@
 // NOTE: Replace import to use the '@cbevins/fire-behavior-simulator' package
 import { Sim } from '../src/dag/Sim.js'
 
-function megaRun () {
+function fullDagRun () {
   const sim = new Sim('dag1')
   const dag = sim.getDag('dag1')
   dag.configure([
@@ -90,15 +90,15 @@ function megaRun () {
     ['site.terrain.ridgeValleyDistance', [5000]],
     ['site.terrain.ridgeValleyElevation', [1000]]
   ])
-  console.log(`This run requires ${dag.requiredNodes().length} of ${dag.node().length}`)
+  console.log(`This run requires ${dag.requiredNodes().length} of ${dag.sortedNodes().length} DAG nodes`)
   return dag.run()
 }
 
-console.log('Mega Test')
+console.log('Full Dag Run')
 const start = Date.now()
-const result = megaRun()
+const result = fullDagRun()
 const used = process.memoryUsage()
 for (const key in used) {
   console.log(`${key} ${Math.round(used[key] / 1024 / 1024 * 100) / 100} MB`)
 }
-console.log(`elaspedTime: ${Date.now() - start} ms for ${result._runs} runs`)
+console.log(`elaspedTime: ${Date.now() - start} ms for ${result.runs} runs`)

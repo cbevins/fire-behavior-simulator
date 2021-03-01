@@ -14,14 +14,17 @@
  * Node.value()          3500            68,000
  * Node.displayValue()   3500            67,000
  */
-import { Sim, StorageFile } from '../dag/index.js'
+// NOTE: Replace import to use the '@cbevins/fire-behavior-simulator' package
+import { Sim, StorageFile } from '../src/dag/index.js'
+
+const fileName = 'surfaceFireOptimizedResults.txt'
 
 // Step 1 - create a fire behavior simulator with 1 directed acyclical graph (DAG)
 const sim = new Sim('dag1')
 const dag = sim.getDag('dag1')
 
 // Step 2 - create a new StorageFile instance and inject it into the dag.
-const store = new StorageFile(dag, 'surfaceFireOptimizedResults.txt')
+const store = new StorageFile(dag, fileName)
 dag.setStorageClass(store)
 
 // Step 3 - configure input choices and computational options
@@ -96,3 +99,4 @@ elapsed = Date.now() - elapsed
 const runs = results.runs
 let rps = (runs / (0.001 * elapsed)).toFixed(0)
 console.log(`Optimized: ${runs} runs required ${elapsed} ms (${rps} runs/s): ${results.message}`)
+console.log(`Results were written to file '${fileName}'`)

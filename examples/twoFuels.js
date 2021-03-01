@@ -12,6 +12,7 @@
  * - configurations, selected variables, and input values are all predefined in arrays, and
  * - these arrays are then submitted for processing to by BehavePlus
  */
+// NOTE: Replace import to use the '@cbevins/fire-behavior-simulator' package
 import { Sim } from '../src/dag/index.js'
 
 // Store some output node keys into more convenient variables (to save typing):

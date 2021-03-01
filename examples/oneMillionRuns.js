@@ -45,7 +45,8 @@
  * 10 of Each             1,000,000   14,553   68,714 66,885 63,637
  *
  */
-import { Sim, UpdateOrthogonalStack, UpdateOrthogonalRecursive } from '../dag/index.js'
+// NOTE: Replace import to use the '@cbevins/fire-behavior-simulator' package
+import { Sim, UpdateOrthogonalStack, UpdateOrthogonalRecursive } from '../src/dag/index.js'
 
 // Step 1 - create a BehavePlus directed acyclical graph (DAG)
 const sim = new Sim('dag1')
@@ -161,13 +162,13 @@ function doSet() {
   t += doRun('Dead 1-h Moisture       71', 'gs4', 0.5, fill(tl1h, n), 0.2, 880, 90)
   t += doRun('Fuel Model              85', fill(fuel, n), 0.5,0.05, 0.2, 880, 90)
   t += doRun('10 of Each                ', fuel, herb, tl1h, slope, windSpeed, windDir)
-  console.log('Total Time                            ', t)
+  console.log('Total Time                            ', t, 'milliseconds')
 }
 
-console.log('UpdateOrthogonalStack')
+console.log('This makes 1.6 million simulation runs; allow 40-50 seconds for results...')
 dag.setUpdateClass(new UpdateOrthogonalStack(dag))
 doSet()
 
-console.log('UpdateOrthogonalRecursive')
-dag.setUpdateClass(new UpdateOrthogonalRecursive(dag))
-doSet()
+// console.log('UpdateOrthogonalRecursive')
+// dag.setUpdateClass(new UpdateOrthogonalRecursive(dag))
+// doSet()

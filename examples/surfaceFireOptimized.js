@@ -15,7 +15,8 @@
  * On my old laptop, 240,000 runs requires from 735 to 1300 millseconds,
  * or 180,000 to 326,000 runs per second.
  */
-import { Sim } from '../dag/index.js'
+// NOTE: Replace import to use the '@cbevins/fire-behavior-simulator' package
+import { Sim } from '../src/dag/index.js'
 
 // Step 1 - create a fire behavior simulator with 1 directed acyclical graph (DAG)
 const sim = new Sim('dag1')

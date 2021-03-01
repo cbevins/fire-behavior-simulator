@@ -16,7 +16,8 @@
  * - deoptimized: about 34440 milliseconds, or 7400 runs per second.
  *
  */
-import { Sim } from '../dag/index.js'
+// NOTE: Replace import to use the '@cbevins/fire-behavior-simulator' package
+import { Sim } from '../src/dag/index.js'
 
 // Step 1 - create a fire behavior simulator with 1 directed acyclical graph (DAG)
 const sim = new Sim('dag1')
@@ -56,7 +57,7 @@ console.log('The active configuration options are:',
 
 // Step 4 - if interested, request and display the required inputs
 console.log('Required inputs are:', dag.requiredInputNodes().map(node => node.key()))
-console.log('Please wait 1 minute for results...\n')
+console.log('Please wait 30-60 seconds for results to appear...\n')
 
 // Bump up the run limit so we can stress test with a lot of inputs
 dag.setRunLimit(10000000)

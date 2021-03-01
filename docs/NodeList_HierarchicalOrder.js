@@ -1,4 +1,4 @@
- root: {
+export const root = {
   configure: {
     fire: {
       effectiveWindSpeedLimit: {},
