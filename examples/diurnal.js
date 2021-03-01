@@ -7,7 +7,8 @@
 
 // Surface fire spread rate, flame length, and scorch height
 // over a 24-hour period of varying temperature, wind, and fine fuel moisture
-import { Sim } from '../dag/index.js'
+// NOTE: Replace import to use the '@cbevins/fire-behavior-simulator' package
+import { Sim } from '../src/dag/index.js'
 
 // Step 1 - create a fire behavior simulator with 1 directed acyclical graph (DAG)
 const sim = new Sim('dag1')

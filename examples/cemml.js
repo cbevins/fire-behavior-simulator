@@ -11,7 +11,9 @@
  * This increases the processing time to about 1650 milliseconds, or 145,000 runs per second
  * With Node.displayValue() formatting, its about 4500 milliseconds, or 53,000 runs per second
  */
-import { Sim, StorageFile } from '../dag/index.js'
+
+// NOTE: Replace import to use '@cbevins/fire-behavior-simulator'
+import { Sim, StorageFile } from '../src/dag/index.js'
 
 /**
  * Class wrapper for CEMML runs

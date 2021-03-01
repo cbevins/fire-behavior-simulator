@@ -12,11 +12,11 @@ fire-behavior-simulator is a Javascript package for creating fire behavior predi
 - [Example Use with Node.js](#example-use-with-node.js)
 - [Live Web Browser Examples](#live-web-browser-examples)
 - [Configuration](#configuration)
-- [Available Variables](./Variables_AlphabeticalOrder.md)
+- [Available Variables](./docs/Variables_AlphabeticalOrder.md)
 - [Design and Implementation](#design-and-implementation)
 - [Performance and Tests](#performance-and-tests)
 - [Author](#author)
-- [Release Notes](./RELEASE_NOTES.md)
+- [Release Notes](./docs/RELEASE_NOTES.md)
 ---
 
 ##  ![](favicon.png) Installation

@@ -1,10 +1,11 @@
 /**
- * @file Test of the largest number of required Nodes
+ * @file Test of the largest number of required Nodes in the Dag
  * with the fewest number of input Nodes.
  * @copyright 2021 Systems for Environmental Management
  * @author Collin D. Bevins, <cbevins@montana.com>
  */
-import { Sim } from '../dag/Sim.js'
+// NOTE: Replace import to use the '@cbevins/fire-behavior-simulator' package
+import { Sim } from '../src/dag/Sim.js'
 
 function megaRun () {
   const sim = new Sim('dag1')
@@ -89,6 +90,7 @@ function megaRun () {
     ['site.terrain.ridgeValleyDistance', [5000]],
     ['site.terrain.ridgeValleyElevation', [1000]]
   ])
+  console.log(`This run requires ${dag.requiredNodes().length} of ${dag.node().length}`)
   return dag.run()
 }
 

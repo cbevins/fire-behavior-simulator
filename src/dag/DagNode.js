@@ -53,7 +53,7 @@ export class DagNode {
   updater (idx) { return this._gene[3][idx] }
   updaters () { return this._gene[3] }
   value () { return this._value }
-  // variant () { return this._variant }
+  variant () { return this._variant }
 
   // isValidValue (value) { return this._variant.isValidValue(value) }
 

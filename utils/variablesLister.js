@@ -1,16 +1,14 @@
 /**
- * @file Utility to generate 2 files of node keys:
- * - './src/docs/NodeList_AlphabeticalOrder.js'
- * - './src/docs/NodeList_TopologicalOrder.js'
+ * @file Utility to generate variable documentation files
  * @copyright 2021 Systems for Environmental Management
  * @author Collin D. Bevins, <cbevins@montana.com>
  * @license MIT
  *
- * USAGE: npm run nodeLister
+ * USAGE: npm run variablesLister
  */
 
 import * as fs from 'fs'
-import {createFireEllipseSim} from './FireEllipseSim.js'
+import {createFireEllipseSim} from '../examples/FireEllipseSim.js'
 
 // Step 1 - create a BehavePlus directed acyclical graph (DAG)
 const [sim, dag, store] = createFireEllipseSim()
@@ -26,7 +24,7 @@ function alphaOrder (fileName) {
   write(str, fileName)
 }
 
-function markdownFile (fileName) {
+function markdownList (fileName) {
   let lastPart = ''
   let contents = '# ![](favicon.png) Top-level Names\n'
   let str = ''
@@ -39,6 +37,28 @@ function markdownFile (fileName) {
       contents += `- [${lastPart} Variables](#${lastPart}-variables)\n`
     }
     str += `  - ${idx+1}: ${key}\n`
+  })
+  const header = '# ![](favicon.png) cbevins/fire-behavior-simulator Variable Names\n' +
+    '[README.md](./README.md)\n'
+  write(header+contents+str, fileName)
+}
+
+function markdownTable (fileName) {
+  let lastPart = ''
+  let contents = '# ![](favicon.png) Top-level Names\n'
+  let hdr = '| idx | Variable Key (Name) | Variant | Native Units |\n|---|---|---|---|\n'
+  let str = ''
+  const nodeKeys = dag._node.map(node => node.key())
+  nodeKeys.sort().forEach((key, idx) => {
+    const parts = key.split('.')
+    if (parts[0] !== lastPart) {
+      lastPart = parts[0]
+      str += `---\n## ![](favicon.png) ${lastPart} Variables\n[Table of Contents](../README.md)\n`
+      str += hdr
+      contents += `- [${lastPart} Variables](#${lastPart}-variables)\n`
+    }
+    let node = dag.node(key)
+    str += `  | ${idx+1} | ${key} | ${node.variant().key()} | ${node.variant().nativeUnits()} |\n`
   })
   const header = '# ![](favicon.png) cbevins/fire-behavior-simulator Variable Names\n' +
     '[README.md](./README.md)\n'
@@ -89,7 +109,7 @@ function write (str, fileName) {
   })
 }
 
-//alphaOrder('./src/docs/NodeList_AlphabeticalOrder.js')
-//hierarchicalOrder('./src/docs/NodeList_HierarchicalOrder.js')
-//topoOrder('./src/docs/NodeList_TopologicalOrder.js')
-markdownFile('./Variables_AlphabeticalOrder.md')
+alphaOrder('./docs/NodeList_AlphabeticalOrder.js')
+hierarchicalOrder('./docs/NodeList_HierarchicalOrder.js')
+topoOrder('./docs/NodeList_TopologicalOrder.js')
+markdownTable('./docs/Variables.md')

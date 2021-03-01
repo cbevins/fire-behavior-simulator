@@ -17,7 +17,8 @@
  * From the project/src/examples folder:
  * > node behaveplus.js
  */
-import { Sim, StorageAbstract } from '../dag/index.js'
+// NOTE: Replace import to use the '@cbevins/fire-behavior-simulator' package
+import { Sim } from '../src/dag/index.js'
 
 // Step 1 - create a fire behavior simulator with 1 directed acyclical graph (DAG)
 

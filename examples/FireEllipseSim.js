@@ -1,11 +1,12 @@
 /**
  * @file Convenience function to instantiate a new Sim and Dag pair
- * for common fire ellipse modeling use cases.
+ * for common fire ellipse modeling use cases using StorageNodeMap.
  * @copyright 2021 Systems for Environmental Management
  * @author Collin D. Bevins, <cbevins@montana.com>
  * @license MIT
  */
-import { Sim, UpdateOrthogonalStack, StorageNodeMap } from '../dag/index.js'
+// NOTE: Replace import to use the '@cbevins/fire-behavior-simulator' package
+import { Sim, UpdateOrthogonalStack, StorageNodeMap } from '../src/dag/index.js'
 
 // single primary fuel type
 // fuel moisture is by individual class

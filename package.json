@@ -32,8 +32,8 @@
   "scripts": {
     "build": "rollup -c",
     "compiler": "node ./src/fire-behavior-genome/compiler/GenomeCompiler.js",
-    "fuelsLister": "node ./src/examples/fuelsLister.js",
-    "nodeLister": "node ./src/examples/NodeLister.js",
+    "fuelsLister": "node ./utils/fuelsLister.js",
+    "variablesLister": "node ./utils/variablesLister.js",
     "prebuild": "rimraf dist",
     "publish:github": "npm publish --registry https://npm.pkg.github.com --access public",
     "publish:npm": "npm publish --registry https://registry.npmjs.org --access public",

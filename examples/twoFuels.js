@@ -12,7 +12,7 @@
  * - configurations, selected variables, and input values are all predefined in arrays, and
  * - these arrays are then submitted for processing to by BehavePlus
  */
-import { Sim } from '../dag/index.js'
+import { Sim } from '../src/dag/index.js'
 
 // Store some output node keys into more convenient variables (to save typing):
 const ros1Key = 'surface.primary.fuel.fire.spreadRate'
