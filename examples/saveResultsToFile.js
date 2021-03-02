@@ -16,6 +16,7 @@
  */
 // NOTE: Replace import to use the '@cbevins/fire-behavior-simulator' package
 import { Sim, StorageFile } from '../src/dag/index.js'
+import { header } from './header.js'
 
 const fileName = 'surfaceFireOptimizedResults.txt'
 
@@ -92,11 +93,12 @@ dag.input([
 ])
 
 // Here we go!
+console.log(header('saveResultsToFile.js - fire-behavior-simulator example'))
 let elapsed = Date.now() // start the elapsed timer
 const results = dag.run()
 elapsed = Date.now() - elapsed
 
 const runs = results.runs
 let rps = (runs / (0.001 * elapsed)).toFixed(0)
-console.log(`Optimized: ${runs} runs required ${elapsed} ms (${rps} runs/s): ${results.message}`)
 console.log(`Results were written to file '${fileName}'`)
+console.log(header(`Optimized: ${runs} runs with file output required ${elapsed} ms (${rps} runs/s) ${results.message}`))

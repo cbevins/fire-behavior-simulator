@@ -19,6 +19,7 @@
  */
 // NOTE: Replace import to use the '@cbevins/fire-behavior-simulator' package
 import { Sim } from '../src/dag/index.js'
+import { header } from './header.js'
 
 // Step 1 - create a fire behavior simulator with 1 directed acyclical graph (DAG)
 
@@ -111,6 +112,7 @@ export class BehavePlus {
 
 // Use our new fire behavior class
 const bp = new BehavePlus()
+console.log(header('behaveplus.js - fire-behavior-simulator example'))
 console.log('Wind Speed is 10 mph:')
 console.log(`spreadRate = ${bp.spreadRate}`)
 console.log(`flameLength = ${bp.flameLength}`)

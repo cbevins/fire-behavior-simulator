@@ -19,6 +19,7 @@
  */
 // NOTE: Replace import to use the '@cbevins/fire-behavior-simulator' package
 import { Sim } from '../src/dag/index.js'
+import { header } from './header.js'
 
 // Step 1 - create a fire behavior simulator with 1 directed acyclical graph (DAG)
 const sim = new Sim('dag1')
@@ -75,6 +76,7 @@ dag.input([
   ['site.slope.steepness.ratio', [0.25]], // vertical rise / horizontal reach
 ]).run()
 
+console.log(header('simpleSurfaceFire.js - fire-behavior-simulator example'))
 // Step 6 - access and display the results
 selected.forEach(key => {
   const node = dag.get(key)

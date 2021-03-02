@@ -18,7 +18,9 @@
  */
 // NOTE: Replace import to use the '@cbevins/fire-behavior-simulator' package
 import { Sim } from '../src/dag/index.js'
+import { header } from './header.js'
 
+console.log(header('surfaceFireDeoptimized - fire-behavior-simulator example'))
 // Step 1 - create a fire behavior simulator with 1 directed acyclical graph (DAG)
 const sim = new Sim('dag1')
 const dag = sim.getDag('dag1')
@@ -57,7 +59,7 @@ console.log('The active configuration options are:',
 
 // Step 4 - if interested, request and display the required inputs
 console.log('Required inputs are:', dag.requiredInputNodes().map(node => node.key()))
-console.log('Please wait 30-60 seconds for results to appear...\n')
+console.log('This may require 30-60 seconds for all runs to complete...\n')
 
 // Bump up the run limit so we can stress test with a lot of inputs
 dag.setRunLimit(10000000)
@@ -110,4 +112,4 @@ temp.forEach(t => {
 })
 elapsed = Date.now() - elapsed
 let rps = (runs / (0.001 * elapsed)).toFixed(0)
-console.log(`Reverse optimized: ${runs} runs required ${elapsed} ms (${rps} runs/s)`)
+console.log(header(`Reverse optimized: ${runs} runs required ${elapsed} ms (${rps} runs/s)`))

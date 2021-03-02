@@ -46,7 +46,8 @@
  *
  */
 // NOTE: Replace import to use the '@cbevins/fire-behavior-simulator' package
-import { Sim, UpdateOrthogonalStack, UpdateOrthogonalRecursive } from '../src/dag/index.js'
+import { Sim, UpdateOrthogonalStack } from '../src/dag/index.js'
+import { header } from './header.js'
 
 // Step 1 - create a BehavePlus directed acyclical graph (DAG)
 const sim = new Sim('dag1')
@@ -165,6 +166,7 @@ function doSet() {
   console.log('Total Time                            ', t, 'milliseconds')
 }
 
+console.log(header('oneMillionRuns.js - fire-behavior-simulator example'))
 console.log('This makes 1.6 million simulation runs; allow 40-50 seconds for results...')
 dag.setUpdateClass(new UpdateOrthogonalStack(dag))
 doSet()

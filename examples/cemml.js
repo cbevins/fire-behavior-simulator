@@ -14,6 +14,7 @@
 
 // NOTE: Replace import to use '@cbevins/fire-behavior-simulator'
 import { Sim, StorageFile } from '../src/dag/index.js'
+import { header } from './header.js'
 
 /**
  * Class wrapper for CEMML runs
@@ -164,10 +165,11 @@ export class Cemml {
   }
 }
 
+console.log(header('cemml.js - fire-behavior-simulator example'))
 const cemml = new Cemml()
 console.log(cemml.showInputs())
 const results = cemml.run()
 console.log(cemml.documentOutputFile())
 
 let rps = (results.runs / (0.001 * results.elapsed)).toFixed(0)
-console.log(`CEMML: ${results.runs} runs required ${results.elapsed} ms (${rps} runs/sec): ${results.message}`)
+console.log(header(`${results.runs} runs required ${results.elapsed} ms (${rps} runs/sec): ${results.message}`))

@@ -17,6 +17,7 @@
  */
 // NOTE: Replace import to use the '@cbevins/fire-behavior-simulator' package
 import { Sim } from '../src/dag/index.js'
+import { header } from './header.js'
 
 // Step 1 - create a fire behavior simulator with 1 directed acyclical graph (DAG)
 const sim = new Sim('dag1')
@@ -93,4 +94,4 @@ elapsed = Date.now() - elapsed
 
 const runs = results.runs
 let rps = (runs / (0.001 * elapsed)).toFixed(0)
-console.log(`Optimized: ${runs} runs required ${elapsed} ms (${rps} runs/s): ${results.message}`)
+console.log(header(`Optimized: ${runs} runs required ${elapsed} ms (${rps} runs/s): ${results.message}`))

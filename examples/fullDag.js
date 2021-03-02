@@ -6,6 +6,7 @@
  */
 // NOTE: Replace import to use the '@cbevins/fire-behavior-simulator' package
 import { Sim } from '../src/dag/Sim.js'
+import { header } from './header.js'
 
 function fullDagRun () {
   const sim = new Sim('dag1')
@@ -94,11 +95,11 @@ function fullDagRun () {
   return dag.run()
 }
 
-console.log('Full Dag Run')
+console.log(header('fullDag.js - fire-behavior-simulator example'))
 const start = Date.now()
 const result = fullDagRun()
 const used = process.memoryUsage()
 for (const key in used) {
   console.log(`${key} ${Math.round(used[key] / 1024 / 1024 * 100) / 100} MB`)
 }
-console.log(`elaspedTime: ${Date.now() - start} ms for ${result.runs} runs`)
+console.log(header(`fullDag.js - elaspedTime: ${Date.now() - start} ms for ${result.runs} runs`))

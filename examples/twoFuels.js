@@ -14,7 +14,9 @@
  */
 // NOTE: Replace import to use the '@cbevins/fire-behavior-simulator' package
 import { Sim } from '../src/dag/index.js'
+import { header } from './header.js'
 
+console.log(header('twoFuels.js - fire-behavior-simulator example'))
 // Store some output node keys into more convenient variables (to save typing):
 const ros1Key = 'surface.primary.fuel.fire.spreadRate'
 const ros2Key = 'surface.secondary.fuel.fire.spreadRate'

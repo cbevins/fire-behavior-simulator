@@ -9,6 +9,7 @@
 // over a 24-hour period of varying temperature, wind, and fine fuel moisture
 // NOTE: Replace import to use the '@cbevins/fire-behavior-simulator' package
 import { Sim } from '../src/dag/index.js'
+import { header } from './header.js'
 
 // Step 1 - create a fire behavior simulator with 1 directed acyclical graph (DAG)
 const sim = new Sim('dag1')
@@ -98,4 +99,5 @@ hours.forEach((hourly, idx) => {
   str += dag.get('surface.weighted.fire.flameLength').displayString() + ' '
   str += dag.get('surface.weighted.fire.scorchHeight').displayString() + '\n'
 })
+console.log(header('diurnal.js - fire-behavior-simulator example'))
 console.log(str)
