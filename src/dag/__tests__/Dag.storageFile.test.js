@@ -5,8 +5,7 @@
  * With Node.displayValue() formatting, its about 4500 milliseconds, or 53,000 runs per second
  */
 import { Sim, StorageFile } from '../index.js'
-import { Cemml } from '../../examples/cemml.js'
-import { expectedValueSpreadRateMOCK } from '../../fire-behavior-models/SurfaceFire.js'
+import { Cemml } from '../../../examples/cemml.js'
 
 test('CEMML StorageFile use', () => {
   const cemml = new Cemml()

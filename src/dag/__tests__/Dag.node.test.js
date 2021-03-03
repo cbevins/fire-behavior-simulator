@@ -62,4 +62,5 @@ test('Dag.node()', () => {
   expect(dag.node(windDirUpKey).isInput()).toEqual(true)
 
   expect(dag.get(windDirNoKey).isInput()).toEqual(false)
+  expect(dag.node(windDirUpKey).variant().key()).toEqual('CompassAzimuth')
 })
