@@ -8,7 +8,7 @@ The *BehavePlus Fire Modeling System* (Patricia L. Andrews; Collin D. Bevins; Ro
 
 BehavePlus is available only on Windows-based operating systems.  Written in C++, the program has evolved steadily and somewhat organically since the 1990's as new models and capabilities were incorporated.  The most recent release is Version 6 Beta (March 2018).  Throughout this period, the original basic architecture of the program has remained unchanged.
 
-The *fire-behavior-simulator* package is a totally re-engineered implementation of the core BehavePlus models and equations.  Its computational engine ensures optimal performance and the flexibility required for developing fire behavior applications in Javascript for use in web browsers and/or Node.js runtime applications.
+The *fire-behavior-simulator* package is a totally re-engineered implementation of the core BehavePlus models and equations.  Its computational engine employs a directed acyclical graph (DAG) to ensure optimal performance and the flexibility required for developing fire behavior applications in Javascript for use in web browsers and/or Node.js runtime applications.
 
 For more information, read the [Capabilities](./docs/03_Capabilities.md) section.
 
