@@ -47,7 +47,8 @@ export class DagNode {
   key () { return this._gene[1] }
   label () { return keyLabel(this.key()) }
   method () { return this._update._method }
-  // order () { return this._dag._order }
+  nativeUnits () { return this._variant.nativeUnits() }
+  order () { return this._dag._order }
   // parms () { return this._update._parms }
   // producers () { return this._dag._producers }
   updater (idx) { return this._gene[3][idx] }

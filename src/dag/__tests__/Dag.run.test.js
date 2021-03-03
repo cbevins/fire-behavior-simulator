@@ -1,7 +1,6 @@
-import { Sim } from '../index.js'
-import { StorageAbstract, StorageNodeMap } from '../index.js'
+import { Sim, StorageAbstract } from '../index.js'
 import { UpdateOrthogonalRecursive, UpdateOrthogonalStack } from '../index.js'
-import { configFm010Fm124, inputFm010Fm124 } from '../utils/configs.js'
+import { nodeTable } from '../../utils/nodeTable.js'
 
 const headRosKey = 'surface.fire.ellipse.head.spreadRate'
 
@@ -88,7 +87,18 @@ test('Dag.run() with UpdateOrthogonalStack', () => {
     .input(inputItems)
     .setRunLimit(100)
 
+  // console.log(nodeTable(dag.requiredInputNodes(),
+  //   ['index', 'key', 'nativeUnits'], 'Required Input Nodes'))
+
+  // console.log(nodeTable(dag.requiredConfigNodes(),
+  //   ['index', 'key', 'nativeValue'], 'Required Config Nodes'))
+
   const result = dag.run()
+
+  const str = nodeTable(dag.requiredNodes(),
+    ['index', 'key', 'label', 'order', 'nativeValue', 'nativeUnits', 'displayValue', 'displayUnits', 'variantKey', ],
+    'Required Nodes')
+
   expect(result).toEqual({runs: 100, calls: 5960, ok: false, message: 'Run limit of 100 exceeded.'})
 })
 
