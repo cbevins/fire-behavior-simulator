@@ -52,7 +52,7 @@ dag.configure([
 ])
 
 // Step 3 - specify the fire behavior variables to be produced
-// (See ./src/docs/NodeList_AlphabeticalOrder.js for complete list of 1200+ names)
+// (See ./docs/Variables.md for complete list of 1200+ names)
 const selected = [
   'surface.weighted.fire.spreadRate',
   'surface.weighted.fire.flameLength'
