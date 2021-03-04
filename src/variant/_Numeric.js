@@ -21,8 +21,8 @@ import { _Variant } from './_Variant.js'
  * - maximumValue()
  * - minimumValue()
  * - stepValue()
- * - validateInput(inputText)
- * - validateValue(value)
+ * - validateDisplayValue(inputText)
+ * - validateNativeValue(value)
  */
 export class _Numeric extends _Variant {
   constructor (key, defaultValue = 0, minValue = 1 - Number.MAX_VALUE, maxValue = Number.MAX_VALUE, stepValue=1) {
@@ -58,11 +58,11 @@ export class _Numeric extends _Variant {
 
   inputHint() { return `${this.minimumValue()} - ${this.maximumValue()}` }
 
-  isValidInput(inputText) { return this.validateInput(inputText).valid }
+  isValidInput(inputText) { return this.validateDisplayValue(inputText).valid }
 
   isValidValue(value) {
     if (typeof value !== 'number') return false
-    return this.validateValue(value).valid
+    return this.validateNativeValue(value).valid
   }
 
   maximumValue() { return this._value._maximum }
@@ -71,7 +71,7 @@ export class _Numeric extends _Variant {
 
   stepValue() { return this._value._step }
 
-  validateInput(inputText) {
+  validateDisplayValue(inputText) {
     // filter invalid characters from input text
     const filtered = filterNumeric(inputText)
     // cast from text to number, boolean, object, or some other string
@@ -80,10 +80,10 @@ export class _Numeric extends _Variant {
       return new ValidationResult(false, filtered, 'Not a valid number')
     }
     // Now we have a number value to convert to native units
-    return this.validateValue(inputValue)
+    return this.validateNativeValue(inputValue)
   }
 
-  validateValue(value) {
+  validateNativeValue(value) {
     if (value < this._value._minimum) {
       return new ValidationResult(false, value, `Less than minimum value of ${this._value._minimum}`)
     } else if (value > this._value._maximum) {

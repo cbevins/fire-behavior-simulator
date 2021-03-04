@@ -66,17 +66,17 @@ test('_Numeric value accessors', () => {
 
 test('_Numeric value validation', () => {
   const v = new _Numeric('FireSpreadRate', 5, 1, 100, 5)
-  let result = v.validateValue(0)
+  let result = v.validateNativeValue(0)
   expect(result.valid).toEqual(false)
   expect(result.value).toEqual(0)
   expect(result.message).toEqual('Less than minimum value of 1')
 
-  result = v.validateValue(101)
+  result = v.validateNativeValue(101)
   expect(result.valid).toEqual(false)
   expect(result.value).toEqual(101)
   expect(result.message).toEqual('Greater than maximum value of 100')
 
-  result = v.validateValue(50)
+  result = v.validateNativeValue(50)
   expect(result.valid).toEqual(true)
   expect(result.value).toEqual(50)
   expect(result.message).toEqual('')
@@ -99,7 +99,7 @@ test('_Numeric text input validation - INVALID strings', () => {
     {},
     true]
   strings.forEach(str => {
-    const result = v.validateInput(str)
+    const result = v.validateDisplayValue(str)
     expect(result.valid).toEqual(false)
     expect(result.value).toEqual('')
     expect(result.message).toEqual('Not a valid number')
@@ -128,7 +128,7 @@ test('_Numeric text input validation -- VALID strings', () => {
     ['{mantissa: 1, exponent: -2}', 0.01]
   ]
   strings.forEach(str => {
-    const result = v.validateInput(str[0])
+    const result = v.validateDisplayValue(str[0])
     expect(result.valid).toEqual(true)
     expect(result.value).toEqual(str[1])
     expect(result.message).toEqual('')

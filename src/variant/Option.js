@@ -56,9 +56,9 @@ export class Option extends _Variant {
 
   inputHint() { return this._value._prompt }
 
-  isValidInput(inputText) { return this.validateInput(inputText).valid }
+  isValidInput(inputText) { return this.validateDisplayValue(inputText).valid }
 
-  isValidValue(value) { return this.validateValue(value).valid }
+  isValidValue(value) { return this.validateNativeValue(value).valid }
 
   maximumValue() { return 0 }
   maximumDisplayValue() { return '' }
@@ -75,9 +75,9 @@ export class Option extends _Variant {
 
   prompt () { return this._value._prompt }
 
-  validateInput(optionKey) { return this.validateValue(optionKey) }
+  validateDisplayValue(optionKey) { return this.validateNativeValue(optionKey) }
 
-  validateValue(optionKey) {
+  validateNativeValue(optionKey) {
     if (! this.hasOption(optionKey)) {
       return new ValidationResult(false, optionKey, 'Invalid option')
     }

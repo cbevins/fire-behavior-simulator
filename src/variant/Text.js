@@ -33,19 +33,19 @@ export class Text extends _Variant {
 
   inputHint() { return `${this.minimumValue()} - ${this.maximumValue()} chars` }
 
-  isValidInput(inputText) { return this.validateInput(inputText).valid }
+  isValidInput(inputText) { return this.validateDisplayValue(inputText).valid }
   isValidValue(value) {
     if (typeof value !== 'string') return false
-    return this.validateValue(value).valid
+    return this.validateNativeValue(value).valid
   }
 
   maximumValue() { return this._value._maximumLength }
   minimumValue() { return this._value._minimumLength }
   stepValue() { return 1 }
 
-  validateInput(inputText) { return this.validateValue(inputText) }
+  validateDisplayValue(inputText) { return this.validateNativeValue(inputText) }
 
-  validateValue(text) {
+  validateNativeValue(text) {
     if (typeof text !== 'string') {
       return new ValidationResult(false, text, 'Must be a string')
     } else if (text.length < this.minimumValue()) {

@@ -73,12 +73,12 @@ test('Option validation', () => {
   expect(v.isValidInput('Collin')).toEqual(false)
   expect(v.isValidInput('jack')).toEqual(false)
 
-  expect(v.validateInput('bjr').valid).toEqual(true)
-  expect(v.validateInput('cdb').valid).toEqual(true)
-  expect(v.validateInput('krb').valid).toEqual(true)
-  expect(v.validateInput('dbr').valid).toEqual(true)
-  expect(v.validateInput('Collin').valid).toEqual(false)
-  expect(v.validateInput('jack').valid).toEqual(false)
+  expect(v.validateDisplayValue('bjr').valid).toEqual(true)
+  expect(v.validateDisplayValue('cdb').valid).toEqual(true)
+  expect(v.validateDisplayValue('krb').valid).toEqual(true)
+  expect(v.validateDisplayValue('dbr').valid).toEqual(true)
+  expect(v.validateDisplayValue('Collin').valid).toEqual(false)
+  expect(v.validateDisplayValue('jack').valid).toEqual(false)
 
   expect(v.isValidValue('bjr')).toEqual(true)
   expect(v.isValidValue('cdb')).toEqual(true)

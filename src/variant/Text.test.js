@@ -52,7 +52,7 @@ test('new Text() custom construtor', () => {
 test('Text validation', () => {
   const v = new Text('FuelModelKey', 'gs1', 1, 16, 'Enter valid fuel model key')
   expect(v.isValidInput(12345678)).toEqual(false)
-  expect(v.validateInput('12345678').message).toEqual('')
+  expect(v.validateDisplayValue('12345678').message).toEqual('')
   expect(v.isValidInput('12345678')).toEqual(true)
   expect(v.isValidInput('')).toEqual(false)
   expect(v.isValidInput(true)).toEqual(false)
@@ -60,7 +60,7 @@ test('Text validation', () => {
   expect(v.isValidInput('1234567890abvdefghijklm')).toEqual(false)
 
   expect(v.isValidValue(12345678)).toEqual(false)
-  expect(v.validateValue('12345678').message).toEqual('')
+  expect(v.validateNativeValue('12345678').message).toEqual('')
   expect(v.isValidValue('12345678')).toEqual(true)
   expect(v.isValidValue('')).toEqual(false)
   expect(v.isValidValue(true)).toEqual(false)

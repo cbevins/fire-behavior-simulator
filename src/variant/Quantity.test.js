@@ -33,7 +33,7 @@ test('Quantity default constructor', () => {
   expect(v.unitsOptions()).toEqual(rosUnits)
   expect(v.nativeUnits()).toEqual('ft/min')
   expect(v.displayUnits()).toEqual('ft/min')
-  expect(()=>v.validateValue()).toThrow()
+  expect(()=>v.validateNativeValue()).toThrow()
 })
 
 test('setDisplayUnits()', () => {
@@ -63,32 +63,32 @@ test('Input text validation with units conversion', () => {
   const v = new Quantity('FireSpreadRate', rosUnits, 1000, 5, 5).setDisplayUnits('m/min')
   expect(v.displayUnits()).toEqual('m/min')
 
-  let result = v.validateInput('5')
+  let result = v.validateDisplayValue('5')
   expect(result.valid).toEqual(true)
   expect(result.value).toBeCloseTo(5/0.3048, 12)
   expect(result.message).toEqual('')
 
-  result = v.validateInput('a')
+  result = v.validateDisplayValue('a')
   expect(result.valid).toEqual(false)
   expect(result.value).toEqual('')
   expect(result.message).toEqual('Not a valid number string')
 
-  result = v.validateInput('-5')
+  result = v.validateDisplayValue('-5')
   expect(result.valid).toEqual(true)
   expect(result.value).toBeCloseTo(5/0.3048, 12)
   expect(result.message).toEqual('')
 
-  result = v.validateInput('1')
+  result = v.validateDisplayValue('1')
   expect(result.valid).toEqual(false)
   expect(result.value).toEqual('1.00')
   expect(result.message).toEqual('Less than minimum value of 1.52 m/min (5.00 ft/min)')
 
-  result = v.validateInput('400')
+  result = v.validateDisplayValue('400')
   expect(result.valid).toEqual(false)
   expect(result.value).toEqual('400.00')
   expect(result.message).toEqual('Greater than maximum value of 304.80 m/min (1000.00 ft/min)')
 
-  result = v.validateInput('200')
+  result = v.validateDisplayValue('200')
   expect(result.valid).toEqual(true)
   expect(result.value).toBeCloseTo(200/0.3048, 12)
   expect(result.message).toEqual('')

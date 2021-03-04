@@ -30,8 +30,8 @@ import { filterNonNegativeNumeric } from './filters.js'
  * - inputHint()
  * - maximumDisplayValue()
  * - minimumDisplayValue()
- * - validateInput(inputText)
- * - validateValue(displayValue, nativeValue)
+ * - validateDisplayValue(inputText)
+ * - validateNativeValue(displayValue, nativeValue)
  */
 
 export class Quantity extends Float {
@@ -95,11 +95,11 @@ export class Quantity extends Float {
     return `${this.minimumDisplayValue()} - ${this.maximumDisplayValue()} ${this._units._display}`
   }
 
-  isValidInput(inputText) { return this.validateInput(inputText).valid }
+  isValidInput(inputText) { return this.validateDisplayValue(inputText).valid }
 
   isValidValue(value) {
     if (typeof value !== 'number') return false
-    return this.validateValue(value).valid
+    return this.validateNativeValue(value).valid
   }
 
   // Overrides Numeric version to perform conversion to display units-of-measure
@@ -133,9 +133,9 @@ export class Quantity extends Float {
 
   unitsOptions() { return this._units._options }
 
-  // Overrides Float.validateInput() to apply filterNonNegativeNumeric()
+  // Overrides Float.validateDisplayValue() to apply filterNonNegativeNumeric()
   // AND convert from display (input) units to native units before validating
-  validateInput(inputText) {
+  validateDisplayValue(inputText) {
     const text = inputText.toString()
     // filter invalid characters from input text
     const filtered = filterNonNegativeNumeric(text)
@@ -147,12 +147,12 @@ export class Quantity extends Float {
     // convert quantity from display to native units
     const nativeValue = this.displayValueToNativeValue(displayValue)
     // validate native units
-    return this.validateValue(nativeValue, displayValue)
+    return this.validateNativeValue(nativeValue, displayValue)
   }
 
-  validateValue(nativeValue) {
+  validateNativeValue(nativeValue) {
     if (typeof nativeValue === 'undefined' ) {
-      throw new Error('Quantity.validateValue() requires native value arg')
+      throw new Error('Quantity.validateNativeValue() requires native value arg')
     } else if (nativeValue < this._value._minimum) {
       return new ValidationResult(false, this.displayValue(nativeValue),
         `Less than minimum value of ${this.minimumDisplayString()} ` +

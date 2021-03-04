@@ -69,17 +69,17 @@ test('Integer value accessors', () => {
 
 test('Integer value validation', () => {
   const v = new Integer('FireSpreadRate', 5, 1, 100, 5)
-  let result = v.validateValue(0)
+  let result = v.validateNativeValue(0)
   expect(result.valid).toEqual(false)
   expect(result.value).toEqual(0)
   expect(result.message).toEqual('Less than minimum value of 1')
 
-  result = v.validateValue(101)
+  result = v.validateNativeValue(101)
   expect(result.valid).toEqual(false)
   expect(result.value).toEqual(101)
   expect(result.message).toEqual('Greater than maximum value of 100')
 
-  result = v.validateValue(50)
+  result = v.validateNativeValue(50)
   expect(result.valid).toEqual(true)
   expect(result.value).toEqual(50)
   expect(result.message).toEqual('')
@@ -102,21 +102,21 @@ test('Integer text input validation - INVALID strings', () => {
     let result
   strings.forEach(str => {
     // console.log(str)
-    result = v.validateInput(str)
+    result = v.validateDisplayValue(str)
     expect(result.valid).toEqual(false)
     expect(result.value).toEqual('')
     expect(result.message).toEqual('Not a valid number')
     expect(v.isValidInput(str)).toEqual(false)
   })
   let str = '1,234,567'
-  result = v.validateInput(str)
+  result = v.validateDisplayValue(str)
   expect(result.valid).toEqual(false)
   expect(result.value).toEqual(1234567)
   expect(result.message).toEqual('Greater than maximum value of 100')
   expect(v.isValidInput(str)).toEqual(false)
 
   str = '-1,234,567'
-  result = v.validateInput(str)
+  result = v.validateDisplayValue(str)
   expect(result.valid).toEqual(false)
   expect(result.value).toEqual(-1234567)
   expect(result.message).toEqual('Less than minimum value of -100')
@@ -147,7 +147,7 @@ test('Integer text input validation -- VALID strings', () => {
   let result
   strings.forEach(str => {
     // console.log(str[0])
-    result = v.validateInput(str[0])
+    result = v.validateDisplayValue(str[0])
     expect(result.valid).toEqual(true)
     expect(result.value).toEqual(str[1])
     expect(result.message).toEqual('')

@@ -33,9 +33,9 @@ test('_Variant dummy methods to be reimplemented by subclasses', () => {
   expect(v.inputHint()).toEqual('')
   expect(v.isValidInput('anythingAtAll')).toEqual(false)
   expect(v.isValidValue(1.23)).toEqual(false)
-  expect(v.validateInput('anythingAtAll'))
+  expect(v.validateDisplayValue('anythingAtAll'))
     .toEqual({valid:false, value: 'anythingAtAll', message: 'Must be reimplemented by _Variant subclass'})
-  expect(v.validateValue('anythingAtAll'))
+  expect(v.validateNativeValue('anythingAtAll'))
     .toEqual({valid:false, value: 'anythingAtAll', message: 'Must be reimplemented by _Variant subclass'})
   // Overriden and final by _Variant => _Numeric
   expect(v.maximumValue()).toEqual('someDefaultValue')

@@ -61,15 +61,15 @@ export class _Variant {
 
   inputHint() { return '' }
 
-  isValidInput(inputText) { return this.validateInput(inputText).valid }
-  isValidValue(value) { return this.validateValue(value).valid }
+  isValidInput(inputText) { return this.validateDisplayValue(inputText).valid }
+  isValidValue(value) { return this.validateNativeValue(value).valid }
 
-  validateInput(inputText) {
+  validateDisplayValue(inputText) {
     const inputValue = inputText
-    return this.validateValue(inputValue)
+    return this.validateNativeValue(inputValue)
   }
 
-  validateValue(value) {
+  validateNativeValue(value) {
     return new ValidationResult(false, value, 'Must be reimplemented by _Variant subclass')
   }
 

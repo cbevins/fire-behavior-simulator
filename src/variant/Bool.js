@@ -44,12 +44,12 @@ export class Bool extends _Variant {
 
   inputHint() { return `'${this._value._false}' or '${this._value._true}'` }
 
-  isValidInput(inputText) { return this.validateInput(inputText).valid }
+  isValidInput(inputText) { return this.validateDisplayValue(inputText).valid }
 
   isValidValue(value) {
     // For now, allow truthy and falsey
     // if (typeof value !== 'boolean') return false
-    return this.validateValue(value).valid
+    return this.validateNativeValue(value).valid
   }
 
   maximumValue() { return true }
@@ -67,15 +67,15 @@ export class Bool extends _Variant {
 
   prompt () { return this._value._prompt }
 
-  validateInput(inputText) {
+  validateDisplayValue(inputText) {
     if (! this.hasOption(inputText)) {
       return new ValidationResult(false, inputText, 'Invalid option')
     }
     const bool = (inputText === this._value._true)
-    return this.validateValue(bool)
+    return this.validateNativeValue(bool)
   }
 
-  validateValue(bool) {
+  validateNativeValue(bool) {
     const b = bool ? true : false
     return new ValidationResult(true, b)
   }

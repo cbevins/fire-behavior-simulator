@@ -36,7 +36,7 @@ export class Integer extends _Numeric {
 
   displayValue(nativeValue) { return this._formatValue(nativeValue) }
 
-  validateInput(inputText) {
+  validateDisplayValue(inputText) {
     // filter invalid characters from input text
     const filtered = filterInteger(inputText)
     // cast from text to number, boolean, object, or some other string
@@ -45,6 +45,6 @@ export class Integer extends _Numeric {
       return new ValidationResult(false, filtered, 'Not a valid number')
     }
     // Now we have a number value to convert to native units
-    return this.validateValue(inputValue)
+    return this.validateNativeValue(inputValue)
   }
 }
