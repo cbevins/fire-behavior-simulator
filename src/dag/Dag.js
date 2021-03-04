@@ -177,17 +177,20 @@ export class Dag extends DagPrivate {
   }
 
   /**
-   * Validates one or more DagNode *native value* input sets, usually prior to calling Dag.input()
+   * Validates one or more DagNode display text input sets whose values are strings
+   * (usually from a text file or browser input element) that must be translated,
+   * cast, and converted into native values, usually prior to calling Dag.input().
    * @param {*} nodeValuePairs
    * @returns An array with one ValidationResult object {valid, value, message, node}
-   * for each *invalid* DagNode value
+   * for each *raw input text* DagNode value
    */
-  validateInput(nodeValuePairs) {
+  validateDisplayInputs(nodeValuePairs) {
     const errors = []
-    this._refVals(nodeValuePairs, 'validateInput').forEach(([node, value]) => {
+    this._refVals(nodeValuePairs, 'validateDisplayInputs').forEach(([node, value]) => {
       const values = Array.isArray(value) ? value : [value] // ensure values are in an array
       values.forEach(value => {
-        const result = node._variant.validateValue(value)
+        const result = node._variant.validateDisplayValue(value)
+        // console.log(`Validating '${value}' returned ${JSON.stringify(result)}`)
         if (! result.valid) {
           errors.push(result)
         }
@@ -197,19 +200,19 @@ export class Dag extends DagPrivate {
   }
 
   /**
-   * Validates one or more DagNode *text string* input sets consisting of
-   * raw, untransformed, text strings, usually prior to calling Dag.input()
+   * Validates one or more DagNode *native value* input sets, usually prior to calling Dag.input().
+   * NOTE that the provided values must be of the appropriate type (number, string, etc)
+   * and if the node is a Quantity, value must be expressed in the native units-of-measure.
    * @param {*} nodeValuePairs
    * @returns An array with one ValidationResult object {valid, value, message, node}
-   * for each *raw input text* DagNode value
+   * for each *invalid* DagNode value
    */
-  validateInputText(nodeValuePairs) {
+  validateNativeInputs(nodeValuePairs) {
     const errors = []
-    this._refVals(nodeValuePairs, 'validateInputText').forEach(([node, value]) => {
+    this._refVals(nodeValuePairs, 'validateNativeInputs').forEach(([node, value]) => {
       const values = Array.isArray(value) ? value : [value] // ensure values are in an array
       values.forEach(value => {
-        const result = node._variant.validateInput(value)
-        // console.log(`Validating '${value}' returned ${JSON.stringify(result)}`)
+        const result = node._variant.validateNativeValue(value)
         if (! result.valid) {
           errors.push(result)
         }

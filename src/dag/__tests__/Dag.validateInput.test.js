@@ -4,7 +4,7 @@ const headRosKey = 'surface.fire.ellipse.head.spreadRate'
 const catalogKey = 'surface.primary.fuel.model.catalogKey'
 const dead1hKey = 'site.moisture.dead.tl1h'
 
-test('Dag.validateInput()', () => {
+test('Dag.validateNativeInputs()', () => {
   const sim = new Sim('dag1')
   const dag = sim.getDag('dag1')
   const headRosNode = dag.node(headRosKey)
@@ -13,14 +13,14 @@ test('Dag.validateInput()', () => {
   const inputNodes = dag.requiredInputNodes()
   expect(inputNodes.length).toEqual(11)
 
-  let result = dag.validateInput([
+  let result = dag.validateNativeInputs([
     [dag.node(catalogKey), ['10', 'gs4']],
     [dag.node(dead1hKey), [0.02, 0.04]],
     [dag.node(dead1hKey), 0.1],
   ])
   expect(result).toEqual([])
 
-  result = dag.validateInput([
+  result = dag.validateNativeInputs([
     [dag.node(dead1hKey), [0.02, 5.01]],
     [dag.node(catalogKey), ['10', 'junk']],
     [dag.node(dead1hKey), -1],
@@ -33,7 +33,7 @@ test('Dag.validateInput()', () => {
   ])
 })
 
-test('Dag.validateInputText()', () => {
+test('Dag.validateDisplayInputs()', () => {
   const sim = new Sim('dag1')
   const dag = sim.getDag('dag1')
   const headRosNode = dag.node(headRosKey)
@@ -42,7 +42,7 @@ test('Dag.validateInputText()', () => {
   const inputNodes = dag.requiredInputNodes()
   expect(inputNodes.length).toEqual(11)
 
-  let result = dag.validateInputText([
+  let result = dag.validateDisplayInputs([
     [dag.node(catalogKey), ['10', 'gs4']],
     [dag.node(dead1hKey), ['2', '4']], // Must be in display values!
     [dag.node(dead1hKey), '1'],
@@ -50,7 +50,7 @@ test('Dag.validateInputText()', () => {
   // console.log(result)
   expect(result.length).toEqual(0)
 
-  result = dag.validateInputText([
+  result = dag.validateDisplayInputs([
     [dag.node(dead1hKey), ['2', '501']],
     [dag.node(catalogKey), ['10', 'junk']],
     [dag.node(dead1hKey), '0.1'],
