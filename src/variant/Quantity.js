@@ -146,8 +146,17 @@ export class Quantity extends Float {
     }
     // convert quantity from display to native units
     const nativeValue = this.displayValueToNativeValue(displayValue)
-    // validate native units
-    return this.validateNativeValue(nativeValue, displayValue)
+    // validate native value
+    if (nativeValue < this._value._minimum) {
+      return new ValidationResult(false, displayValue,
+        `Less than minimum value of ${this.minimumDisplayString()} ` +
+        `(${this._formatValue(this._value._minimum)} ${this.nativeUnits()})`)
+    } else if (nativeValue > this._value._maximum) {
+      return new ValidationResult(false, displayValue,
+        `Greater than maximum value of ${this.maximumDisplayString()} ` +
+        `(${this._formatValue(this._value._maximum)} ${this.nativeUnits()})`)
+    }
+    return new ValidationResult(true, nativeValue)
   }
 
   validateNativeValue(nativeValue) {

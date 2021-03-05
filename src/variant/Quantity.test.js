@@ -80,12 +80,12 @@ test('Input text validation with units conversion', () => {
 
   result = v.validateDisplayValue('1')
   expect(result.valid).toEqual(false)
-  expect(result.value).toEqual('1.00')
+  expect(result.value).toEqual(1)
   expect(result.message).toEqual('Less than minimum value of 1.52 m/min (5.00 ft/min)')
 
   result = v.validateDisplayValue('400')
   expect(result.valid).toEqual(false)
-  expect(result.value).toEqual('400.00')
+  expect(result.value).toEqual(400)
   expect(result.message).toEqual('Greater than maximum value of 304.80 m/min (1000.00 ft/min)')
 
   result = v.validateDisplayValue('200')

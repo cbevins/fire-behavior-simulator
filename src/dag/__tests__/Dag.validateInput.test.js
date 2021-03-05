@@ -57,8 +57,8 @@ test('Dag.validateDisplayInputs()', () => {
   ])
   expect(result.length).toEqual(3)
   expect(result).toEqual([
-    {message: 'Greater than maximum value of 500.00 % (5.00 ratio)', valid: false, value: '501.00' },
+    {message: 'Greater than maximum value of 500.00 % (5.00 ratio)', valid: false, value: 501 },
     {message: 'Invalid option', valid: false, value: 'junk'},
-    {message: 'Less than minimum value of 1.00 % (0.01 ratio)', valid: false, value: '0.10' }
+    {message: 'Less than minimum value of 1.00 % (0.01 ratio)', valid: false, value: 0.1 }
   ])
 })
