@@ -56,7 +56,7 @@ export class DagNode {
   value () { return this._value }
   variant () { return this._variant }
 
-  // isValidValue (value) { return this._variant.isValidValue(value) }
+  // isValidValue (value) { return this._variant.isValidNativeValue(value) }
 
   // mutators
   reset () {

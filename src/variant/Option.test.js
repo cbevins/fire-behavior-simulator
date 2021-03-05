@@ -66,12 +66,12 @@ test('new Option() custom constructor', () => {
 test('Option validation', () => {
   const v = new Option('MyPeople', 'Select a person',
     [['bjr', 'Barbara'], 'dbr', 'krb', ['cdb', 'Collin']], 3)
-  expect(v.isValidInput('bjr')).toEqual(true)
-  expect(v.isValidInput('cdb')).toEqual(true)
-  expect(v.isValidInput('krb')).toEqual(true)
-  expect(v.isValidInput('dbr')).toEqual(true)
-  expect(v.isValidInput('Collin')).toEqual(false)
-  expect(v.isValidInput('jack')).toEqual(false)
+  expect(v.isValidDisplayValue('bjr')).toEqual(true)
+  expect(v.isValidDisplayValue('cdb')).toEqual(true)
+  expect(v.isValidDisplayValue('krb')).toEqual(true)
+  expect(v.isValidDisplayValue('dbr')).toEqual(true)
+  expect(v.isValidDisplayValue('Collin')).toEqual(false)
+  expect(v.isValidDisplayValue('jack')).toEqual(false)
 
   expect(v.validateDisplayValue('bjr').valid).toEqual(true)
   expect(v.validateDisplayValue('cdb').valid).toEqual(true)
@@ -80,21 +80,21 @@ test('Option validation', () => {
   expect(v.validateDisplayValue('Collin').valid).toEqual(false)
   expect(v.validateDisplayValue('jack').valid).toEqual(false)
 
-  expect(v.isValidValue('bjr')).toEqual(true)
-  expect(v.isValidValue('cdb')).toEqual(true)
-  expect(v.isValidValue('krb')).toEqual(true)
-  expect(v.isValidValue('dbr')).toEqual(true)
+  expect(v.isValidNativeValue('bjr')).toEqual(true)
+  expect(v.isValidNativeValue('cdb')).toEqual(true)
+  expect(v.isValidNativeValue('krb')).toEqual(true)
+  expect(v.isValidNativeValue('dbr')).toEqual(true)
 })
 
-test('isValidValue()', () => {
+test('isValidNativeValue()', () => {
   const v = new Option('MyPeople', 'Select a person',
     [['bjr', 'Barbara'], 'dbr', 'krb', ['cdb', 'Collin']], 3)
-  expect(v.isValidValue()).toEqual(false)
-  expect(v.isValidValue({})).toEqual(false)
-  expect(v.isValidValue([])).toEqual(false)
-  expect(v.isValidValue('')).toEqual(false)
-  expect(v.isValidValue(false)).toEqual(false)
-  expect(v.isValidValue(true)).toEqual(false)
+  expect(v.isValidNativeValue()).toEqual(false)
+  expect(v.isValidNativeValue({})).toEqual(false)
+  expect(v.isValidNativeValue([])).toEqual(false)
+  expect(v.isValidNativeValue('')).toEqual(false)
+  expect(v.isValidNativeValue(false)).toEqual(false)
+  expect(v.isValidNativeValue(true)).toEqual(false)
 })
 
 test('_Variant dummy methods to be reimplemented by subclasses', () => {
@@ -109,13 +109,13 @@ test('_Variant dummy methods to be reimplemented by subclasses', () => {
   expect(()=>v.displayString(123.456)).toThrow()
   expect(()=>v.displayValue(123.456)).toThrow()
   expect(v.inputHint()).toEqual('Select a person')
-  expect(v.isValidInput('anythingAtAll')).toEqual(false)
-  expect(v.isValidInput(true)).toEqual(false)
-  expect(v.isValidInput('1.23')).toEqual(false)
-  expect(v.isValidValue(1.23)).toEqual(false)
-  expect(v.isValidValue(-9999)).toEqual(false)
-  expect(v.isValidValue(9999)).toEqual(false)
-  expect(v.isValidValue('bjr')).toEqual(true)
+  expect(v.isValidDisplayValue('anythingAtAll')).toEqual(false)
+  expect(v.isValidDisplayValue(true)).toEqual(false)
+  expect(v.isValidDisplayValue('1.23')).toEqual(false)
+  expect(v.isValidNativeValue(1.23)).toEqual(false)
+  expect(v.isValidNativeValue(-9999)).toEqual(false)
+  expect(v.isValidNativeValue(9999)).toEqual(false)
+  expect(v.isValidNativeValue('bjr')).toEqual(true)
   // Overriden and final by _Variant => _Numeric
   expect(v.maximumValue()).toEqual(0)
   expect(v.minimumValue()).toEqual(0)

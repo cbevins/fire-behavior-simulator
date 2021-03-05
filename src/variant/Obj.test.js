@@ -33,14 +33,14 @@ test('new Obj() custom constructor', () => {
   expect(v.displayString({foo: 'foo', bar: 'bar'})).toEqual(`{"foo":"foo","bar":"bar"}`)
 })
 
-test('isValidValue()', () => {
+test('isValidNativeValue()', () => {
   const v = new Obj('Firebrand', {ht: 0, dist: 0})
-  expect(v.isValidValue({})).toEqual(true)
-  expect(v.isValidValue([])).toEqual(true) // Array is an Object
-  expect(v.isValidValue(1)).toEqual(false)
-  expect(v.isValidValue('')).toEqual(false)
-  expect(v.isValidValue(false)).toEqual(false)
-  expect(v.isValidValue(true)).toEqual(false)
+  expect(v.isValidNativeValue({})).toEqual(true)
+  expect(v.isValidNativeValue([])).toEqual(true) // Array is an Object
+  expect(v.isValidNativeValue(1)).toEqual(false)
+  expect(v.isValidNativeValue('')).toEqual(false)
+  expect(v.isValidNativeValue(false)).toEqual(false)
+  expect(v.isValidNativeValue(true)).toEqual(false)
 })
 
 test('_Variant dummy methods to be reimplemented by subclasses', () => {
@@ -55,16 +55,16 @@ test('_Variant dummy methods to be reimplemented by subclasses', () => {
   expect(v.displayString({foo: 'foo', bar: 'bar'})).toEqual(`{"foo":"foo","bar":"bar"}`)
 
   expect(v.inputHint()).toEqual('')
-  expect(v.isValidInput('anythingAtAll')).toEqual(false)
-  expect(v.isValidInput(true)).toEqual(false)
-  expect(v.isValidInput('Applied')).toEqual(false)
-  expect(v.isValidInput(false)).toEqual(false)
-  expect(v.isValidInput('Not Applied')).toEqual(false)
-  expect(v.isValidInput('1.23')).toEqual(false)
+  expect(v.isValidDisplayValue('anythingAtAll')).toEqual(false)
+  expect(v.isValidDisplayValue(true)).toEqual(false)
+  expect(v.isValidDisplayValue('Applied')).toEqual(false)
+  expect(v.isValidDisplayValue(false)).toEqual(false)
+  expect(v.isValidDisplayValue('Not Applied')).toEqual(false)
+  expect(v.isValidDisplayValue('1.23')).toEqual(false)
 
-  expect(v.isValidValue(1.23)).toEqual(false)
-  expect(v.isValidValue(-9999)).toEqual(false)
-  expect(v.isValidValue(9999)).toEqual(false)
+  expect(v.isValidNativeValue(1.23)).toEqual(false)
+  expect(v.isValidNativeValue(-9999)).toEqual(false)
+  expect(v.isValidNativeValue(9999)).toEqual(false)
   // Overriden and final by _Variant => _Numeric
   expect(v.maximumValue()).toEqual({ht: 0, dist: 0})
   expect(v.minimumValue()).toEqual({ht: 0, dist: 0})

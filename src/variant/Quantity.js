@@ -95,9 +95,9 @@ export class Quantity extends Float {
     return `${this.minimumDisplayValue()} - ${this.maximumDisplayValue()} ${this._units._display}`
   }
 
-  isValidInput(inputText) { return this.validateDisplayValue(inputText).valid }
+  isValidDisplayValue(inputText) { return this.validateDisplayValue(inputText).valid }
 
-  isValidValue(value) {
+  isValidNativeValue(value) {
     if (typeof value !== 'number') return false
     return this.validateNativeValue(value).valid
   }

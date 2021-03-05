@@ -8,13 +8,13 @@ test('Default constructor', () => {
   expect(v.stepValue()).toEqual(1)
 })
 
-test('isValidValue()', () => {
+test('isValidNativeValue()', () => {
   const v = new Ratio('SomeNumber')
-  expect(v.isValidValue({})).toEqual(false)
-  expect(v.isValidValue([])).toEqual(false)
-  expect(v.isValidValue('')).toEqual(false)
-  expect(v.isValidValue(false)).toEqual(false)
-  expect(v.isValidValue(true)).toEqual(false)
+  expect(v.isValidNativeValue({})).toEqual(false)
+  expect(v.isValidNativeValue([])).toEqual(false)
+  expect(v.isValidNativeValue('')).toEqual(false)
+  expect(v.isValidNativeValue(false)).toEqual(false)
+  expect(v.isValidNativeValue(true)).toEqual(false)
 })
 
 test('_Variant dummy methods to be reimplemented by subclasses', () => {
@@ -38,21 +38,21 @@ test('_Variant dummy methods to be reimplemented by subclasses', () => {
   expect(v.displayValue(0.123456)).toEqual('12')
   expect(v.displayString(0.123456)).toEqual('12 %')
   expect(v.inputHint()).toEqual('1 - 50 %')
-  // isValidInput() expects *display* text or number
-  expect(v.isValidInput('anythingAtAll')).toEqual(false)
-  expect(v.isValidInput(true)).toEqual(false)
-  expect(v.isValidInput('12.3456')).toEqual(true)
-  expect(v.isValidInput(12.3456)).toEqual(true)
-  expect(v.isValidInput('60')).toEqual(false)
-  expect(v.isValidInput('0')).toEqual(false)
-  expect(v.isValidInput('0.1')).toEqual(false)
-  expect(v.isValidInput('1')).toEqual(true)
-  // isValidValue() expects *native* value arg
-  expect(v.isValidValue(12.3456)).toEqual(false)
-  expect(v.isValidValue(0.123456)).toEqual(true)
+  // isValidDisplayValue() expects *display* text or number
+  expect(v.isValidDisplayValue('anythingAtAll')).toEqual(false)
+  expect(v.isValidDisplayValue(true)).toEqual(false)
+  expect(v.isValidDisplayValue('12.3456')).toEqual(true)
+  expect(v.isValidDisplayValue(12.3456)).toEqual(true)
+  expect(v.isValidDisplayValue('60')).toEqual(false)
+  expect(v.isValidDisplayValue('0')).toEqual(false)
+  expect(v.isValidDisplayValue('0.1')).toEqual(false)
+  expect(v.isValidDisplayValue('1')).toEqual(true)
+  // isValidNativeValue() expects *native* value arg
+  expect(v.isValidNativeValue(12.3456)).toEqual(false)
+  expect(v.isValidNativeValue(0.123456)).toEqual(true)
   expect(v.minimumValue()).toEqual(0.01)
-  expect(v.isValidValue(0.001)).toEqual(false)
-  expect(v.isValidValue()).toEqual(false)
+  expect(v.isValidNativeValue(0.001)).toEqual(false)
+  expect(v.isValidNativeValue()).toEqual(false)
   // Overriden and final by _Variant => _Numeric
   expect(v.maximumValue()).toEqual(0.5)
   expect(v.minimumValue()).toEqual(0.01)

@@ -33,8 +33,8 @@ export class Text extends _Variant {
 
   inputHint() { return `${this.minimumValue()} - ${this.maximumValue()} chars` }
 
-  isValidInput(inputText) { return this.validateDisplayValue(inputText).valid }
-  isValidValue(value) {
+  isValidDisplayValue(inputText) { return this.validateDisplayValue(inputText).valid }
+  isValidNativeValue(value) {
     if (typeof value !== 'string') return false
     return this.validateNativeValue(value).valid
   }

@@ -84,9 +84,9 @@ test('Integer value validation', () => {
   expect(result.value).toEqual(50)
   expect(result.message).toEqual('')
 
-  expect(v.isValidValue(0)).toEqual(false)
-  expect(v.isValidValue(101)).toEqual(false)
-  expect(v.isValidValue(50)).toEqual(true)
+  expect(v.isValidNativeValue(0)).toEqual(false)
+  expect(v.isValidNativeValue(101)).toEqual(false)
+  expect(v.isValidNativeValue(50)).toEqual(true)
 })
 
 test('Integer text input validation - INVALID strings', () => {
@@ -106,21 +106,21 @@ test('Integer text input validation - INVALID strings', () => {
     expect(result.valid).toEqual(false)
     expect(result.value).toEqual('')
     expect(result.message).toEqual('Not a valid number')
-    expect(v.isValidInput(str)).toEqual(false)
+    expect(v.isValidDisplayValue(str)).toEqual(false)
   })
   let str = '1,234,567'
   result = v.validateDisplayValue(str)
   expect(result.valid).toEqual(false)
   expect(result.value).toEqual(1234567)
   expect(result.message).toEqual('Greater than maximum value of 100')
-  expect(v.isValidInput(str)).toEqual(false)
+  expect(v.isValidDisplayValue(str)).toEqual(false)
 
   str = '-1,234,567'
   result = v.validateDisplayValue(str)
   expect(result.valid).toEqual(false)
   expect(result.value).toEqual(-1234567)
   expect(result.message).toEqual('Less than minimum value of -100')
-  expect(v.isValidInput(str)).toEqual(false)
+  expect(v.isValidDisplayValue(str)).toEqual(false)
 })
 
 test('Integer text input validation -- VALID strings', () => {
@@ -151,17 +151,17 @@ test('Integer text input validation -- VALID strings', () => {
     expect(result.valid).toEqual(true)
     expect(result.value).toEqual(str[1])
     expect(result.message).toEqual('')
-    expect(v.isValidInput(str[0])).toEqual(true)
+    expect(v.isValidDisplayValue(str[0])).toEqual(true)
   })
 })
 
-test('isValidValue()', () => {
+test('isValidNativeValue()', () => {
   const v = new Integer('SomeNumber', 50, 0, 100)
-  expect(v.isValidValue({})).toEqual(false)
-  expect(v.isValidValue([])).toEqual(false)
-  expect(v.isValidValue('')).toEqual(false)
-  expect(v.isValidValue(false)).toEqual(false)
-  expect(v.isValidValue(true)).toEqual(false)
+  expect(v.isValidNativeValue({})).toEqual(false)
+  expect(v.isValidNativeValue([])).toEqual(false)
+  expect(v.isValidNativeValue('')).toEqual(false)
+  expect(v.isValidNativeValue(false)).toEqual(false)
+  expect(v.isValidNativeValue(true)).toEqual(false)
 })
 
 test('_Variant dummy methods to be reimplemented by subclasses', () => {
@@ -175,12 +175,12 @@ test('_Variant dummy methods to be reimplemented by subclasses', () => {
   expect(v.displayString(123.456)).toEqual('123')
   expect(v.displayValue(123.456)).toEqual('123')
   expect(v.inputHint()).toEqual('-1234 - 5678')
-  expect(v.isValidInput('anythingAtAll')).toEqual(false)
-  expect(v.isValidInput(true)).toEqual(false)
-  expect(v.isValidInput('1.23')).toEqual(true)
-  expect(v.isValidValue(1.23)).toEqual(true)
-  expect(v.isValidValue(-9999)).toEqual(false)
-  expect(v.isValidValue(9999)).toEqual(false)
+  expect(v.isValidDisplayValue('anythingAtAll')).toEqual(false)
+  expect(v.isValidDisplayValue(true)).toEqual(false)
+  expect(v.isValidDisplayValue('1.23')).toEqual(true)
+  expect(v.isValidNativeValue(1.23)).toEqual(true)
+  expect(v.isValidNativeValue(-9999)).toEqual(false)
+  expect(v.isValidNativeValue(9999)).toEqual(false)
   // Overriden and final by _Variant => _Numeric
   expect(v.maximumValue()).toEqual(5678)
   expect(v.minimumValue()).toEqual(-1234)

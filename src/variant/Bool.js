@@ -44,9 +44,9 @@ export class Bool extends _Variant {
 
   inputHint() { return `'${this._value._false}' or '${this._value._true}'` }
 
-  isValidInput(inputText) { return this.validateDisplayValue(inputText).valid }
+  isValidDisplayValue(inputText) { return this.validateDisplayValue(inputText).valid }
 
-  isValidValue(value) {
+  isValidNativeValue(value) {
     // For now, allow truthy and falsey
     // if (typeof value !== 'boolean') return false
     return this.validateNativeValue(value).valid

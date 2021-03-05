@@ -61,8 +61,8 @@ export class _Variant {
 
   inputHint() { return '' }
 
-  isValidInput(inputText) { return this.validateDisplayValue(inputText).valid }
-  isValidValue(value) { return this.validateNativeValue(value).valid }
+  isValidDisplayValue(inputText) { return this.validateDisplayValue(inputText).valid }
+  isValidNativeValue(value) { return this.validateNativeValue(value).valid }
 
   validateDisplayValue(inputText) {
     const inputValue = inputText

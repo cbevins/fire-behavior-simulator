@@ -42,7 +42,7 @@ export class Dag extends DagPrivate {
       if (! node._is._config) {
         throw new Error(`configure() node '${node.key()}' is not a COnfig DagNode`)
       }
-      if (! node._variant.isValidValue(value)) {
+      if (! node._variant.isValidNativeValue(value)) {
         throw new Error( `Config Node '${node.key()}' value '${value}' is invalid`)
       }
       node._value = value

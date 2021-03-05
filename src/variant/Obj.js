@@ -30,7 +30,7 @@ export class Obj extends _Variant {
 
   inputHint() { return '' }
 
-  isValidValue(obj) {
+  isValidNativeValue(obj) {
     return (typeof obj === 'object' )
   }
 

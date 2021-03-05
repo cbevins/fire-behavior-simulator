@@ -17,7 +17,7 @@ import { _Variant } from './_Variant.js'
  *
  * New methods:
  * - inputHint()
- * - isValidInput(inputText)
+ * - isValidDisplayValue(inputText)
  * - maximumValue()
  * - minimumValue()
  * - stepValue()
@@ -58,9 +58,9 @@ export class _Numeric extends _Variant {
 
   inputHint() { return `${this.minimumValue()} - ${this.maximumValue()}` }
 
-  isValidInput(inputText) { return this.validateDisplayValue(inputText).valid }
+  isValidDisplayValue(inputText) { return this.validateDisplayValue(inputText).valid }
 
-  isValidValue(value) {
+  isValidNativeValue(value) {
     if (typeof value !== 'number') return false
     return this.validateNativeValue(value).valid
   }

@@ -56,9 +56,9 @@ export class Option extends _Variant {
 
   inputHint() { return this._value._prompt }
 
-  isValidInput(inputText) { return this.validateDisplayValue(inputText).valid }
+  isValidDisplayValue(inputText) { return this.validateDisplayValue(inputText).valid }
 
-  isValidValue(value) { return this.validateNativeValue(value).valid }
+  isValidNativeValue(value) { return this.validateNativeValue(value).valid }
 
   maximumValue() { return 0 }
   maximumDisplayValue() { return '' }
