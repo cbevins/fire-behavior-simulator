@@ -50,7 +50,7 @@ export function keyMap (dag) {
   // The boolean is set TRUE if the required Node (key) is a producer of the selected Node.
   const selectedNodes = dag.selectedNodes()
   const requiredNodeMap = new Map()
-  Array.from(dag.dna.required).forEach(node => {
+  dag.requiredNodes().forEach(node => {
     requiredNodeMap.set(node.key, Array(selectedNodes.length).fill(false))
   })
 
@@ -132,7 +132,7 @@ export function nodeMap (dag) {
 function mapProducers (requiredNodeMap, node, selectIdx) {
   const values = requiredNodeMap.get(node.key)
   values[selectIdx] = true
-  node.producers.forEach(producer => {
+  node._dag._producers.forEach(producer => {
     mapProducers(requiredNodeMap, producer, selectIdx)
   })
 }
