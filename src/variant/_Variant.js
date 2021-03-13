@@ -31,21 +31,21 @@ export class _Variant {
   constructor (key, defaultValue) {
     const signature = `new _Variant(${key}, ${defaultValue})`
     if (typeof key !== 'string') {
-      throw new Error(signature + ` requires arg 1 'key' to be of type 'string'`)
+      throw new Error(signature + ' requires arg 1 \'key\' to be of type \'string\'')
     } else if (typeof defaultValue === 'undefined') {
-      throw new Error(signature + ` requires arg 2 'defaultValue' of 'any' type`)
+      throw new Error(signature + ' requires arg 2 \'defaultValue\' of \'any\' type')
     } else if (key === '') {
-      throw new Error(signature + ` requires arg 1 'key' to be non-empty string`)
+      throw new Error(signature + ' requires arg 1 \'key\' to be non-empty string')
     }
     this._key = key
     this._value = {
-      _default: defaultValue,
+      _default: defaultValue
     }
   }
 
   // FINAL - implemented only here
-  key() { return this._key }
-  defaultValue() { return this._value._default }
+  key () { return this._key }
+  defaultValue () { return this._value._default }
 
   /**
    * @returns {string} The Variable's label.
@@ -53,55 +53,55 @@ export class _Variant {
   label () { return keyLabel(this._key) }
 
   // Overridden by EVERY _Variant subclass
-  defaultDisplayString() { return this.displayString(this._value._default) }
-  defaultDisplayValue() { return this.displayValue(this._value._default) }
+  defaultDisplayString () { return this.displayString(this._value._default) }
+  defaultDisplayValue () { return this.displayValue(this._value._default) }
 
-  displayString(value) { return value.toString() }
-  displayValue(value) { return value.toString() }
+  displayString (value) { return value.toString() }
+  displayValue (value) { return value.toString() }
 
-  inputHint() { return '' }
+  inputHint () { return '' }
 
-  isValidDisplayValue(inputText) { return this.validateDisplayValue(inputText).valid }
-  isValidNativeValue(value) { return this.validateNativeValue(value).valid }
+  isValidDisplayValue (inputText) { return this.validateDisplayValue(inputText).valid }
+  isValidNativeValue (value) { return this.validateNativeValue(value).valid }
 
-  validateDisplayValue(inputText) {
+  validateDisplayValue (inputText) {
     const inputValue = inputText
     return this.validateNativeValue(inputValue)
   }
 
-  validateNativeValue(value) {
+  validateNativeValue (value) {
     return new ValidationResult(false, value, 'Must be reimplemented by _Variant subclass')
   }
 
   // Overriden and final by _Variant => _Numeric
-  maximumValue() { return this._value._default }
-  minimumValue() { return this._value._default }
-  stepValue() { return this._value._default }
+  maximumValue () { return this._value._default }
+  minimumValue () { return this._value._default }
+  stepValue () { return this._value._default }
 
   // Overriden and final by _Variant => _Numeric => Float
-  maximumDisplayValue() { return this.maximumValue().toString() }
-  minimumDisplayValue() { return this.minimumValue().toString() }
-  stepDisplayValue() { return this.stepValue().toString() }
+  maximumDisplayValue () { return this.maximumValue().toString() }
+  minimumDisplayValue () { return this.minimumValue().toString() }
+  stepDisplayValue () { return this.stepValue().toString() }
 
-  setDisplayDecimals() { return this }
-  setDisplayToExponential() { return this }
-  setDisplayToFixed() { return this }
-  setDisplayToPrecision() { return this }
+  setDisplayDecimals () { return this }
+  setDisplayToExponential () { return this }
+  setDisplayToFixed () { return this }
+  setDisplayToPrecision () { return this }
 
   // Overriden and final by _Variant => _Numeric => Float => Quantity
-  displayUnits() { return '' }
-  displayValueToNativeValue(value) { return value }
-  maximumDisplayString() { return this.maximumDisplayValue() }
-  minimumDisplayString() { return this.minimumDisplayValue() }
-  stepDisplayString() { return this.stepDisplayValue() }
-  nativeUnits() { return '' }
-  nativeValueToDisplayValue(value) { return value }
-  setDisplayUnits() { return this }
+  displayUnits () { return '' }
+  displayValueToNativeValue (value) { return value }
+  maximumDisplayString () { return this.maximumDisplayValue() }
+  minimumDisplayString () { return this.minimumDisplayValue() }
+  stepDisplayString () { return this.stepDisplayValue() }
+  nativeUnits () { return '' }
+  nativeValueToDisplayValue (value) { return value }
+  setDisplayUnits () { return this }
 
   // Overridden and final by Option
-  hasOption() { return false }
+  hasOption () { return false }
   options () { return [] }
   optionText () { return '' }
   optionTexts () { return [] }
-  prompt() { return this.inputHint() }
+  prompt () { return this.inputHint() }
 }

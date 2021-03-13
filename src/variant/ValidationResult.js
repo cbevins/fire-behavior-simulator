@@ -5,7 +5,7 @@
  * @license MIT
  */
 export class ValidationResult {
-  constructor(valid, value, message='') {
-    return {valid: valid, value: value, message: message}
+  constructor (valid, value, message = '') {
+    return { valid: valid, value: value, message: message }
   }
 }

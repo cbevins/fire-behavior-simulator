@@ -1,34 +1,34 @@
-import { Config, Option, _Variable } from './index.js'
+import { Config, Option } from './index.js'
 
 const options = ['a', 'b', 'c']
 
 test('new Option() arg 2 prompt', () => {
-  expect(()=>new Option()).toThrow()
-  expect(()=>new Option('PrimaryFuel')).toThrow()
-  expect(()=>new Option('PrimaryFuel', 1)).toThrow()
-  expect(()=>new Option('PrimaryFuel', true)).toThrow()
-  expect(()=>new Option('PrimaryFuel', false)).toThrow()
-  expect(()=>new Option('PrimaryFuel', {})).toThrow()
-  expect(()=>new Option('PrimaryFuel', [])).toThrow()
+  expect(() => new Option()).toThrow()
+  expect(() => new Option('PrimaryFuel')).toThrow()
+  expect(() => new Option('PrimaryFuel', 1)).toThrow()
+  expect(() => new Option('PrimaryFuel', true)).toThrow()
+  expect(() => new Option('PrimaryFuel', false)).toThrow()
+  expect(() => new Option('PrimaryFuel', {})).toThrow()
+  expect(() => new Option('PrimaryFuel', [])).toThrow()
 })
 
 test('new Option() arg 3 optionValues', () => {
-  expect(()=>new Option('PrimaryFuel', 'prompt')).toThrow()
-  expect(()=>new Option('PrimaryFuel', 1)).toThrow()
-  expect(()=>new Option('PrimaryFuel', true)).toThrow()
-  expect(()=>new Option('PrimaryFuel', false)).toThrow()
-  expect(()=>new Option('PrimaryFuel', 'string')).toThrow()
-  expect(()=>new Option('PrimaryFuel', {})).toThrow()
+  expect(() => new Option('PrimaryFuel', 'prompt')).toThrow()
+  expect(() => new Option('PrimaryFuel', 1)).toThrow()
+  expect(() => new Option('PrimaryFuel', true)).toThrow()
+  expect(() => new Option('PrimaryFuel', false)).toThrow()
+  expect(() => new Option('PrimaryFuel', 'string')).toThrow()
+  expect(() => new Option('PrimaryFuel', {})).toThrow()
 })
 
 test('new Option() arg 4 defaultIndex', () => {
-  expect(()=>new Option('PrimaryFuel', 'prompt', options, -1)).toThrow()
-  expect(()=>new Option('PrimaryFuel', 'prompt', options, 5)).toThrow()
-  expect(()=>new Option('PrimaryFuel', 'prompt', options, '5')).toThrow()
-  expect(()=>new Option('PrimaryFuel', 'prompt', options, true)).toThrow()
-  expect(()=>new Option('PrimaryFuel', 'prompt', options, false)).toThrow()
-  expect(()=>new Option('PrimaryFuel', 'prompt', options, {})).toThrow()
-  expect(()=>new Option('PrimaryFuel', 'prompt', options, [])).toThrow()
+  expect(() => new Option('PrimaryFuel', 'prompt', options, -1)).toThrow()
+  expect(() => new Option('PrimaryFuel', 'prompt', options, 5)).toThrow()
+  expect(() => new Option('PrimaryFuel', 'prompt', options, '5')).toThrow()
+  expect(() => new Option('PrimaryFuel', 'prompt', options, true)).toThrow()
+  expect(() => new Option('PrimaryFuel', 'prompt', options, false)).toThrow()
+  expect(() => new Option('PrimaryFuel', 'prompt', options, {})).toThrow()
+  expect(() => new Option('PrimaryFuel', 'prompt', options, [])).toThrow()
 })
 
 test('new Option() default constructor', () => {
@@ -60,7 +60,7 @@ test('new Option() custom constructor', () => {
   expect(v.optionText('cdb')).toEqual('Collin')
   expect(v.displayValue('bjr')).toEqual('Barbara')
   expect(v.displayString('bjr')).toEqual('Barbara')
-  expect(()=>v.displayString('jack')).toThrow()
+  expect(() => v.displayString('jack')).toThrow()
 })
 
 test('Option validation', () => {
@@ -106,8 +106,8 @@ test('_Variant dummy methods to be reimplemented by subclasses', () => {
   // Overridden by EVERY _Variant subclass
   expect(v.defaultDisplayString()).toEqual('Collin')
   expect(v.defaultDisplayValue()).toEqual('Collin')
-  expect(()=>v.displayString(123.456)).toThrow()
-  expect(()=>v.displayValue(123.456)).toThrow()
+  expect(() => v.displayString(123.456)).toThrow()
+  expect(() => v.displayValue(123.456)).toThrow()
   expect(v.inputHint()).toEqual('Select a person')
   expect(v.isValidDisplayValue('anythingAtAll')).toEqual(false)
   expect(v.isValidDisplayValue(true)).toEqual(false)
@@ -173,5 +173,5 @@ test('newConfig() custom constructor', () => {
   expect(v.optionText('cdb')).toEqual('Collin')
   expect(v.displayValue('bjr')).toEqual('Barbara')
   expect(v.displayString('bjr')).toEqual('Barbara')
-  expect(()=>v.displayString('jack')).toThrow()
+  expect(() => v.displayString('jack')).toThrow()
 })

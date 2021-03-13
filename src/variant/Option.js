@@ -20,9 +20,9 @@ export class Option extends _Variant {
   constructor (key, prompt, optionsArray, defaultOptionIndex = 0) {
     const signature = `new Option(${key}, ${prompt}, ${optionsArray}, ${defaultOptionIndex}) `
     if (typeof prompt !== 'string') {
-      throw new Error(signature + `arg 2 'prompt' must be a string` )
+      throw new Error(signature + 'arg 2 \'prompt\' must be a string')
     } else if (!(optionsArray instanceof Array)) {
-      throw new Error(signature + `arg 2 'optionasArray' must be an Array` )
+      throw new Error(signature + 'arg 2 \'optionasArray\' must be an Array')
     } else if (defaultOptionIndex < 0 || defaultOptionIndex >= optionsArray.length) {
       throw new Error(signature + `arg 3 defaultOptionIndex must be 0 - ${optionsArray.length}`)
     }
@@ -36,36 +36,36 @@ export class Option extends _Variant {
     this._value._prompt = prompt
   }
 
-  _ensureOption(optionKey) {
-    if (! this.hasOption(optionKey)) {
+  _ensureOption (optionKey) {
+    if (!this.hasOption(optionKey)) {
       throw new Error(`Option '${this.key()}' has no option '${optionKey}'`)
     }
     return this
   }
 
-  defaultDisplayString() { return this.displayString(this.defaultValue()) }
-  defaultDisplayValue() { return this.displayValue(this.defaultValue()) }
+  defaultDisplayString () { return this.displayString(this.defaultValue()) }
+  defaultDisplayValue () { return this.displayValue(this.defaultValue()) }
 
-  displayString(optionKey) { return this.displayValue(optionKey) }
-  displayValue(optionKey) {
+  displayString (optionKey) { return this.displayValue(optionKey) }
+  displayValue (optionKey) {
     this._ensureOption(optionKey)
     return this.optionText(optionKey)
   }
 
   hasOption (optionKey) { return this._value._options.has(optionKey) }
 
-  inputHint() { return this._value._prompt }
+  inputHint () { return this._value._prompt }
 
-  isValidDisplayValue(inputText) { return this.validateDisplayValue(inputText).valid }
+  isValidDisplayValue (inputText) { return this.validateDisplayValue(inputText).valid }
 
-  isValidNativeValue(value) { return this.validateNativeValue(value).valid }
+  isValidNativeValue (value) { return this.validateNativeValue(value).valid }
 
-  maximumValue() { return 0 }
-  maximumDisplayValue() { return '' }
-  minimumValue() { return 0 }
-  minimumDisplayValue() { return '' }
-  stepValue() { return 1 }
-  stepDisplayValue() { return '' }
+  maximumValue () { return 0 }
+  maximumDisplayValue () { return '' }
+  minimumValue () { return 0 }
+  minimumDisplayValue () { return '' }
+  stepValue () { return 1 }
+  stepDisplayValue () { return '' }
 
   options () { return Array.from(this._value._options.keys()) }
 
@@ -75,10 +75,10 @@ export class Option extends _Variant {
 
   prompt () { return this._value._prompt }
 
-  validateDisplayValue(optionKey) { return this.validateNativeValue(optionKey) }
+  validateDisplayValue (optionKey) { return this.validateNativeValue(optionKey) }
 
-  validateNativeValue(optionKey) {
-    if (! this.hasOption(optionKey)) {
+  validateNativeValue (optionKey) {
+    if (!this.hasOption(optionKey)) {
       return new ValidationResult(false, optionKey, 'Invalid option')
     }
     return new ValidationResult(true, optionKey)

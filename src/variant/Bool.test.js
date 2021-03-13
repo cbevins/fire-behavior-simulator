@@ -1,25 +1,25 @@
 import { Bool } from './index.js'
 
 test('new Bool() constructor args', () => {
-  expect(()=>new Bool()).toThrow()
+  expect(() => new Bool()).toThrow()
   // arg 2 defaultValue must be a boolean
-  expect(()=>new Bool('WindLimit')).not.toThrow()
-  expect(()=>new Bool('WindLimit', true)).not.toThrow()
-  expect(()=>new Bool('WindLimit', 'string')).toThrow()
-  expect(()=>new Bool('WindLimit', 1)).toThrow()
-  expect(()=>new Bool('WindLimit', {})).toThrow()
+  expect(() => new Bool('WindLimit')).not.toThrow()
+  expect(() => new Bool('WindLimit', true)).not.toThrow()
+  expect(() => new Bool('WindLimit', 'string')).toThrow()
+  expect(() => new Bool('WindLimit', 1)).toThrow()
+  expect(() => new Bool('WindLimit', {})).toThrow()
   // args 3 'falseText' must be a string
-  expect(()=>new Bool('WindLimit', true, 'off')).not.toThrow()
-  expect(()=>new Bool('WindLimit', true, {})).toThrow()
-  expect(()=>new Bool('WindLimit', true, 1)).toThrow()
-  expect(()=>new Bool('WindLimit', true, [])).toThrow()
-  expect(()=>new Bool('WindLimit', true, true)).toThrow()
+  expect(() => new Bool('WindLimit', true, 'off')).not.toThrow()
+  expect(() => new Bool('WindLimit', true, {})).toThrow()
+  expect(() => new Bool('WindLimit', true, 1)).toThrow()
+  expect(() => new Bool('WindLimit', true, [])).toThrow()
+  expect(() => new Bool('WindLimit', true, true)).toThrow()
   // args 4 'trueText' must be a string
-  expect(()=>new Bool('WindLimit', true, 'off', 'on')).not.toThrow()
-  expect(()=>new Bool('WindLimit', true, 'off', {})).toThrow()
-  expect(()=>new Bool('WindLimit', true, 'off', 1)).toThrow()
-  expect(()=>new Bool('WindLimit', true, 'off', [])).toThrow()
-  expect(()=>new Bool('WindLimit', true, 'off', false)).toThrow()
+  expect(() => new Bool('WindLimit', true, 'off', 'on')).not.toThrow()
+  expect(() => new Bool('WindLimit', true, 'off', {})).toThrow()
+  expect(() => new Bool('WindLimit', true, 'off', 1)).toThrow()
+  expect(() => new Bool('WindLimit', true, 'off', [])).toThrow()
+  expect(() => new Bool('WindLimit', true, 'off', false)).toThrow()
 })
 
 test('new Bool() default constructor', () => {

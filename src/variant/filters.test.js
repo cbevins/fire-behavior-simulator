@@ -1,5 +1,7 @@
-import { filterInteger, keyLabel, filterNonNegativeInteger,
-  filterNonNegativeNumeric, filterNumeric } from './index.js'
+import {
+  filterInteger, keyLabel, filterNonNegativeInteger,
+  filterNonNegativeNumeric, filterNumeric
+} from './index.js'
 
 test('1 filterfilterNumeric() filter', () => {
   expect(filterNumeric('')).toEqual('')

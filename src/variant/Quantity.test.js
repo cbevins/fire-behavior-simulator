@@ -4,23 +4,23 @@ import { Uom } from '../uom/index.js'
 const rosUnits = ['ft/min', 'ch/h', 'mi/h', 'm/min', 'km/h']
 
 test('Quantity constructor', () => {
-  expect(()=>new Quantity()).toThrow()
-  expect(()=>new Quantity('FireSpreadRate')).toThrow()
-  expect(()=>new Quantity('FireSpreadRate', 'string')).toThrow()
-  expect(()=>new Quantity('FireSpreadRate', 1)).toThrow()
-  expect(()=>new Quantity('FireSpreadRate', true)).toThrow()
-  expect(()=>new Quantity('FireSpreadRate', 1)).toThrow()
-  expect(()=>new Quantity('FireSpreadRate', {})).toThrow()
-  expect(()=>new Quantity('FireSpreadRate', rosUnits, 'string')).toThrow()
-  expect(()=>new Quantity('FireSpreadRate', rosUnits, true)).toThrow()
-  expect(()=>new Quantity('FireSpreadRate', rosUnits, {})).toThrow()
-  expect(()=>new Quantity('FireSpreadRate', rosUnits.concat('ft'), 1000)).toThrow()
-  expect(()=>new Quantity('FireSpreadRate', rosUnits, 1000, 'string')).toThrow()
-  expect(()=>new Quantity('FireSpreadRate', rosUnits, 1000, true)).toThrow()
-  expect(()=>new Quantity('FireSpreadRate', rosUnits, 1000, {})).toThrow()
-  expect(()=>new Quantity('FireSpreadRate', rosUnits, 1000, 5, 'string')).toThrow()
-  expect(()=>new Quantity('FireSpreadRate', rosUnits, 1000, 5, true)).toThrow()
-  expect(()=>new Quantity('FireSpreadRate', rosUnits, 1000, 5, {})).toThrow()
+  expect(() => new Quantity()).toThrow()
+  expect(() => new Quantity('FireSpreadRate')).toThrow()
+  expect(() => new Quantity('FireSpreadRate', 'string')).toThrow()
+  expect(() => new Quantity('FireSpreadRate', 1)).toThrow()
+  expect(() => new Quantity('FireSpreadRate', true)).toThrow()
+  expect(() => new Quantity('FireSpreadRate', 1)).toThrow()
+  expect(() => new Quantity('FireSpreadRate', {})).toThrow()
+  expect(() => new Quantity('FireSpreadRate', rosUnits, 'string')).toThrow()
+  expect(() => new Quantity('FireSpreadRate', rosUnits, true)).toThrow()
+  expect(() => new Quantity('FireSpreadRate', rosUnits, {})).toThrow()
+  expect(() => new Quantity('FireSpreadRate', rosUnits.concat('ft'), 1000)).toThrow()
+  expect(() => new Quantity('FireSpreadRate', rosUnits, 1000, 'string')).toThrow()
+  expect(() => new Quantity('FireSpreadRate', rosUnits, 1000, true)).toThrow()
+  expect(() => new Quantity('FireSpreadRate', rosUnits, 1000, {})).toThrow()
+  expect(() => new Quantity('FireSpreadRate', rosUnits, 1000, 5, 'string')).toThrow()
+  expect(() => new Quantity('FireSpreadRate', rosUnits, 1000, 5, true)).toThrow()
+  expect(() => new Quantity('FireSpreadRate', rosUnits, 1000, 5, {})).toThrow()
 })
 
 test('Quantity default constructor', () => {
@@ -33,7 +33,7 @@ test('Quantity default constructor', () => {
   expect(v.unitsOptions()).toEqual(rosUnits)
   expect(v.nativeUnits()).toEqual('ft/min')
   expect(v.displayUnits()).toEqual('ft/min')
-  expect(()=>v.validateNativeValue()).toThrow()
+  expect(() => v.validateNativeValue()).toThrow()
 })
 
 test('setDisplayUnits()', () => {
@@ -46,7 +46,7 @@ test('setDisplayUnits()', () => {
   expect(v.maximumDisplayValue()).toEqual('1000.00')
   expect(v.inputHint()).toEqual('0.00 - 1000.00 ft/min')
 
-  expect(()=>v.setDisplayUnits('junk')).toThrow()
+  expect(() => v.setDisplayUnits('junk')).toThrow()
 
   expect(v.setDisplayUnits('ch/h')).toEqual(v)
   expect(v.nativeUnits()).toEqual('ft/min')
@@ -65,7 +65,7 @@ test('Input text validation with units conversion', () => {
 
   let result = v.validateDisplayValue('5')
   expect(result.valid).toEqual(true)
-  expect(result.value).toBeCloseTo(5/0.3048, 12)
+  expect(result.value).toBeCloseTo(5 / 0.3048, 12)
   expect(result.message).toEqual('')
 
   result = v.validateDisplayValue('a')
@@ -75,7 +75,7 @@ test('Input text validation with units conversion', () => {
 
   result = v.validateDisplayValue('-5')
   expect(result.valid).toEqual(true)
-  expect(result.value).toBeCloseTo(5/0.3048, 12)
+  expect(result.value).toBeCloseTo(5 / 0.3048, 12)
   expect(result.message).toEqual('')
 
   result = v.validateDisplayValue('1')
@@ -90,7 +90,7 @@ test('Input text validation with units conversion', () => {
 
   result = v.validateDisplayValue('200')
   expect(result.valid).toEqual(true)
-  expect(result.value).toBeCloseTo(200/0.3048, 12)
+  expect(result.value).toBeCloseTo(200 / 0.3048, 12)
   expect(result.message).toEqual('')
 })
 
@@ -167,14 +167,12 @@ test('_Variant dummy methods to be reimplemented by subclasses', () => {
 test('Temperature conversion', () => {
   expect(Uom.convert(10, 'oC', 'oF')).toEqual(50)
   expect(Uom.convert(50, 'oF', 'oC')).toEqual(10)
-  expect(Uom.convert(10, 'oF/min', 'oC/min')).toEqual(50/9)
+  expect(Uom.convert(10, 'oF/min', 'oC/min')).toEqual(50 / 9)
   expect(Uom.convert(10, 'oC/min', 'oF/min')).toEqual(18)
 })
-
 
 test('Uom package update tests', () => {
   expect(Uom.convert(1, 'y', 'd')).toEqual(365)
   expect(Uom.convert(1, 'Hertz', 's-1')).toEqual(1)
   expect(Uom.convert(1, 'Hertz', 'min-1')).toEqual(60)
 })
-

@@ -11,14 +11,14 @@ import { Quantity } from './Quantity.js'
  * in units-of-measure 'ratio' or '%'
  */
 export class Ratio extends Quantity {
- /**
+  /**
    * @param {string} key Unique key for this Variant (i.e., 'FireLineIntensity' or 'WindSpeed')
    * @param {number} maxValue Maximum allowed *client/user/display input* value
    * @param {number} defaultValue  If omitted, set to 0
    * @param {number} minValue Minimum allowed *client/user/display input* value
    * @param {number} stepValue Step value for input sliders
    */
-  constructor(key, maxValue, defaultValue=0, minValue = 0, stepValue = 1 ) {
+  constructor (key, maxValue, defaultValue = 0, minValue = 0, stepValue = 1) {
     const unitsOptions = ['ratio', '%']
     super(key, unitsOptions, maxValue, defaultValue, minValue, stepValue)
   }

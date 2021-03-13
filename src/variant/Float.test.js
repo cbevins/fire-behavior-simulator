@@ -2,37 +2,37 @@ import { Float } from './index.js'
 
 const signature = 'new Float(key, defaultValue, minValue, maxValue, stepValue)'
 test(signature + ' requires arg 1 key to be a non-empty string', () => {
-  expect(()=>new Float()).toThrow()
-  expect(()=>new Float(1)).toThrow()
-  expect(()=>new Float(null)).toThrow()
-  expect(()=>new Float({})).toThrow()
-  expect(()=>new Float(true)).toThrow()
-  expect(()=>new Float('')).toThrow()
+  expect(() => new Float()).toThrow()
+  expect(() => new Float(1)).toThrow()
+  expect(() => new Float(null)).toThrow()
+  expect(() => new Float({})).toThrow()
+  expect(() => new Float(true)).toThrow()
+  expect(() => new Float('')).toThrow()
 })
 
 test(signature + ' requires arg 2 defaultValue to be of type number', () => {
-  expect(()=>new Float('FireSpreadRate', '1')).toThrow()
-  expect(()=>new Float('FireSpreadRate', true)).toThrow()
-  expect(()=>new Float('FireSpreadRate', {})).toThrow()
-  expect(()=>new Float('FireSpreadRate', [])).toThrow()
+  expect(() => new Float('FireSpreadRate', '1')).toThrow()
+  expect(() => new Float('FireSpreadRate', true)).toThrow()
+  expect(() => new Float('FireSpreadRate', {})).toThrow()
+  expect(() => new Float('FireSpreadRate', [])).toThrow()
 })
 
 test(signature + ' requires arg 3 minValue to be of type number', () => {
-  expect(()=>new Float('FireSpreadRate', 5, '0')).toThrow()
-  expect(()=>new Float('FireSpreadRate', 5, true)).toThrow()
-  expect(()=>new Float('FireSpreadRate', 5, {})).toThrow()
+  expect(() => new Float('FireSpreadRate', 5, '0')).toThrow()
+  expect(() => new Float('FireSpreadRate', 5, true)).toThrow()
+  expect(() => new Float('FireSpreadRate', 5, {})).toThrow()
 })
 
 test(signature + ' requires arg 4 maxValue to be of type number', () => {
-  expect(()=>new Float('FireSpreadRate', 5, 0, '100')).toThrow()
-  expect(()=>new Float('FireSpreadRate', 5, 0, true)).toThrow()
-  expect(()=>new Float('FireSpreadRate', 5, 0, {})).toThrow()
+  expect(() => new Float('FireSpreadRate', 5, 0, '100')).toThrow()
+  expect(() => new Float('FireSpreadRate', 5, 0, true)).toThrow()
+  expect(() => new Float('FireSpreadRate', 5, 0, {})).toThrow()
 })
 
 test(signature + ' requires arg 5 stepValue to be of type number', () => {
-  expect(()=>new Float('FireSpreadRate', 5, 0, 100, '1')).toThrow()
-  expect(()=>new Float('FireSpreadRate', 5, 0, 100, true)).toThrow()
-  expect(()=>new Float('FireSpreadRate', 5, 0, 100, {})).toThrow()
+  expect(() => new Float('FireSpreadRate', 5, 0, 100, '1')).toThrow()
+  expect(() => new Float('FireSpreadRate', 5, 0, 100, true)).toThrow()
+  expect(() => new Float('FireSpreadRate', 5, 0, 100, {})).toThrow()
 })
 
 test('Float default constructor', () => {
@@ -134,7 +134,6 @@ test('Float displays precision values as expected', () => {
   expect(v.defaultDisplayValue()).toEqual('0.000')
   expect(v.stepDisplayValue()).toEqual('10.00')
 })
-
 
 test('Float displays minimumValue', () => {
   const v = new Float('FireSpreadRate', 5, 1, 1000, 10)

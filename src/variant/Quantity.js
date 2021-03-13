@@ -43,7 +43,7 @@ export class Quantity extends Float {
    * @param {number} minValue Minimum allowed *client/user/display input* value
    * @param {number} stepValue Step value for input sliders
    */
-  constructor(key, unitsOptions, maxValue, defaultValue=0, minValue = 0, stepValue = 1 ) {
+  constructor (key, unitsOptions, maxValue, defaultValue = 0, minValue = 0, stepValue = 1) {
     super(key, defaultValue, minValue, maxValue, stepValue)
     if (!(unitsOptions instanceof Array)) {
       throw new Error(`Quantity() arg 2 expects an array, but got '${typeof unitsOptions}'`)
@@ -51,7 +51,7 @@ export class Quantity extends Float {
     // Throw an Error if units-of-measure terms are not valid or compatible
     unitsOptions.forEach(uom => {
       Uom.convert(1, uom, uom)
-      if (! Uom.convertible(unitsOptions[0], uom)) {
+      if (!Uom.convertible(unitsOptions[0], uom)) {
         throw new Error(`Quantity '${this._key}' units '${uom}' is not convertible to ${unitsOptions[0]}`)
       }
     })
@@ -63,79 +63,82 @@ export class Quantity extends Float {
     }
   }
 
-  _ensureValidUnits(units) {
-    if (! this._units._options.includes(units)) {
+  _ensureValidUnits (units) {
+    if (!this._units._options.includes(units)) {
       throw new Error(`Quantity '${this._key}' has no units of '${units}'`)
     }
     return units
   }
 
-  defaultDisplayString() { return this.displayString(this.defaultValue()) }
+  defaultDisplayString () { return this.displayString(this.defaultValue()) }
 
-  defaultDisplayValue() { return this.displayValue(this.defaultValue()) }
+  defaultDisplayValue () { return this.displayValue(this.defaultValue()) }
 
   // Overrides Numeric.displayValue() to perform conversions to display units
-  displayString(nativeValue) {
+  displayString (nativeValue) {
     return `${this.displayValue(nativeValue)} ${this.displayUnits()}`
   }
 
-  displayUnits() { return this._units._display }
+  displayUnits () { return this._units._display }
 
   // Overrides Float.displayValue() to perform conversion to display units
-  displayValue(nativeValue) {
+  displayValue (nativeValue) {
     return this._formatValue(this.nativeValueToDisplayValue(nativeValue))
   }
 
-  displayValueToNativeValue(displayValue) {
+  displayValueToNativeValue (displayValue) {
     return Uom.convert(displayValue, this._units._display, this._units._native)
   }
 
   // Overrides Float.inputHint() to perform conversion to display units and add display uom
-  inputHint() {
+  inputHint () {
     return `${this.minimumDisplayValue()} - ${this.maximumDisplayValue()} ${this._units._display}`
   }
 
-  isValidDisplayValue(inputText) { return this.validateDisplayValue(inputText).valid }
+  isValidDisplayValue (inputText) { return this.validateDisplayValue(inputText).valid }
 
-  isValidNativeValue(value) {
+  isValidNativeValue (value) {
     if (typeof value !== 'number') return false
     return this.validateNativeValue(value).valid
   }
 
   // Overrides Numeric version to perform conversion to display units-of-measure
-  maximumDisplayValue() {
+  maximumDisplayValue () {
     return this._formatValue(Uom.convert(this._value._maximum, this._units._native, this._units._display))
   }
-  maximumDisplayString() { return `${this.maximumDisplayValue()} ${this._units._display}` }
+
+  maximumDisplayString () { return `${this.maximumDisplayValue()} ${this._units._display}` }
 
   // Overrides Numeric version to perform conversion to display units-of-measure
-  minimumDisplayValue() {
+  minimumDisplayValue () {
     return this._formatValue(Uom.convert(this._value._minimum, this._units._native, this._units._display))
   }
-  minimumDisplayString() { return `${this.minimumDisplayValue()} ${this._units._display}` }
 
-  nativeUnits() { return this._units._native }
+  minimumDisplayString () { return `${this.minimumDisplayValue()} ${this._units._display}` }
 
-  nativeValueToDisplayValue(nativeValue) {
+  nativeUnits () { return this._units._native }
+
+  nativeValueToDisplayValue (nativeValue) {
     return Uom.convert(nativeValue, this._units._native, this._units._display)
   }
 
-  setDisplayUnits(units) {
+  setDisplayUnits (units) {
     this._units._display = this._ensureValidUnits(units)
     return this
   }
 
   // Overrides Numeric version to perform conversion to display units-of-measure
-  stepDisplayValue() {
+  stepDisplayValue () {
     return this._formatValue(Uom.convert(this._value._step, this._units._native, this._units._display))
   }
-  stepDisplayString() { return `${this.stepDisplayValue()} ${this._units._display}` }
 
-  unitsOptions() { return this._units._options }
+  stepDisplayString () { return `${this.stepDisplayValue()} ${this._units._display}` }
+
+  unitsOptions () { return this._units._options }
 
   // Overrides Float.validateDisplayValue() to apply filterNonNegativeNumeric()
   // AND convert from display (input) units to native units before validating
-  validateDisplayValue(inputText) {
+  validateDisplayValue (inputText) {
     const text = inputText.toString()
     // filter invalid characters from input text
     const filtered = filterNonNegativeNumeric(text)
@@ -159,8 +162,8 @@ export class Quantity extends Float {
     return new ValidationResult(true, nativeValue)
   }
 
-  validateNativeValue(nativeValue) {
-    if (typeof nativeValue === 'undefined' ) {
+  validateNativeValue (nativeValue) {
+    if (typeof nativeValue === 'undefined') {
       throw new Error('Quantity.validateNativeValue() requires native value arg')
     } else if (nativeValue < this._value._minimum) {
       return new ValidationResult(false, this.displayValue(nativeValue),

@@ -1,4 +1,4 @@
-import { Count, Variable } from './index.js'
+import { Count } from './index.js'
 
 test('new Count() default constructor', () => {
   const v = new Count('TorchingRrees')

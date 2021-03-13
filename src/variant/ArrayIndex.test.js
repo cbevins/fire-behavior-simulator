@@ -1,4 +1,4 @@
-import { ArrayIndex, Variable } from './index.js'
+import { ArrayIndex } from './index.js'
 
 test('new Index() default constructor', () => {
   const v = new ArrayIndex('Weights')

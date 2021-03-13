@@ -2,40 +2,40 @@ import { Integer } from './index.js'
 
 const signature = 'new Integer(key, defaultValue, minValue, maxValue, stepValue)'
 test(signature + ' requires arg 1 key to be a non-empty string', () => {
-  expect(()=>new Integer()).toThrow()
-  expect(()=>new Integer(1)).toThrow()
-  expect(()=>new Integer(null)).toThrow()
-  expect(()=>new Integer({})).toThrow()
-  expect(()=>new Integer(true)).toThrow()
-  expect(()=>new Integer('')).toThrow()
+  expect(() => new Integer()).toThrow()
+  expect(() => new Integer(1)).toThrow()
+  expect(() => new Integer(null)).toThrow()
+  expect(() => new Integer({})).toThrow()
+  expect(() => new Integer(true)).toThrow()
+  expect(() => new Integer('')).toThrow()
 })
 
 test(signature + ' requires arg 2 defaultValue to be of type integer', () => {
-  expect(()=>new Integer('FireSpreadRate', '1')).toThrow()
-  expect(()=>new Integer('FireSpreadRate', true)).toThrow()
-  expect(()=>new Integer('FireSpreadRate', {})).toThrow()
-  expect(()=>new Integer('FireSpreadRate', 1.23)).toThrow()
+  expect(() => new Integer('FireSpreadRate', '1')).toThrow()
+  expect(() => new Integer('FireSpreadRate', true)).toThrow()
+  expect(() => new Integer('FireSpreadRate', {})).toThrow()
+  expect(() => new Integer('FireSpreadRate', 1.23)).toThrow()
 })
 
 test(signature + ' requires arg 3 minValue to be of type number', () => {
-  expect(()=>new Integer('FireSpreadRate', 5, '0')).toThrow()
-  expect(()=>new Integer('FireSpreadRate', 5, true)).toThrow()
-  expect(()=>new Integer('FireSpreadRate', 5, {})).toThrow()
-  expect(()=>new Integer('FireSpreadRate', 5, 1.23)).toThrow()
+  expect(() => new Integer('FireSpreadRate', 5, '0')).toThrow()
+  expect(() => new Integer('FireSpreadRate', 5, true)).toThrow()
+  expect(() => new Integer('FireSpreadRate', 5, {})).toThrow()
+  expect(() => new Integer('FireSpreadRate', 5, 1.23)).toThrow()
 })
 
 test(signature + ' requires arg 4 maxValue to be of type number', () => {
-  expect(()=>new Integer('FireSpreadRate', 5, 0, '100')).toThrow()
-  expect(()=>new Integer('FireSpreadRate', 5, 0, true)).toThrow()
-  expect(()=>new Integer('FireSpreadRate', 5, 0, {})).toThrow()
-  expect(()=>new Integer('FireSpreadRate', 5, 0, 1.23)).toThrow()
+  expect(() => new Integer('FireSpreadRate', 5, 0, '100')).toThrow()
+  expect(() => new Integer('FireSpreadRate', 5, 0, true)).toThrow()
+  expect(() => new Integer('FireSpreadRate', 5, 0, {})).toThrow()
+  expect(() => new Integer('FireSpreadRate', 5, 0, 1.23)).toThrow()
 })
 
 test(signature + ' requires arg 5 stepValue to be of type number', () => {
-  expect(()=>new Integer('FireSpreadRate', 5, 0, 100, '1')).toThrow()
-  expect(()=>new Integer('FireSpreadRate', 5, 0, 100, true)).toThrow()
-  expect(()=>new Integer('FireSpreadRate', 5, 0, 100, {})).toThrow()
-  expect(()=>new Integer('FireSpreadRate', 5, 0, 100, 1.23)).toThrow()
+  expect(() => new Integer('FireSpreadRate', 5, 0, 100, '1')).toThrow()
+  expect(() => new Integer('FireSpreadRate', 5, 0, 100, true)).toThrow()
+  expect(() => new Integer('FireSpreadRate', 5, 0, 100, {})).toThrow()
+  expect(() => new Integer('FireSpreadRate', 5, 0, 100, 1.23)).toThrow()
 })
 
 test(signature + ' sets and gets its default arguments', () => {
@@ -47,9 +47,9 @@ test(signature + ' sets and gets its default arguments', () => {
 })
 
 test(signature + ' requires minValue > maxValue and defaultValue to be in range', () => {
-  expect(()=>new Integer('FireSpreadRate', 5, 100, 0, 5)).toThrow()
-  expect(()=>new Integer('FireSpreadRate', 1234, 0, 100, 5)).toThrow()
-  expect(()=>new Integer('FireSpreadRate', -1, 0, 100, 5)).toThrow()
+  expect(() => new Integer('FireSpreadRate', 5, 100, 0, 5)).toThrow()
+  expect(() => new Integer('FireSpreadRate', 1234, 0, 100, 5)).toThrow()
+  expect(() => new Integer('FireSpreadRate', -1, 0, 100, 5)).toThrow()
 })
 
 test(signature + ' sets and gets passed arguments', () => {
@@ -99,7 +99,7 @@ test('Integer text input validation - INVALID strings', () => {
     '-e',
     {},
     true]
-    let result
+  let result
   strings.forEach(str => {
     // console.log(str)
     result = v.validateDisplayValue(str)

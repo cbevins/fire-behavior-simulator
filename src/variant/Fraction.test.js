@@ -89,7 +89,7 @@ test('_Variant dummy methods to be reimplemented by subclasses', () => {
 })
 
 class CanopyCover extends Fraction {
-  constructor() {
+  constructor () {
     super('CanopyCover', 0.5, 0.05)
       .setDisplayUnits('%')
       .setDisplayDecimals(2)

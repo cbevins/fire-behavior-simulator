@@ -14,38 +14,38 @@ export class Text extends _Variant {
   constructor (key, defaultValue = '', minLength = 0, maxLength = 999999) {
     const signature = `new Text('${key}', '${defaultValue}', ${minLength}, ${maxLength}) `
     if (typeof defaultValue !== 'string') {
-      throw new Error(signature + `arg 2 'defaultValue' must be a 'string'` )
+      throw new Error(signature + 'arg 2 \'defaultValue\' must be a \'string\'')
     } else if (typeof minLength !== 'number') {
       throw new Error(signature + `arg 3 'minLength' must be a 'number', but received a ${typeof minLength}`)
     } else if (typeof maxLength !== 'number') {
       throw new Error(signature + `arg 4 'maxLength' must be a 'number', but received a ${typeof maxLength}`)
     } else if (minLength > maxLength) {
-      throw new Error(signature + `arg 3 'minLength' exceeds arg 4 'maxLength'`)
+      throw new Error(signature + 'arg 3 \'minLength\' exceeds arg 4 \'maxLength\'')
     } else if (defaultValue.length < minLength) {
-      throw new Error(signature + `arg 2 'defaultValue' length is less than arg 3 'minLength'`)
+      throw new Error(signature + 'arg 2 \'defaultValue\' length is less than arg 3 \'minLength\'')
     } else if (defaultValue.length > maxLength) {
-      throw new Error(signature + `arg 2 defaultValue length exceeds arg 4 'maxLength'`)
+      throw new Error(signature + 'arg 2 defaultValue length exceeds arg 4 \'maxLength\'')
     }
     super(key, defaultValue)
     this._value._minimumLength = minLength
     this._value._maximumLength = maxLength
   }
 
-  inputHint() { return `${this.minimumValue()} - ${this.maximumValue()} chars` }
+  inputHint () { return `${this.minimumValue()} - ${this.maximumValue()} chars` }
 
-  isValidDisplayValue(inputText) { return this.validateDisplayValue(inputText).valid }
-  isValidNativeValue(value) {
+  isValidDisplayValue (inputText) { return this.validateDisplayValue(inputText).valid }
+  isValidNativeValue (value) {
     if (typeof value !== 'string') return false
     return this.validateNativeValue(value).valid
   }
 
-  maximumValue() { return this._value._maximumLength }
-  minimumValue() { return this._value._minimumLength }
-  stepValue() { return 1 }
+  maximumValue () { return this._value._maximumLength }
+  minimumValue () { return this._value._minimumLength }
+  stepValue () { return 1 }
 
-  validateDisplayValue(inputText) { return this.validateNativeValue(inputText) }
+  validateDisplayValue (inputText) { return this.validateNativeValue(inputText) }
 
-  validateNativeValue(text) {
+  validateNativeValue (text) {
     if (typeof text !== 'string') {
       return new ValidationResult(false, text, 'Must be a string')
     } else if (text.length < this.minimumValue()) {

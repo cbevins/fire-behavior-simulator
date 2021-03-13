@@ -1,26 +1,26 @@
 import { Text } from './index.js'
 
 test('new Text() construtor validation', () => {
-  expect(()=>new Text()).toThrow()
-  expect(()=>new Text('FuelModelKey')).not.toThrow()
-  expect(()=>new Text('', 'defaultString')).toThrow()
-  expect(()=>new Text('FuelModelKey', 1)).toThrow()
-  expect(()=>new Text('FuelModelKey', true)).toThrow()
-  expect(()=>new Text('FuelModelKey', {})).toThrow()
+  expect(() => new Text()).toThrow()
+  expect(() => new Text('FuelModelKey')).not.toThrow()
+  expect(() => new Text('', 'defaultString')).toThrow()
+  expect(() => new Text('FuelModelKey', 1)).toThrow()
+  expect(() => new Text('FuelModelKey', true)).toThrow()
+  expect(() => new Text('FuelModelKey', {})).toThrow()
   // arg 3 minLength must be a number
-  expect(()=>new Text('FuelModelKey', 'a', {}, 10)).toThrow()
-  expect(()=>new Text('FuelModelKey', 'a', '', 10)).toThrow()
-  expect(()=>new Text('FuelModelKey', 'a', true, 10)).toThrow()
+  expect(() => new Text('FuelModelKey', 'a', {}, 10)).toThrow()
+  expect(() => new Text('FuelModelKey', 'a', '', 10)).toThrow()
+  expect(() => new Text('FuelModelKey', 'a', true, 10)).toThrow()
   // arg 4 maxLength must be a number
-  expect(()=>new Text('FuelModelKey', 'a', 4, {})).toThrow()
-  expect(()=>new Text('FuelModelKey', 'a', 4, '')).toThrow()
-  expect(()=>new Text('FuelModelKey', 'a', 4, false)).toThrow()
-  expect(()=>new Text('FuelModelKey', 'a', 4, {})).toThrow()
+  expect(() => new Text('FuelModelKey', 'a', 4, {})).toThrow()
+  expect(() => new Text('FuelModelKey', 'a', 4, '')).toThrow()
+  expect(() => new Text('FuelModelKey', 'a', 4, false)).toThrow()
+  expect(() => new Text('FuelModelKey', 'a', 4, {})).toThrow()
   // arg 3 minLength must be <= arg 4 maxLength
-  expect(()=>new Text('FuelModelKey', 'a', 10, 1)).toThrow()
+  expect(() => new Text('FuelModelKey', 'a', 10, 1)).toThrow()
   // arg 2 defaultValue must be within arg 3 minLength and arg 4 maxLength
-  expect(()=>new Text('FuelModelKey', 'a', 4, 10)).toThrow()
-  expect(()=>new Text('FuelModelKey', 'abcdefghijklmnop', 4, 10)).toThrow()
+  expect(() => new Text('FuelModelKey', 'a', 4, 10)).toThrow()
+  expect(() => new Text('FuelModelKey', 'abcdefghijklmnop', 4, 10)).toThrow()
 })
 
 test('new Text() default construtor', () => {

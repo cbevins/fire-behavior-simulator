@@ -12,6 +12,6 @@ import { Option } from './Option.js'
  */
 export class Config extends Option {
   constructor (key, prompt, optionsArray, defaultOptionIndex = 0) {
-    super (key, prompt, optionsArray, defaultOptionIndex)
+    super(key, prompt, optionsArray, defaultOptionIndex)
   }
 }

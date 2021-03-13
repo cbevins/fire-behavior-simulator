@@ -1,17 +1,17 @@
 import { _Variant } from './index.js'
 
 test('new _Variant(key, defaultValue) requires a non-empty string key as arg 1', () => {
-  expect(()=>new _Variant()).toThrow()
-  expect(()=>new _Variant(1)).toThrow()
-  expect(()=>new _Variant(null)).toThrow()
-  expect(()=>new _Variant({})).toThrow()
-  expect(()=>new _Variant(true)).toThrow()
-  expect(()=>new _Variant('')).toThrow()
+  expect(() => new _Variant()).toThrow()
+  expect(() => new _Variant(1)).toThrow()
+  expect(() => new _Variant(null)).toThrow()
+  expect(() => new _Variant({})).toThrow()
+  expect(() => new _Variant(true)).toThrow()
+  expect(() => new _Variant('')).toThrow()
 })
 
 test('new _Variant(key, defaultValue) requires a defaultValue of type any as arg 2', () => {
-  expect(()=>new _Variant('someKey')).toThrow()
-  expect(()=>new _Variant('someKey', undefined)).toThrow()
+  expect(() => new _Variant('someKey')).toThrow()
+  expect(() => new _Variant('someKey', undefined)).toThrow()
 })
 
 test('new _Variant(key, defaultValue) sets and gets its key and defaultValue args', () => {
@@ -34,9 +34,9 @@ test('_Variant dummy methods to be reimplemented by subclasses', () => {
   expect(v.isValidDisplayValue('anythingAtAll')).toEqual(false)
   expect(v.isValidNativeValue(1.23)).toEqual(false)
   expect(v.validateDisplayValue('anythingAtAll'))
-    .toEqual({valid:false, value: 'anythingAtAll', message: 'Must be reimplemented by _Variant subclass'})
+    .toEqual({ valid: false, value: 'anythingAtAll', message: 'Must be reimplemented by _Variant subclass' })
   expect(v.validateNativeValue('anythingAtAll'))
-    .toEqual({valid:false, value: 'anythingAtAll', message: 'Must be reimplemented by _Variant subclass'})
+    .toEqual({ valid: false, value: 'anythingAtAll', message: 'Must be reimplemented by _Variant subclass' })
   // Overriden and final by _Variant => _Numeric
   expect(v.maximumValue()).toEqual('someDefaultValue')
   expect(v.minimumValue()).toEqual('someDefaultValue')

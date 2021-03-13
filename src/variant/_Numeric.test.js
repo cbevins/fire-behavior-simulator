@@ -2,36 +2,36 @@ import { _Numeric } from './index.js'
 
 const signature = 'new _Numeric(key, defaultValue, minValue, maxValue, stepValue)'
 test(signature + ' requires arg 1 key to be a non-empty string', () => {
-  expect(()=>new _Numeric()).toThrow()
-  expect(()=>new _Numeric(1)).toThrow()
-  expect(()=>new _Numeric(null)).toThrow()
-  expect(()=>new _Numeric({})).toThrow()
-  expect(()=>new _Numeric(true)).toThrow()
-  expect(()=>new _Numeric('')).toThrow()
+  expect(() => new _Numeric()).toThrow()
+  expect(() => new _Numeric(1)).toThrow()
+  expect(() => new _Numeric(null)).toThrow()
+  expect(() => new _Numeric({})).toThrow()
+  expect(() => new _Numeric(true)).toThrow()
+  expect(() => new _Numeric('')).toThrow()
 })
 
 test(signature + ' requires arg 2 defaultValue to be of type number', () => {
-  expect(()=>new _Numeric('FireSpreadRate', '1')).toThrow()
-  expect(()=>new _Numeric('FireSpreadRate', true)).toThrow()
-  expect(()=>new _Numeric('FireSpreadRate', {})).toThrow()
+  expect(() => new _Numeric('FireSpreadRate', '1')).toThrow()
+  expect(() => new _Numeric('FireSpreadRate', true)).toThrow()
+  expect(() => new _Numeric('FireSpreadRate', {})).toThrow()
 })
 
 test(signature + ' requires arg 3 minValue to be of type number', () => {
-  expect(()=>new _Numeric('FireSpreadRate', 5, '0')).toThrow()
-  expect(()=>new _Numeric('FireSpreadRate', 5, true)).toThrow()
-  expect(()=>new _Numeric('FireSpreadRate', 5, {})).toThrow()
+  expect(() => new _Numeric('FireSpreadRate', 5, '0')).toThrow()
+  expect(() => new _Numeric('FireSpreadRate', 5, true)).toThrow()
+  expect(() => new _Numeric('FireSpreadRate', 5, {})).toThrow()
 })
 
 test(signature + ' requires arg 4 maxValue to be of type number', () => {
-  expect(()=>new _Numeric('FireSpreadRate', 5, 0, '100')).toThrow()
-  expect(()=>new _Numeric('FireSpreadRate', 5, 0, true)).toThrow()
-  expect(()=>new _Numeric('FireSpreadRate', 5, 0, {})).toThrow()
+  expect(() => new _Numeric('FireSpreadRate', 5, 0, '100')).toThrow()
+  expect(() => new _Numeric('FireSpreadRate', 5, 0, true)).toThrow()
+  expect(() => new _Numeric('FireSpreadRate', 5, 0, {})).toThrow()
 })
 
 test(signature + ' requires arg 5 stepValue to be of type number', () => {
-  expect(()=>new _Numeric('FireSpreadRate', 5, 0, 100, '1')).toThrow()
-  expect(()=>new _Numeric('FireSpreadRate', 5, 0, 100, true)).toThrow()
-  expect(()=>new _Numeric('FireSpreadRate', 5, 0, 100, {})).toThrow()
+  expect(() => new _Numeric('FireSpreadRate', 5, 0, 100, '1')).toThrow()
+  expect(() => new _Numeric('FireSpreadRate', 5, 0, 100, true)).toThrow()
+  expect(() => new _Numeric('FireSpreadRate', 5, 0, 100, {})).toThrow()
 })
 
 test(signature + ' sets and gets its default arguments', () => {
@@ -43,9 +43,9 @@ test(signature + ' sets and gets its default arguments', () => {
 })
 
 test(signature + ' requires minValue > maxValue and defaultValue to be in range', () => {
-  expect(()=>new _Numeric('FireSpreadRate', 5, 100, 0, 5)).toThrow()
-  expect(()=>new _Numeric('FireSpreadRate', 1234, 0, 100, 5)).toThrow()
-  expect(()=>new _Numeric('FireSpreadRate', -1, 0, 100, 5)).toThrow()
+  expect(() => new _Numeric('FireSpreadRate', 5, 100, 0, 5)).toThrow()
+  expect(() => new _Numeric('FireSpreadRate', 1234, 0, 100, 5)).toThrow()
+  expect(() => new _Numeric('FireSpreadRate', -1, 0, 100, 5)).toThrow()
 })
 
 test(signature + ' sets and gets passed arguments', () => {

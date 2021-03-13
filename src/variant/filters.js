@@ -41,14 +41,14 @@ export function filterNumeric (str) {
     } else if (c === '-') {
       if (filtered === '') { // first valid char
         filtered += c
-      } else if (filtered.substr(filtered.length-1) === 'e') { // last valid char is 'e'
-      filtered += c
+      } else if (filtered.substr(filtered.length - 1) === 'e') { // last valid char is 'e'
+        filtered += c
       }
     }
   }
-  if (filtered.charAt(0) === 'e' || filtered.substr(0,2) === '-e') {
-     filtered = ''
-   }
+  if (filtered.charAt(0) === 'e' || filtered.substr(0, 2) === '-e') {
+    filtered = ''
+  }
   // console.log(`'${str}' => '${filtered}'`)
   return filtered
 }
