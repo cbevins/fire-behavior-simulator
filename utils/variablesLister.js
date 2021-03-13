@@ -24,6 +24,23 @@ function alphaOrder (fileName) {
   write(str, fileName)
 }
 
+function configMarkdownList (fileName) {
+  let str = ''
+  const nodeKeys = dag._node.map(node => node.key())
+  nodeKeys.sort().forEach((key, idx) => {
+    const node = dag.node(key)
+    if (node.isConfig()) {
+      str += `\n---\n\n##  ![](favicon.png) ${node.key()}\n\n${node.variant().prompt()}:\n`
+      node.variant().options().forEach(opt => {
+        str += `- '${opt}': ${node.variant().optionText(opt)}\n`
+      })
+    }
+  })
+  const header = '# ![](favicon.png) cbevins/fire-behavior-simulator Configuration\n' +
+    '[README.md](./README.md)\n'
+  write(header+str, fileName)
+}
+
 function markdownList (fileName) {
   let lastPart = ''
   let contents = '# ![](favicon.png) Top-level Names\n'
@@ -43,7 +60,7 @@ function markdownList (fileName) {
   write(header+contents+str, fileName)
 }
 
-function markdownTable (fileName) {
+function nodeMarkdownTable (fileName) {
   let lastPart = ''
   let contents = '# ![](favicon.png) Top-level Names\n'
   let hdr = '| idx | Variable Key (Name) | Variant | Native Units |\n|---|---|---|---|\n'
@@ -109,7 +126,8 @@ function write (str, fileName) {
   })
 }
 
-alphaOrder('./docs/NodeList_AlphabeticalOrder.js')
-hierarchicalOrder('./docs/NodeList_HierarchicalOrder.js')
-topoOrder('./docs/NodeList_TopologicalOrder.js')
-markdownTable('./docs/Variables.md')
+// alphaOrder('../docs/NodeList_AlphabeticalOrder.js')
+// hierarchicalOrder('../docs/NodeList_HierarchicalOrder.js')
+// topoOrder('../docs/NodeList_TopologicalOrder.js')
+// nodeMarkdownTable('../docs/Variables.md')
+configMarkdownList('../docs/ConfigurationVariables.md')
