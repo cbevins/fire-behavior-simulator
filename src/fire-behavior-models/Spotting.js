@@ -203,7 +203,8 @@ export function criticalCoverHeight (firebrandHt, appliedDownWindCoverHeight) {
  */
 export function distanceFlatTerrain (firebrandHt, criticalCoverHeight, u20) {
   // Wind speed must be converted to mi/h
-  return (criticalCoverHeight <= 0 || firebrandHt <= 0) ? 0
+  return (criticalCoverHeight <= 0 || firebrandHt <= 0)
+    ? 0
     : 5280 * 0.000718 * (u20 / 88) * Math.sqrt(criticalCoverHeight) *
       (0.362 + (Math.sqrt(firebrandHt / criticalCoverHeight) / 2) *
         Math.log(firebrandHt / criticalCoverHeight))

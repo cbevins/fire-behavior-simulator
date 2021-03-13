@@ -1,3 +1,4 @@
+/* eslint-disable brace-style */
 /**
  * @file Tree mortality equations as implemented by BehavePlus V6 and FOFEM v6.
  * @copyright 2021 Systems for Environmental Management
@@ -85,9 +86,7 @@ export function ensureEquationIdx (fofem6Code, equationIdx) {
 
 export function ensureFofem6Code (fofem6Code) {
   if (!hasFofem6Code(fofem6Code)) {
-    throw new Error(
-      `Tree Mortality Fofem6 species code '${fofem6Code}' is invalid`
-    )
+    throw new Error(`Tree Mortality Fofem6 species code '${fofem6Code}' is invalid`)
   }
 }
 
@@ -108,7 +107,8 @@ export function scientificNames () {
 }
 
 export function hasFofem6Code (fofem6Code) {
-  return Mortality.data.hasOwnProperty(fofem6Code)
+  return Object.prototype.hasOwnProperty.call(Mortality.data, 'fofem6Code')
+  // return Mortality.data.hasOwnProperty(fofem6Code)
 }
 
 /**

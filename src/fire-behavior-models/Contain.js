@@ -196,7 +196,7 @@ export class Contain6 {
         continue
       }
       // if(fabs(this.rkpr[0]-this.rkpr[2])>1e-6)
-      //	this.distStep/=2.0;
+      // this.distStep/=2.0;
     } while (this.timeIncrement > 1) // fabs(this.rkpr[0]-this.rkpr[2])>1e-6);
 
     // --------------------------------------------------------------------------
@@ -294,11 +294,11 @@ export class Contain6 {
     // If the expression under the radical sign is negative,
     // must change course to avoid a complex (number) result
     const x = 1 - this.eps * cosU
-    let uh_radical = (p * p * x) / (1 + this.eps * cosU) - this.a * this.a
+    let uhRadical = (p * p * x) / (1 + this.eps * cosU) - this.a * this.a
 
-    // The gcc and VC6 compilers yield different results for uh_radical
+    // The gcc and VC6 compilers yield different results for uhRadical
     // as ros approaches the fireline production rate;
-    // uh_radical approaches zero faster under VC6 than under gcc.
+    // uhRadical approaches zero faster under VC6 than under gcc.
     // Enable the following this.containLog() calls to demonstrate.
     this.containLog(
       this.logLevel > 1,
@@ -312,17 +312,17 @@ export class Contain6 {
     )
     this.containLog(
       this.logLevel > 1,
-      '           x=%15.13f, this.eps=%15.13f, this.a=%15.13f, uh_radical=%15.13f\n',
+      '           x=%15.13f, this.eps=%15.13f, this.a=%15.13f, uhRadical=%15.13f\n',
       x,
       this.eps,
       this.a,
-      uh_radical
+      uhRadical
     )
 
-    if (uh_radical <= 1.0e-10) {
-      uh_radical = 0 // MAF  6/2010
-      // this.status = Overrun;	// MAF  6/2010
-      // return( false );		// MAF  6/2010
+    if (uhRadical <= 1.0e-10) {
+      uhRadical = 0 // MAF  6/2010
+      // this.status = Overrun; // MAF  6/2010
+      // return( false ); // MAF  6/2010
     }
 
     // dh is the change in fire perimeter distance at point of attack
@@ -338,15 +338,15 @@ export class Contain6 {
 
     // du is the change in angle of attack point from fire origin
     const du =
-      this.tactic == 'RearAttack6'
-        ? this.eps * sinU - (1 + this.eps) * Math.sqrt(uh_radical)
-        : this.eps * sinU + (1 + this.eps) * Math.sqrt(uh_radical)
+      this.tactic === 'RearAttack6'
+        ? this.eps * sinU - (1 + this.eps) * Math.sqrt(uhRadical)
+        : this.eps * sinU + (1 + this.eps) * Math.sqrt(uhRadical)
 
     const uh = du / dh
     this.containLog(
       this.logLevel > 1,
-      '           Math.sqrt(uh_radical)=%15.13f, du=%12.10f, dh=%12.10f, uh(du/dh)=%12.10f\n',
-      Math.sqrt(uh_radical),
+      '           Math.sqrt(uhRadical)=%15.13f, du=%12.10f, dh=%12.10f, uh(du/dh)=%12.10f\n',
+      Math.sqrt(uhRadical),
       du,
       dh,
       uh
@@ -366,9 +366,9 @@ export class Contain6 {
      } */
 
     // overrun -- line production less than the minimum spread rate
-    // if(p<=this.backRate)			// MAF 6/2010
-    // {	this.status=Overrun;		// MAF 6/2010
-    //      return false;		// MAF 6/2010
+    // if(p<=this.backRate) // MAF 6/2010
+    // {this.status=Overrun; / MAF 6/2010
+    //      return false; // MAF 6/2010
     // }
 
     // Store uh in lastUh and returned value
@@ -597,7 +597,7 @@ export class Contain6 {
     //   Added MAF 5/27/2010
     //        determines head fire dist by iterating by hour
     // ----------------------------------------------------
-    //	double AddBackDist;
+    // double AddBackDist;
     let AddHeadDist = this.reportHead
 
     // DT 4/17/12 Need to deal with the partial hour that might exist in the first hour of the fire since discovery
@@ -712,8 +712,8 @@ export class Contain6 {
 
   setFireStartTimeMinutes (starttime) {
     // removed 6/29/2010,  MAF
-    //	changed interpretation of StartTime to reportTime,
-    //	this.startTime set to 0.0 and not used
+    // changed interpretation of StartTime to reportTime,
+    // this.startTime set to 0.0 and not used
     // this.startTime=starttime;   // this.StarTime added to private variable list
 
     // added 6/29/2010, MAF
@@ -789,7 +789,7 @@ export class Contain6 {
     // gets head distance and report time using timestep with check on discovery fire size
     // will work as long as eccentricity of ellipse is constant with time
     //
-    //	removed/commented 9/2010
+    // removed/commented 9/2010
     // --------------------------------------------------------------
     // --------------------------------------------------------------
     /*
@@ -808,11 +808,11 @@ export class Contain6 {
         L=(this.reportHead+this.reportBack)/2.0;
         W=L*r;
         fsize=Math.PI*(L*W)/10.0;  // convert LW square chains to acres
-        if(fsize-this.reportSize>1e-6)	// overshoot, then redo with shorter timestep
-        {	this.reportTime-=timeinc;
+        if(fsize-this.reportSize>1e-6) // overshoot, then redo with shorter timestep
+        { this.reportTime-=timeinc;
           this.reportHead-=headinc;
           this.reportBack-=backinc;
-          timeinc/=2.0;			// half of timeinc
+          timeinc/=2.0; // half of timeinc
           fsize=0.0;
         }
       }while(fabs(fsize-this.reportSize)>1e-6);
@@ -820,8 +820,8 @@ export class Contain6 {
 
     // --------------------------------------------------------------
     // --------------------------------------------------------------
-    //  ADDED 9/27/2010		, MAF
-    //	Leaves this.reportTime alone, does not estimate from "this.StartTime"
+    //  ADDED 9/27/2010, MAF
+    // Leaves this.reportTime alone, does not estimate from "this.StartTime"
     // --------------------------------------------------------------
     // DT  4/17/12 removed the following line because it calculates the semi minor axis of the elipse not the the head distance at the fire's report time
     // The correct value of this.reportHead is calculated earlier in this function
@@ -846,7 +846,7 @@ export class Contain6 {
     // ------------------------------------------------------------------------
 
     // Initial angle to attack point depends on whether HeadAttack or RearAttack
-    if (this.tactic == 'RearAttack6') {
+    if (this.tactic === 'RearAttack6') {
       this.u = this.u0 = Math.PI
       this.x = -this.attackBack - this.attackDist
     } else {
@@ -1105,16 +1105,16 @@ export class Contain6 {
     this.time = this.timeSinceReport(this.h)
 
     // If forces were overrun, simply return false
-    if (this.status == 'Overrun6') {
+    if (this.status === 'Overrun6') {
       return this.status
     }
     // If the forces contain the fire, interpolate the final u and h.
-    if (this.tactic == 'HeadAttack6' && this.u >= Math.PI) {
+    if (this.tactic === 'HeadAttack6' && this.u >= Math.PI) {
       this.status = 'Contained6'
       this.h =
         this.h0 - (this.distStep * this.u0) / (this.u0 + Math.abs(this.u))
       this.u = Math.PI
-    } else if (this.tactic == 'RearAttack6' && this.u <= 0) {
+    } else if (this.tactic === 'RearAttack6' && this.u <= 0) {
       this.status = 'Contained6'
       this.h =
         this.h0 + (this.distStep * this.u0) / (this.u0 + Math.abs(this.u))

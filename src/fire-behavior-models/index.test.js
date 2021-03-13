@@ -1,4 +1,4 @@
-import {BehaveFuel} from './index.js'
+import { BehaveFuel } from './index.js'
 import * as Lib from './index.js'
 
 test('Behave functions', () => {
