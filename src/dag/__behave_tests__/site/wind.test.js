@@ -53,20 +53,20 @@ test('1: Wind speed and direction configurations', () => {
   expect(dag.get('site.wind.speed.atMidflame').value()).toEqual(0)
 
   let selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(0)
+  expect(selectedNodes).toHaveLength(0)
 
   // Start with just wind.speed.at20ft selected
   dag.select(['site.wind.speed.at20ft']).run()
   selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(1)
+  expect(selectedNodes).toHaveLength(1)
   expect(selectedNodes).toContain(at20ft)
 
   let configNodes = dag.requiredConfigNodes()
-  expect(configNodes.length).toEqual(1)
+  expect(configNodes).toHaveLength(1)
   expect(configNodes).toContain(cfgSpeed)
 
   let requiredNodes = dag.requiredNodes()
-  expect(requiredNodes.length).toEqual(2)
+  expect(requiredNodes).toHaveLength(2)
   expect(requiredNodes).toContain(at20ft)
   expect(requiredNodes).toContain(cfgSpeed)
 
@@ -82,22 +82,22 @@ test('1: Wind speed and direction configurations', () => {
   expect(at10m.value()).toEqual(12.3 * 1.13)
 
   selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(2)
+  expect(selectedNodes).toHaveLength(2)
   expect(selectedNodes).toContain(at20ft)
   expect(selectedNodes).toContain(at10m)
 
   configNodes = dag.requiredConfigNodes()
-  expect(configNodes.length).toEqual(1)
+  expect(configNodes).toHaveLength(1)
   expect(configNodes).toContain(cfgSpeed)
 
   requiredNodes = dag.requiredNodes()
-  expect(requiredNodes.length).toEqual(3)
+  expect(requiredNodes).toHaveLength(3)
   expect(requiredNodes).toContain(at20ft)
   expect(requiredNodes).toContain(at10m)
   expect(requiredNodes).toContain(cfgSpeed)
 
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(at20ft)
 
   dag.input([[at20ft, 10]]).run()
@@ -111,7 +111,7 @@ test('1: Wind speed and direction configurations', () => {
   // Change wind speed configuration to 'at10m'
   dag.configure([[cfgSpeed, 'at10m']])
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(at10m)
   // at10m IS now an input, so should have effect
   dag.input([[at10m, 123]]).run()
@@ -121,18 +121,18 @@ test('1: Wind speed and direction configurations', () => {
   // Add headingFromUpslope as a selected leaf
   dag.select([headingFromUpslope]).run()
   selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(3)
+  expect(selectedNodes).toHaveLength(3)
   expect(selectedNodes).toContain(at20ft)
   expect(selectedNodes).toContain(at10m)
   expect(selectedNodes).toContain(headingFromUpslope)
 
   configNodes = dag.requiredConfigNodes()
-  expect(configNodes.length).toEqual(2)
+  expect(configNodes).toHaveLength(2)
   expect(configNodes).toContain(cfgSpeed)
   expect(configNodes).toContain(cfgDirection)
 
   requiredNodes = dag.requiredNodes()
-  expect(requiredNodes.length).toEqual(5)
+  expect(requiredNodes).toHaveLength(5)
   expect(requiredNodes).toContain(at20ft)
   expect(requiredNodes).toContain(at10m)
   expect(requiredNodes).toContain(headingFromUpslope)
@@ -140,7 +140,7 @@ test('1: Wind speed and direction configurations', () => {
   expect(requiredNodes).toContain(cfgDirection)
 
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(2)
+  expect(inputNodes).toHaveLength(2)
   expect(inputNodes).toContain(at10m)
 
   dag.input([
@@ -154,14 +154,14 @@ test('1: Wind speed and direction configurations', () => {
   // Add sourceFromUpslope as selected
   dag.select([sourceFromUpslope]).run()
   selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(4)
+  expect(selectedNodes).toHaveLength(4)
   expect(selectedNodes).toContain(at20ft)
   expect(selectedNodes).toContain(at10m)
   expect(selectedNodes).toContain(headingFromUpslope)
   expect(selectedNodes).toContain(sourceFromUpslope)
 
   requiredNodes = dag.requiredNodes()
-  expect(requiredNodes.length).toEqual(6)
+  expect(requiredNodes).toHaveLength(6)
   expect(requiredNodes).toContain(at20ft)
   expect(requiredNodes).toContain(at10m)
   expect(requiredNodes).toContain(headingFromUpslope)
@@ -170,7 +170,7 @@ test('1: Wind speed and direction configurations', () => {
   expect(requiredNodes).toContain(cfgDirection)
   // Still just 2 inputs
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(2)
+  expect(inputNodes).toHaveLength(2)
   expect(inputNodes).toContain(at10m)
   expect(inputNodes).toContain(headingFromUpslope)
 
@@ -181,7 +181,7 @@ test('1: Wind speed and direction configurations', () => {
   dag.configure([[cfgDirection, 'sourceFromNorth']])
   // Still just 4 selected Nodes
   selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(4)
+  expect(selectedNodes).toHaveLength(4)
   expect(selectedNodes).toContain(at20ft)
   expect(selectedNodes).toContain(at10m)
   expect(selectedNodes).toContain(headingFromUpslope)
@@ -189,7 +189,7 @@ test('1: Wind speed and direction configurations', () => {
   // But now sourceFromNorth is required (even if not selected)
   // as is the upslope direction
   requiredNodes = dag.requiredNodes()
-  expect(requiredNodes.length).toEqual(10)
+  expect(requiredNodes).toHaveLength(10)
   expect(requiredNodes).toContain(at20ft)
   expect(requiredNodes).toContain(at10m)
   expect(requiredNodes).toContain(headingFromUpslope)
@@ -202,7 +202,7 @@ test('1: Wind speed and direction configurations', () => {
   expect(requiredNodes).toContain(cfgDirection)
   // Now requiredInputNodes 3 inputs
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(3)
+  expect(inputNodes).toHaveLength(3)
   expect(inputNodes).toContain(at10m)
   expect(inputNodes).toContain(aspect)
   expect(inputNodes).toContain(sourceFromNorth)
@@ -347,7 +347,7 @@ test('2: Wind directions', () => {
   expect(cfgDirection.value()).toEqual('headingFromUpslope')
 
   const selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(6)
+  expect(selectedNodes).toHaveLength(6)
   expect(selectedNodes).toContain(aspect)
   expect(selectedNodes).toContain(upslope)
   expect(selectedNodes).toContain(headingFromUpslope)
@@ -356,11 +356,11 @@ test('2: Wind directions', () => {
   expect(selectedNodes).toContain(sourceFromNorth)
 
   const configNodes = dag.requiredConfigNodes()
-  expect(configNodes.length).toEqual(1)
+  expect(configNodes).toHaveLength(1)
   expect(configNodes).toContain(cfgDirection)
 
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(2)
+  expect(inputNodes).toHaveLength(2)
   expect(inputNodes).toContain(aspect)
   expect(inputNodes).toContain(headingFromUpslope)
 
@@ -395,31 +395,31 @@ test('3: Midflame wind speed and WAF', () => {
   dag.select([atMidflame]).run()
 
   let selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(1)
+  expect(selectedNodes).toHaveLength(1)
   expect(selectedNodes).toContain(atMidflame)
 
   let configNodes = dag.requiredConfigNodes()
-  expect(configNodes.length).toEqual(1)
+  expect(configNodes).toHaveLength(1)
   expect(configNodes).toContain(cfgSpeed)
 
   let inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(atMidflame)
 
   // If we select at20ft
   dag.select([at20ft]).run()
 
   selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(2)
+  expect(selectedNodes).toHaveLength(2)
   expect(selectedNodes).toContain(atMidflame)
   expect(selectedNodes).toContain(at20ft)
 
   configNodes = dag.requiredConfigNodes()
-  expect(configNodes.length).toEqual(1)
+  expect(configNodes).toHaveLength(1)
   expect(configNodes).toContain(cfgSpeed)
 
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(2)
+  expect(inputNodes).toHaveLength(2)
   expect(inputNodes).toContain(atMidflame)
   expect(inputNodes).toContain(waf)
 
@@ -435,11 +435,11 @@ test('3: Midflame wind speed and WAF', () => {
   dag.configure([[cfgWaf, 'estimated']])
 
   configNodes = dag.requiredConfigNodes()
-  expect(configNodes.length).toEqual(1)
+  expect(configNodes).toHaveLength(1)
   expect(configNodes).toContain(cfgSpeed)
 
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(2)
+  expect(inputNodes).toHaveLength(2)
   expect(inputNodes).toContain(atMidflame)
   expect(inputNodes).toContain(waf)
 })
@@ -458,15 +458,15 @@ test('4: Midflame wind speed from input waf and at20ft', () => {
   dag.select([atMidflame]).run()
 
   const selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(1)
+  expect(selectedNodes).toHaveLength(1)
   expect(selectedNodes).toContain(atMidflame)
 
   const configNodes = dag.requiredConfigNodes()
-  expect(configNodes.length).toEqual(1)
+  expect(configNodes).toHaveLength(1)
   expect(configNodes).toContain(cfgSpeed)
 
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(2)
+  expect(inputNodes).toHaveLength(2)
   expect(inputNodes).toContain(at20ft)
   expect(inputNodes).toContain(waf)
 

@@ -21,14 +21,14 @@ test('1: Burning pile spotting distance configuration', () => {
   // Selecting downwind canopy applied ht requires its 2 inputs
   dag.select(['site.canopy.downwind.appliedHeight'])
   let inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(2)
+  expect(inputNodes).toHaveLength(2)
   expect(inputNodes).toContain(dag.get('site.canopy.downwind.height'))
   expect(inputNodes).toContain(dag.get('site.canopy.downwind.isOpen'))
 
   // Selecting firebrand ht requires burning pile flame ht
   dag.select(['spotting.burningPile.firebrand.height'])
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(3)
+  expect(inputNodes).toHaveLength(3)
   expect(inputNodes).toContain(dag.get('site.canopy.downwind.height'))
   expect(inputNodes).toContain(dag.get('site.canopy.downwind.isOpen'))
   expect(inputNodes).toContain(dag.get('spotting.burningPile.flameHeight'))
@@ -36,7 +36,7 @@ test('1: Burning pile spotting distance configuration', () => {
   // Selecting critical cover ht uses firebrand ht, but no new inputs
   dag.select(['spotting.burningPile.firebrand.criticalCoverHeight'])
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(3)
+  expect(inputNodes).toHaveLength(3)
   expect(inputNodes).toContain(dag.get('site.canopy.downwind.height'))
   expect(inputNodes).toContain(dag.get('site.canopy.downwind.isOpen'))
   expect(inputNodes).toContain(dag.get('spotting.burningPile.flameHeight'))
@@ -44,7 +44,7 @@ test('1: Burning pile spotting distance configuration', () => {
   // firbrand drift is fixed, so no new inputs required when it is selected
   dag.select(['spotting.burningPile.firebrand.drift'])
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(3)
+  expect(inputNodes).toHaveLength(3)
   expect(inputNodes).toContain(dag.get('site.canopy.downwind.height'))
   expect(inputNodes).toContain(dag.get('site.canopy.downwind.isOpen'))
   expect(inputNodes).toContain(dag.get('spotting.burningPile.flameHeight'))
@@ -55,7 +55,7 @@ test('1: Burning pile spotting distance configuration', () => {
     'spotting.burningPile.spotDistance.flatTerrainWithDrift'
   ])
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(4)
+  expect(inputNodes).toHaveLength(4)
   expect(inputNodes).toContain(dag.get('site.canopy.downwind.height'))
   expect(inputNodes).toContain(dag.get('site.canopy.downwind.isOpen'))
   expect(inputNodes).toContain(dag.get('spotting.burningPile.flameHeight'))
@@ -65,7 +65,7 @@ test('1: Burning pile spotting distance configuration', () => {
   // spot source location, and ridge-to-valley distance and elevation
   dag.select(['spotting.burningPile.spotDistance.mountainTerrain'])
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(7)
+  expect(inputNodes).toHaveLength(7)
   expect(inputNodes).toContain(dag.get('site.canopy.downwind.height'))
   expect(inputNodes).toContain(dag.get('site.canopy.downwind.isOpen'))
   expect(inputNodes).toContain(dag.get('spotting.burningPile.flameHeight'))

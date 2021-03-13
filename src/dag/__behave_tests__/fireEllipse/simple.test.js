@@ -24,13 +24,13 @@ test('1: Bpx FireEllipse', () => {
   const testList = testInputs.map(input => dag.get(input[0])) // Simple array of input Node references
   requiredInputs.forEach(requiredInput => {
     // console.log(requiredInput.node.key)
-    expect(testList.includes(requiredInput)).toEqual(true)
+    expect(testList).toContain(requiredInput)
   })
 
   // Ensure the required configuration nodes are as expected
   const configNodes = dag.requiredConfigNodes()
   // console.log(DagJest.arrayList(configNodes, 'Config Nodes'))
-  expect(configNodes.length).toEqual(12)
+  expect(configNodes).toHaveLength(12)
 
   // Set required input values and ensure results are as expected
   dag.input(testInputs).run()

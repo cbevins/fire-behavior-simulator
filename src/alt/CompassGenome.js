@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const ConfigDirectionBasis = ['fromNorth', 'fromUpslope', 'alwaysUpslope']
 const ConfigDirectionEllipseVector = ['fromFireHead', 'fromUpslope', 'fromNorth']
 const ConfigDirectionFireLink = ['standAlone', 'linkToSurface']
@@ -37,10 +38,10 @@ export const directionFireHeadingGenome = [
     [[], ['Compass.sum',
       'direction.slope.upslope.fronNorth',
       'direction.fire.heading.fromUpslope']]
-  ]],
+  ]]
 ]
 
- export const genome = [
+export const genome = [
   ['direction.configure.basis', ['ConfigDirectionBasis'], [[], ['Dag.input']]],
   ['direction.configure.slope', ['ConfigDirectionSlope'], [[], ['Dag.input']]],
   ['direction.configure.vector', ['ConfigDirectionVector'], [[], ['Dag.input']]],
@@ -54,7 +55,7 @@ export const directionFireHeadingGenome = [
     [['direction.configure.slope', 'upslope'],
       ['Compass.opposite', 'direction.slope.upslope.fromNorth']],
     [['direction.configure.slope', 'aspect'],
-      ['Dag.input']],
+      ['Dag.input']]
   ]],
 
   ['direction.slope.upslope.fromNorth', ['CompassAzimuth'], [ // slope basis is always fromNorth
@@ -63,7 +64,7 @@ export const directionFireHeadingGenome = [
     [['direction.configure.slope', 'aspect'],
       ['Compass.opposite', 'direction.slope.aspect.fromNorth']],
     [['direction.configure.slope', 'upslope'],
-      ['Dag.input']],
+      ['Dag.input']]
   ]],
 
   // only input if basis is fromUpslope
@@ -74,7 +75,7 @@ export const directionFireHeadingGenome = [
       ['Compass.windHeadingFromUpslope',
         'direction.slope.upslope.fromNorth',
         'direction.wind.source.fromNorth']],
-    [['direction.configure.basis', 'fromUpslope'], ['Dag.input']],
+    [['direction.configure.basis', 'fromUpslope'], ['Dag.input']]
   ]],
 
   // only input if basis if fromNorth
@@ -84,7 +85,7 @@ export const directionFireHeadingGenome = [
         'direction.slope.upslope.fromNorth',
         'direction.wind.heading.fromUpslope']],
     [['direction.configure.basis', 'fromNorth'],
-      ['Dag.input']],
+      ['Dag.input']]
   ]],
 
   // never input
@@ -100,13 +101,13 @@ export const directionFireHeadingGenome = [
   ['direction.ellipse.vector.fromHead', [['CompassAzimuth'], [
     [['direction.configure.vector', 'fromHead'], ['Dag.input']],
     [['direction.configure.vector', 'fromUpslope'],
-      [ 'Compass.diff',
+      ['Compass.diff',
         'direction.ellipse.vector.fromUpslope',
         'direction.fire..heading.fromUpslope']],
     [['direction.configure.vector', 'fromNorth'],
       ['Compass.diff',
         'direction.ellipse.vector.fromNorth',
-        'direction.fire.heading.fromNorth']],
+        'direction.fire.heading.fromNorth']]
   ]]],
   ['direction.ellipse.vector.fromNorth', [['CompassAzimuth'], [
     [['direction.configure.vector', 'fromNorth'], ['Dag.input']],
@@ -117,7 +118,7 @@ export const directionFireHeadingGenome = [
     [['direction.configure.vector', 'fromUpslope'],
       ['Compass.sum',
         'direction.ellipse.vector.fromUpslope',
-        'direction.slope.upslope']],
+        'direction.slope.upslope']]
   ]]],
 
   ['direction.ellipse.vector.fromUpslope', [['CompassAzimuth'], [
@@ -129,6 +130,6 @@ export const directionFireHeadingGenome = [
     [['direction.configure.vector', 'fromNorth'],
       ['Compass.diff',
         'direction.ellipse.vector.fromNorth',
-        'direction.slope.upslope.fromNorth']],
+        'direction.slope.upslope.fromNorth']]
   ]]]
 ]

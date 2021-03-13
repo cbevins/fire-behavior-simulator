@@ -23,7 +23,7 @@ test('1: Validate stand-alone with firelineIntensity input results against BP6',
   dag.select(['spotting.surfaceFire.spotDistance.mountainTerrain'])
 
   let inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(7)
+  expect(inputNodes).toHaveLength(7)
   // console.log(DagJest.arrayList(inputNodes, 'Test 5 Input Nodes'))
   // Always require the site.terrain inputs
   expect(inputNodes).toContain(dag.get('site.terrain.spotSourceLocation'))
@@ -39,13 +39,13 @@ test('1: Validate stand-alone with firelineIntensity input results against BP6',
   // Burning pile adds burning pile flame height input
   dag.select(['spotting.burningPile.spotDistance.mountainTerrain'])
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(8)
+  expect(inputNodes).toHaveLength(8)
   expect(inputNodes).toContain(dag.get('spotting.burningPile.flameHeight'))
 
   // Torching trees adds 4 inputs
   dag.select(['spotting.torchingTrees.spotDistance.mountainTerrain'])
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(12)
+  expect(inputNodes).toHaveLength(12)
   expect(inputNodes).toContain(dag.get('spotting.torchingTrees.count'))
   expect(inputNodes).toContain(dag.get('spotting.torchingTrees.dbh'))
   expect(inputNodes).toContain(dag.get('spotting.torchingTrees.height'))
@@ -54,7 +54,7 @@ test('1: Validate stand-alone with firelineIntensity input results against BP6',
   // Crown fire
   dag.select(['spotting.crownFire.spotDistance.mountainTerrain'])
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(14)
+  expect(inputNodes).toHaveLength(14)
   // Always require the site.terrain inputs
   expect(inputNodes).toContain(dag.get('site.terrain.spotSourceLocation'))
   expect(inputNodes).toContain(dag.get('site.terrain.ridgeValleyDistance'))
@@ -87,7 +87,7 @@ test('2: Validate stand-alone with flameLength input results against BP6', () =>
   dag.select(['spotting.surfaceFire.spotDistance.mountainTerrain'])
 
   let inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(7)
+  expect(inputNodes).toHaveLength(7)
   // console.log(DagJest.arrayList(inputNodes, 'Test 6 Input Nodes'))
   // Always require the site.terrain inputs
   expect(inputNodes).toContain(dag.get('site.terrain.spotSourceLocation'))
@@ -103,13 +103,13 @@ test('2: Validate stand-alone with flameLength input results against BP6', () =>
   // Burning pile adds burning pile flame height input
   dag.select(['spotting.burningPile.spotDistance.mountainTerrain'])
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(8)
+  expect(inputNodes).toHaveLength(8)
   expect(inputNodes).toContain(dag.get('spotting.burningPile.flameHeight'))
 
   // Torching trees adds 4 inputs
   dag.select(['spotting.torchingTrees.spotDistance.mountainTerrain'])
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(12)
+  expect(inputNodes).toHaveLength(12)
   expect(inputNodes).toContain(dag.get('spotting.torchingTrees.count'))
   expect(inputNodes).toContain(dag.get('spotting.torchingTrees.dbh'))
   expect(inputNodes).toContain(dag.get('spotting.torchingTrees.height'))
@@ -118,13 +118,13 @@ test('2: Validate stand-alone with flameLength input results against BP6', () =>
   // Crown fire
   dag.select(['spotting.crownFire.spotDistance.mountainTerrain'])
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(14)
+  expect(inputNodes).toHaveLength(14)
   expect(inputNodes).toContain(dag.get('site.canopy.crown.totalHeight'))
   expect(inputNodes).toContain(dag.get('site.fire.observed.flameLength'))
 
   // Validate results
   const location = dag.get('site.terrain.spotSourceLocation')
-  const isOpen = dag.get('site.canopy.downwind.isOpen')
+  // const isOpen = dag.get('site.canopy.downwind.isOpen')
   dag.input([
     // Inputs arranged in BP6 order...
     // Fuel/Vegetation, Overstory
@@ -182,7 +182,7 @@ test('2: Validate stand-alone with flameLength input results against BP6', () =>
       dag.input([[location, [locationKey]]])
       // isOpen true or false
       Object.keys(results[nodeKey][locationKey]).forEach(openKey => {
-        dag.input([['site.canopy.downwind.isOpen', [openKey==='open']]]).run()
+        dag.input([['site.canopy.downwind.isOpen', [openKey === 'open']]]).run()
 
         expect(node.value()).toBeCloseTo(
           results[nodeKey][locationKey][openKey], 2,
@@ -202,7 +202,7 @@ test('3: Validate stand-alone surface fire spotting with flameLength input resul
   dag.select(['spotting.surfaceFire.spotDistance.mountainTerrain'])
 
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(7)
+  expect(inputNodes).toHaveLength(7)
   // console.log(DagJest.arrayList(inputNodes, 'Test 6 Input Nodes'))
   // Always require the site.terrain inputs
   expect(inputNodes).toContain(dag.get('site.terrain.spotSourceLocation'))
@@ -217,7 +217,7 @@ test('3: Validate stand-alone surface fire spotting with flameLength input resul
 
   // Validate results
   const location = dag.get('site.terrain.spotSourceLocation')
-  const isOpen = dag.get('site.canopy.downwind.isOpen')
+  // const isOpen = dag.get('site.canopy.downwind.isOpen')
   dag.input([
     // Inputs arranged in BP6 order...
     // Fuel/Vegetation, Overstory
@@ -250,7 +250,7 @@ test('3: Validate stand-alone surface fire spotting with flameLength input resul
       dag.input([[location, [locationKey]]])
       // isOpen true or false
       Object.keys(results[nodeKey][locationKey]).forEach(openKey => {
-        dag.input([['site.canopy.downwind.isOpen', [openKey==='open']]]).run()
+        dag.input([['site.canopy.downwind.isOpen', [openKey === 'open']]]).run()
 
         expect(node.value()).toBeCloseTo(
           results[nodeKey][locationKey][openKey], 2,

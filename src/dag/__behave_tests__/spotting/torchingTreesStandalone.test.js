@@ -19,7 +19,7 @@ test('1: Torching trees spotting distance configuration', () => {
   // Selecting downwind canopy applied ht requires its 2 inputs
   dag.select(['site.canopy.downwind.appliedHeight'])
   let inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(2)
+  expect(inputNodes).toHaveLength(2)
   expect(inputNodes).toContain(dag.get('site.canopy.downwind.height'))
   expect(inputNodes).toContain(dag.get('site.canopy.downwind.isOpen'))
 
@@ -29,7 +29,7 @@ test('1: Torching trees spotting distance configuration', () => {
     'spotting.torchingTrees.flameDuration'
   ])
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(5)
+  expect(inputNodes).toHaveLength(5)
   expect(inputNodes).toContain(dag.get('site.canopy.downwind.height'))
   expect(inputNodes).toContain(dag.get('site.canopy.downwind.isOpen'))
   expect(inputNodes).toContain(dag.get('spotting.torchingTrees.species'))
@@ -42,7 +42,7 @@ test('1: Torching trees spotting distance configuration', () => {
     'spotting.torchingTrees.firebrand.criticalCoverHeight'
   ])
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(6)
+  expect(inputNodes).toHaveLength(6)
   expect(inputNodes).toContain(dag.get('site.canopy.downwind.height'))
   expect(inputNodes).toContain(dag.get('site.canopy.downwind.isOpen'))
   expect(inputNodes).toContain(dag.get('spotting.torchingTrees.species'))
@@ -53,7 +53,7 @@ test('1: Torching trees spotting distance configuration', () => {
   // firebrand drift is calculated, but no new inputs are required when it is selected
   dag.select(['spotting.torchingTrees.firebrand.drift']).run()
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(6)
+  expect(inputNodes).toHaveLength(6)
   expect(inputNodes).toContain(dag.get('site.canopy.downwind.height'))
   expect(inputNodes).toContain(dag.get('site.canopy.downwind.isOpen'))
   expect(inputNodes).toContain(dag.get('spotting.torchingTrees.species'))
@@ -67,7 +67,7 @@ test('1: Torching trees spotting distance configuration', () => {
     'spotting.torchingTrees.spotDistance.flatTerrainWithDrift'
   ])
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(7)
+  expect(inputNodes).toHaveLength(7)
   expect(inputNodes).toContain(dag.get('site.canopy.downwind.height'))
   expect(inputNodes).toContain(dag.get('site.canopy.downwind.isOpen'))
   expect(inputNodes).toContain(dag.get('spotting.torchingTrees.species'))
@@ -80,7 +80,7 @@ test('1: Torching trees spotting distance configuration', () => {
   // spot source location, and ridge-to-valley distance and elevation
   dag.select(['spotting.torchingTrees.spotDistance.mountainTerrain'])
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(10)
+  expect(inputNodes).toHaveLength(10)
   expect(inputNodes).toContain(dag.get('site.canopy.downwind.height'))
   expect(inputNodes).toContain(dag.get('site.canopy.downwind.isOpen'))
   expect(inputNodes).toContain(dag.get('spotting.torchingTrees.species'))

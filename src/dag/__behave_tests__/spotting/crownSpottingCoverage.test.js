@@ -21,7 +21,7 @@ test('1: Crown fire with zero flame length', () => {
   dag.select(['spotting.crownFire.spotDistance.mountainTerrain'])
 
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(6)
+  expect(inputNodes).toHaveLength(6)
   // Always require the site.terrain inputs
   expect(inputNodes).toContain(dag.get('site.canopy.crown.totalHeight'))
   expect(inputNodes).toContain(dag.get('site.wind.speed.at20ft'))

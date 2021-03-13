@@ -115,7 +115,7 @@ test('1: Stand-alone fire ellipse', () => {
   // Start with just the head fire ros as output
   dag.select(['surface.fire.ellipse.head.spreadRate']).run()
   let inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(dag.get('site.fire.observed.spreadRate'))
   dag.input([['site.fire.observed.spreadRate', [spreadRate]]]).run()
   expect(dag.get('surface.fire.ellipse.head.spreadRate').value()).toEqual(spreadRate)
@@ -127,7 +127,7 @@ test('1: Stand-alone fire ellipse', () => {
   dag.select(['surface.fire.ellipse.head.spreadDistance']).run()
   inputNodes = dag.requiredInputNodes()
   // Now requires 'site.fire.observed.spreadRate' and 'site.fire.time.sinceIgnition'
-  expect(inputNodes.length).toEqual(2)
+  expect(inputNodes).toHaveLength(2)
   expect(inputNodes).toContain(dag.get('site.fire.observed.spreadRate'))
   expect(inputNodes).toContain(dag.get('site.fire.time.sinceIgnition'))
   dag.input([['site.fire.time.sinceIgnition', [60]]]).run()
@@ -153,7 +153,7 @@ test('1: Stand-alone fire ellipse', () => {
   ]).run()
   inputNodes = dag.requiredInputNodes()
   // Now requires ros, elapsed time, and length-to-width ratio as inputs
-  expect(inputNodes.length).toEqual(3)
+  expect(inputNodes).toHaveLength(3)
   expect(inputNodes).toContain(dag.get('site.fire.observed.spreadRate'))
   expect(inputNodes).toContain(dag.get('site.fire.time.sinceIgnition'))
   expect(inputNodes).toContain(dag.get('site.fire.observed.lengthToWidthRatio'))
@@ -187,7 +187,7 @@ test('1: Stand-alone fire ellipse', () => {
   ]).run()
 
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(4)
+  expect(inputNodes).toHaveLength(4)
   expect(inputNodes).toContain(dag.get('site.fire.observed.spreadRate'))
   expect(inputNodes).toContain(dag.get('site.fire.time.sinceIgnition'))
   expect(inputNodes).toContain(dag.get('site.fire.observed.lengthToWidthRatio'))
@@ -217,7 +217,7 @@ test('1: Stand-alone fire ellipse', () => {
   ]).run()
 
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(5)
+  expect(inputNodes).toHaveLength(5)
   expect(inputNodes).toContain(dag.get('site.fire.observed.spreadRate'))
   expect(inputNodes).toContain(dag.get('site.fire.time.sinceIgnition'))
   expect(inputNodes).toContain(dag.get('site.fire.observed.lengthToWidthRatio'))
@@ -253,7 +253,7 @@ test('1: Stand-alone fire ellipse', () => {
   ]).run()
 
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(6)
+  expect(inputNodes).toHaveLength(6)
   expect(inputNodes).toContain(dag.get('site.fire.observed.spreadRate'))
   expect(inputNodes).toContain(dag.get('site.fire.time.sinceIgnition'))
   expect(inputNodes).toContain(dag.get('site.fire.observed.lengthToWidthRatio'))
@@ -286,7 +286,7 @@ test('1: Stand-alone fire ellipse', () => {
   ]).run()
 
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(8)
+  expect(inputNodes).toHaveLength(8)
   expect(inputNodes).toContain(dag.get('site.fire.observed.spreadRate'))
   expect(inputNodes).toContain(dag.get('site.fire.time.sinceIgnition'))
   expect(inputNodes).toContain(dag.get('site.fire.observed.lengthToWidthRatio'))

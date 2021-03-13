@@ -1,6 +1,5 @@
 import { Sim, StorageNodeMap } from '../../index.js'
 import * as DagJest from '../../utils/matchers.js'
-import { IgnitionProbability } from '../../../index.js'
 
 const value = DagJest.value
 expect.extend({ value })
@@ -60,13 +59,13 @@ test('1: Firebrand ignition, surfaceFire', () => {
   ])
 
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(3)
+  expect(inputNodes).toHaveLength(3)
   expect(inputNodes).toContain(dag.get('site.temperature.air'))
   expect(inputNodes).toContain(dag.get('site.moisture.dead.tl1h'))
   expect(inputNodes).toContain(dag.get('site.canopy.fuel.shading'))
 
   const requiredNodes = dag.requiredNodes()
-  expect(requiredNodes.length).toEqual(6)
+  expect(requiredNodes).toHaveLength(6)
   // console.log(DagJest.arrayList(requiredNodes, 'Test 1 Required Nodes'))
   // Requires 3 input nodes plus:
   expect(requiredNodes).toContain(dag.get('site.temperature.fuel'))
@@ -88,7 +87,7 @@ test('2: Lightning strike ignition, surfaceFire', () => {
   dag.select([node])
 
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(4)
+  expect(inputNodes).toHaveLength(4)
   expect(inputNodes).toContain(dag.get('ignition.lightningStrike.fuel.type'))
   expect(inputNodes).toContain(dag.get('ignition.lightningStrike.fuel.depth'))
   expect(inputNodes).toContain(dag.get('ignition.lightningStrike.charge'))
@@ -96,7 +95,7 @@ test('2: Lightning strike ignition, surfaceFire', () => {
 
   const requiredNodes = dag.requiredNodes()
   // console.log(DagJest.arrayList(requiredNodes, 'Test 3 Required Nodes'))
-  expect(requiredNodes.length).toEqual(6)
+  expect(requiredNodes).toHaveLength(6)
   // Requires 4 input nodes, 1 output Node, plus:
   expect(requiredNodes).toContain(dag.get('configure.fuel.moisture'))
 

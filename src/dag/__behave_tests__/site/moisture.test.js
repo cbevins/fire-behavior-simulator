@@ -40,7 +40,7 @@ test('1: Fuel moisture configuration', () => {
     moisHerb,
     moisStem,
     d1Mois,
-    l1Mois,
+    l1Mois
   ]).run()
   expect(moisTl1h.isSelected()).toEqual(true)
   expect(d1Mois.isSelected()).toEqual(true)
@@ -57,7 +57,7 @@ test('1: Fuel moisture configuration', () => {
 
   expect(moisCfg.value()).toEqual('individual') // '\nMoisture config is \'individual\'')
   let inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(6)
+  expect(inputNodes).toHaveLength(6)
   expect(inputNodes).toContain(catalogKey)
   expect(inputNodes).toContain(moisTl1h)
   expect(inputNodes).toContain(moisTl10h)
@@ -81,7 +81,7 @@ test('1: Fuel moisture configuration', () => {
   expect(moisTl1h.isSelected()).toEqual(true)
   expect(d1Mois.isSelected()).toEqual(true)
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(3)
+  expect(inputNodes).toHaveLength(3)
   expect(inputNodes).toContain(catalogKey)
   expect(inputNodes).not.toContain(moisTl1h)
   expect(inputNodes).not.toContain(moisTl10h)
@@ -107,7 +107,7 @@ test('1: Fuel moisture configuration', () => {
   dag.configure([[moisCfg, 'liveCategory']]).run()
   expect(moisCfg.value()).toEqual('liveCategory')
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(5)
+  expect(inputNodes).toHaveLength(5)
   expect(inputNodes).toContain(catalogKey)
   expect(inputNodes).toContain(moisTl1h)
   expect(inputNodes).toContain(moisTl10h)

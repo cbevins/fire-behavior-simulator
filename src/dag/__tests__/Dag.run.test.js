@@ -1,15 +1,8 @@
-import { Sim, StorageAbstract } from '../index.js'
-import { UpdateOrthogonalRecursive, UpdateOrthogonalStack } from '../index.js'
+import { Sim, StorageAbstract, UpdateOrthogonalRecursive, UpdateOrthogonalStack } from '../index.js'
+
 import { nodeTable } from '../../utils/nodeTable.js'
 
-const headRosKey = 'surface.fire.ellipse.head.spreadRate'
-
-function fill(input, toSize) {
-  let ar = input
-  while(ar.length < toSize) { ar = ar.concat(input) }
-  return ar
-}
-
+//
 // Step 2 - configure input choices and computational options
 const configItems = [
   // active for this example:
@@ -45,13 +38,13 @@ const selectItems = [
   'surface.fire.ellipse.flank.firelineIntensity',
   'surface.fire.ellipse.flank.flameLength',
   'surface.fire.ellipse.flank.scorchHeight',
-  'surface.fire.ellipse.flank.spreadDistance',
+  'surface.fire.ellipse.flank.spreadDistance'
 ]
 
 const fuel = ['1', '4', '6', '10', 'gr9', 'gs4', 'sh9', 'tu5', 'tl9', 'sb4']
 const windSpeed = []; for (let i = 0; i < 10; i++) { windSpeed.push(i * 88 * 2) } // [0, 18, 2] mi/h
 const windDir = []; for (let i = 0; i < 10; i++) { windDir.push(i * 30) } // [0, 270, 30] degrees
-const tl1h = []; for (let i = 2; i <= 20; i+=2) { tl1h.push(i * 0.01) } // [2, 20, 2] %
+const tl1h = []; for (let i = 2; i <= 20; i += 2) { tl1h.push(i * 0.01) } // [2, 20, 2] %
 const tl10h = [0.07]
 const tl100h = [0.09]
 const herb = []; for (let i = 50; i <= 140; i += 10) { herb.push(i * 0.01) } // [50, 140, 10] %
@@ -73,8 +66,8 @@ const inputItems = [
   ['site.wind.direction.heading.fromUpslope', windDir],
   ['site.temperature.air', temp],
   ['site.fire.time.sinceIgnition', time],
-  ['site.slope.direction.aspect', aspect],
-  ]
+  ['site.slope.direction.aspect', aspect]
+]
 
 test('Dag.run() with UpdateOrthogonalStack', () => {
   const sim = new Sim('dag1')
@@ -95,11 +88,12 @@ test('Dag.run() with UpdateOrthogonalStack', () => {
 
   const result = dag.run()
 
+  // eslint-disable-next-line no-unused-vars
   const str = nodeTable(dag.requiredNodes(),
-    ['index', 'key', 'label', 'order', 'nativeValue', 'nativeUnits', 'displayValue', 'displayUnits', 'variantKey', ],
+    ['index', 'key', 'label', 'order', 'nativeValue', 'nativeUnits', 'displayValue', 'displayUnits', 'variantKey'],
     'Required Nodes')
 
-  expect(result).toEqual({runs: 100, calls: 5960, ok: false, message: 'Run limit of 100 exceeded.'})
+  expect(result).toEqual({ runs: 100, calls: 5960, ok: false, message: 'Run limit of 100 exceeded.' })
 })
 
 test('Dag.run() with UpdateOrthogonalRecursive', () => {
@@ -114,5 +108,5 @@ test('Dag.run() with UpdateOrthogonalRecursive', () => {
     .setRunLimit(100)
 
   const result = dag.run()
-  expect(result).toEqual({runs: 100, calls: 5960, ok: false, message: 'Run limit of 100 exceeded.'})
+  expect(result).toEqual({ runs: 100, calls: 5960, ok: false, message: 'Run limit of 100 exceeded.' })
 })

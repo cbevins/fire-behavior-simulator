@@ -4,10 +4,10 @@
  * @author Collin D. Bevins, <cbevins@montana.com>
  * @license MIT
 */
-import {keyLabel} from '../variant/filters.js'
+import { keyLabel } from '../variant/filters.js'
 
 export class DagNode {
-  constructor(geneRef, variantRef, initialValue) {
+  constructor (geneRef, variantRef, initialValue) {
     this._dag = {
       _producers: [], // array of references to producer DagNodes
       _consumers: [], // aray of references to consumer DagNodes
@@ -70,7 +70,7 @@ export class DagNode {
     this._is._required = false
   }
 
-  setEnabled(bool) { this._is._enabled = bool }
+  setEnabled (bool) { this._is._enabled = bool }
 
   // setValue(value) { this._value = value }
 

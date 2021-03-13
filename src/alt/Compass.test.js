@@ -1,3 +1,5 @@
+/* eslint-disable array-bracket-spacing */
+/* eslint-disable no-multi-spaces */
 import * as Compass from './Compass.js'
 
 const data = [
@@ -30,7 +32,7 @@ const data = [
   [225,  45, 315, 135, 270,  90],
   [270,  90, 315, 135, 225,  45],
   [315, 135, 315, 135, 180,   0],
-  [360, 180, 315, 135, 135, 315],
+  [360, 180, 315, 135, 135, 315]
 ]
 test('1: Compass wind-slope directions', () => {
   data.forEach(([upslope, aspect, windSrcNo, windHdgNo, windHdgUp, windSrcUp]) => {

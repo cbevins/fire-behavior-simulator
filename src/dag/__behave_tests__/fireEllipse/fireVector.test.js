@@ -47,14 +47,14 @@ test('1: Stand-alone fire ellipse: input fire vector from head', () => {
   dag.select([
     ellipseVectorFromHead,
     ellipseVectorFromUpslope,
-    ellipseVectorFromNorth,
+    ellipseVectorFromNorth
   ]).run()
 
   // Ensure vector from fire head is an input
   expect(cfgVector.value()).toEqual('fromHead')
 
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(3)
+  expect(inputNodes).toHaveLength(3)
   // console.log(DagJest.arrayList(inputNodes, 'Inputs'))
   expect(inputNodes).toContain(siteVectorFromHead)
   expect(inputNodes).toContain(aspect)
@@ -93,7 +93,7 @@ test('2: Stand-alone fire ellipse: input fire vector from upslope', () => {
 
   let inputNodes = dag.requiredInputNodes()
   // console.log(DagJest.arrayList(inputNodes, 'Inputs'))
-  expect(inputNodes.length).toEqual(3)
+  expect(inputNodes).toHaveLength(3)
   expect(inputNodes).toContain(siteVectorFromUpslope)
   expect(inputNodes).toContain(aspect)
   expect(inputNodes).toContain(siteFireHeadingFromUpslope)
@@ -114,7 +114,7 @@ test('2: Stand-alone fire ellipse: input fire vector from upslope', () => {
   dag.configure([['configure.wind.direction', 'sourceFromNorth']])
   inputNodes = dag.requiredInputNodes()
   // console.log(DagJest.arrayList(inputNodes, 'Inputs'))
-  expect(inputNodes.length).toEqual(3)
+  expect(inputNodes).toHaveLength(3)
   expect(inputNodes).toContain(siteVectorFromUpslope)
   expect(inputNodes).toContain(aspect)
   expect(inputNodes).toContain(siteFireHeadingFromNorth)
@@ -122,7 +122,7 @@ test('2: Stand-alone fire ellipse: input fire vector from upslope', () => {
   dag.configure([['configure.wind.direction', 'upslope']])
   inputNodes = dag.requiredInputNodes()
   // console.log(DagJest.arrayList(inputNodes, 'Inputs'))
-  expect(inputNodes.length).toEqual(3)
+  expect(inputNodes).toHaveLength(3)
   expect(inputNodes).toContain(siteVectorFromUpslope)
   expect(inputNodes).toContain(aspect)
   expect(inputNodes).toContain(siteFireHeadingFromUpslope)
@@ -147,7 +147,7 @@ test('3: Stand-alone fire ellipse: input fire vector from north', () => {
 
   const inputNodes = dag.requiredInputNodes()
   // console.log(DagJest.arrayList(inputNodes, 'Inputs'))
-  expect(inputNodes.length).toEqual(3)
+  expect(inputNodes).toHaveLength(3)
   expect(inputNodes).toContain(siteVectorFromNorth)
   expect(inputNodes).toContain(aspect)
   expect(inputNodes).toContain(siteFireHeadingFromUpslope) // fails

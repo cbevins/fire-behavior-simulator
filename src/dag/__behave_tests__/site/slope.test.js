@@ -1,6 +1,6 @@
 import { Sim } from '../../index.js'
 import * as DagJest from '../../utils/matchers.js'
-import {configDefault} from '../../utils/configs.js'
+import { configDefault } from '../../utils/configs.js'
 
 const value = DagJest.value
 expect.extend({ value })
@@ -23,14 +23,14 @@ test('1: Slope direction and steepness', () => {
   // Start with just aspect selected
   dag.select([aspect])
   let selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(1)
+  expect(selectedNodes).toHaveLength(1)
   expect(selectedNodes).toContain(aspect)
 
   let configNodes = dag.requiredConfigNodes()
-  expect(configNodes.length).toEqual(0)
+  expect(configNodes).toHaveLength(0)
 
   let requiredNodes = dag.requiredNodes()
-  expect(requiredNodes.length).toEqual(1)
+  expect(requiredNodes).toHaveLength(1)
   expect(requiredNodes).toContain(aspect)
 
   let inputNodes = dag.requiredInputNodes()
@@ -39,17 +39,17 @@ test('1: Slope direction and steepness', () => {
   // Add upslope to selected list
   dag.select([upslope])
   selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(2)
+  expect(selectedNodes).toHaveLength(2)
   expect(selectedNodes).toContain(aspect)
   expect(selectedNodes).toContain(upslope)
 
   requiredNodes = dag.requiredNodes()
-  expect(requiredNodes.length).toEqual(2)
+  expect(requiredNodes).toHaveLength(2)
   expect(requiredNodes).toContain(aspect)
   expect(requiredNodes).toContain(upslope)
 
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(aspect)
   dag.input([[aspect, 45]]).run()
   expect(upslope.value()).toEqual(225)
@@ -57,13 +57,13 @@ test('1: Slope direction and steepness', () => {
   // Add ratio to selected list
   dag.select([ratio])
   selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(3)
+  expect(selectedNodes).toHaveLength(3)
   expect(selectedNodes).toContain(aspect)
   expect(selectedNodes).toContain(upslope)
   expect(selectedNodes).toContain(ratio)
 
   requiredNodes = dag.requiredNodes()
-  expect(requiredNodes.length).toEqual(4)
+  expect(requiredNodes).toHaveLength(4)
   expect(requiredNodes).toContain(aspect)
   expect(requiredNodes).toContain(upslope)
   expect(requiredNodes).toContain(ratio)
@@ -71,12 +71,12 @@ test('1: Slope direction and steepness', () => {
 
   configNodes = dag.requiredConfigNodes()
   expect(cfgSlp._is._required).toEqual(true)
-  expect(configNodes.length).toEqual(1)
+  expect(configNodes).toHaveLength(1)
   expect(configNodes).toContain(cfgSlp)
   expect(cfgSlp.value()).toEqual('ratio')
 
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(2)
+  expect(inputNodes).toHaveLength(2)
   expect(inputNodes).toContain(aspect)
   expect(inputNodes).toContain(ratio)
   dag.input([
@@ -90,14 +90,14 @@ test('1: Slope direction and steepness', () => {
   // Add degrees to selected list
   dag.select([degrees])
   selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(4)
+  expect(selectedNodes).toHaveLength(4)
   expect(selectedNodes).toContain(aspect)
   expect(selectedNodes).toContain(upslope)
   expect(selectedNodes).toContain(ratio)
   expect(selectedNodes).toContain(degrees)
 
   requiredNodes = dag.requiredNodes()
-  expect(requiredNodes.length).toEqual(5)
+  expect(requiredNodes).toHaveLength(5)
   expect(requiredNodes).toContain(aspect)
   expect(requiredNodes).toContain(upslope)
   expect(requiredNodes).toContain(ratio)
@@ -105,12 +105,12 @@ test('1: Slope direction and steepness', () => {
   expect(requiredNodes).toContain(degrees)
 
   configNodes = dag.requiredConfigNodes()
-  expect(configNodes.length).toEqual(1)
+  expect(configNodes).toHaveLength(1)
   expect(configNodes).toContain(cfgSlp)
   expect(cfgSlp.value()).toEqual('ratio')
 
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(2)
+  expect(inputNodes).toHaveLength(2)
   expect(inputNodes).toContain(aspect)
   expect(inputNodes).toContain(ratio)
   dag.input([
@@ -124,7 +124,7 @@ test('1: Slope direction and steepness', () => {
 
   // Configure for degrees input
   selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(4)
+  expect(selectedNodes).toHaveLength(4)
   expect(selectedNodes).toContain(aspect)
   expect(selectedNodes).toContain(upslope)
   expect(selectedNodes).toContain(ratio)
@@ -135,7 +135,7 @@ test('1: Slope direction and steepness', () => {
   ])
   expect(cfgSlp.value()).toEqual('degrees')
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(2)
+  expect(inputNodes).toHaveLength(2)
   expect(inputNodes).toContain(aspect)
   expect(inputNodes).toContain(degrees)
   dag.input([
@@ -154,7 +154,7 @@ test('1: Slope direction and steepness', () => {
   expect(cfgSlp.value()).toEqual('map')
 
   selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(4)
+  expect(selectedNodes).toHaveLength(4)
   expect(selectedNodes).toContain(aspect)
   expect(selectedNodes).toContain(upslope)
   expect(selectedNodes).toContain(ratio)
@@ -166,7 +166,7 @@ test('1: Slope direction and steepness', () => {
   inputNodes = dag.requiredInputNodes()
   // console.log(DagJest.arrayList(inputNodes, 'Input Nodes'))
 
-  expect(inputNodes.length).toEqual(5)
+  expect(inputNodes).toHaveLength(5)
   expect(inputNodes).toContain(aspect)
   expect(inputNodes).toContain(scale)
   expect(inputNodes).toContain(interval)
@@ -214,17 +214,17 @@ test('2: Slope from map', () => {
     degrees
   ])
   const selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(4)
+  expect(selectedNodes).toHaveLength(4)
   expect(selectedNodes).toContain(aspect)
   expect(selectedNodes).toContain(upslope)
   expect(selectedNodes).toContain(ratio)
   expect(selectedNodes).toContain(degrees)
-  const requiredNodes = dag.requiredNodes()
+  // const requiredNodes = dag.requiredNodes()
   // console.log(DagJest.arrayList(requiredNodes, 'Required Nodes'))
 
   const inputNodes = dag.requiredInputNodes()
   // console.log(DagJest.arrayList(inputNodes, 'Input Nodes'))
-  expect(inputNodes.length).toEqual(5)
+  expect(inputNodes).toHaveLength(5)
   expect(inputNodes).toContain(aspect)
   expect(inputNodes).toContain(scale)
   expect(inputNodes).toContain(interval)
@@ -246,7 +246,7 @@ test('2: Slope from map', () => {
   expect(ratio.value()).toBeCloseTo(0.05, 12)
   expect(degrees.value()).toBeCloseTo(2.862405226, 9)
 
-  let requiredConfigNodes = dag.requiredConfigNodes()
-  expect(requiredConfigNodes.length).toEqual(1)
+  const requiredConfigNodes = dag.requiredConfigNodes()
+  expect(requiredConfigNodes).toHaveLength(1)
   expect(requiredConfigNodes).toContain(cfgSlp)
 })

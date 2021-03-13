@@ -57,11 +57,11 @@ const Inputs5 = [
   ['site.map.scale', [12000]]
 ]
 
-const InputsUnused = [
-  ['site.fire.observed.heatPerUnitArea', [3054.970441574617]],
-  ['site.fire.vector.fromNorth', [45]],
-  ['site.temperature.air', [95]]
-]
+// const InputsUnused = [
+//   ['site.fire.observed.heatPerUnitArea', [3054.970441574617]],
+//   ['site.fire.vector.fromNorth', [45]],
+//   ['site.temperature.air', [95]]
+// ]
 
 // Basic surface fire results to ensure correct values
 const surface = 'surface.primary.fuel.fire.' // or 'surface.weighted.fire.'
@@ -135,11 +135,11 @@ const Results5 = [
   ['crown.fire.active.map.perimeter', 7249.28885253776 / 12000, 12],
   ['crown.fire.active.map.area', 2627103.302726261 / 12000 / 12000, 12],
   ['crown.fire.final.size.length', 3307.16447332823, 12], // changed
-  ['crown.fire.final.size.width', 801.73684201896449, 12], // changed
+  ['crown.fire.final.size.width', 801.7368420189645, 12], // changed
   ['crown.fire.final.size.perimeter', 6454.247093310093, 12], // changed
   ['crown.fire.final.size.area', 2082464.0672270376, 12], // changed
   ['crown.fire.final.map.length', 3307.16447332823 / 12000, 12], // changed
-  ['crown.fire.final.map.width', 801.73684201896449 / 12000, 12], // changed
+  ['crown.fire.final.map.width', 801.7368420189645 / 12000, 12], // changed
   ['crown.fire.final.map.perimeter', 6454.247093310093 / 12000, 12], // changed
   ['crown.fire.final.map.area', 2082464.0672270376 / 12000 / 12000, 12] // changed
 ]
@@ -156,7 +156,7 @@ test('1: Passive crown fire per BP6', () => {
   // Start with the basic surface fire behaviors to ensure correct values
   dag.select(Results1.map(node => node[0]))
   let requiredInputs = dag.requiredInputNodes()
-  expect(requiredInputs.length).toEqual(Inputs1.length)
+  expect(requiredInputs).toHaveLength(Inputs1.length)
   Inputs1.forEach(input => {
     expect(requiredInputs).toContain(dag.get(input[0]))
   })
@@ -170,7 +170,7 @@ test('1: Passive crown fire per BP6', () => {
   // Now request the Rothermel crown fire results
   dag.select(Results2.map(node => node[0]))
   requiredInputs = dag.requiredInputNodes()
-  expect(requiredInputs.length).toEqual(Inputs1.length + Inputs2.length)
+  expect(requiredInputs).toHaveLength(Inputs1.length + Inputs2.length)
   Inputs2.forEach(input => {
     expect(requiredInputs).toContain(dag.get(input[0]))
   })
@@ -185,7 +185,7 @@ test('1: Passive crown fire per BP6', () => {
   // Now request crown fire initiation
   dag.select(Results3.map(node => node[0]))
   requiredInputs = dag.requiredInputNodes()
-  expect(requiredInputs.length).toEqual(
+  expect(requiredInputs).toHaveLength(
     Inputs1.length + Inputs2.length + Inputs3.length
   )
   expect(requiredInputs).toContain(dag.get('site.canopy.fuel.foliar.moistureContent'))
@@ -200,7 +200,7 @@ test('1: Passive crown fire per BP6', () => {
   // Final crown fire results (no new inputs required)
   dag.select(Results4.map(node => node[0]))
   requiredInputs = dag.requiredInputNodes()
-  expect(requiredInputs.length).toEqual(
+  expect(requiredInputs).toHaveLength(
     Inputs1.length + Inputs2.length + Inputs3.length
   )
 
@@ -214,7 +214,7 @@ test('1: Passive crown fire per BP6', () => {
   // Finally, verify distances and sizes
   dag.select(Results5.map(node => node[0]))
   requiredInputs = dag.requiredInputNodes()
-  expect(requiredInputs.length).toEqual(
+  expect(requiredInputs).toHaveLength(
     Inputs1.length + Inputs2.length + Inputs3.length + Inputs5.length
   )
   expect(requiredInputs).toContain(dag.get('site.fire.time.sinceIgnition'))

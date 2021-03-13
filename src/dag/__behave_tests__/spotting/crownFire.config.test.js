@@ -21,19 +21,19 @@ test('1. Crown fire spotting', () => {
   // Critical cover height is fixed at 0
   dag.select(['spotting.crownFire.firebrand.criticalCoverHeight'])
   let inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(0)
+  expect(inputNodes).toHaveLength(0)
 
   // Currently in stand-alone mode
   dag.select(['spotting.crownFire.firelineIntensity'])
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(dag.get('site.fire.crown.flameLength'))
 
   // Linking to crownFire requires a lot more inputs
   dag.configure([['link.crownSpot', 'linkedToCrownFire']])
   inputNodes = dag.requiredInputNodes()
   // console.log(inputNodes.map(node => node.key))
-  expect(inputNodes.length).toEqual(11)
+  expect(inputNodes).toHaveLength(11)
 
   // Linking to surfaceFire requires a lot more inputs
   dag.configure([
@@ -41,17 +41,17 @@ test('1. Crown fire spotting', () => {
     ['link.crownSpot', 'linkedToCrownFire']
   ])
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(11)
+  expect(inputNodes).toHaveLength(11)
 
   // Back to stand-alone
   dag.configure([['link.crownSpot', 'standAlone']])
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(dag.get('site.fire.crown.flameLength'))
 
   dag.select(['spotting.crownFire.firebrandObject'])
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(3)
+  expect(inputNodes).toHaveLength(3)
   expect(inputNodes).toContain(dag.get('site.fire.crown.flameLength'))
   expect(inputNodes).toContain(dag.get('site.canopy.crown.totalHeight'))
   expect(inputNodes).toContain(dag.get('site.wind.speed.at20ft'))
@@ -64,7 +64,7 @@ test('1. Crown fire spotting', () => {
     'spotting.crownFire.spotDistance.flatTerrainWithDrift'
   ])
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(3)
+  expect(inputNodes).toHaveLength(3)
   expect(inputNodes).toContain(dag.get('site.fire.crown.flameLength'))
   expect(inputNodes).toContain(dag.get('site.canopy.crown.totalHeight'))
   expect(inputNodes).toContain(dag.get('site.wind.speed.at20ft'))
@@ -73,7 +73,7 @@ test('1. Crown fire spotting', () => {
   // spot source location, and ridge-to-valley distance and elevation
   dag.select(['spotting.crownFire.spotDistance.mountainTerrain'])
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(6)
+  expect(inputNodes).toHaveLength(6)
   expect(inputNodes).toContain(dag.get('site.fire.crown.flameLength'))
   expect(inputNodes).toContain(dag.get('site.canopy.crown.totalHeight'))
   expect(inputNodes).toContain(dag.get('site.wind.speed.at20ft'))

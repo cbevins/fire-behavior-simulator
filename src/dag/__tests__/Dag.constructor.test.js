@@ -10,5 +10,5 @@ test('new Dag()', () => {
   expect(dag.requiredInputNodes()).toEqual([])
   expect(dag.requiredNodes()).toEqual([])
   expect(dag.selectedNodes()).toEqual([])
-  expect(dag.sortedNodes().length).toEqual(nodeLength)
+  expect(dag.sortedNodes()).toHaveLength(nodeLength)
 })

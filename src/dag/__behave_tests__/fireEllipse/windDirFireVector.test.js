@@ -1,6 +1,6 @@
 import { Sim } from '../../index.js'
 import * as DagJest from '../../utils/matchers.js'
-import {FireEllipse, SurfaceFire } from '../../../fire-behavior-models/index.js'
+import { FireEllipse, SurfaceFire } from '../../../fire-behavior-models/index.js'
 import { configDefault } from '../configs.js'
 
 const value = DagJest.value
@@ -112,7 +112,7 @@ test('1: wind.direction - fire.vector combination tests', () => {
   //  ['configure.fire.vector', ['fromHead', 'fromUpslope', 'fromNorth'][0]],
 
   let inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(6)
+  expect(inputNodes).toHaveLength(6)
   expect(inputNodes).toContain(dag.get('site.fire.observed.spreadRate'))
   expect(inputNodes).toContain(dag.get('site.fire.observed.lengthToWidthRatio'))
   expect(inputNodes).toContain(dag.get('site.fire.observed.firelineIntensity'))
@@ -141,7 +141,7 @@ test('1: wind.direction - fire.vector combination tests', () => {
 
   inputNodes = dag.requiredInputNodes()
   // console.log(DagJest.arrayList(inputNodes, 'Inputs'))
-  expect(inputNodes.length).toEqual(6)
+  expect(inputNodes).toHaveLength(6)
   expect(inputNodes).toContain(dag.get('site.fire.observed.spreadRate'))
   expect(inputNodes).toContain(dag.get('site.fire.observed.lengthToWidthRatio'))
   expect(inputNodes).toContain(dag.get('site.fire.observed.firelineIntensity'))
@@ -169,7 +169,7 @@ test('1: wind.direction - fire.vector combination tests', () => {
   ])
   inputNodes = dag.requiredInputNodes()
   // console.log(DagJest.arrayList(inputNodes, 'Inputs'))
-  expect(inputNodes.length).toEqual(6)
+  expect(inputNodes).toHaveLength(6)
   expect(inputNodes).toContain(dag.get('site.fire.observed.spreadRate'))
   expect(inputNodes).toContain(dag.get('site.fire.observed.lengthToWidthRatio'))
   expect(inputNodes).toContain(dag.get('site.fire.observed.firelineIntensity'))
@@ -196,7 +196,7 @@ test('1: wind.direction - fire.vector combination tests', () => {
   ])
   inputNodes = dag.requiredInputNodes()
   // console.log(DagJest.arrayList(inputNodes, 'Inputs'))
-  expect(inputNodes.length).toEqual(7)
+  expect(inputNodes).toHaveLength(7)
   expect(inputNodes).toContain(dag.get('site.fire.observed.spreadRate'))
   expect(inputNodes).toContain(dag.get('site.fire.observed.lengthToWidthRatio'))
   expect(inputNodes).toContain(dag.get('site.fire.observed.firelineIntensity'))
@@ -229,7 +229,7 @@ test('1: wind.direction - fire.vector combination tests', () => {
   ])
   inputNodes = dag.requiredInputNodes()
   // console.log(DagJest.arrayList(inputNodes, 'Inputs'))
-  expect(inputNodes.length).toEqual(7)
+  expect(inputNodes).toHaveLength(7)
   expect(inputNodes).toContain(dag.get('site.fire.observed.spreadRate'))
   expect(inputNodes).toContain(dag.get('site.fire.observed.lengthToWidthRatio'))
   expect(inputNodes).toContain(dag.get('site.fire.observed.firelineIntensity'))
@@ -264,7 +264,7 @@ test('1: wind.direction - fire.vector combination tests', () => {
   ])
   inputNodes = dag.requiredInputNodes()
   // console.log(DagJest.arrayList(inputNodes, 'Inputs'))
-  expect(inputNodes.length).toEqual(8)
+  expect(inputNodes).toHaveLength(8)
   expect(inputNodes).toContain(dag.get('site.fire.observed.spreadRate'))
   expect(inputNodes).toContain(dag.get('site.fire.observed.lengthToWidthRatio'))
   expect(inputNodes).toContain(dag.get('site.fire.observed.firelineIntensity'))
@@ -300,7 +300,7 @@ test('1: wind.direction - fire.vector combination tests', () => {
   ])
   inputNodes = dag.requiredInputNodes()
   // console.log(DagJest.arrayList(inputNodes, 'Inputs'))
-  expect(inputNodes.length).toEqual(8)
+  expect(inputNodes).toHaveLength(8)
   expect(inputNodes).toContain(dag.get('site.fire.observed.spreadRate'))
   expect(inputNodes).toContain(dag.get('site.fire.observed.lengthToWidthRatio'))
   expect(inputNodes).toContain(dag.get('site.fire.observed.firelineIntensity'))
@@ -335,7 +335,7 @@ test('1: wind.direction - fire.vector combination tests', () => {
   ])
   inputNodes = dag.requiredInputNodes()
   // console.log(DagJest.arrayList(inputNodes, 'Inputs'))
-  expect(inputNodes.length).toEqual(8)
+  expect(inputNodes).toHaveLength(8)
   expect(inputNodes).toContain(dag.get('site.fire.observed.spreadRate'))
   expect(inputNodes).toContain(dag.get('site.fire.observed.lengthToWidthRatio'))
   expect(inputNodes).toContain(dag.get('site.fire.observed.firelineIntensity'))
@@ -370,7 +370,7 @@ test('1: wind.direction - fire.vector combination tests', () => {
   ])
   inputNodes = dag.requiredInputNodes()
   // console.log(DagJest.arrayList(inputNodes, 'Inputs'))
-  expect(inputNodes.length).toEqual(8)
+  expect(inputNodes).toHaveLength(8)
   expect(inputNodes).toContain(dag.get('site.fire.observed.spreadRate'))
   expect(inputNodes).toContain(dag.get('site.fire.observed.lengthToWidthRatio'))
   expect(inputNodes).toContain(dag.get('site.fire.observed.firelineIntensity'))

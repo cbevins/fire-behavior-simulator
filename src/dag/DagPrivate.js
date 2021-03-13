@@ -10,7 +10,7 @@ import * as Lib from '../fire-behavior-models/index.js'
 import { VariantMap } from '../fire-behavior-variants/index.js'
 
 export class DagPrivate {
-  constructor(sim) {
+  constructor (sim) {
     this._input = new Map() // Map of input DagNode refs => array of input values
     this._node = [] // array of DagNode references in Genome index order
     this._runLimit = 1000000
@@ -66,8 +66,8 @@ export class DagPrivate {
 
   // Returns the DagNode's updater array under the current configuration,
   // but with the configIdx replaced with its Config DagNode reference
-  findNodeUpdater(node) {
-    for (let idx=0; idx<node.updaters().length; idx++) {
+  findNodeUpdater (node) {
+    for (let idx = 0; idx < node.updaters().length; idx++) {
       const updater = node.updater(idx)
       const [condition, method] = updater
       if (!condition.length) return [[null, null], method] // if no conditions, then this IS the current updater
@@ -100,7 +100,7 @@ export class DagPrivate {
   }
 
   // Returns the literal string, number, or object given its genome index
-  literal (literalIdx ) { return this._sim.literal(literalIdx) }
+  literal (literalIdx) { return this._sim.literal(literalIdx) }
 
   /**
    * @returns {Array} An array of references to all required update DagNodes in topological order.
@@ -108,7 +108,7 @@ export class DagPrivate {
   requiredUpdateNodes () {
     const nodes = []
     this._sortedNodes.forEach(node => {
-      if (node._is._enabled && node._is._required && ! node._is._config) {
+      if (node._is._enabled && node._is._required && !node._is._config) {
         nodes.push(node)
       }
     })
@@ -146,7 +146,7 @@ export class DagPrivate {
   // - update method and parms,
   // - producer (in) DagNodes, and
   // - consumer (out) DagNodes.
-  setNodeEdges(node) {
+  setNodeEdges (node) {
     const [condition, methodInfo] = this.findNodeUpdater(node)
     const configNode = condition[0]
     const [methodIdx, ...parms] = methodInfo
@@ -158,6 +158,7 @@ export class DagPrivate {
     node._update._configs.forEach(config => { config._dag._consumers.push(node) })
     node._update._config = configNode
 
+    // eslint-disable-next-line dot-notation
     node._is._input = (node._update._method === Lib['Dag']['input'])
     node._update._parms = []
     parms.forEach(parm => {
@@ -178,14 +179,14 @@ export class DagPrivate {
     const selected = []
     this._sortedNodes.forEach(node => {
       node._is._required = false
-      if (node._is._selected && node._is._enabled ) selected.push(node)
+      if (node._is._selected && node._is._enabled) selected.push(node)
     })
     selected.forEach(node => { this.setRequiredRecursive(node) })
   }
 
   // Recursively requires all producers of this DagNode
   setRequiredRecursive (node) {
-    if (! node._is._required) { // Nothing more to do if this DagNode is already required
+    if (!node._is._required) { // Nothing more to do if this DagNode is already required
       node._is._required = true
       // Require this DagNode's Config DagNode
       node._update._configs.forEach(config => { config._is._required = true })

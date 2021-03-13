@@ -1,4 +1,3 @@
-import { expectedValueSpreadRateMOCK } from '../../fire-behavior-models/SurfaceFire.js'
 import { Sim } from '../index.js'
 
 function megaRun () {

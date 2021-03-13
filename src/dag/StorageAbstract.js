@@ -8,11 +8,12 @@
 export class StorageAbstract {
   constructor (dag) {
     if (typeof dag !== 'object') {
-      throw new Error(`Dag Storage<Something>() class constructors require arg 1 to be an instance of the Dag class`)
+      throw new Error('Dag Storage<Something>() class constructors require arg 1 to be an instance of the Dag class')
     }
     this._dag = dag
   }
-  init() {}
+
+  init () {}
   store () {}
   end () {}
 }

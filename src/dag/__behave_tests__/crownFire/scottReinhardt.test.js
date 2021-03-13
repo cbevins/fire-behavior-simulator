@@ -173,7 +173,7 @@ test('1: Scott & Reinhardt Stand A', () => {
 
   dag.select(ResultsA.map(node => node[0]))
   const requiredInputs = dag.requiredInputNodes()
-  expect(requiredInputs.length).toEqual(InputsA.length)
+  expect(requiredInputs).toHaveLength(InputsA.length)
   InputsA.forEach(input => {
     expect(requiredInputs).toContain(dag.get(input[0]))
   })
@@ -193,7 +193,7 @@ test('2: Scott & Reinhardt Stand B', () => {
 
   dag.select(ResultsB.map(node => node[0]))
   const requiredInputs = dag.requiredInputNodes()
-  expect(requiredInputs.length).toEqual(InputsB.length)
+  expect(requiredInputs).toHaveLength(InputsB.length)
   // console.log(DagJest.arrayList(requiredInputs, 'Required Inputs 1'))
   InputsB.forEach(input => {
     expect(requiredInputs).toContain(dag.get(input[0]))

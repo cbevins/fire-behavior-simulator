@@ -1,5 +1,4 @@
-import { Sim } from '../index.js'
-import { StorageAbstract, UpdateAbstract } from '../index.js'
+import { Sim, StorageAbstract, UpdateAbstract } from '../index.js'
 
 test('StorageAbstract() error handling', () => {
   const sim = new Sim('dag1')

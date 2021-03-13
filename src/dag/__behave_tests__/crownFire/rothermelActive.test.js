@@ -124,7 +124,7 @@ test('1: Rothermel active crown fire - standAlone 1', () => {
   // Just 6 inputs because crown canopy waf, slope, and fuel model are fixed
   const requiredInputs = dag.requiredInputNodes()
   // console.log(DagJest.arrayList(requiredInputs, 'Required Inputs 1'))
-  expect(requiredInputs.length).toEqual(6)
+  expect(requiredInputs).toHaveLength(6)
   requiredInputs.forEach(req => expect(allInputs).toContain(req))
   expect(requiredInputs).toContain(dag.get('site.moisture.dead.tl1h'))
   expect(requiredInputs).toContain(dag.get('site.moisture.dead.tl10h'))
@@ -158,7 +158,7 @@ test('2: Rothermel active crown fire - standAlone 2', () => {
 
   const requiredInputs = dag.requiredInputNodes()
   // console.log(DagJest.arrayList(requiredInputs, 'Required Inputs 2'))
-  expect(requiredInputs.length).toEqual(10)
+  expect(requiredInputs).toHaveLength(10)
   requiredInputs.forEach(req => {
     expect(allInputs).toContain(req)
   })
@@ -204,7 +204,7 @@ test('3: Rothermel active crown fire - linked to surfaceFire', () => {
 
   const requiredInputs = dag.requiredInputNodes()
   // console.log(DagJest.arrayList(requiredInputs, 'Required Inputs 2'))
-  expect(requiredInputs.length).toEqual(11)
+  expect(requiredInputs).toHaveLength(11)
   requiredInputs.forEach(req => {
     expect(allInputs).toContain(req)
   })

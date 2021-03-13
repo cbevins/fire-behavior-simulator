@@ -1,7 +1,7 @@
 import * as Calc from './Calc.js'
 
 export function at10mFrom20ft (at20ft) {
-    return 1.13 * at20ft
+  return 1.13 * at20ft
 }
 
 export function at10mFromMidflame (atMidflame, midflameTo20ftRatio) {
@@ -17,12 +17,12 @@ export function at20ftFromMidflame (atMidflame, midflameTo20ftRatio) {
   return Calc.divide(atMidflame, midflameTo20ftRatio)
 }
 
-export function atMidflameFrom10m(at10m, midflameTo20ftRatio) {
+export function atMidflameFrom10m (at10m, midflameTo20ftRatio) {
   const at20ft = at20ftFrom10m(at10m)
-  return aAtMidflameFrom20ft(at20ft, midflameTo20ftRatio)
+  return atMidflameFrom20ft(at20ft, midflameTo20ftRatio)
 }
 
-export function atMidflameFrom20ft(at20ft, midflameTo20ftRatio) {
+export function atMidflameFrom20ft (at20ft, midflameTo20ftRatio) {
   return at20ft * midflameTo20ftRatio
 }
 
@@ -31,7 +31,7 @@ export function midflameTo20ftRatio (isSheltered, shelteredRatio, unshelteredRat
 }
 
 export function shelteredMidflameTo20ftRatio (canopyTotalHeight, canopyFillFraction) {
-  return ( canopyTotalHeight > 0 && canopyFillFraction > 0)
+  return (canopyTotalHeight > 0 && canopyFillFraction > 0)
     ? Calc.fraction(0.555 / (Math.sqrt(canopyFillFraction * canopyTotalHeight) *
       Math.log((20 + 0.36 * canopyTotalHeight) / (0.13 * canopyTotalHeight))))
     : 1

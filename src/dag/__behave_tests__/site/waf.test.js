@@ -28,7 +28,7 @@ dag.configure([
 ])
 
 // Wind configuration Nodes
-const cfgDirection = dag.get('configure.wind.direction')
+// const cfgDirection = dag.get('configure.wind.direction')
 const cfgPrimary = dag.get('configure.fuel.primary')
 const cfgSpeed = dag.get('configure.wind.speed')
 const cfgWaf = dag.get('configure.fuel.windSpeedAdjustmentFactor')
@@ -38,15 +38,15 @@ const openWaf = dag.get('surface.primary.fuel.bed.open.windSpeedAdjustmentFactor
 const catalogKey = dag.get('surface.primary.fuel.model.catalogKey')
 
 // These are ALL 9 of the WAF Nodes
-const crownOpenWaf = dag.get('crown.canopy.fuel.bed.open.windSpeedAdjustmentFactor')
-const crownFuelWaf = dag.get('crown.canopy.fuel.fire.windSpeedAdjustmentFactor')
-const canopyShelteredWaf = dag.get('site.canopy.sheltered.windSpeedAdjustmentFactor')
+// const crownOpenWaf = dag.get('crown.canopy.fuel.bed.open.windSpeedAdjustmentFactor')
+// const crownFuelWaf = dag.get('crown.canopy.fuel.fire.windSpeedAdjustmentFactor')
+// const canopyShelteredWaf = dag.get('site.canopy.sheltered.windSpeedAdjustmentFactor')
 const siteWaf = dag.get('site.windSpeedAdjustmentFactor')
-const primaryOpenWaf = dag.get('surface.primary.fuel.bed.open.windSpeedAdjustmentFactor')
+// const primaryOpenWaf = dag.get('surface.primary.fuel.bed.open.windSpeedAdjustmentFactor')
 const primaryFuelWaf = dag.get('surface.primary.fuel.fire.windSpeedAdjustmentFactor')
-const secondaryOpenWaf = dag.get('surface.secondary.fuel.bed.open.windSpeedAdjustmentFactor')
-const secondaryFuelWaf = dag.get('surface.secondary.fuel.fire.windSpeedAdjustmentFactor')
-const weightedFuelWaf = dag.get('surface.weighted.fire.windSpeedAdjustmentFactor')
+// const secondaryOpenWaf = dag.get('surface.secondary.fuel.bed.open.windSpeedAdjustmentFactor')
+// const secondaryFuelWaf = dag.get('surface.secondary.fuel.fire.windSpeedAdjustmentFactor')
+// const weightedFuelWaf = dag.get('surface.weighted.fire.windSpeedAdjustmentFactor')
 
 const canopyCover = dag.get('site.canopy.cover')
 const crownLength = dag.get('site.canopy.crown.length')
@@ -62,7 +62,7 @@ const siteAt10m = dag.get('site.wind.speed.at10m')
 const siteAt20ft = dag.get('site.wind.speed.at20ft')
 const siteAtMidflame = dag.get('site.wind.speed.atMidflame')
 const primaryFuelAtMidflame = dag.get('surface.primary.fuel.fire.wind.speed.atMidflame')
-const secondaryFuelAtMidflame = dag.get('surface.secondary.fuel.fire.wind.speed.atMidflame')
+// const secondaryFuelAtMidflame = dag.get('surface.secondary.fuel.fire.wind.speed.atMidflame')
 
 test('1: Select open-canopy WAF only', () => {
   dag.clearSelected()
@@ -81,18 +81,18 @@ test('1: Select open-canopy WAF only', () => {
   // requires just the fuel bed depth
   dag.select([openWaf, depth])
   const selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(2)
+  expect(selectedNodes).toHaveLength(2)
   expect(selectedNodes).toContain(depth)
   expect(selectedNodes).toContain(openWaf)
 
   // Fuel bed open-canopy WAF requires just the primary config
   const configNodes = dag.requiredConfigNodes()
-  expect(configNodes.length).toEqual(1)
+  expect(configNodes).toHaveLength(1)
   expect(configNodes).toContain(cfgPrimary)
 
   // So primary fuel model key is the only input
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(catalogKey)
 
   // Fuel Model 10 open-canopy WAF
@@ -127,16 +127,16 @@ test('2: Fuel bed WAF with input vs estimated WAF', () => {
   // Selecting fuel bed WAF with input WAF
   dag.select([primaryFuelWaf])
   const selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(1)
+  expect(selectedNodes).toHaveLength(1)
   expect(selectedNodes).toContain(primaryFuelWaf)
 
   let configNodes = dag.requiredConfigNodes()
-  expect(configNodes.length).toEqual(1)
+  expect(configNodes).toHaveLength(1)
   expect(configNodes).toContain(cfgWaf)
 
   // Since WAF is input, fuel bed waf is bound to site WAF
   let inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(siteWaf)
   dag.input([[siteWaf, [0, 0.5, 1]]]).run()
 
@@ -152,7 +152,7 @@ test('2: Fuel bed WAF with input vs estimated WAF', () => {
   expect(store.get(primaryFuelWaf)[1]).toEqual(0.5)
   expect(store.get(primaryFuelWafKey)[1]).toEqual(0.5)
   expect(store.get(primaryFuelWaf, 1)).toEqual(0.5)
-  expect(store.get(primaryFuelWafKey,1)).toEqual(0.5)
+  expect(store.get(primaryFuelWafKey, 1)).toEqual(0.5)
 
   expect(store.get(primaryFuelWafKey)[2]).toEqual(1)
   expect(store.get(primaryFuelWaf)[2]).toEqual(1)
@@ -162,22 +162,22 @@ test('2: Fuel bed WAF with input vs estimated WAF', () => {
   // If WAF is estimated, we need canopy and depth inputs
   dag.configure([[cfgWaf, 'estimated']]).run()
   configNodes = dag.requiredConfigNodes()
-  expect(configNodes.length).toEqual(2)
+  expect(configNodes).toHaveLength(2)
   expect(configNodes).toContain(cfgWaf)
   expect(configNodes).toContain(cfgPrimary)
 
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(4)
+  expect(inputNodes).toHaveLength(4)
   expect(inputNodes).toContain(crownBase)
   expect(inputNodes).toContain(crownHeight)
   expect(inputNodes).toContain(canopyCover)
   expect(inputNodes).toContain(catalogKey)
 
   // We'll want to see these already required intermediates as well
-  dag.select([openWaf, crownLength, crownRatio, crownFill, sheltersFuel, shelteredWaf ])
+  dag.select([openWaf, crownLength, crownRatio, crownFill, sheltersFuel, shelteredWaf])
 
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(4)
+  expect(inputNodes).toHaveLength(4)
   expect(inputNodes).toContain(catalogKey)
   expect(inputNodes).toContain(canopyCover)
   expect(inputNodes).toContain(crownBase)
@@ -245,7 +245,7 @@ test('2: Fuel bed WAF with input vs estimated WAF', () => {
   dag.configure([[cfgPrimary, 'behave']])
 
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(4)
+  expect(inputNodes).toHaveLength(4)
   expect(inputNodes).toContain(crownBase)
   expect(inputNodes).toContain(crownHeight)
   expect(inputNodes).toContain(canopyCover)
@@ -273,18 +273,18 @@ test('3: Fuel bed midflame wind speed', () => {
   // Selecting fuel bed midflame wind speed
   dag.select([primaryFuelAtMidflame])
   const selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(1)
+  expect(selectedNodes).toHaveLength(1)
   expect(selectedNodes).toContain(primaryFuelAtMidflame)
 
   // WAF is input, so no need for fuel
   let configNodes = dag.requiredConfigNodes()
-  expect(configNodes.length).toEqual(2)
+  expect(configNodes).toHaveLength(2)
   expect(configNodes).toContain(cfgSpeed)
   expect(configNodes).toContain(cfgWaf)
 
   // Since WAF is input, fuel bed waf is bound to site WAF
   let inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(2)
+  expect(inputNodes).toHaveLength(2)
   expect(inputNodes).toContain(siteAt20ft)
   expect(inputNodes).toContain(siteWaf)
 
@@ -306,11 +306,11 @@ test('3: Fuel bed midflame wind speed', () => {
 
   // Now the only required config is wind speed
   configNodes = dag.requiredConfigNodes()
-  expect(configNodes.length).toEqual(1)
+  expect(configNodes).toHaveLength(1)
   expect(configNodes).toContain(cfgSpeed)
 
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(siteAtMidflame)
 
   dag.input([[siteAtMidflame, [12.3]]]).run()
@@ -320,7 +320,7 @@ test('3: Fuel bed midflame wind speed', () => {
   dag.configure([[cfgSpeed, 'at20ft']])
 
   configNodes = dag.requiredConfigNodes()
-  expect(configNodes.length).toEqual(2)
+  expect(configNodes).toHaveLength(2)
   expect(configNodes).toContain(cfgSpeed)
   expect(configNodes).toContain(cfgWaf)
 
@@ -328,7 +328,7 @@ test('3: Fuel bed midflame wind speed', () => {
   dag.configure([[cfgWaf, 'estimated']])
 
   configNodes = dag.requiredConfigNodes()
-  expect(configNodes.length).toEqual(3)
+  expect(configNodes).toHaveLength(3)
   expect(configNodes).toContain(cfgSpeed)
   expect(configNodes).toContain(cfgWaf)
   expect(configNodes).toContain(cfgPrimary)
@@ -336,7 +336,7 @@ test('3: Fuel bed midflame wind speed', () => {
   dag.configure([[cfgPrimary, 'catalog']])
 
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(5)
+  expect(inputNodes).toHaveLength(5)
   expect(inputNodes).toContain(crownBase)
   expect(inputNodes).toContain(crownHeight)
   expect(inputNodes).toContain(canopyCover)

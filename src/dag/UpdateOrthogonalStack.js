@@ -13,6 +13,7 @@ import { UpdateAbstract } from './UpdateAbstract.js'
  * and wind speed has 4 input values, then 2 x 3 x 4 = 24 results are generated.
  */
 export class UpdateOrthogonalStack extends UpdateAbstract {
+  // eslint-disable-next-line no-useless-constructor
   constructor (dag) {
     super(dag)
   }
@@ -20,8 +21,8 @@ export class UpdateOrthogonalStack extends UpdateAbstract {
   /**
    * @returns {object} {runs: 0, calls: 0, ok: true, message: ''}
    */
-  update() {
-    const result = {runs: 0, calls: 0, ok: true, message: ''}
+  update () {
+    const result = { runs: 0, calls: 0, ok: true, message: '' }
     const ptrMap = new Map() // map of input DagNode value indices
     this._dag.requiredInputNodes().forEach(node => ptrMap.set(node, 0))
     this._dag._storageClass.init()

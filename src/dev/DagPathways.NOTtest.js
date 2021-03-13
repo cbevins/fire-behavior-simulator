@@ -1,6 +1,6 @@
 import { Sim } from '../index.js'
 import * as Pathways from './DagPathways.js'
-//import * as DagJest from '../utils/matchers.js'
+// import * as DagJest from '../utils/matchers.js'
 
 const sim = new Sim('dag1')
 const dag = sim.getDag('dag1')
@@ -30,14 +30,14 @@ test('1: Pathways should detect two paths', () => {
 
   expect(keyMap.has('surface.weighted.fire.spreadRate')).toEqual(true)
   const path1 = keyMap.get('surface.weighted.fire.spreadRate')
-  expect(path1.selected.length).toEqual(5)
+  expect(path1.selected).toHaveLength(5)
   expect(path1.selected).toContain('surface.weighted.fire.spreadRate')
   expect(path1.selected).toContain('surface.weighted.fire.firelineIntensity')
   expect(path1.selected).toContain('surface.weighted.fire.reactionIntensity')
   expect(path1.selected).toContain('surface.fire.ellipse.head.spreadRate')
   expect(path1.selected).toContain('surface.fire.ellipse.head.scorchHeight')
   // expect(path1.producers.length).toEqual(325)
-  expect(path1.producers.length).toEqual(247)
+  expect(path1.producers).toHaveLength(247)
   expect(path1.producers).toContain('surface.primary.fuel.model.catalogKey') // 0
   expect(path1.producers).toContain('surface.primary.fuel.bed.dead.particle.class1.effectiveFuel.ovendryLoad') // 100
   expect(path1.producers).toContain('surface.primary.fuel.bed.dead.particle.class5.heatOfCombustion') // 200
@@ -45,9 +45,9 @@ test('1: Pathways should detect two paths', () => {
 
   expect(keyMap.has('spotting.torchingTrees.firebrand.criticalCoverHeight')).toEqual(true)
   const path2 = keyMap.get('spotting.torchingTrees.firebrand.criticalCoverHeight')
-  expect(path2.selected.length).toEqual(1)
+  expect(path2.selected).toHaveLength(1)
   expect(path2.selected).toContain('spotting.torchingTrees.firebrand.criticalCoverHeight')
-  expect(path2.producers.length).toEqual(11)
+  expect(path2.producers).toHaveLength(11)
   expect(path2.producers).toContain('spotting.torchingTrees.species')
   expect(path2.producers).toContain('spotting.torchingTrees.dbh')
   expect(path2.producers).toContain('spotting.torchingTrees.count')

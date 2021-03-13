@@ -40,7 +40,7 @@ test('1: Head ros', () => {
   expect(selectedNodes).toContain(headRos)
   // head.spreadRate should be bound to site.fire.observed.spreadRate
   let inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(observedRos)
   // Set the site.fire.observed.spreadRate and ensure it is passed on
   dag.input([[observedRos, 10]]).run()
@@ -51,14 +51,14 @@ test('1: Head ros', () => {
   dag.configure([['link.fireEllipse', 'linkedToSurfaceFire']])
   // Now head.spreadRate is bound to surface.weighted.fire.spreadRate
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(12)
+  expect(inputNodes).toHaveLength(12)
   expect(headRos._update._parms[0][1]).toEqual(dag.get('surface.weighted.fire.spreadRate'))
 
   // Back to standAlone
   dag.configure([['link.fireEllipse', 'standAlone']])
   // head.spreadRate should be bound to site.fire.observed.spreadRate
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(observedRos)
 })
 
@@ -72,18 +72,18 @@ test('2.1: input fire.observed.firelineIntensity, select head.firelineIntensity'
   // Select just head.firelineIntensity
   dag.select([headFli]).run()
   const selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(1)
+  expect(selectedNodes).toHaveLength(1)
   expect(selectedNodes).toContain(headFli)
 
   // Input is just fire.observed.firelineIntensity
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(observedFli)
   dag.input([[observedFli, 5000]]).run()
 
   // observed.firelineIntensity -> head.firelineIntensity
   const requiredUpdateNodes = dag.requiredUpdateNodes()
-  expect(requiredUpdateNodes.length).toEqual(2)
+  expect(requiredUpdateNodes).toHaveLength(2)
   expect(requiredUpdateNodes).toContain(observedFli) // input
   expect(requiredUpdateNodes).toContain(headFli) // output
 
@@ -103,18 +103,18 @@ test('2.2: input fire.observed.firelineIntensity, select axis.flameLength', () =
   // Select just head.flameLength
   dag.select([headFl]).run()
   const selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(1)
+  expect(selectedNodes).toHaveLength(1)
   expect(selectedNodes).toContain(headFl)
 
   // Input is just fire.observed.firelineIntensity
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(observedFli)
   dag.input([[observedFli, 5000]]).run()
 
   // observed.firelineIntensity -> observed.flameLength -> head.flameLength
   const requiredUpdateNodes = dag.requiredUpdateNodes()
-  expect(requiredUpdateNodes.length).toEqual(3)
+  expect(requiredUpdateNodes).toHaveLength(3)
   expect(requiredUpdateNodes).toContain(observedFli) // input
   expect(requiredUpdateNodes).toContain(observedFl) // intermediate
   expect(requiredUpdateNodes).toContain(headFl) // output
@@ -136,20 +136,20 @@ test('2.3: input fire.observed.firelineIntensity, select both head.fli and head.
   // Select both head.firelineIntensity and head.flameLength
   dag.select([headFli, headFl]).run()
   const selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(2)
+  expect(selectedNodes).toHaveLength(2)
   expect(selectedNodes).toContain(headFli)
   expect(selectedNodes).toContain(headFl)
 
   // Input is just fire.observed.lengthToWIdthratio
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(observedFli)
   dag.input([[observedFli, 4000]]).run()
 
   // observed.firelineIntensity +-> head.firelineIntensity
   //                            +-> observed.flameLength -> head.flameLength
   const requiredUpdateNodes = dag.requiredUpdateNodes()
-  expect(requiredUpdateNodes.length).toEqual(4)
+  expect(requiredUpdateNodes).toHaveLength(4)
   expect(requiredUpdateNodes).toContain(observedFli) // input
   expect(requiredUpdateNodes).toContain(observedFl) // intermediate
   expect(requiredUpdateNodes).toContain(headFli) // output
@@ -173,18 +173,18 @@ test('2.4: input fire.observed.flameLength, select head.firelineIntensity', () =
   // Select just head.firelineIntensity
   dag.select([headFli])
   const selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(1)
+  expect(selectedNodes).toHaveLength(1)
   expect(selectedNodes).toContain(headFli)
 
   // Input is just fire.observed.flameLength
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(observedFl)
   dag.input([[observedFl, 10]]).run()
 
   // observed.flameLength -> observed.firelineIntensity -> head.firelineIntensity
   const requiredUpdateNodes = dag.requiredUpdateNodes()
-  expect(requiredUpdateNodes.length).toEqual(3)
+  expect(requiredUpdateNodes).toHaveLength(3)
   expect(requiredUpdateNodes).toContain(observedFl) // input
   expect(requiredUpdateNodes).toContain(observedFli) // intermediate
   expect(requiredUpdateNodes).toContain(headFli) // output
@@ -206,18 +206,18 @@ test('2.5: input fire.observed.flameLength, select head.flameLength', () => {
   // Select just head.flameLength
   dag.select([headFl]).run()
   const selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(1)
+  expect(selectedNodes).toHaveLength(1)
   expect(selectedNodes).toContain(headFl)
 
   // Input is just fire.observed.flameLength
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(observedFl)
   dag.input([[observedFl, 20]]).run()
 
   // observed.flameLength -> head.flameLength
   const requiredUpdateNodes = dag.requiredUpdateNodes()
-  expect(requiredUpdateNodes.length).toEqual(2)
+  expect(requiredUpdateNodes).toHaveLength(2)
   expect(requiredUpdateNodes).toContain(observedFl) // input
   expect(requiredUpdateNodes).not.toContain(observedFli) // intermediate
   expect(requiredUpdateNodes).toContain(headFl) // output
@@ -238,20 +238,20 @@ test('2.6: input fire.observed.flameLength, select both head.fli and head.fl', (
   // Select both head.firelineIntensity and head.flameLength
   dag.select([headFli, headFl]).run()
   const selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(2)
+  expect(selectedNodes).toHaveLength(2)
   expect(selectedNodes).toContain(headFli)
   expect(selectedNodes).toContain(headFl)
 
   // Input is just fire.observed.flameLength
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(observedFl)
   dag.input([[observedFl, 30]]).run()
 
   // observed.flameLength +-> head.flameLength
   //                      +-> observed.firelineIntensity -> head.firelineIntensity
   const requiredUpdateNodes = dag.requiredUpdateNodes()
-  expect(requiredUpdateNodes.length).toEqual(4)
+  expect(requiredUpdateNodes).toHaveLength(4)
   expect(requiredUpdateNodes).toContain(observedFl) // input
   expect(requiredUpdateNodes).toContain(observedFli) // intermediate
   expect(requiredUpdateNodes).toContain(headFli) // output
@@ -280,18 +280,18 @@ test('3.1: input fire.observed.lengthToWidthRatio, select axis.lengthToWidthRati
   // Select just axis.lengthToWidthRatio
   dag.select([axisLwr]).run()
   const selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(1)
+  expect(selectedNodes).toHaveLength(1)
   expect(selectedNodes).toContain(axisLwr)
 
   // Input is just fire.observed.lengthToWidthRatio
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(observedLwr)
   dag.input([[observedLwr, 3]]).run()
 
   // observed.lengthToWidthRatio -> axis.lengthToWidthRatio
   const requiredUpdateNodes = dag.requiredUpdateNodes()
-  expect(requiredUpdateNodes.length).toEqual(2)
+  expect(requiredUpdateNodes).toHaveLength(2)
   expect(requiredUpdateNodes).toContain(observedLwr) // input
   expect(requiredUpdateNodes).toContain(axisLwr) // output
 
@@ -311,18 +311,18 @@ test('3.2: input fire.observed.lengthToWidthRatio, select axis.effectiveWindSpee
   // Select just axis.effectiveWindSpeed
   dag.select([axisEws]).run()
   const selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(1)
+  expect(selectedNodes).toHaveLength(1)
   expect(selectedNodes).toContain(axisEws)
 
   // Input is just fire.observed.lengthToWidthRatio
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(observedLwr)
   dag.input([[observedLwr, 3]]).run()
 
   // observed.lengthToWidthRatio -> observed.effectiveWindSpeed -> axis.effectiveWindSpeed
   const requiredUpdateNodes = dag.requiredUpdateNodes()
-  expect(requiredUpdateNodes.length).toEqual(3)
+  expect(requiredUpdateNodes).toHaveLength(3)
   expect(requiredUpdateNodes).toContain(observedLwr) // input
   expect(requiredUpdateNodes).toContain(observedEws) // intermediate
   expect(requiredUpdateNodes).toContain(axisEws) // output
@@ -343,20 +343,20 @@ test('3.3: input fire.observed.lengthToWidthRatio, select both axis.lwr and axis
   // Select both axis.lengthToWidthRatio and axis.effectiveWindSpeed
   dag.select([axisLwr, axisEws]).run()
   const selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(2)
+  expect(selectedNodes).toHaveLength(2)
   expect(selectedNodes).toContain(axisEws)
   expect(selectedNodes).toContain(axisLwr)
 
   // Input is just fire.observed.lengthToWIdthratio
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(observedLwr)
   dag.input([[observedLwr, 3]]).run()
 
   // observed.lengthToWidthRatio +-> axis.lengthToWIdthRatio
   //                             +-> observed.effectiveWindSpeed -> axis.effectiveWindSpeed
   const requiredUpdateNodes = dag.requiredUpdateNodes()
-  expect(requiredUpdateNodes.length).toEqual(4)
+  expect(requiredUpdateNodes).toHaveLength(4)
   expect(requiredUpdateNodes).toContain(observedLwr) // input
   expect(requiredUpdateNodes).toContain(observedEws) // intermediate
   expect(requiredUpdateNodes).toContain(axisEws) // output
@@ -380,18 +380,18 @@ test('3.4: input fire.observed.effectiveWindSpeed, select axis.lengthToWidthRati
   // Select just axis.lengthToWidthRatio
   dag.select([axisLwr]).run()
   const selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(1)
+  expect(selectedNodes).toHaveLength(1)
   expect(selectedNodes).toContain(axisLwr)
 
   // Input is just fire.observed.effectiveWindSpeed
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(observedEws)
   dag.input([[observedEws, 880]]).run()
 
   // observed.effectiveWindSpeed -> observed.lengthToWidthRatio -> axis.lengthToWidthRatio
   const requiredUpdateNodes = dag.requiredUpdateNodes()
-  expect(requiredUpdateNodes.length).toEqual(3)
+  expect(requiredUpdateNodes).toHaveLength(3)
   expect(requiredUpdateNodes).toContain(observedEws) // input
   expect(requiredUpdateNodes).toContain(observedLwr) // intermediate
   expect(requiredUpdateNodes).toContain(axisLwr) // output
@@ -413,18 +413,18 @@ test('3.5: input fire.observed.effectiveWindSpeed, select axis.effectiveWindSpee
   // Select just axis.effectiveWindSpeed
   dag.select([axisEws]).run()
   const selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(1)
+  expect(selectedNodes).toHaveLength(1)
   expect(selectedNodes).toContain(axisEws)
 
   // Input is just fire.observed.effectiveWindSpeed
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(observedEws)
   dag.input([[observedEws, 880]]).run()
 
   // observed.effectiveWindSpeed -> axis.effectiveWindSpeed
   const requiredUpdateNodes = dag.requiredUpdateNodes()
-  expect(requiredUpdateNodes.length).toEqual(2)
+  expect(requiredUpdateNodes).toHaveLength(2)
   expect(requiredUpdateNodes).toContain(observedEws) // input
   expect(requiredUpdateNodes).not.toContain(observedLwr) // intermediate
   expect(requiredUpdateNodes).toContain(axisEws) // output
@@ -445,20 +445,20 @@ test('3.6: input fire.observed.effectiveWindSpeed, select both axis.ews and axis
   // Select both axis.effectiveWindSpeed and axis.lengthToWidthRatio
   dag.select([axisEws, axisLwr]).run()
   const selectedNodes = dag.selectedNodes()
-  expect(selectedNodes.length).toEqual(2)
+  expect(selectedNodes).toHaveLength(2)
   expect(selectedNodes).toContain(axisEws)
   expect(selectedNodes).toContain(axisLwr)
 
   // Input is just fire.observed.effectiveWindSpeed
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(observedEws)
   dag.input([[observedEws, 880]]).run()
 
   // observed.effectiveWindSpeed +-> axis.effectiveWindSpeed
   //                             +-> observed.lengthToWidthRatio -> axis.lengthToWIdthRatio
   const requiredUpdateNodes = dag.requiredUpdateNodes()
-  expect(requiredUpdateNodes.length).toEqual(4)
+  expect(requiredUpdateNodes).toHaveLength(4)
   expect(requiredUpdateNodes).toContain(observedEws) // input
   expect(requiredUpdateNodes).toContain(observedLwr) // intermediate
   expect(requiredUpdateNodes).toContain(axisEws) // output

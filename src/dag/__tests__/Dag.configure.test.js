@@ -4,9 +4,9 @@ import { configDefault, configMinimalInput } from '../utils/configs.js'
 const headRosKey = 'surface.fire.ellipse.head.spreadRate'
 
 const cfgWindDirKey = 'configure.wind.direction'
-const cfgWindDirIdx = 24
+// const cfgWindDirIdx = 24
 const windDirUpKey = 'site.wind.direction.heading.fromUpslope'
-const windDirUpIdx = 101
+// const windDirUpIdx = 101
 const windDirNoKey = 'site.wind.direction.source.fromNorth'
 
 test('Dag.configure() error handling', () => {
@@ -54,7 +54,7 @@ test('Dag.configure() default', () => {
   const node = dag.node(headRosKey)
   expect(() => dag.select([node])).not.toThrow()
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(12)
+  expect(inputNodes).toHaveLength(12)
   expect(inputNodes).toContain(dag.node('surface.primary.fuel.model.catalogKey'))
   expect(inputNodes).toContain(dag.node('surface.primary.fuel.model.behave.parms.cured.herb.fraction'))
   expect(inputNodes).toContain(dag.node('site.moisture.dead.tl1h'))
@@ -78,7 +78,7 @@ test('Dag.configure() minimal input', () => {
   const node = dag.node(headRosKey)
   expect(() => dag.select([node])).not.toThrow()
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(5)
+  expect(inputNodes).toHaveLength(5)
   expect(inputNodes).toContain(dag.node('site.moisture.live.category'))
   expect(inputNodes).toContain(dag.node('surface.primary.fuel.model.catalogKey'))
   expect(inputNodes).toContain(dag.node('site.moisture.dead.category'))

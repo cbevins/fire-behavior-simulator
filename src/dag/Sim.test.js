@@ -1,6 +1,6 @@
 // import { Sim } from './Sim.js'
 import { CompiledGenome } from '../fire-behavior-genome/index.js'
-import { Sim, Dag, DagNode } from './index.js'
+import { Sim, Dag } from './index.js'
 import * as Lib from '../fire-behavior-models/index.js'
 
 const cfgWindDirKey = 'configure.wind.direction'
@@ -40,12 +40,11 @@ test('Sim.geneIndex()', () => {
   expect(sim.geneIndex(cfgWindDirIdx)).toEqual(cfgWindDirIdx)
   expect(sim.geneIndex(windDirUpKey)).toEqual(windDirUpIdx)
   expect(sim.geneIndex(windDirUpIdx)).toEqual(windDirUpIdx)
-  expect(()=>sim.geneIndex('junk')).toThrow()
-  expect(()=>sim.geneIndex({})).toThrow()
+  expect(() => sim.geneIndex('junk')).toThrow()
+  expect(() => sim.geneIndex({})).toThrow()
 })
 
 test('Sim.method())', () => {
-  const sim = new Sim('dag1')
   expect(Lib.Compass.opposite(45)).toEqual(225)
 
   const op1 = Lib.Compass.opposite

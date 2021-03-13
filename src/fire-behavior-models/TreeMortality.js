@@ -107,8 +107,7 @@ export function scientificNames () {
 }
 
 export function hasFofem6Code (fofem6Code) {
-  return Object.prototype.hasOwnProperty.call(Mortality.data, 'fofem6Code')
-  // return Mortality.data.hasOwnProperty(fofem6Code)
+  return Object.prototype.hasOwnProperty.call(Mortality.data, fofem6Code)
 }
 
 /**

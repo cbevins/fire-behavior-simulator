@@ -8,7 +8,7 @@ import { CompiledGenome } from '../fire-behavior-genome/index.js'
 import { Dag } from './Dag.js'
 
 export class Sim {
-  constructor(dagKey=null) {
+  constructor (dagKey = null) {
     this._genome = CompiledGenome
     // Map of gene key => index into this._genome
     this._geneKeyIdxMap = new Map()
@@ -21,7 +21,7 @@ export class Sim {
   }
 
   _ensureKey (key) {
-    if (! this._geneKeyIdxMap.has(key) ) {
+    if (!this._geneKeyIdxMap.has(key)) {
       throw new Error(`Genome has no Gene with key '${key}'`)
     }
     return this._geneKeyIdxMap.get(key)
@@ -43,7 +43,7 @@ export class Sim {
   method (methodIdx) { return this._genome.methodRefsArray[methodIdx] }
 
   // Dag methods
-  createDag(dagKey) {
+  createDag (dagKey) {
     const dag = new Dag(this)
     this._dagMap.set(dagKey, dag)
     return dag
@@ -53,7 +53,7 @@ export class Sim {
 
   deleteDag (dagKey) { this._dagMap.delete(dagKey) }
 
-  getDag(dagKey) { return this._dagMap.get(dagKey) }
+  getDag (dagKey) { return this._dagMap.get(dagKey) }
 
   hasDag (dagKey) { return this._dagMap.has(dagKey) }
 }

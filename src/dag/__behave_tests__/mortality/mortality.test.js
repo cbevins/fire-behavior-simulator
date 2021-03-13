@@ -90,7 +90,7 @@ const slope = dag.get('site.slope.steepness.ratio')
 const airTemp = dag.get('site.temperature.air')
 const windSpeed = dag.get('site.wind.speed.atMidflame')
 const catalogKey = dag.get('surface.primary.fuel.model.catalogKey')
-const primaryFli = dag.get('surface.primary.fuel.fire.firelineIntensity')
+// const primaryFli = dag.get('surface.primary.fuel.fire.firelineIntensity')
 
 // Required when linked to fireEllipse or stand-alone
 const observedFlame = dag.get('site.fire.observed.flameLength')
@@ -106,7 +106,7 @@ test('1: Tree mortality stand-alone', () => {
   dag.select([mortality])
   let inputNodes = dag.requiredInputNodes()
   // console.log(DagJest.arrayList(inputNodes, 'Test 1 Inputs'))
-  expect(inputNodes.length).toEqual(5)
+  expect(inputNodes).toHaveLength(5)
 
   // There are always 4 tree input parameters
   expect(inputNodes).toContain(treeSpecies)
@@ -118,7 +118,7 @@ test('1: Tree mortality stand-alone', () => {
 
   let requiredNodes = dag.requiredNodes()
   // console.log(DagJest.arrayList(requiredNodes, 'Test 1 Required'))
-  expect(requiredNodes.length).toEqual(8)
+  expect(requiredNodes).toHaveLength(8)
   // In addition to the 5 mortality inputs and 1 selected treeMortality Node:
   // there is 1 configuration Nodes
   // expect(requiredNodes).toContain(dag.get('configure.module'))
@@ -134,11 +134,11 @@ test('1: Tree mortality stand-alone', () => {
   ])
   inputNodes = dag.requiredInputNodes()
   // console.log(DagJest.arrayList(inputNodes, 'Test 1 Inputs'))
-  expect(inputNodes.length).toEqual(5)
+  expect(inputNodes).toHaveLength(5)
   // Just themselves as requiredNodes
   requiredNodes = dag.requiredNodes()
   // console.log(DagJest.arrayList(requiredNodes, 'Test 1 Required'))
-  expect(requiredNodes.length).toEqual(11)
+  expect(requiredNodes).toHaveLength(11)
 
   dag.input([
     [treeSpecies, ['ABBA']],
@@ -163,7 +163,7 @@ test('2a: Tree mortality linked to scorchHeight with firelineIntensity input', (
   dag.select([mortality])
   const inputNodes = dag.requiredInputNodes()
   // console.log(DagJest.arrayList(inputNodes, 'Test 2a Inputs'))
-  expect(inputNodes.length).toEqual(7)
+  expect(inputNodes).toHaveLength(7)
   // There are always 4 tree input parameters
   expect(inputNodes).toContain(treeSpecies)
   expect(inputNodes).toContain(treeDbh)
@@ -182,7 +182,7 @@ test('2a: Tree mortality linked to scorchHeight with firelineIntensity input', (
   expect(requiredNodes).toContain(dag.get('link.treeMortality'))
   expect(requiredNodes).toContain(dag.get('configure.fire.firelineIntensity'))
   expect(requiredNodes).toContain(dag.get('configure.wind.speed'))
-  expect(requiredNodes.length).toEqual(14)
+  expect(requiredNodes).toHaveLength(14)
   // and 2 intermediate Nodes:
   expect(requiredNodes).toContain(dag.get('scorch.height'))
   expect(requiredNodes).toContain(mortScorchHt) // 'mortality.scorchHeight'
@@ -198,7 +198,7 @@ test('2b: Tree mortality linked to scorchHeight with flameLength input', () => {
   dag.select([mortality])
   const inputNodes = dag.requiredInputNodes()
   // console.log(DagJest.arrayList(inputNodes, 'Test 2 Inputs'))
-  expect(inputNodes.length).toEqual(7)
+  expect(inputNodes).toHaveLength(7)
   // There are always 4 tree input parameters
   expect(inputNodes).toContain(treeSpecies)
   expect(inputNodes).toContain(treeDbh)
@@ -212,7 +212,7 @@ test('2b: Tree mortality linked to scorchHeight with flameLength input', () => {
   const requiredNodes = dag.requiredNodes()
   // console.log(DagJest.arrayList(requiredNodes, 'Test 2 Required'))
   // AN additional requiredNode because input flameLength -> firelineIntensity
-  expect(requiredNodes.length).toEqual(15)
+  expect(requiredNodes).toHaveLength(15)
   // In addition to the 7 input Nodes and the 1 selected mortality Node:
   // there are 4 required configuration Nodes
   // expect(requiredNodes).toContain(dag.get('configure.module'))
@@ -236,7 +236,7 @@ test('3: Tree mortality as an built-in Node of fireEllipse', () => {
   dag.select(['surface.fire.ellipse.head.treeMortality'])
   const inputNodes = dag.requiredInputNodes()
   // console.log(DagJest.arrayList(inputNodes, 'Test 3 Inputs'))
-  expect(inputNodes.length).toEqual(7)
+  expect(inputNodes).toHaveLength(7)
 
   // There are always 4 tree input parameters
   expect(inputNodes).toContain(treeSpecies)
@@ -250,7 +250,7 @@ test('3: Tree mortality as an built-in Node of fireEllipse', () => {
 
   const requiredNodes = dag.requiredNodes()
   // console.log(DagJest.arrayList(requiredNodes, 'Test 3 Required'))
-  expect(requiredNodes.length).toEqual(14)
+  expect(requiredNodes).toHaveLength(14)
   // In addition to the 7 inputs and 1 selected Node:
   expect(requiredNodes).toContain(dag.get('surface.fire.ellipse.head.treeMortality'))
   // There are 3 required configuration Nodes
@@ -275,7 +275,7 @@ test('4: Tree mortality as a built-in Node of  fireEllipse linked to surface fir
 
   const inputNodes = dag.requiredInputNodes()
   // console.log(DagJest.arrayList(inputNodes, 'Test 4 Inputs'))
-  expect(inputNodes.length).toEqual(10)
+  expect(inputNodes).toHaveLength(10)
   // There are 6 surface fire inputs
   expect(inputNodes).toContain(deadMois)
   expect(inputNodes).toContain(liveMois)
@@ -306,7 +306,7 @@ test('5: Tree mortality results validation with BP6', () => {
     'mortality.crownVolumeScorched'
   ])
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(5)
+  expect(inputNodes).toHaveLength(5)
   // There are always 4 tree input parameters
   expect(inputNodes).toContain(treeSpecies)
   expect(inputNodes).toContain(treeDbh)
@@ -316,7 +316,7 @@ test('5: Tree mortality results validation with BP6', () => {
   expect(inputNodes).toContain(observedSht)
 
   const requiredNodes = dag.requiredNodes()
-  expect(requiredNodes.length).toEqual(11)
+  expect(requiredNodes).toHaveLength(11)
 
   const species = TreeMortality.fofem6Codes()
   dag.input([
@@ -331,7 +331,8 @@ test('5: Tree mortality results validation with BP6', () => {
     expect(store.get(treeSpecies, idx)).toEqual(spp)
     expect(store.get(volScorched, idx)).sig(0.88888888888, 9)
     expect(store.get(lenScorched, idx)).sig(40 / 60, 6)
-    if (Results.hasOwnProperty(spp)) {
+    if (Object.prototype.hasOwnProperty.call(Results, spp)) {
+      // eslint-disable-next-line jest/no-conditional-expect
       expect(store.get(mortality, idx)).sig(Results[spp][0], 5, `${spp}`)
       // expect(store.get(treeBark, idx)).sig(Results[spp][1], 5, `${spp}`)
     }

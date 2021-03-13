@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable jest/no-export */
 /**
  * @file BehavePlus v6 SurfaceFire benchmark results data used by tests
  * @copyright 2021 Systems for Environmental Management
@@ -69,7 +71,7 @@ const SurfaceFireData = [
   [dead + 'reactionIntensityDry', { fm010: 5539.9575948899355, fm124: 9769.8093293148086, prec: 10 }],
   [dead + 'effective.mineralContent', { fm010: 0.01, fm124: 0.01, prec: 10 }],
   // sizeClass.weightingFactor: null,
-  [dead + 'net.ovendryLoad', {fm010: (1 - 0.0555) * 0.13859233668341708, fm124: (1 - 0.0555) * 0.20777819078484744, prec: 10}],
+  [dead + 'net.ovendryLoad', { fm010: (1 - 0.0555) * 0.13859233668341708, fm124: (1 - 0.0555) * 0.20777819078484744, prec: 10 }],
   [live + 'extinction.moistureContentFactor', { fm010: 6.908948234294801, fm124: 2.1558023634049093, prec: 12 }],
   [live + 'extinction.moistureContent', { fm010: 5.1935979022741359, fm124: 1.6581421656244677, prec: 12 }],
   [live + 'heatOfCombustion', { fm010: 8000, fm124: 8000, prec: 10 }],
@@ -87,7 +89,7 @@ const SurfaceFireData = [
   [live + 'reactionIntensityDry', { fm010: 3677.5200629895871, fm124: 16957.560830348066, prec: 10 }],
   [live + 'effective.mineralContent', { fm010: 0.01, fm124: 0.01, prec: 10 }],
   // sizeClass.weightingFactor: null,
-  [live + 'net.ovendryLoad', {fm010: (1 - 0.0555) * 0.092, fm124: (1 - 0.0555) * 0.36064279155188239, prec: 10}],
+  [live + 'net.ovendryLoad', { fm010: (1 - 0.0555) * 0.092, fm124: (1 - 0.0555) * 0.36064279155188239, prec: 10 }],
   // fm124 load: 0.034655647382920124,
   [l1 + 'effectiveFuel.heatingNumber', { fm010: 0.91210514954509037, prec: 12 }],
   [l1 + 'ovendryLoad', { fm010: 0, fm124: 0.034655647382920124, prec: 12 }],
@@ -100,7 +102,7 @@ const SurfaceFireData = [
   ['bed.surfaceArea', { fm010: 13.4665, fm124: 29.062930440771346, prec: 12 }],
   ['bed.bulkDensity', { fm010: 0.552, fm124: 0.27985482530937067, prec: 12 }],
   ['bed.depth', { fm010: 1.0, fm124: 2.1, prec: 12 }],
-  ['bed.heatOfPreignition', {fm010: 746.993428042342,fm124: 319.21640437931171 / 0.27985482530937067, prec: 12}],
+  ['bed.heatOfPreignition', { fm010: 746.993428042342, fm124: 319.21640437931171 / 0.27985482530937067, prec: 12 }],
   ['bed.heatSink', { fm010: 412.34037227937284, fm124: 319.21640437931171, prec: 12 }],
   ['bed.ovendryLoad', { fm010: 0.552, prec: 12 }],
   ['bed.open.windSpeedAdjustmentFactor', { fm010: 0.36210426360602416, prec: 12 }],
@@ -221,7 +223,8 @@ function surfaceFireResults (nodeKeyPrefix, resultKey) {
   const results = []
   SurfaceFireData.forEach(datum => {
     const [nodeKey, obj] = datum
-    if (obj.hasOwnProperty(resultKey)) {
+    if (Object.prototype.hasOwnProperty.call(obj, resultKey)) {
+    // if (obj.hasOwnProperty(resultKey)) {
       results.push([`${nodeKeyPrefix}${nodeKey}`, obj[resultKey], obj.prec])
     }
   })

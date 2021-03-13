@@ -20,8 +20,8 @@ test('Dag.get()', () => {
   expect(dag.get(cfgWindDirIdx).isRequired()).toEqual(false)
   expect(dag.get(cfgWindDirIdx).isSelected()).toEqual(false)
 
-  expect(()=>dag.get('junk').index()).toThrow()
-  expect(()=>dag.get({}).index()).toThrow()
+  expect(() => dag.get('junk').index()).toThrow()
+  expect(() => dag.get({}).index()).toThrow()
 
   expect(dag.get(windDirUpKey).index()).toEqual(windDirUpIdx)
   expect(dag.get(windDirUpIdx).index()).toEqual(windDirUpIdx)
@@ -49,8 +49,8 @@ test('Dag.node()', () => {
   expect(dag.node(cfgWindDirIdx).isRequired()).toEqual(false)
   expect(dag.node(cfgWindDirIdx).isSelected()).toEqual(false)
 
-  expect(()=>dag.node('junk').index()).toThrow()
-  expect(()=>dag.node({}).index()).toThrow()
+  expect(() => dag.node('junk').index()).toThrow()
+  expect(() => dag.node({}).index()).toThrow()
 
   expect(dag.node(windDirUpKey).index()).toEqual(windDirUpIdx)
   expect(dag.node(windDirUpIdx).index()).toEqual(windDirUpIdx)

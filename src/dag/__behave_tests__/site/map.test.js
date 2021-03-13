@@ -26,7 +26,7 @@ test('1: Map test', () => {
 
   dag.select(Results.map(node => node[0]))
   const requiredInputs = dag.requiredInputNodes()
-  expect(requiredInputs.length).toEqual(Inputs.length)
+  expect(requiredInputs).toHaveLength(Inputs.length)
   Inputs.forEach(input => { expect(requiredInputs).toContain(dag.get(input[0])) })
 
   dag.input(Inputs).run()

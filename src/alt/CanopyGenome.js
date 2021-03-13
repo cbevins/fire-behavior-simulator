@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const ConfigCanopyHeights = ['baseTotal', 'ratioTotal']
 
 export const genome = [
@@ -18,5 +19,5 @@ export const genome = [
   ]],
   ['canopy.totalHeight', ['TreeHeight'], [
     [], ['Dag.input']
-  ]],
+  ]]
 ]

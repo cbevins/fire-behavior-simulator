@@ -25,12 +25,12 @@ test('1: Fm010, FM124, and Weighted results validated against BP6', () => {
   const testList = testInputs.map(input => dag.get(input[0])) // Simple array of input Node references
   requiredInputs.forEach(requiredInput => {
     // console.log(requiredInput.node.key)
-    expect(testList.includes(requiredInput)).toEqual(true)
+    expect(testList).toContain(requiredInput)
   })
 
   // Ensure the required configuration nodes are as expected
   const configNodes = dag.requiredConfigNodes()
-  expect(configNodes.length).toEqual(11)
+  expect(configNodes).toHaveLength(11)
   // console.log(DagJest.arrayList(configNodes, 'Config Nodes'))
 
   // Set required input values and ensure results are as expected

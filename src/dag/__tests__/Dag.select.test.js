@@ -52,11 +52,11 @@ test('Dag.requiredInputNodes(), Dag.requiredConfigNodes(), Dag.requiredNodes()',
   dag.select([node])
 
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(11)
+  expect(inputNodes).toHaveLength(11)
 
   const configNodes = dag.requiredConfigNodes()
   // console.log(configNodes.reduce((str, node) => node.key() +'\n', ''))
-  expect(configNodes.length).toEqual(12)
+  expect(configNodes).toHaveLength(12)
   expect(configNodes).toContain(dag.node('configure.fuel.primary'))
   expect(configNodes).toContain(dag.node('configure.fuel.curedHerbFraction'))
   expect(configNodes).toContain(dag.node('configure.fuel.chaparralTotalLoad'))
@@ -70,7 +70,7 @@ test('Dag.requiredInputNodes(), Dag.requiredConfigNodes(), Dag.requiredNodes()',
   expect(configNodes).toContain(dag.node('link.fireEllipse'))
   expect(configNodes).toContain(dag.node('configure.fire.weightingMethod'))
   const requiredNodes = dag.requiredNodes()
-  expect(requiredNodes.length).toEqual(323)
+  expect(requiredNodes).toHaveLength(323)
 
   dag.run()
 })

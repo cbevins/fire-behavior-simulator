@@ -1,3 +1,4 @@
+/* eslint-disable jest/no-conditional-expect */
 import { Sim } from '../../index.js'
 import * as DagJest from '../../utils/matchers.js'
 
@@ -52,12 +53,12 @@ test('1: Crown Fire Canopy Fuels (FM 10) benchmarks', () => {
     expect(requiredInputs).toContain(dag.get(Inputs[i][0]))
   }
   if (dag.get('configure.wind.direction').value() === 'upslope') {
-    expect(requiredInputs.length).toEqual(10)
+    expect(requiredInputs).toHaveLength(10)
   } else if (dag.get('configure.wind.direction').value() === 'headingFromUpslope') {
-    expect(requiredInputs.length).toEqual(11)
+    expect(requiredInputs).toHaveLength(11)
     expect(requiredInputs).toContain(dag.get('site.wind.direction.heading.fromUpslope'))
   } else if (dag.get('configure.wind.direction').value() === 'sourceFromNorth') {
-    expect(requiredInputs.length).toEqual(12)
+    expect(requiredInputs).toHaveLength(12)
     expect(requiredInputs).toContain(dag.get('site.wind.direction.source.fromNorth'))
     expect(requiredInputs).toContain(dag.get('site.slope.direction.aspect'))
   }

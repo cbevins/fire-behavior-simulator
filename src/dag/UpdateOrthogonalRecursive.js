@@ -20,8 +20,8 @@ export class UpdateOrthogonalRecursive extends UpdateAbstract {
     this._result = {}
   }
 
-  update() {
-    this._result = {runs: 0, calls: 0, ok: true, message: ''}
+  update () {
+    this._result = { runs: 0, calls: 0, ok: true, message: '' }
     this._stack = this._dag.requiredUpdateNodes() // All required updteable (non-Config) DagNodes in topo order
     this._inputSet = new Set() // map of input value indices
     this._dag.requiredInputNodes().forEach(node => this._inputSet.add(node))

@@ -4,14 +4,13 @@
  * @author Collin D. Bevins, <cbevins@montana.com>
  * @license MIT
 */
-import { DagNode } from './DagNode.js'
 import { DagPrivate } from './DagPrivate.js'
 import { StorageAbstract } from './StorageAbstract.js'
 import { UpdateAbstract } from './UpdateAbstract.js'
 import { UpdateOrthogonalStack } from './UpdateOrthogonalStack.js'
 
 export class Dag extends DagPrivate {
-  constructor(sim) {
+  constructor (sim) {
     super(sim)
     this._storageClass = new StorageAbstract(this)
     this._updateClass = new UpdateOrthogonalStack(this)
@@ -39,11 +38,11 @@ export class Dag extends DagPrivate {
    */
   configure (nodeValuePairs) {
     this._refVals(nodeValuePairs, 'configure').forEach(([node, value]) => {
-      if (! node._is._config) {
+      if (!node._is._config) {
         throw new Error(`configure() node '${node.key()}' is not a COnfig DagNode`)
       }
-      if (! node._variant.isValidNativeValue(value)) {
-        throw new Error( `Config Node '${node.key()}' value '${value}' is invalid`)
+      if (!node._variant.isValidNativeValue(value)) {
+        throw new Error(`Config Node '${node.key()}' value '${value}' is invalid`)
       }
       node._value = value
     })
@@ -127,7 +126,7 @@ export class Dag extends DagPrivate {
   setEnabled (prefixes, isEnabled) {
     this._node.forEach(node => {
       const key = node.key()
-      for(let idx=0; idx<prefixes.length; idx++) {
+      for (let idx = 0; idx < prefixes.length; idx++) {
         if (key.startsWith(prefixes[idx])) {
           node.setEnabled(isEnabled)
           break
@@ -137,7 +136,7 @@ export class Dag extends DagPrivate {
     return this
   }
 
-  setRunLimit (runs ) {
+  setRunLimit (runs) {
     this._runLimit = runs
     return this
   }
@@ -146,12 +145,12 @@ export class Dag extends DagPrivate {
    * Sets the storage class used by the Dag after every update run.
    * @param {StorageAbstract} storageClass Instance of a class derived from StorageAbstract
    */
-  setStorageClass(storageClass) {
-    if ( ! (storageClass instanceof StorageAbstract)) {
-      throw new Error(`setStorageClass() arg 1 must be an instance of StorageAbstract`)
+  setStorageClass (storageClass) {
+    if (!(storageClass instanceof StorageAbstract)) {
+      throw new Error('setStorageClass() arg 1 must be an instance of StorageAbstract')
     }
     if (storageClass._dag !== this) {
-      throw new Error(`setStorageClass() instance must be set on *this* Dag`)
+      throw new Error('setStorageClass() instance must be set on *this* Dag')
     }
     this._storageClass = storageClass
     return this
@@ -161,12 +160,12 @@ export class Dag extends DagPrivate {
    * Sets the updater class used by the Dag.
    * @param {UpdateAbstract} updateClass Instance of a class derived from UpdateAbstract
    */
-  setUpdateClass(updateClass) {
-    if ( ! (updateClass instanceof UpdateAbstract)) {
-      throw new Error(`setUpdateClass() arg 1 must be an instance of UpdateAbstract`)
+  setUpdateClass (updateClass) {
+    if (!(updateClass instanceof UpdateAbstract)) {
+      throw new Error('setUpdateClass() arg 1 must be an instance of UpdateAbstract')
     }
     if (updateClass._dag !== this) {
-      throw new Error(`setUpdateClass() instance must be set on *this* Dag`)
+      throw new Error('setUpdateClass() instance must be set on *this* Dag')
     }
     this._updateClass = updateClass
     return this
@@ -188,14 +187,14 @@ export class Dag extends DagPrivate {
    * @returns An array with one ValidationResult object {valid, value, message, node}
    * for each *raw input text* DagNode value
    */
-  validateDisplayInputs(nodeValuePairs) {
+  validateDisplayInputs (nodeValuePairs) {
     const errors = []
     this._refVals(nodeValuePairs, 'validateDisplayInputs').forEach(([node, value]) => {
       const values = Array.isArray(value) ? value : [value] // ensure values are in an array
       values.forEach(value => {
         const result = node._variant.validateDisplayValue(value)
         // console.log(`Validating '${value}' returned ${JSON.stringify(result)}`)
-        if (! result.valid) {
+        if (!result.valid) {
           errors.push(result)
         }
       })
@@ -211,13 +210,13 @@ export class Dag extends DagPrivate {
    * @returns An array with one ValidationResult object {valid, value, message, node}
    * for each *invalid* DagNode value
    */
-  validateNativeInputs(nodeValuePairs) {
+  validateNativeInputs (nodeValuePairs) {
     const errors = []
     this._refVals(nodeValuePairs, 'validateNativeInputs').forEach(([node, value]) => {
       const values = Array.isArray(value) ? value : [value] // ensure values are in an array
       values.forEach(value => {
         const result = node._variant.validateNativeValue(value)
-        if (! result.valid) {
+        if (!result.valid) {
           errors.push(result)
         }
       })
