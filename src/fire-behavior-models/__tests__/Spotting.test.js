@@ -292,8 +292,8 @@ test('5: Coverage', () => {
 test('6:Spotting.distanceMountainTerrain(flatDistFt, locationKey, rvDistFt, rvElev) edge cases', () => {
   const flatDistFt = 5280
   const locationKey = 'ridgetop'
-  let rvDistFt = 0
-  let rvElev = 0
+  const rvDistFt = 0
+  const rvElev = 0
   expect(Spotting.distanceMountainTerrain(flatDistFt, locationKey, rvDistFt, rvElev)).toEqual(flatDistFt)
   expect(Spotting.distanceMountainTerrain(flatDistFt, locationKey, 5280, 0)).toEqual(flatDistFt)
   expect(Spotting.distanceMountainTerrain(flatDistFt, locationKey, 5280, -1)).toEqual(flatDistFt)

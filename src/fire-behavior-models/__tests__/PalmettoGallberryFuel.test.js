@@ -42,7 +42,7 @@ test('1 Palmetto-Gallberry library', () => {
   ])
 
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(4)
+  expect(inputNodes).toHaveLength(4)
   expect(inputNodes).toContain(age) // required by all loads
   expect(inputNodes).toContain(basal) // required by litter load
   expect(inputNodes).toContain(cover) // deadSmallLoad, deadFoliageLoad, liveFoliageLoad
@@ -187,11 +187,11 @@ test('3: Palmetto-Gallberry catalog', () => {
     deadLitterLoad,
     liveFineLoad,
     liveSmallLoad,
-    liveFoliageLoad,
+    liveFoliageLoad
   ]).run()
 
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(catalogKey)
   dag.input([[catalogKey, 'pg/age=20/basal=120/cover=.8/height=5']]).run()
 

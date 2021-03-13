@@ -22,7 +22,7 @@ test('1: sizeClass() tests for full code coverage', () => {
   dag.select([volm])
   const inputNodes = dag.requiredInputNodes()
   // console.log(DagJest.arrayList(inputNodes, 'Input Nodes'))
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(catalogKey)
 
   const configNodes = dag.requiredConfigNodes()

@@ -34,7 +34,7 @@ test('3: SurfaceFire.spreadDirectionFromUpslope()', () => {
   })
 })
 
-test('4: FireEllipse.betaSpreadRate (betaHead, rosHead, eccent) ', () => {
+test('4: FireEllipse.betaSpreadRate (betaHead, rosHead, eccent)', () => {
   const betaHead = 0
   const rosHead = 10
   const eccent = 2

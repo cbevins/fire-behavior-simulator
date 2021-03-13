@@ -12,7 +12,7 @@ dag.configure([
   ['configure.fuel.curedHerbFraction', ['input', 'estimated'][0]]
 ])
 
-const catalogKey = dag.get('surface.primary.fuel.model.catalogKey')
+// const catalogKey = dag.get('surface.primary.fuel.model.catalogKey')
 const prefix = 'surface.primary.fuel.model.behave'
 const bed = 'surface.primary.fuel.bed.'
 const dead = 'surface.primary.fuel.bed.dead.particle.'
@@ -32,8 +32,8 @@ const liveStemSavr = dag.get(`${prefix}.parms.live.stem.surfaceAreaToVolumeRatio
 const deadHeat = dag.get(`${prefix}.parms.dead.heatOfCombustion`)
 const liveHeat = dag.get(`${prefix}.parms.live.heatOfCombustion`)
 
-const deadHerbLoad = dag.get(`${prefix}.derived.dead.herb.ovendryLoad`)
-const liveHerbLoad = dag.get(`${prefix}.derived.live.herb.ovendryLoad`)
+// const deadHerbLoad = dag.get(`${prefix}.derived.dead.herb.ovendryLoad`)
+// const liveHerbLoad = dag.get(`${prefix}.derived.live.herb.ovendryLoad`)
 
 const dead1Mois = dag.get('site.moisture.dead.tl1h')
 const dead10Mois = dag.get('site.moisture.dead.tl10h')
@@ -72,7 +72,7 @@ test('1 Behave Parms input', () => {
   dag.select(['surface.primary.fuel.fire.reactionIntensity'])
 
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(18)
+  expect(inputNodes).toHaveLength(18)
   Inputs.forEach(input => {
     expect(inputNodes).toContain(input[0])
   })
@@ -144,7 +144,7 @@ test('2 Behave estimated cured herb fraction', () => {
   ])
 
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(17)
+  expect(inputNodes).toHaveLength(17)
   expect(inputNodes).not.toContain(curedHerbFraction)
   dag.input(Inputs).run()
 

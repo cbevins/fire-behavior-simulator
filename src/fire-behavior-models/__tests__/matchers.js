@@ -1,5 +1,4 @@
-import { TestScheduler } from "jest"
-
+/* eslint-disable jest/no-export */
 const bar = '        : 1.23456789012'
 
 /**

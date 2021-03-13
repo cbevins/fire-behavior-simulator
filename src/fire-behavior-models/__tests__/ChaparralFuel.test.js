@@ -23,9 +23,9 @@ const appliedTotalLoad = dag.get(parms + 'applied.totalLoad')
 
 const derived = 'surface.primary.fuel.model.chaparral.derived.'
 const derivedAge = dag.get(derived + 'age')
-const averageMortality = dag.get(derived + 'averageMortality')
-const severeMortality = dag.get(derived + 'severeMortality')
-const derivedDepth = dag.get(derived + 'depth')
+// const averageMortality = dag.get(derived + 'averageMortality')
+// const severeMortality = dag.get(derived + 'severeMortality')
+// const derivedDepth = dag.get(derived + 'depth')
 const derivedTotalLoad = dag.get(derived + 'totalLoad')
 
 const deadLoad = dag.get(derived + 'deadLoad')
@@ -90,7 +90,7 @@ test('1: Chaparral fuel library - chamise', () => {
 
   dag.select(chamise.map(node => node[0]))
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(3)
+  expect(inputNodes).toHaveLength(3)
   expect(inputNodes).toContain(parmsDepth)
   expect(inputNodes).toContain(parmsDeadFraction)
   expect(inputNodes).toContain(parmsType)
@@ -132,7 +132,7 @@ test('2: Chaparral fuel library - mixed  brush', () => {
 
   dag.select(chamise.map(node => node[0]))
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(3)
+  expect(inputNodes).toHaveLength(3)
   expect(inputNodes).toContain(parmsDepth)
   expect(inputNodes).toContain(parmsDeadFraction)
   expect(inputNodes).toContain(parmsType)
@@ -261,7 +261,7 @@ test('4: Chaparral fuel catalog with estimated total load', () => {
 
   dag.select(chamise.map(node => node[0])).run()
   let inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(catalogKey)
   dag.input([
     [catalogKey, 'chaparral/type=chamise/depth=6/deadFraction=0.5']
@@ -276,7 +276,7 @@ test('4: Chaparral fuel catalog with estimated total load', () => {
   expect(observedTotalLoad.value()).toEqual(0)
   dag.select([observedTotalLoad]).run()
   inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(catalogKey)
   expect(observedTotalLoad.value()).toEqual(1)
 
@@ -311,7 +311,7 @@ test('5: Chaparral fuel catalog with observed total load', () => {
   dag.select(chamise.map(node => node[0]))
   dag.select([observedTotalLoad]).run()
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(catalogKey)
   dag.input([
     [catalogKey, 'chaparral/type=chamise/depth=6/deadFraction=0.5']

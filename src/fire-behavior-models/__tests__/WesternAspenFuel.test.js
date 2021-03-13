@@ -92,7 +92,7 @@ test('1 Western Aspen fuel library - Table', () => {
 
   dag.select(aspenShrub.map(node => node[0])).run()
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(2)
+  expect(inputNodes).toHaveLength(2)
   expect(inputNodes).toContain(type)
   expect(inputNodes).toContain(curingLevel)
 
@@ -175,7 +175,7 @@ test('3: Western Aspen interpolation', () => {
 
   dag.select(aspenShrub.map(node => node[0]))
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(2)
+  expect(inputNodes).toHaveLength(2)
   expect(inputNodes).toContain(type)
   expect(inputNodes).toContain(curingLevel)
 
@@ -230,7 +230,7 @@ test('4: Western Aspen catalog', () => {
 
   dag.select(aspenShrub.map(node => node[0]))
   const inputNodes = dag.requiredInputNodes()
-  expect(inputNodes.length).toEqual(1)
+  expect(inputNodes).toHaveLength(1)
   expect(inputNodes).toContain(catalogKey)
   dag.input([[catalogKey, 'aspenShrub50']]).run()
 

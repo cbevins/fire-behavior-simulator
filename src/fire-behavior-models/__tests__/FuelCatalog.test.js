@@ -27,9 +27,9 @@ test('1: FuelCatalog', () => {
   expect(FuelCatalog.label('10')).toEqual('Timber litter & understory')
 
   const keys = FuelCatalog.keys()
-  expect(keys.length).toEqual(160)
-  expect(keys.includes('10')).toEqual(true)
-  expect(keys.includes('junk')).toEqual(false)
+  expect(keys).toHaveLength(160)
+  expect(keys).toContain('10')
+  expect(keys).not.toContain('junk')
 
   const list = FuelCatalog.list()
   // console.log(list)
@@ -38,7 +38,7 @@ test('1: FuelCatalog', () => {
 
 test('2: Ensure all aliases and keys are correct', () => {
   const aliases = FuelCatalog.aliases()
-  expect(aliases.length).toEqual(160)
+  expect(aliases).toHaveLength(160)
   aliases.forEach(alias => {
     expect(FuelCatalog.hasAlias(alias)).toEqual(true)
   })
@@ -53,6 +53,7 @@ test('2: Ensure all aliases and keys are correct', () => {
   keys.forEach(key => {
     expect(FuelCatalog.hasAlias(key)).toEqual(true)
     if (!isNaN(parseInt(key))) {
+      // eslint-disable-next-line jest/no-conditional-expect
       expect(FuelCatalog.hasAlias(parseInt(key))).toEqual(true)
     }
   })
