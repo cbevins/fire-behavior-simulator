@@ -16,7 +16,8 @@ import * as Lib from '../fire-behavior-models/index.js'
 
 export class ChaparralTypeOption extends Option {
   constructor () {
-    super('ChaparralTypeOption', 'Chaparral fuel type', Lib.ChaparralFuel.Types) }
+    super('ChaparralTypeOption', 'Chaparral fuel type', Lib.ChaparralFuel.Types)
+  }
 }
 
 export class CrownFireInitiationTypeOption extends Option {
@@ -40,7 +41,8 @@ export class FuelModelKeyOption extends Option {
 
 export class IgnitionFuelTypeOption extends Option {
   constructor () {
-    super('IgnitionFuelTypeOption', 'Ignition fuel type', Lib.IgnitionProbability.LightningFuels) }
+    super('IgnitionFuelTypeOption', 'Ignition fuel type', Lib.IgnitionProbability.LightningFuels)
+  }
 }
 
 export class IgnitionLightningChargeOption extends Option {

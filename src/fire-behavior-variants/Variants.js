@@ -19,49 +19,49 @@ import { ArrayIndex, Bool, Count, Float, Fraction, Obj, Quantity, Ratio, Text } 
 
 export class NoYes extends Bool {
   // Bool(key, defaultValue=false, falseText='false', trueText='true', prompt='') {
-  constructor() {
-    super('NoYes', false, 'No', 'Yes', '' )
+  constructor () {
+    super('NoYes', false, 'No', 'Yes', '')
   }
 }
 
 export class DownWindCanopyIsOpen extends Bool {
   // Bool(key, defaultValue=false, falseText='false', trueText='true', prompt='') {
-  constructor() {
-    super('DownWindCanopyIsOpen', false, 'Closed', 'Open', 'The down-wind canopy is' )
+  constructor () {
+    super('DownWindCanopyIsOpen', false, 'Closed', 'Open', 'The down-wind canopy is')
   }
 }
 
 export class EffectiveWindSpeedLimitIsExceeded extends Bool {
   // Bool(key, defaultValue=false, falseText='false', trueText='true', prompt='') {
-  constructor() {
+  constructor () {
     super('EffectiveWindSpeedLimitIsExceeded', false, 'Not Exceeded', 'Exceeded',
-      'The effective wind speed limit is' )
+      'The effective wind speed limit is')
   }
 }
 
 export class FireSpreadRateLimitIsExceeded extends Bool {
   // Bool(key, defaultValue=false, falseText='false', trueText='true', prompt='') {
-  constructor() {
+  constructor () {
     super('FireSpreadRateLimitIsExceeded', false, 'Not Exceeded', 'Exceeded',
-      'The fire spread rate limit is' )
+      'The fire spread rate limit is')
   }
 }
 
 export class FuelIsSheltered extends Bool {
   // Bool(key, defaultValue=false, falseText='false', trueText='true', prompt='') {
-  constructor() {
-    super('FuelIsSheltered', false, 'Not sheltered', 'Sheltered', 'Is fuel bed sheltered by the canopy?' )
+  constructor () {
+    super('FuelIsSheltered', false, 'Not sheltered', 'Sheltered', 'Is fuel bed sheltered by the canopy?')
   }
 }
 
 export class Factor extends Float {
-  constructor(key='Factor', defaultValue=0, minValue = 1 - Number.MAX_VALUE, maxValue = Number.MAX_VALUE, stepValue=1) {
+  constructor (key = 'Factor', defaultValue = 0, minValue = 1 - Number.MAX_VALUE, maxValue = Number.MAX_VALUE, stepValue = 1) {
     super(key, defaultValue, minValue, maxValue, stepValue)
   }
 }
 
 export class NonNegativeFactor extends Factor {
-  constructor(key='NonNegativeFactor', defaultValue=0, minValue = 0, maxValue = Number.MAX_VALUE, stepValue=1) {
+  constructor (key = 'NonNegativeFactor', defaultValue = 0, minValue = 0, maxValue = Number.MAX_VALUE, stepValue = 1) {
     super(key, defaultValue, minValue, maxValue, stepValue)
   }
 }
@@ -80,25 +80,25 @@ export class CompassAzimuth extends Quantity {
 
 export class CrownFillFraction extends Fraction {
   // Fraction(key, defaultValue=0, stepValue = 0.01 )
-  constructor() { super('CrownFillFraction') }
+  constructor () { super('CrownFillFraction') }
 }
 
 export class CrownFireActiveRatio extends NonNegativeFactor {
-  constructor() { super('CrownFireActiveRatio') }
+  constructor () { super('CrownFireActiveRatio') }
 }
 
 export class CrownFireBurnedFraction extends Fraction {
   // Fraction(key, defaultValue=0, stepValue = 0.01 )
-  constructor() { super('CrownFireBurnedFraction')}
+  constructor () { super('CrownFireBurnedFraction') }
 }
 
 export class CrownRatioFraction extends Fraction {
   // Fraction(key, defaultValue=0, stepValue = 0.01 )
-  constructor() { super('CrownRatioFraction')}
+  constructor () { super('CrownRatioFraction') }
 }
 
 export class CrownTransitionRatio extends NonNegativeFactor {
-  constructor() { super('CrownTransitionRatio')}
+  constructor () { super('CrownTransitionRatio') }
 }
 
 export class Documentation extends Text {
@@ -113,7 +113,7 @@ export class FireArea extends Quantity {
 
 export class FireDampingCoefficient extends Fraction {
   // Fraction(key, defaultValue=0, stepValue = 0.01 )
-  constructor() { super('FireDampingCoefficient') }
+  constructor () { super('FireDampingCoefficient') }
 }
 
 export class FireElapsedTime extends Quantity {
@@ -152,12 +152,12 @@ export class FirePower extends Quantity {
 }
 
 export class FirePowerRatio extends NonNegativeFactor {
-  constructor() { super('FirePowerRatio') }
+  constructor () { super('FirePowerRatio') }
 }
 
 export class FirePropagatingFluxRatio extends Fraction {
   // Fraction(key, defaultValue=0, stepValue = 0.01 )
-  constructor() { super('FirePropagatingFluxRatio') }
+  constructor () { super('FirePropagatingFluxRatio') }
 }
 
 export class FireReactionIntensity extends Quantity {
@@ -221,11 +221,11 @@ export class FuelBedHeatOfPreignition extends Quantity {
 }
 
 export class FuelBedPackingRatio extends NonNegativeFactor {
-  constructor() { super('FuelBedPackingRatio') }
+  constructor () { super('FuelBedPackingRatio') }
 }
 
 export class FuelCoverFraction extends Fraction {
-  constructor() { super('FuelCoverFraction') }
+  constructor () { super('FuelCoverFraction') }
 }
 
 export class FuelCylindricalDiameter extends Quantity {
@@ -239,15 +239,15 @@ export class FuelCylindricalVolume extends Quantity {
 }
 
 export class FuelDeadFraction extends Fraction {
-  constructor() { super('FuelDeadFraction') }
+  constructor () { super('FuelDeadFraction') }
 }
 
 export class FuelEffectiveHeatingNumber extends Fraction {
-  constructor() { super('FuelEffectiveHeatingNumber')}
+  constructor () { super('FuelEffectiveHeatingNumber') }
 }
 
 export class FuelEffectiveMineralContent extends Fraction {
-  constructor() { super('FuelEffectiveMineralContent')}
+  constructor () { super('FuelEffectiveMineralContent') }
 }
 
 export class FuelHeatOfCombustion extends Quantity {
@@ -305,34 +305,38 @@ export class FuelSurfaceArea extends Quantity {
 
 export class FuelSurfaceAreaToVolumeRatio extends Quantity {
   // Quantity(key, unitsOptions, maxValue, defaultValue=0, minValue = 0, stepValue = 1 )
-  constructor () { super('FuelSurfaceAreaToVolumeRatio', ['ft2/ft3', 'm2/m3', 'cm2/cm3'],
-    4000, 1, 1, 100)
+  constructor () {
+    super('FuelSurfaceAreaToVolumeRatio', ['ft2/ft3', 'm2/m3', 'cm2/cm3'],
+      4000, 1, 1, 100)
   }
 }
 
 export class FuelSurfaceAreaToVolumeRatio1H extends Quantity {
   // Quantity(key, unitsOptions, maxValue, defaultValue=0, minValue = 0, stepValue = 1 )
-  constructor () { super('FuelSurfaceAreaToVolumeRatio1H', ['ft2/ft3', 'm2/m3', 'cm2/cm3'],
-    4000, 1200, 192, 100)
+  constructor () {
+    super('FuelSurfaceAreaToVolumeRatio1H', ['ft2/ft3', 'm2/m3', 'cm2/cm3'],
+      4000, 1200, 192, 100)
   }
 }
 
 export class FuelSurfaceAreaToVolumeRatio10H extends Quantity {
   // Quantity(key, unitsOptions, maxValue, defaultValue=0, minValue = 0, stepValue = 1 )
-  constructor () { super('FuelSurfaceAreaToVolumeRatio10H', ['ft2/ft3', 'm2/m3', 'cm2/cm3'],
-    192, 96, 48, 4)
+  constructor () {
+    super('FuelSurfaceAreaToVolumeRatio10H', ['ft2/ft3', 'm2/m3', 'cm2/cm3'],
+      192, 96, 48, 4)
   }
 }
 
 export class FuelSurfaceAreaToVolumeRatio100H extends Quantity {
   // Quantity(key, unitsOptions, maxValue, defaultValue=0, minValue = 0, stepValue = 1 )
-  constructor () { super('FuelSurfaceAreaToVolumeRatio100H', ['ft2/ft3', 'm2/m3', 'cm2/cm3'],
-    48, 30, 16, 10)
+  constructor () {
+    super('FuelSurfaceAreaToVolumeRatio100H', ['ft2/ft3', 'm2/m3', 'cm2/cm3'],
+      48, 30, 16, 10)
   }
 }
 
 export class FuelTotalMineralContent extends Fraction {
-  constructor() { super('FuelTotalMineralContent') }
+  constructor () { super('FuelTotalMineralContent') }
 }
 
 export class FuelVolume extends Quantity {
@@ -346,7 +350,7 @@ export class IgnitionFuelDepth extends Quantity {
 }
 
 export class IgnitionProbability extends Fraction {
-  constructor() { super('IgnitionProbability') }
+  constructor () { super('IgnitionProbability') }
 }
 
 export class MapArea extends Quantity {
@@ -374,7 +378,7 @@ export class MapScale extends Factor {
 }
 
 export class MortalityFraction extends Fraction {
-  constructor() { super('MortalityFraction') }
+  constructor () { super('MortalityFraction') }
 }
 
 export class SlopeSteepnessDegrees extends Quantity {
@@ -384,7 +388,7 @@ export class SlopeSteepnessDegrees extends Quantity {
 
 export class SlopeSteepnessRatio extends Quantity {
   // Quantity(key, unitsOptions, maxValue, defaultValue=0, minValue = 0, stepValue = 1 )
-  constructor() { super('SlopeSteepnessRatio', ['ratio', '%'], 10, 0, 0, 0.1) }
+  constructor () { super('SlopeSteepnessRatio', ['ratio', '%'], 10, 0, 0, 0.1) }
 }
 
 export class SpottingFirebrandObject extends Obj {
@@ -420,7 +424,7 @@ export class TreeHeight extends Quantity {
 }
 
 export class WeightingFactor extends Fraction {
-  constructor() { super('WeightingFactor') }
+  constructor () { super('WeightingFactor') }
 }
 
 export class WindSpeed extends Quantity {
@@ -430,5 +434,5 @@ export class WindSpeed extends Quantity {
 
 export class WindSpeedAdjustmentFactor extends Fraction {
   // Fraction(key, defaultValue=0, stepValue = 0.01 ) {
-  constructor() { super('WindSpeedAdjustmentFactor', 1, 0.05)}
+  constructor () { super('WindSpeedAdjustmentFactor', 1, 0.05) }
 }

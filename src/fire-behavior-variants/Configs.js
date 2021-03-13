@@ -23,8 +23,8 @@ export class ConfigLinkCrownFire extends Config {
   constructor () {
     super('ConfigLinkCrownFire',
       'This crown spotting module inputs are', [
-          ['linkedToCrownFire', 'linked to the Crown Fire Module outputs'],
-          ['standAlone', 'entered directly (stand-alone mode)']
+        ['linkedToCrownFire', 'linked to the Crown Fire Module outputs'],
+        ['standAlone', 'entered directly (stand-alone mode)']
       ])
   }
 }
@@ -52,7 +52,7 @@ export class ConfigLinkScorchHeight extends Config {
 export class ConfigLinkSurfaceFire extends Config {
   constructor () {
     super('ConfigLinkSurfaceFire',
-      `This module's inputs are`, [
+      'This module\'s inputs are', [
         ['linkedToSurfaceFire', 'linked to Surface Fire outputs'],
         ['standAlone', 'entered directly (stand-alone mode)']
       ])
@@ -63,9 +63,9 @@ export class ConfigLinkSurfaceFire extends Config {
 export class ConfigChaparralTotalLoad extends Config {
   constructor () {
     super('ConfigChaparralTotalLoad',
-    'When required as input, chaparral total fuel load is', [
-      ['input', 'entered directly'],
-      ['estimated', 'estimated from chaparral depth']])
+      'When required as input, chaparral total fuel load is', [
+        ['input', 'entered directly'],
+        ['estimated', 'estimated from chaparral depth']])
   }
 }
 
@@ -73,7 +73,7 @@ export class ConfigChaparralTotalLoad extends Config {
 export class ConfigCuredHerbFraction extends Config {
   constructor () {
     super('ConfigCuredHerbFraction',
-     'The cured herb fraction for BehavePlus fuel models is', [
+      'The cured herb fraction for BehavePlus fuel models is', [
         ['input', 'entered directly'],
         ['estimated', 'estimated from live fuel moisture']])
   }
@@ -85,7 +85,7 @@ export class ConfigCuredHerbFraction extends Config {
 export class ConfigPrimaryFuels extends Config {
   constructor () {
     super('ConfigPrimaryFuels',
-     'Primary surface fuels are specified by entering', [
+      'Primary surface fuels are specified by entering', [
         ['catalog', 'a fuel model catalog key'],
         ['behave', 'standard BehavePlus fuel parameters'],
         ['chaparral', 'chaparral dynamic fuel parameters'],
@@ -101,12 +101,12 @@ export class ConfigSecondaryFuels extends Config {
   constructor () {
     super('ConfigSecondaryFuels',
       'Secondary surface fuels are specified by entering', [
-      ['none', 'there are no secondary fuels'],
-      ['catalog', 'a fuel model catalog key'],
-      ['behave', 'standard BehavePlus fuel parameters'],
-      ['chaparral', 'chaparral dynamic fuel parameters'],
-      ['palmettoGallberry', 'palmetto-gallberry dynamic fuel parameters'],
-      ['westernAspen', 'western aspen dynamic fuel parameters']])
+        ['none', 'there are no secondary fuels'],
+        ['catalog', 'a fuel model catalog key'],
+        ['behave', 'standard BehavePlus fuel parameters'],
+        ['chaparral', 'chaparral dynamic fuel parameters'],
+        ['palmettoGallberry', 'palmetto-gallberry dynamic fuel parameters'],
+        ['westernAspen', 'western aspen dynamic fuel parameters']])
   }
 }
 
@@ -115,11 +115,11 @@ export class ConfigSecondaryFuels extends Config {
 export class ConfigMoistureContents extends Config {
   constructor () {
     super('ConfigMoistureContents',
-    'When required as input, fuel moisture is entered for', [
+      'When required as input, fuel moisture is entered for', [
         ['individual', 'the 3 dead and 2 live fuel moisture classes'],
         ['liveCategory', 'the 3 dead moisture classes and a singe live category moisture'],
         ['category', 'the dead and live category moistures only']])
-        // ['catalog' // 'a fuel moisture catalog key']
+    // ['catalog' // 'a fuel moisture catalog key']
   }
 }
 
@@ -157,8 +157,8 @@ export class ConfigWindDirection extends Config {
         ['sourceFromNorth', 'the direction FROM which the wind is blowing (degrees from NORTH)'],
         ['headingFromUpslope', 'the direcion TOWARDS which the wind is blowing (degrees from UPSLOPE)'],
         ['upslope', 'assumed to be blowing upslope']], 1)
-      }
   }
+}
 
 // bp6 #4 Surface > Input  > Wind Speed > Entered at:
 // [mid, 20-wafInp, 20-wafEst, 10-wafInp, 10-wafEst]
@@ -218,7 +218,7 @@ export class ConfigFireVector extends Config {
     super('ConfigFireVector',
       'When required as input, fire vector direction inputs are', [
         ['fromHead', 'degrees clockwise from direction of maximum spread'],
-        ['fromUpslope',  'degrees clockwise from upslope'],
+        ['fromUpslope', 'degrees clockwise from upslope'],
         ['fromNorth', 'degrees clockwise from north']])
   }
 }
