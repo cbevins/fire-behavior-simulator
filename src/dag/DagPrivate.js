@@ -28,6 +28,17 @@ export class DagPrivate {
     })
     this.setTopology()
   }
+
+  // Returns an array of references to ALL Config Nodes that may be used by `node`
+  // Called only by Dag.setNodeEdges()
+  _nodeConfigs (node) {
+    const configs = new Set()
+    node.updaters().forEach(updater => {
+      if (updater[0].length) { configs.add(this._node[updater[0][0]]) }
+    })
+    return Array.from(configs)
+  }
+
   // Repackages an array of [<DagNode|key|index>] an array of [<DagNode>]
   _refs (nodeRefKeyIdx, name) {
     const refs = []
@@ -96,7 +107,11 @@ export class DagPrivate {
    */
   requiredUpdateNodes () {
     const nodes = []
-    this._sortedNodes.forEach(node => { if (node._is._required && ! node._is._config) nodes.push(node) })
+    this._sortedNodes.forEach(node => {
+      if (node._is._enabled && node._is._required && ! node._is._config) {
+        nodes.push(node)
+      }
+    })
     return nodes
   }
 
@@ -127,16 +142,6 @@ export class DagPrivate {
     return node._dag._depth
   }
 
-  // Returns an array of references to ALL Config Nodes that may be used by `node`
-  // Called only by Dag.setNodeEdges()
-  nodeConfigs (node) {
-    const configs = new Set()
-    node.updaters().forEach(updater => {
-      if (updater[0].length) { configs.add(this._node[updater[0][0]]) }
-    })
-    return Array.from(configs)
-  }
-
   // Called by setTopology() to set each DagNode's:
   // - update method and parms,
   // - producer (in) DagNodes, and
@@ -149,7 +154,7 @@ export class DagPrivate {
     node._update._method = (file === 'Math') ? Math[func] : Lib[file][func]
 
     // Add all Config nodes referenced by node to the Required Set
-    node._update._configs = this.nodeConfigs(node)
+    node._update._configs = this._nodeConfigs(node)
     node._update._configs.forEach(config => { config._dag._consumers.push(node) })
     node._update._config = configNode
 
@@ -173,13 +178,9 @@ export class DagPrivate {
     const selected = []
     this._sortedNodes.forEach(node => {
       node._is._required = false
-      if (node._is._selected) selected.push(node)
+      if (node._is._selected && node._is._enabled ) selected.push(node)
     })
-    selected.forEach(node => {
-      // if (node._is._enabled) {
-        this.setRequiredRecursive(node)
-      // }
-    })
+    selected.forEach(node => { this.setRequiredRecursive(node) })
   }
 
   // Recursively requires all producers of this DagNode
@@ -190,7 +191,9 @@ export class DagPrivate {
       node._update._configs.forEach(config => { config._is._required = true })
       // Require all this DagNode's producer DagNodes
       node._dag._producers.forEach(producer => {
-        // if (!producer._is._enabled) throw new Error(`Node '${node.key()}' has disabled producer '${producer.key()}'`)
+        if (!producer._is._enabled) {
+          throw new Error(`Node '${node.key()}' has disabled producer '${producer.key()}'`)
+        }
         this.setRequiredRecursive(producer)
       })
     }

@@ -53,6 +53,11 @@ export class Dag extends DagPrivate {
   }
 
   /**
+   * @returns {Array} An array of references to all enabled DagNodes in topological order.
+   */
+  enabledNodes () { return this._sortedNodes.filter(node => node._is._enabled) }
+
+  /**
    * Adds (or replaces) an array of input values for one or more DagNodes.
    *
    * Note that this function stores the DagNode's input values regardless of whether the
@@ -82,31 +87,17 @@ export class Dag extends DagPrivate {
   /**
    * @returns {Array} An array of references to all required Config DagNodes in topological order.
    */
-  requiredConfigNodes () {
-    const nodes = []
-    this._sortedNodes.forEach(node => { if (node._is._config && node._is._required) nodes.push(node) })
-    return nodes
-  }
+  requiredConfigNodes () { return this._sortedNodes.filter(node => node._is._config && node._is._required) }
 
   /**
    * @returns {Array} An array of references to all required DagNodes in topological order.
    */
-  requiredNodes () {
-    const nodes = []
-    this._sortedNodes.forEach(node => { if (node._is._required) nodes.push(node) })
-    return nodes
-  }
+  requiredNodes () { return this._sortedNodes.filter(node => node._is._required) }
 
   /**
    * @returns {Array} An array of references to all required input DagNodes in topological order.
    */
-  requiredInputNodes () {
-    const nodes = []
-    this._sortedNodes.forEach(node => {
-      if (node._is._input && node._is._required && !node._is._config) nodes.push(node)
-    })
-    return nodes
-  }
+  requiredInputNodes () { return this._sortedNodes.filter(node => node._is._input && node._is._required && !node._is._config) }
 
   run () {
     // Ensure every input DagNode has values in the Input Map
@@ -131,6 +122,19 @@ export class Dag extends DagPrivate {
     const nodes = []
     this._sortedNodes.forEach(node => { if (node._is._selected) nodes.push(node) })
     return nodes
+  }
+
+  setEnabled (prefixes, isEnabled) {
+    this._node.forEach(node => {
+      const key = node.key()
+      for(let idx=0; idx<prefixes.length; idx++) {
+        if (key.startsWith(prefixes[idx])) {
+          node.setEnabled(isEnabled)
+          break
+        }
+      }
+    })
+    return this
   }
 
   setRunLimit (runs ) {

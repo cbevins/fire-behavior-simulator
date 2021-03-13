@@ -27,7 +27,7 @@ There are 7 possible linkages where a client Module binds one or more of its inp
     - heading direction from upslope
     - fireline intensity (or flame length) at head
     - length-to-width ratio (or effective wind speed)
-    - wind speed at midflame height
+    - wind speed at midflame height (for scorch height outputs)
 
   - Fire Containment binds to Fire Ellipse (`configure.link.fireContain = 'linkedToFireEllipse'`) to obtain:
     - spread rate at head

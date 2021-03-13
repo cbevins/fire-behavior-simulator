@@ -55,7 +55,7 @@ test('Dag.requiredInputNodes(), Dag.requiredConfigNodes(), Dag.requiredNodes()',
   expect(inputNodes.length).toEqual(11)
 
   const configNodes = dag.requiredConfigNodes()
-  console.log(configNodes.reduce((str, node) => node.key() +'\n', ''))
+  // console.log(configNodes.reduce((str, node) => node.key() +'\n', ''))
   expect(configNodes.length).toEqual(12)
   expect(configNodes).toContain(dag.node('configure.fuel.primary'))
   expect(configNodes).toContain(dag.node('configure.fuel.curedHerbFraction'))

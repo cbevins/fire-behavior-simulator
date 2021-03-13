@@ -17,7 +17,7 @@ export class DagNode {
     this._gene = geneRef
     this._is = {
       _config: variantRef.key().startsWith('Config'),
-      // _enabled: true,
+      _enabled: true,
       _input: false,
       _required: false,
       _selected: false
@@ -40,7 +40,7 @@ export class DagNode {
   displayValue () { return this._variant.displayValue(this._value) }
   index () { return this._gene[0] }
   isConfig () { return this._is._config }
-  // isEnabled () { return this._is._enabled }
+  isEnabled () { return this._is._enabled }
   isInput () { return this._is._input }
   isRequired () { return this._is._required }
   isSelected () { return this._is._selected }
@@ -69,6 +69,8 @@ export class DagNode {
     this._is._input = false
     this._is._required = false
   }
+
+  setEnabled(bool) { this._is._enabled = bool }
 
   // setValue(value) { this._value = value }
 
