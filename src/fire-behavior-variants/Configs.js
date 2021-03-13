@@ -21,25 +21,41 @@ export class ConfigModuleActive extends Config {
 
 export class ConfigLinkCrownFire extends Config {
   constructor () {
-    super('ConfigLinkCrownFire', '', ['linkedToCrownFire', 'standAlone'])
+    super('ConfigLinkCrownFire',
+      'This crown spotting module inputs are', [
+          ['linkedToCrownFire', 'linked to the Crown Fire Module outputs'],
+          ['standAlone', 'entered directly (stand-alone mode)']
+      ])
   }
 }
 
 export class ConfigLinkFireEllipse extends Config {
   constructor () {
-    super('ConfigLinkFireEllipse', '', ['linkedToFireEllipse', 'standAlone'])
+    super('ConfigLinkFireEllipse',
+      'The fire containment module inputs are', [
+        ['linkedToFireEllipse', 'linked to fire ellipse module outputs'],
+        ['standAlone', 'entered separately (stand-alone)']
+      ])
   }
 }
 
 export class ConfigLinkScorchHeight extends Config {
   constructor () {
-    super('ConfigLinkScorchHeight', '', ['linkedToScorchHeight', 'standAlone'])
+    super('ConfigLinkScorchHeight',
+      'The tree mortality module inputs (scorch height) are:', [
+        ['linkedToScorchHeight', 'linked to the scorch surface or fire ellipse outputs'],
+        ['standAlone', 'entered separately (stand-alone mode)']
+      ])
   }
 }
 
 export class ConfigLinkSurfaceFire extends Config {
   constructor () {
-    super('ConfigLinkSurfaceFire', '', ['linkedToSurfaceFire', 'standAlone'])
+    super('ConfigLinkSurfaceFire',
+      `This module's inputs are`, [
+        ['linkedToSurfaceFire', 'linked to Surface Fire outputs'],
+        ['standAlone', 'entered directly (stand-alone mode)']
+      ])
   }
 }
 
@@ -47,9 +63,9 @@ export class ConfigLinkSurfaceFire extends Config {
 export class ConfigChaparralTotalLoad extends Config {
   constructor () {
     super('ConfigChaparralTotalLoad',
-    'Chaparral total fuel load is', [
-      ['input', 'entered as input'],
-      ['estimated', 'estimated from Chaparral depth']])
+    'When required as input, chaparral total fuel load is', [
+      ['input', 'entered directly'],
+      ['estimated', 'estimated from chaparral depth']])
   }
 }
 
@@ -57,8 +73,8 @@ export class ConfigChaparralTotalLoad extends Config {
 export class ConfigCuredHerbFraction extends Config {
   constructor () {
     super('ConfigCuredHerbFraction',
-     'Behave fuel model cured herb fraction is', [
-        ['input', 'entered as input'],
+     'The cured herb fraction for BehavePlus fuel models is', [
+        ['input', 'entered directly'],
         ['estimated', 'estimated from live fuel moisture']])
   }
 }
@@ -69,12 +85,12 @@ export class ConfigCuredHerbFraction extends Config {
 export class ConfigPrimaryFuels extends Config {
   constructor () {
     super('ConfigPrimaryFuels',
-     'Primary fuels are specified by entering', [
+     'Primary surface fuels are specified by entering', [
         ['catalog', 'a fuel model catalog key'],
         ['behave', 'standard BehavePlus fuel parameters'],
         ['chaparral', 'chaparral dynamic fuel parameters'],
         ['palmettoGallberry', 'palmetto-gallberry dynamic fuel parameters'],
-        ['westernAspen', 'western aspen dynamic fuel models']])
+        ['westernAspen', 'western aspen dynamic fuel parameters']])
   }
 }
 
@@ -84,13 +100,13 @@ export class ConfigPrimaryFuels extends Config {
 export class ConfigSecondaryFuels extends Config {
   constructor () {
     super('ConfigSecondaryFuels',
-      'Secondary fuels are specified by entering', [
+      'Secondary surface fuels are specified by entering', [
       ['none', 'there are no secondary fuels'],
       ['catalog', 'a fuel model catalog key'],
       ['behave', 'standard BehavePlus fuel parameters'],
       ['chaparral', 'chaparral dynamic fuel parameters'],
       ['palmettoGallberry', 'palmetto-gallberry dynamic fuel parameters'],
-      ['westernAspen', 'western aspen dynamic fuel models']])
+      ['westernAspen', 'western aspen dynamic fuel parameters']])
   }
 }
 
@@ -99,9 +115,9 @@ export class ConfigSecondaryFuels extends Config {
 export class ConfigMoistureContents extends Config {
   constructor () {
     super('ConfigMoistureContents',
-    'Fuel moistures are specified by entering', [
-        ['individual', 'the 3 dead and 2 live fuel moistures'],
-        ['liveCategory', 'the 3 dead moistures and a singe live category moisture'],
+    'When required as input, fuel moisture is entered for', [
+        ['individual', 'the 3 dead and 2 live fuel moisture classes'],
+        ['liveCategory', 'the 3 dead moisture classes and a singe live category moisture'],
         ['category', 'the dead and live category moistures only']])
         // ['catalog' // 'a fuel moisture catalog key']
   }
@@ -113,8 +129,8 @@ export class ConfigMoistureContents extends Config {
 export class ConfigWindSpeedAdjustmentFactor extends Config {
   constructor () {
     super('ConfigWindSpeedAdjustmentFactor',
-      'Midflame wind speed adjustment factor is', [
-        ['input', 'entered as input'],
+      'When required as input, midflame wind speed adjustment factor is', [
+        ['input', 'entered directly'],
         ['estimated', 'estimated from canopy and fuel parameters']])
   }
 }
@@ -125,7 +141,7 @@ export class ConfigWindSpeedAdjustmentFactor extends Config {
 export class ConfigSlopeSteepness extends Config {
   constructor () {
     super('ConfigSlopeSteepness',
-      'Slope Steepness is', [
+      'When required as input, slope steepness is', [
         ['ratio', 'entered as ratio of vertical rise to horizontal reach'],
         ['degrees', 'entered as degrees of angle above the horizontal plane'],
         ['map', 'estimated from map measurements']])
@@ -137,7 +153,7 @@ export class ConfigSlopeSteepness extends Config {
 export class ConfigWindDirection extends Config {
   constructor () {
     super('ConfigWindDirection',
-      'Wind direction is', [
+      'When required as input, wind direction is', [
         ['sourceFromNorth', 'the direction FROM which the wind is blowing (degrees from NORTH)'],
         ['headingFromUpslope', 'the direcion TOWARDS which the wind is blowing (degrees from UPSLOPE)'],
         ['upslope', 'assumed to be blowing upslope']], 1)
@@ -150,7 +166,7 @@ export class ConfigWindDirection extends Config {
 export class ConfigWindSpeed extends Config {
   constructor () {
     super('ConfigWindSpeed',
-      'Wind speed is entered for', [
+      'When required as an input, wind speed is entered for', [
         ['at10m', '10-m height'],
         ['at20ft', '20-ft height'],
         ['atMidflame', 'midflame height']], 1)
@@ -160,8 +176,8 @@ export class ConfigWindSpeed extends Config {
 export class ConfigFirelineIntensity extends Config {
   constructor () {
     super('ConfigFirelineIntensity',
-      'The fireline intensity is', [
-        ['firelineIntensity', 'entered as input'],
+      'When required as an input, fireline intensity is', [
+        ['firelineIntensity', 'entered directly'],
         ['flameLength', 'estimated from the flame length input']])
   }
 }
@@ -169,8 +185,8 @@ export class ConfigFirelineIntensity extends Config {
 export class ConfigFireLengthToWidthRatio extends Config {
   constructor () {
     super('ConfigFireLengthToWidthRatio',
-      'The fire ellipse length-to-width ratio is', [
-        ['lengthToWidthRatio', 'entered as input'],
+      'When required as an input, fire ellipse length-to-width ratio is', [
+        ['lengthToWidthRatio', 'entered directly'],
         ['effectiveWindSpeed', 'estimated from the effective wind speed input']])
   }
 }
@@ -179,7 +195,7 @@ export class ConfigFireLengthToWidthRatio extends Config {
 export class ConfigEffectiveWindSpeedLimit extends Config {
   constructor () {
     super('ConfigEffectiveWindSpeedLimit',
-      'The effective wind speed limit is', [
+      'The fire spread rate effective wind speed limit is', [
         ['applied', 'applied'],
         ['ignored', 'ignored']])
   }
@@ -189,7 +205,7 @@ export class ConfigEffectiveWindSpeedLimit extends Config {
 export class ConfigFireWeightingMethod extends Config {
   constructor () {
     super('ConfigFireWeightingMethod',
-      'Maximum fire spread rate of 2 surface fuel types is based on', [
+      'Weighted fire spread rate of 2 surface fuel types is based on', [
         ['arithmetic', 'arithmetic mean spread rate'],
         // ['expected', 'expected value spread rate'],
         ['harmonic', 'harmonic mean spread rate']], 1)
@@ -200,7 +216,7 @@ export class ConfigFireWeightingMethod extends Config {
 export class ConfigFireVector extends Config {
   constructor () {
     super('ConfigFireVector',
-      'Fire vector direction inputs are', [
+      'When required as input, fire vector direction inputs are', [
         ['fromHead', 'degrees clockwise from direction of maximum spread'],
         ['fromUpslope',  'degrees clockwise from upslope'],
         ['fromNorth', 'degrees clockwise from north']])
