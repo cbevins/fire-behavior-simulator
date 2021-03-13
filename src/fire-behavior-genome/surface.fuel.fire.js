@@ -9,14 +9,14 @@ export function slopeRatio (prefix) {
     ? [
         `${prefix}.fire.slope.ratio`,
         [['SlopeSteepnessRatio'], [['finally', 'Dag.fixed', 0]]]
-    ]
+      ]
     : [
         `${prefix}.fire.slope.ratio`,
         [
           ['SlopeSteepnessRatio'],
           [['finally', 'Dag.bind', 'site.slope.steepness.ratio']]
         ]
-    ]
+      ]
 }
 
 export function windHeadingFromUpslope (prefix) {
@@ -24,14 +24,14 @@ export function windHeadingFromUpslope (prefix) {
     ? [
         `${prefix}.fire.wind.heading.fromUpslope`,
         [['CompassAzimuth'], [['finally', 'Dag.fixed', 0]]]
-    ]
+      ]
     : [
         `${prefix}.fire.wind.heading.fromUpslope`,
         [
           ['CompassAzimuth'],
           [['finally', 'Dag.bind', 'site.wind.direction.heading.fromUpslope']]
         ]
-    ]
+      ]
 }
 
 export function windSpeedAdjustmentFactor (prefix) {
@@ -42,7 +42,7 @@ export function windSpeedAdjustmentFactor (prefix) {
           ['WindSpeedAdjustmentFactor'],
           [['finally', 'Dag.fixed', 0.4]]
         ]
-    ]
+      ]
     : [
         `${prefix}.fire.windSpeedAdjustmentFactor`,
         [
@@ -65,7 +65,7 @@ export function windSpeedAdjustmentFactor (prefix) {
             ]
           ]
         ]
-    ]
+      ]
 }
 
 export function genome (prefix) {

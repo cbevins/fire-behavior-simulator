@@ -14,67 +14,67 @@ import { VariantMap } from '../../fire-behavior-variants/index.js'
 import { dict } from './dictionary.js'
 
 const ab = [
-    ['spfbdp', 'surface.primary.fuel.bed.dead.particle.class'],
-    ['spfblp', 'surface.primary.fuel.bed.live.particle.class'],
-    ['ssfbdp', 'surface.secondary.fuel.bed.dead.particle.class'],
-    ['ssfblp', 'surface.secondary.fuel.bed.live.particle.class'],
-    ['ccfbdp', 'crown.canopy.fuel.bed.dead.particle.class'],
-    ['ccfblp', 'crown.canopy.fuel.bed.live.particle.class'],
-    ['spfbd', 'surface.primary.fuel.bed.dead'],
-    ['spfbl', 'surface.primary.fuel.bed.live'],
-    ['spff', 'surface.primary.fuel.fire'],
-    ['ssfbd', 'surface.secondary.fuel.bed.dead'],
-    ['ssfbl', 'surface.secondary.fuel.bed.live'],
-    ['ssff', 'surface.secondary.fuel.fire'],
-    ['ccfbd', 'crown.canopy.fuel.bed.dead'],
-    ['ccfbl', 'crown.canopy.fuel.bed.live'],
-    ['ccff', 'crown.canopy.fuel.fire'],
-    ['spfb', 'surface.primary.fuel.bed'],
-    ['ssfb', 'surface.secondary.fuel.bed'],
-    ['ccfb', 'crown.canopy.fuel.bed'],
-    ['cfa', 'crown.fire.active'],
-    ['cff', 'crown.fire.final'],
-    ['cfi', 'crown.fire.initiation'],
-    ['spf', 'surface.primary.fuel'],
-    ['ssf', 'surface.secondary.fuel'],
-    ['mbd', 'model.behave.derived'],
-    ['mbp', 'model.behave.parms'],
-    ['mcd', 'model.chaparral.derived'],
-    ['mcp', 'model.chaparral.parms'],
-    ['mpd', 'model.palmettoGallberry.derived'],
-    ['mpp', 'model.palmettoGallberry.parms'],
-    ['mwd', 'model.westernAspen.derived'],
-    ['mwp', 'model.westernAspen.parms'],
-    ['sfe', 'surface.fire.ellipse'],
-    ['swf', 'surface.weighted.fire'],
-    ['spotb', 'spotting.burningPile'],
-    ['spotc', 'spotting.crownFire'],
-    ['spots', 'spotting.surfaceFire'],
-    ['spott', 'spotting.torchingTrees'],
-    ['savr', 'surfaceAreaToVolumeRatio'],
-    ['emc', 'effective.mineralContent'],
-    ['tmc', 'total.mineralContent'],
-    ['heat', 'heatOfCombustion'],
-    ['ef', 'effectiveFuel'],
-    ['sa', 'surfaceArea'],
-    ['sc', 'sizeClass'],
-    ['wf', 'weightingFactor'],
-    ['qig', 'heatOfPreignition'],
-    ['waf', 'windSpeedAdjustmentFactor'],
-    ['load', 'ovendryLoad'],
-    ['mois', 'moistureContent'],
-    ['fli', 'firelineIntensity'],
-    ['fl', 'flameLength'],
-    ['lwr', 'lengthToWidthRatio'],
-    ['ros', 'spreadRate'],
-    ['rxi', 'reactionIntensity'],
-    ['sh', 'scorchHeight'],
-    ['hpua', 'heatPerUnitArea'],
-    ['phiew', 'phiEffectiveWind'],
-    ['taur', 'flameResidenceTime'],
-    ['ews', 'effectiveWindSpeed'],
-    ['dens', 'fiberDensity'],
-    ['ehn', 'heatingNumber']
+  ['spfbdp', 'surface.primary.fuel.bed.dead.particle.class'],
+  ['spfblp', 'surface.primary.fuel.bed.live.particle.class'],
+  ['ssfbdp', 'surface.secondary.fuel.bed.dead.particle.class'],
+  ['ssfblp', 'surface.secondary.fuel.bed.live.particle.class'],
+  ['ccfbdp', 'crown.canopy.fuel.bed.dead.particle.class'],
+  ['ccfblp', 'crown.canopy.fuel.bed.live.particle.class'],
+  ['spfbd', 'surface.primary.fuel.bed.dead'],
+  ['spfbl', 'surface.primary.fuel.bed.live'],
+  ['spff', 'surface.primary.fuel.fire'],
+  ['ssfbd', 'surface.secondary.fuel.bed.dead'],
+  ['ssfbl', 'surface.secondary.fuel.bed.live'],
+  ['ssff', 'surface.secondary.fuel.fire'],
+  ['ccfbd', 'crown.canopy.fuel.bed.dead'],
+  ['ccfbl', 'crown.canopy.fuel.bed.live'],
+  ['ccff', 'crown.canopy.fuel.fire'],
+  ['spfb', 'surface.primary.fuel.bed'],
+  ['ssfb', 'surface.secondary.fuel.bed'],
+  ['ccfb', 'crown.canopy.fuel.bed'],
+  ['cfa', 'crown.fire.active'],
+  ['cff', 'crown.fire.final'],
+  ['cfi', 'crown.fire.initiation'],
+  ['spf', 'surface.primary.fuel'],
+  ['ssf', 'surface.secondary.fuel'],
+  ['mbd', 'model.behave.derived'],
+  ['mbp', 'model.behave.parms'],
+  ['mcd', 'model.chaparral.derived'],
+  ['mcp', 'model.chaparral.parms'],
+  ['mpd', 'model.palmettoGallberry.derived'],
+  ['mpp', 'model.palmettoGallberry.parms'],
+  ['mwd', 'model.westernAspen.derived'],
+  ['mwp', 'model.westernAspen.parms'],
+  ['sfe', 'surface.fire.ellipse'],
+  ['swf', 'surface.weighted.fire'],
+  ['spotb', 'spotting.burningPile'],
+  ['spotc', 'spotting.crownFire'],
+  ['spots', 'spotting.surfaceFire'],
+  ['spott', 'spotting.torchingTrees'],
+  ['savr', 'surfaceAreaToVolumeRatio'],
+  ['emc', 'effective.mineralContent'],
+  ['tmc', 'total.mineralContent'],
+  ['heat', 'heatOfCombustion'],
+  ['ef', 'effectiveFuel'],
+  ['sa', 'surfaceArea'],
+  ['sc', 'sizeClass'],
+  ['wf', 'weightingFactor'],
+  ['qig', 'heatOfPreignition'],
+  ['waf', 'windSpeedAdjustmentFactor'],
+  ['load', 'ovendryLoad'],
+  ['mois', 'moistureContent'],
+  ['fli', 'firelineIntensity'],
+  ['fl', 'flameLength'],
+  ['lwr', 'lengthToWidthRatio'],
+  ['ros', 'spreadRate'],
+  ['rxi', 'reactionIntensity'],
+  ['sh', 'scorchHeight'],
+  ['hpua', 'heatPerUnitArea'],
+  ['phiew', 'phiEffectiveWind'],
+  ['taur', 'flameResidenceTime'],
+  ['ews', 'effectiveWindSpeed'],
+  ['dens', 'fiberDensity'],
+  ['ehn', 'heatingNumber']
 ]
 
 /**
@@ -124,7 +124,7 @@ export class GenomeCompiler {
       const [geneKey, otherInfo] = geneInfo // Each Gene has a geneKey and an info array
       const [variantInfo, updaterInfo] = otherInfo
       const variantKey = variantInfo[0]
-      const variant = this.ensureVariantExists(geneKey, variantKey)
+      this.ensureVariantExists(geneKey, variantKey)
       let finals = 0 // number of 'finally' conditions processed for this Gene
       let configKey, op, value, methodKey, methodParms
       updaterInfo.forEach(updater => {
@@ -208,7 +208,7 @@ export class GenomeCompiler {
 
   // Returns the this.variantKeyArray index for the variantKey
   ensureVariantExists (geneKey, variantKey) {
-    if (! this.variantKeyIdxMap.has(variantKey)) {
+    if (!this.variantKeyIdxMap.has(variantKey)) {
       throw new Error(`Gene '${geneKey}' has unknown Variant class '${variantKey}'`)
     }
     return this.variantKeyIdxMap.get(variantKey)
@@ -272,10 +272,10 @@ export class GenomeCompiler {
     })
   }
 
-  run (genomeArray, fileName=null) {
+  run (genomeArray, fileName = null) {
     this.compile(genomeArray)
     const str = this.assemble()
-    if (fileName!=null) this.writeFile(fileName, str)
+    if (fileName != null) this.writeFile(fileName, str)
     return str
   }
 }

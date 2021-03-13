@@ -38,9 +38,9 @@ export function genome (prefix) {
 export function bedFuelDepth (prefix) {
   return prefix === 'crown.canopy.fuel'
     ? [
-      'crown.canopy.fuel.bed.depth',
-      [['FuelBedDepth'], [['finally', 'Dag.fixed', 1]]]
-    ]
+        'crown.canopy.fuel.bed.depth',
+        [['FuelBedDepth'], [['finally', 'Dag.fixed', 1]]]
+      ]
     : [
         `${prefix}.bed.depth`,
         [
@@ -57,7 +57,7 @@ export function bedFuelDepth (prefix) {
             ]
           ]
         ]
-    ]
+      ]
 }
 
 export function bed (prefix) {

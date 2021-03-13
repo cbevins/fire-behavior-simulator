@@ -8,9 +8,9 @@ export function extinctionMoistureContent (prefix, life) {
   if (life === 'dead') {
     return prefix === 'crown.canopy.fuel'
       ? [
-        'crown.canopy.fuel.bed.dead.extinction.moistureContent',
-        [['FuelMoistureContent'], [['finally', 'Dag.fixed', 0.25]]]
-      ]
+          'crown.canopy.fuel.bed.dead.extinction.moistureContent',
+          [['FuelMoistureContent'], [['finally', 'Dag.fixed', 0.25]]]
+        ]
       : [
           `${prefix}.bed.${life}.extinction.moistureContent`,
           [
@@ -27,7 +27,7 @@ export function extinctionMoistureContent (prefix, life) {
               ]
             ]
           ]
-      ]
+        ]
   }
   return [
     `${prefix}.bed.live.extinction.moistureContent`,

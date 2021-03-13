@@ -7,7 +7,7 @@
 import * as fs from 'fs'
 import { Genome } from '../genome.js'
 
-function load(genomeArray) {
+function load (genomeArray) {
   let str = 'export const Genome = [\n'
   genomeArray.forEach((nodeInfo, nodeIdx) => {
     const [nodeKey, otherInfo] = nodeInfo // Each Gene has a nodeKey and an info array
@@ -24,10 +24,10 @@ function load(genomeArray) {
         [methodKey, ...methodParms] = conditionArgs
         str += `    ['${condition}', '${methodKey}'`
       }
-      methodParms.forEach(parm => {str += `, '${parm}'` })
-      str += `],\n`
+      methodParms.forEach(parm => { str += `, '${parm}'` })
+      str += '],\n'
     })
-    str += `  ]]],\n`
+    str += '  ]]],\n'
   })
   str += ']\n'
   return str

@@ -20,19 +20,19 @@ export const genome = [
       'site.canopy.crown.baseHeight',
       'site.canopy.crown.totalHeight']]]
   ],
-  ['site.canopy.crown.ratio', [ ['CrownRatioFraction'], [
+  ['site.canopy.crown.ratio', [['CrownRatioFraction'], [
     ['finally', 'Canopy.crownRatio',
       'site.canopy.crown.length',
       'site.canopy.crown.totalHeight']]]
   ],
   ['site.canopy.crown.totalHeight', [['TreeHeight'], [
-      ['finally', 'Dag.input']]]
+    ['finally', 'Dag.input']]]
   ],
   // end site.canopy.crown
-  ['site.canopy.fire.heatPerUnitArea', [ ['FireHeatPerUnitArea'], [
+  ['site.canopy.fire.heatPerUnitArea', [['FireHeatPerUnitArea'], [
     ['finally', 'Canopy.heatPerUnitArea',
       'site.canopy.fuel.ovendryLoad',
-      'site.canopy.fuel.heatOfCombustion' ]]]
+      'site.canopy.fuel.heatOfCombustion']]]
   ],
   ['site.canopy.fuel.bulkDensity', [['FuelBedBulkDensity'], [
     ['finally', 'Dag.input']]]
@@ -43,11 +43,11 @@ export const genome = [
   ['site.canopy.fuel.heatOfCombustion', [['FuelHeatOfCombustion'], [
     ['finally', 'Dag.fixed', 8000]]]
   ],
-  ['site.canopy.fuel.isSheltered', [ ['FuelIsSheltered'], [
+  ['site.canopy.fuel.isSheltered', [['FuelIsSheltered'], [
     ['finally', 'Canopy.sheltersFuelFromWind',
       'site.canopy.cover',
       'site.canopy.crown.totalHeight',
-      'site.canopy.crown.fill'] ] ]
+      'site.canopy.crown.fill']]]
   ],
   ['site.canopy.fuel.ovendryLoad', [['FuelOvendryLoad'], [
     ['finally', 'Canopy.fuelLoad',
@@ -63,7 +63,7 @@ export const genome = [
     ['finally', 'Canopy.windSpeedAdjustmentFactor',
       'site.canopy.cover',
       'site.canopy.crown.totalHeight',
-      'site.canopy.crown.fill' ]]]
+      'site.canopy.crown.fill']]]
   ],
   // end 'site.canopy.sheltered'
   ['site.canopy.downwind.height', [['TreeHeight'], [['finally', 'Dag.input']]]

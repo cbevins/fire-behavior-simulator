@@ -20,7 +20,8 @@ test('Genome', () => {
   expect(Genome instanceof Array).toEqual(true)
 })
 
-function listGenome(genome) {
+// eslint-disable-next-line no-unused-vars
+function listGenome (genome) {
   let str = ''
   genome.forEach(gene => {
     const [nodeKey, nodeInfo] = gene // Each Gene has a nodeKey and an info array

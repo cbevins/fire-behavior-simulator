@@ -16,6 +16,6 @@ export const genome = [
   ]]],
   ['docs.run.userName', [['Documentation'], [
     ['finally', 'Dag.input']
-  ]]],
+  ]]]
   // end 'docs'
 ]
