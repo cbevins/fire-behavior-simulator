@@ -148,7 +148,7 @@ export const unitDefs = [
   ['Btu_39', [1.059670000000e+03, 'J', 1], ['btu_39']], // BTU at 39 oF
   ['Btu_59', [1.054800000000e+03, 'J', 1], ['btu_59']], // BTU at 59 oF
   ['Btu_60', [1.054680000000e+03, 'J', 1], ['btu_60']], // BTU at 60 oF
-  ['Btu_tc', [1.054350000000e+03, 'J', 1], ['btu_tc']], // thermochemical BTU
+  ['Btu_tc', [1.054350000000e+03, 'J', 1], ['btu_tc']] // thermochemical BTU
 ]
 
 // From https://en.wikipedia.org/wiki/International_System_of_Units

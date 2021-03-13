@@ -16,6 +16,7 @@ test('1 Uom', () => {
   expect(uom2._n).toEqual(1)
 
   // Cannot RE_ASSIGN Uom
+  // eslint-disable-next-line no-import-assign
   expect(() => { Uom = new Converter() }).toThrow()
 })
 
