@@ -54,7 +54,7 @@ export const selectStandardFireEllipse = [
   'surface.fire.ellipse.flank.firelineIntensity',
   'surface.fire.ellipse.flank.flameLength',
   'surface.fire.ellipse.flank.scorchHeight',
-  'surface.fire.ellipse.flank.spreadDistance',
+  'surface.fire.ellipse.flank.spreadDistance'
 ]
 const inputStandardFireEllipse = [
   ['surface.primary.fuel.model.catalogKey', ['124']],
@@ -71,7 +71,7 @@ const inputStandardFireEllipse = [
   ['site.fire.time.sinceIgnition', [60]]
 ]
 
-export function createFireEllipseSim (dagKey='FireEllipseSim') {
+export function createFireEllipseSim (dagKey = 'FireEllipseSim') {
   const sim = new Sim(dagKey)
   const dag = sim.getDag(dagKey)
   const store = new StorageNodeMap(dag)

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /**
  * @file Utility to generate variable documentation files
  * @copyright 2021 Systems for Environmental Management
@@ -8,7 +9,7 @@
  */
 
 import * as fs from 'fs'
-import {createFireEllipseSim} from '../examples/FireEllipseSim.js'
+import { createFireEllipseSim } from '../examples/FireEllipseSim.js'
 
 // Step 1 - create a BehavePlus directed acyclical graph (DAG)
 const [sim, dag, store] = createFireEllipseSim()
@@ -38,7 +39,7 @@ function configMarkdownList (fileName) {
   })
   const header = '# ![](favicon.png) cbevins/fire-behavior-simulator Configuration\n' +
     '[README.md](./README.md)\n'
-  write(header+str, fileName)
+  write(header + str, fileName)
 }
 
 function markdownList (fileName) {
@@ -53,17 +54,17 @@ function markdownList (fileName) {
       str += `---\n## ![](favicon.png) ${lastPart} Variables\n[top](#top-level-names)\n`
       contents += `- [${lastPart} Variables](#${lastPart}-variables)\n`
     }
-    str += `  - ${idx+1}: ${key}\n`
+    str += `  - ${idx + 1}: ${key}\n`
   })
   const header = '# ![](favicon.png) cbevins/fire-behavior-simulator Variable Names\n' +
     '[README.md](./README.md)\n'
-  write(header+contents+str, fileName)
+  write(header + contents + str, fileName)
 }
 
 function nodeMarkdownTable (fileName) {
   let lastPart = ''
   let contents = '# ![](favicon.png) Top-level Names\n'
-  let hdr = '| idx | Variable Key (Name) | Variant | Native Units |\n|---|---|---|---|\n'
+  const hdr = '| idx | Variable Key (Name) | Variant | Native Units |\n|---|---|---|---|\n'
   let str = ''
   const nodeKeys = dag._node.map(node => node.key())
   nodeKeys.sort().forEach((key, idx) => {
@@ -74,23 +75,23 @@ function nodeMarkdownTable (fileName) {
       str += hdr
       contents += `- [${lastPart} Variables](#${lastPart}-variables)\n`
     }
-    let node = dag.node(key)
-    str += `  | ${idx+1} | ${key} | ${node.variant().key()} | ${node.variant().nativeUnits()} |\n`
+    const node = dag.node(key)
+    str += `  | ${idx + 1} | ${key} | ${node.variant().key()} | ${node.variant().nativeUnits()} |\n`
   })
   const header = '# ![](favicon.png) cbevins/fire-behavior-simulator Variable Names\n' +
     '[README.md](./README.md)\n'
-  write(header+contents+str, fileName)
+  write(header + contents + str, fileName)
 }
 
-function recurse(obj, name, lvl) {
-  const margin = ' '.padStart(2*lvl)
+function recurse (obj, name, lvl) {
+  const margin = ' '.padStart(2 * lvl)
   const items = Object.keys(obj)
   if (items.length === 0) {
     return margin + `${name}: {},\n`
   }
   let str = margin + `${name}: {\n`
   items.forEach(key => {
-    str += recurse(obj[key], key, lvl+1)
+    str += recurse(obj[key], key, lvl + 1)
   })
   return str + margin + '},\n'
 }
@@ -102,7 +103,7 @@ function hierarchicalOrder (fileName) {
     let obj = list
     const names = key.split('.')
     names.forEach(name => {
-      if (!obj.hasOwnProperty(name)) {
+      if (!Object.prototype.hasOwnProperty.call(obj, name)) {
         obj[name] = {}
       }
       obj = obj[name]

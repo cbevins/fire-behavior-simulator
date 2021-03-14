@@ -10,12 +10,12 @@ const columnHeaders = new Map([
   ['variantKey', 'Variant Key']
 ])
 
-export function nodeTable (nodes, columns, title='') {
+export function nodeTable (nodes, columns, title = '') {
   // Initialize the columns
   const map = new Map()
   columns.forEach(column => {
     const hdr = columnHeaders.get(column)
-    map.set(column, {hdr: hdr, wid: hdr.length, str: ''})
+    map.set(column, { hdr: hdr, wid: hdr.length, str: '' })
   })
 
   // Determine column widths
@@ -49,30 +49,40 @@ export function nodeTable (nodes, columns, title='') {
   let dash = ''
   columns.forEach(column => {
     const col = map.get(column)
-    head += '| ' + col.hdr.padEnd(col.wid+1, ' ')
-    dash += '|-'.padEnd(col.wid+3, '-')
+    head += '| ' + col.hdr.padEnd(col.wid + 1, ' ')
+    dash += '|-'.padEnd(col.wid + 3, '-')
   })
   dash += '|\n'
   head += '|\n'
-  let ctitle = title.padStart(title.length + ((dash.length - title.length - 2)/2), ' ')
-  ctitle = `| ${ctitle.padEnd(dash.length-4, ' ')}|\n`
-  let str = `+${'-'.padEnd(dash.length-3,'-')}+\n${ctitle}${dash}${head}${dash}`
+  let ctitle = title.padStart(title.length + ((dash.length - title.length - 2) / 2), ' ')
+  ctitle = `| ${ctitle.padEnd(dash.length - 4, ' ')}|\n`
+  let str = `+${'-'.padEnd(dash.length - 3, '-')}+\n${ctitle}${dash}${head}${dash}`
   nodes.forEach((node, nodeIdx) => {
     columns.forEach((column, idx) => {
       const col = map.get(column)
       let cell = ''
-      if (column === 'key') { cell = node.key() }
-      else if (column === 'label') { cell = node.label() }
-      else if (column === 'index') { cell = nodeIdx.toString() }
-      else if (column === 'order') { cell = node.order().toString() }
-      else if (column === 'displayValue') { cell = node.displayValue() }
-      else if (column === 'nativeValue') { cell = node.value().toString() }
-      else if (column === 'displayUnits') { cell = node.displayUnits() }
-      else if (column === 'nativeUnits') { cell = node.nativeUnits() }
-      else if (column === 'variantKey') { cell = node.variant().key() }
-      str += `| ${cell.padEnd(col.wid+1, ' ')}`
+      if (column === 'key') {
+        cell = node.key()
+      } else if (column === 'label') {
+        cell = node.label()
+      } else if (column === 'index') {
+        cell = nodeIdx.toString()
+      } else if (column === 'order') {
+        cell = node.order().toString()
+      } else if (column === 'displayValue') {
+        cell = node.displayValue()
+      } else if (column === 'nativeValue') {
+        cell = node.value().toString()
+      } else if (column === 'displayUnits') {
+        cell = node.displayUnits()
+      } else if (column === 'nativeUnits') {
+        cell = node.nativeUnits()
+      } else if (column === 'variantKey') {
+        cell = node.variant().key()
+      }
+      str += `| ${cell.padEnd(col.wid + 1, ' ')}`
     })
     str += '|\n'
   })
-  return str+dash
+  return str + dash
 }

@@ -89,7 +89,7 @@ dag.select([
   'surface.fire.ellipse.flank.firelineIntensity',
   'surface.fire.ellipse.flank.flameLength',
   'surface.fire.ellipse.flank.scorchHeight',
-  'surface.fire.ellipse.flank.spreadDistance',
+  'surface.fire.ellipse.flank.spreadDistance'
 ])
 
 // If interested, request and display the active configuration settings
@@ -108,7 +108,7 @@ dag.setRunLimit(2000000)
 const fuel = ['1', '4', '6', '10', 'gr9', 'gs4', 'sh9', 'tu5', 'tl9', 'sb4']
 const windSpeed = []; for (let i = 0; i < 10; i++) { windSpeed.push(i * 88 * 2) } // [0, 18, 2] mi/h
 const windDir = []; for (let i = 0; i < 10; i++) { windDir.push(i * 30) } // [0, 270, 30] degrees
-const tl1h = []; for (let i = 2; i <= 20; i+=2) { tl1h.push(i * 0.01) } // [2, 20, 2] %
+const tl1h = []; for (let i = 2; i <= 20; i += 2) { tl1h.push(i * 0.01) } // [2, 20, 2] %
 const tl10h = [0.07]
 const tl100h = [0.09]
 const herb = []; for (let i = 50; i <= 140; i += 10) { herb.push(i * 0.01) } // [50, 140, 10] %
@@ -120,7 +120,7 @@ const aspect = [90]
 
 // Here we go!
 // Step 5 - specify the values of the required inputs
-function doRun(title, fuel, herb, tl1h, slope, windSpeed, windDir) {
+function doRun (title, fuel, herb, tl1h, slope, windSpeed, windDir) {
   dag.input([
     ['surface.primary.fuel.model.catalogKey', fuel],
     ['site.moisture.live.herb', herb],
@@ -133,7 +133,7 @@ function doRun(title, fuel, herb, tl1h, slope, windSpeed, windDir) {
     ['site.wind.direction.heading.fromUpslope', windDir],
     ['site.temperature.air', temp],
     ['site.fire.time.sinceIgnition', time],
-    ['site.slope.direction.aspect', aspect],
+    ['site.slope.direction.aspect', aspect]
   ])
 
   const t0 = new Date()
@@ -141,19 +141,19 @@ function doRun(title, fuel, herb, tl1h, slope, windSpeed, windDir) {
   const elapsed = new Date() - t0
 
   const runs = result.runs
-  let rps = parseInt((runs / (0.001 * elapsed)))
+  const rps = parseInt((runs / (0.001 * elapsed)))
   console.log(`${title} ${runs.toLocaleString().padStart(9, ' ')} ${(elapsed.toLocaleString()).padStart(8, ' ')} ${(rps.toLocaleString()).padStart(8, ' ')} ${result.message}`)
   return elapsed
 }
 
-function fill(input, toSize) {
+function fill (input, toSize) {
   let ar = input
-  while(ar.length < toSize) { ar = ar.concat(input) }
+  while (ar.length < toSize) { ar = ar.concat(input) }
   return ar
 }
 
-function doSet() {
-  let n = 100000
+function doSet () {
+  const n = 100000
   let t = 0
   console.log('Input                Depth      Runs  Millsec  Runs/Sec')
   t += doRun('Midflame Wind Speed     55', 'gs4', 0.5, 0.05, 0.2, fill(windSpeed, n), 90)
@@ -161,7 +161,7 @@ function doSet() {
   t += doRun('Slope Steep Ratio       55', 'gs4', 0.5, 0.05, fill(slope, n), 880, 90)
   t += doRun('Live Herb Moisture      83', 'gs4', fill(herb, n), 0.05, 0.2, 880, 90)
   t += doRun('Dead 1-h Moisture       71', 'gs4', 0.5, fill(tl1h, n), 0.2, 880, 90)
-  t += doRun('Fuel Model              85', fill(fuel, n), 0.5,0.05, 0.2, 880, 90)
+  t += doRun('Fuel Model              85', fill(fuel, n), 0.5, 0.05, 0.2, 880, 90)
   t += doRun('10 of Each                ', fuel, herb, tl1h, slope, windSpeed, windDir)
   console.log('Total Time                            ', t, 'milliseconds')
 }

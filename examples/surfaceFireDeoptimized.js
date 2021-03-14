@@ -111,5 +111,5 @@ temp.forEach(t => {
   })
 })
 elapsed = Date.now() - elapsed
-let rps = (runs / (0.001 * elapsed)).toFixed(0)
+const rps = (runs / (0.001 * elapsed)).toFixed(0)
 console.log(header(`Reverse optimized: ${runs} runs required ${elapsed} ms (${rps} runs/s)`))

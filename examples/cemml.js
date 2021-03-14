@@ -20,7 +20,7 @@ import { header } from './header.js'
  * Class wrapper for CEMML runs
  */
 export class Cemml {
-  constructor() {
+  constructor () {
     // Step 1 - create a fire behavior simulator with 1 directed acyclical graph (DAG)
     this.sim = new Sim('dag1')
     this.dag = this.sim.getDag('dag1')
@@ -104,7 +104,7 @@ export class Cemml {
     const fuel = ['gr1', 'gs1', 'sh1', 'tu1']
     // Wind at 20-ft
     const windAt20Ft = []
-    for (let i = 0; i < 21;  i+=5) { windAt20Ft.push(i * 88) } // 88 converts mph to fpm
+    for (let i = 0; i < 21; i += 5) { windAt20Ft.push(i * 88) } // 88 converts mph to fpm
     // Dead fuel moisture content
     const moisDead = []
     for (let i = 1; i <= 20; i++) { moisDead.push(i * 0.01) }
@@ -135,21 +135,21 @@ export class Cemml {
       ['site.slope.steepness.ratio', slopeSteepness],
       ['site.wind.speed.at20ft', windAt20Ft],
       ['site.canopy.fuel.bulkDensity', canopyBulk], // only used if selecting crown fire outputs
-      ['site.canopy.fuel.foliar.moistureContent', canopyFoliarMoist],  // only used if selecting crown fire outputs
-      ['site.fire.time.sinceIgnition', timeSinceIgnition], // only used if selecting fire area or perimeter outputs
+      ['site.canopy.fuel.foliar.moistureContent', canopyFoliarMoist], // only used if selecting crown fire outputs
+      ['site.fire.time.sinceIgnition', timeSinceIgnition] // only used if selecting fire area or perimeter outputs
     ])
   }
 
-  run() {
+  run () {
     // Here we go!
-    let elapsed = Date.now() // start the elapsed timer
+    const elapsed = Date.now() // start the elapsed timer
     const results = this.dag.run()
     results.elapsed = Date.now() - elapsed
     return results
   }
 
   // Document the file fields
-  documentOutputFile() {
+  documentOutputFile () {
     let str = 'Output file fields are:\n'
     let n = 1
     this.store._nodeArray.forEach(node => {
@@ -171,5 +171,5 @@ console.log(cemml.showInputs())
 const results = cemml.run()
 console.log(cemml.documentOutputFile())
 
-let rps = (results.runs / (0.001 * results.elapsed)).toFixed(0)
+const rps = (results.runs / (0.001 * results.elapsed)).toFixed(0)
 console.log(header(`${results.runs} runs required ${results.elapsed} ms (${rps} runs/sec): ${results.message}`))

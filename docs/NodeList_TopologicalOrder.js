@@ -1222,5 +1222,5 @@ export const topologicalOrder = [
   [1220, 1, 'site.fire.vector.fromUpslope'],
   [1221, 1, 'site.moisture.dead.category'],
   [1222, 1, 'site.moisture.live.category'],
-  [1223, 1, 'surface.secondary.fuel.model.catalogKey'],
+  [1223, 1, 'surface.secondary.fuel.model.catalogKey']
 ]

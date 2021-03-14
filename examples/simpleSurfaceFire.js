@@ -48,7 +48,7 @@ dag.configure([
   // The folloiwng is mute since we are using the fuel catalog (and not directly entering chaparral fuels)
   ['configure.fuel.chaparralTotalLoad', ['input', 'estimated'][0]],
   // The following is mute since there is no secondary fuel type
-  ['configure.fire.weightingMethod', ['arithmetic', 'expected', 'harmonic'][0]],
+  ['configure.fire.weightingMethod', ['arithmetic', 'expected', 'harmonic'][0]]
 ])
 
 // Step 3 - specify the fire behavior variables to be produced
@@ -70,10 +70,10 @@ console.log('Required inputs are:', dag.requiredInputNodes().map(node => node.ke
 // Note that each input can have multiple vlaues
 dag.input([
   ['surface.primary.fuel.model.catalogKey', ['10']],
-  ['site.moisture.dead.category', [0.05]],  // fraction of fuel ovendry weight
-  ['site.moisture.live.category', [0.5]],  // fraction of fuel ovendry weight
-  ['site.wind.speed.atMidflame', [10*88]], // feet per minute (1 mpg = 88 ft/min)
-  ['site.slope.steepness.ratio', [0.25]], // vertical rise / horizontal reach
+  ['site.moisture.dead.category', [0.05]], // fraction of fuel ovendry weight
+  ['site.moisture.live.category', [0.5]], // fraction of fuel ovendry weight
+  ['site.wind.speed.atMidflame', [10 * 88]], // feet per minute (1 mpg = 88 ft/min)
+  ['site.slope.steepness.ratio', [0.25]] // vertical rise / horizontal reach
 ]).run()
 
 console.log(header('simpleSurfaceFire.js - fire-behavior-simulator example'))

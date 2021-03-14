@@ -5,7 +5,7 @@ export const root = {
       firelineIntensity: {},
       lengthToWidthRatio: {},
       vector: {},
-      weightingMethod: {},
+      weightingMethod: {}
     },
     fuel: {
       chaparralTotalLoad: {},
@@ -13,15 +13,15 @@ export const root = {
       moisture: {},
       primary: {},
       secondary: {},
-      windSpeedAdjustmentFactor: {},
+      windSpeedAdjustmentFactor: {}
     },
     slope: {
-      steepness: {},
+      steepness: {}
     },
     wind: {
       direction: {},
-      speed: {},
-    },
+      speed: {}
+    }
   },
   crown: {
     canopy: {
@@ -30,16 +30,16 @@ export const root = {
           bulkDensity: {},
           dead: {
             effective: {
-              mineralContent: {},
+              mineralContent: {}
             },
             effectiveFuel: {
               moistureContent: {},
               ovendryLoad: {},
-              waterLoad: {},
+              waterLoad: {}
             },
             extinction: {
               moistureContent: {},
-              moistureContentFactor: {},
+              moistureContentFactor: {}
             },
             heatOfCombustion: {},
             heatOfPreignition: {},
@@ -47,180 +47,180 @@ export const root = {
             moistureContent: {},
             moistureDamping: {},
             net: {
-              ovendryLoad: {},
+              ovendryLoad: {}
             },
             ovendryLoad: {},
             particle: {
               class1: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
                   ovendryLoad: {},
-                  waterLoad: {},
+                  waterLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
+                volume: {}
               },
               class2: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
                   ovendryLoad: {},
-                  waterLoad: {},
+                  waterLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
+                volume: {}
               },
               class3: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
                   ovendryLoad: {},
-                  waterLoad: {},
+                  waterLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
+                volume: {}
               },
               class4: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
                   ovendryLoad: {},
-                  waterLoad: {},
+                  waterLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
+                volume: {}
               },
               class5: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
                   ovendryLoad: {},
-                  waterLoad: {},
+                  waterLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
-              },
+                volume: {}
+              }
             },
             reactionIntensity: {},
             reactionIntensityDry: {},
             sizeClass: {
-              weightingFactor: {},
+              weightingFactor: {}
             },
             surfaceArea: {
-              weightingFactor: {},
+              weightingFactor: {}
             },
             surfaceAreaToVolumeRatio: {},
-            volume: {},
+            volume: {}
           },
           depth: {},
           heatOfPreignition: {},
           heatSink: {},
           live: {
             effective: {
-              mineralContent: {},
+              mineralContent: {}
             },
             effectiveFuel: {
-              ovendryLoad: {},
+              ovendryLoad: {}
             },
             extinction: {
               moistureContent: {},
-              moistureContentFactor: {},
+              moistureContentFactor: {}
             },
             heatOfCombustion: {},
             heatOfPreignition: {},
@@ -228,172 +228,172 @@ export const root = {
             moistureContent: {},
             moistureDamping: {},
             net: {
-              ovendryLoad: {},
+              ovendryLoad: {}
             },
             ovendryLoad: {},
             particle: {
               class1: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
+                volume: {}
               },
               class2: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
+                volume: {}
               },
               class3: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
+                volume: {}
               },
               class4: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
+                volume: {}
               },
               class5: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
-              },
+                volume: {}
+              }
             },
             reactionIntensity: {},
             reactionIntensityDry: {},
             sizeClass: {
-              weightingFactor: {},
+              weightingFactor: {}
             },
             surfaceArea: {
-              weightingFactor: {},
+              weightingFactor: {}
             },
             surfaceAreaToVolumeRatio: {},
-            volume: {},
+            volume: {}
           },
           noWindNoSlope: {
-            spreadRate: {},
+            spreadRate: {}
           },
           open: {
-            windSpeedAdjustmentFactor: {},
+            windSpeedAdjustmentFactor: {}
           },
           ovendryLoad: {},
           packingRatio: {
             optimum: {},
-            ratio: {},
+            ratio: {}
           },
           propagatingFluxRatio: {},
           reactionIntensity: {},
@@ -402,7 +402,7 @@ export const root = {
           reactionVelocityOptimum: {},
           savr15: {},
           surfaceArea: {},
-          surfaceAreaToVolumeRatio: {},
+          surfaceAreaToVolumeRatio: {}
         },
         fire: {
           effectiveWindSpeed: {},
@@ -411,32 +411,32 @@ export const root = {
           flameResidenceTime: {},
           heading: {
             fromNorth: {},
-            fromUpslope: {},
+            fromUpslope: {}
           },
           heatPerUnitArea: {},
           lengthToWidthRatio: {},
           limit: {
             effectiveWindSpeed: {
-              exceeded: {},
+              exceeded: {}
             },
             spreadRate: {
-              exceeded: {},
+              exceeded: {}
             },
-            windSlopeSpreadRateCoefficient: {},
+            windSlopeSpreadRateCoefficient: {}
           },
           maximumDirection: {
             slope: {
-              spreadRate: {},
+              spreadRate: {}
             },
             spreadRate: {},
             wind: {
-              spreadRate: {},
+              spreadRate: {}
             },
             xComponent: {},
-            yComponent: {},
+            yComponent: {}
           },
           noWindNoSlope: {
-            spreadRate: {},
+            spreadRate: {}
           },
           phiEffectiveWind: {},
           reactionIntensity: {},
@@ -444,34 +444,34 @@ export const root = {
           slope: {
             k: {},
             phi: {},
-            ratio: {},
+            ratio: {}
           },
           spread: {
             step1: {
               effectiveWindSpeed: {},
               phiEffectiveWind: {},
-              spreadRate: {},
+              spreadRate: {}
             },
             step2: {
               effectiveWindSpeed: {},
               phiEffectiveWind: {},
-              spreadRate: {},
+              spreadRate: {}
             },
             step3a: {
               effectiveWindSpeed: {},
               phiEffectiveWind: {},
-              spreadRate: {},
+              spreadRate: {}
             },
             step3b: {
               effectiveWindSpeed: {},
               phiEffectiveWind: {},
-              spreadRate: {},
+              spreadRate: {}
             },
             step4: {
               effectiveWindSpeed: {},
               phiEffectiveWind: {},
-              spreadRate: {},
-            },
+              spreadRate: {}
+            }
           },
           spreadRate: {},
           wind: {
@@ -480,19 +480,19 @@ export const root = {
               c: {},
               e: {},
               i: {},
-              k: {},
+              k: {}
             },
             heading: {
-              fromUpslope: {},
+              fromUpslope: {}
             },
             phi: {},
             speed: {
-              atMidflame: {},
-            },
+              atMidflame: {}
+            }
           },
-          windSpeedAdjustmentFactor: {},
-        },
-      },
+          windSpeedAdjustmentFactor: {}
+        }
+      }
     },
     fire: {
       active: {
@@ -506,7 +506,7 @@ export const root = {
           area: {},
           length: {},
           perimeter: {},
-          width: {},
+          width: {}
         },
         powerOfTheFire: {},
         powerOfTheWind: {},
@@ -515,9 +515,9 @@ export const root = {
           area: {},
           length: {},
           perimeter: {},
-          width: {},
+          width: {}
         },
-        spreadRate: {},
+        spreadRate: {}
       },
       final: {
         crownFractionBurned: {},
@@ -527,16 +527,16 @@ export const root = {
           area: {},
           length: {},
           perimeter: {},
-          width: {},
+          width: {}
         },
         rSa: {},
         size: {
           area: {},
           length: {},
           perimeter: {},
-          width: {},
+          width: {}
         },
-        spreadRate: {},
+        spreadRate: {}
       },
       initiation: {
         activeRatio: {},
@@ -553,35 +553,35 @@ export const root = {
         rPrime: {},
         spreadRate: {},
         transitionRatio: {},
-        type: {},
+        type: {}
       },
       surface: {
         firelineIntensity: {},
         flameLength: {},
-        heatPerUnitArea: {},
-      },
-    },
+        heatPerUnitArea: {}
+      }
+    }
   },
   docs: {
     run: {
       description: {},
       mainTitle: {},
       subTitle: {},
-      userName: {},
-    },
+      userName: {}
+    }
   },
   ignition: {
     firebrand: {
-      probability: {},
+      probability: {}
     },
     lightningStrike: {
       charge: {},
       fuel: {
         depth: {},
-        type: {},
+        type: {}
       },
-      probability: {},
-    },
+      probability: {}
+    }
   },
   link: {
     crownFire: {},
@@ -590,7 +590,7 @@ export const root = {
     fireEllipse: {},
     scorchHeight: {},
     surfaceSpot: {},
-    treeMortality: {},
+    treeMortality: {}
   },
   module: {
     crownFire: {},
@@ -602,16 +602,16 @@ export const root = {
     spotting: {},
     surfaceFire: {},
     surfaceSpot: {},
-    treeMortality: {},
+    treeMortality: {}
   },
   mortality: {
     crownLengthScorched: {},
     crownVolumeScorched: {},
     rate: {},
-    scorchHeight: {},
+    scorchHeight: {}
   },
   scorch: {
-    height: {},
+    height: {}
   },
   site: {
     canopy: {
@@ -621,49 +621,49 @@ export const root = {
         fill: {},
         length: {},
         ratio: {},
-        totalHeight: {},
+        totalHeight: {}
       },
       downwind: {
         appliedHeight: {},
         height: {},
-        isOpen: {},
+        isOpen: {}
       },
       fire: {
-        heatPerUnitArea: {},
+        heatPerUnitArea: {}
       },
       fuel: {
         bulkDensity: {},
         foliar: {
-          moistureContent: {},
+          moistureContent: {}
         },
         heatOfCombustion: {},
         isSheltered: {},
         ovendryLoad: {},
-        shading: {},
+        shading: {}
       },
       sheltered: {
-        windSpeedAdjustmentFactor: {},
+        windSpeedAdjustmentFactor: {}
       },
       tree: {
         barkThickness: {},
         dbh: {},
         species: {
           fofem6: {
-            code: {},
-          },
-        },
-      },
+            code: {}
+          }
+        }
+      }
     },
     doc: {
       date: {},
       id: {},
       location: {},
       station: {},
-      time: {},
+      time: {}
     },
     fire: {
       crown: {
-        flameLength: {},
+        flameLength: {}
       },
       observed: {
         effectiveWindSpeed: {},
@@ -671,21 +671,21 @@ export const root = {
         flameLength: {},
         heading: {
           fromNorth: {},
-          fromUpslope: {},
+          fromUpslope: {}
         },
         heatPerUnitArea: {},
         lengthToWidthRatio: {},
         scorchHeight: {},
-        spreadRate: {},
+        spreadRate: {}
       },
       time: {
-        sinceIgnition: {},
+        sinceIgnition: {}
       },
       vector: {
         fromHead: {},
         fromNorth: {},
-        fromUpslope: {},
-      },
+        fromUpslope: {}
+      }
     },
     map: {
       contours: {},
@@ -697,100 +697,100 @@ export const root = {
       scale: {},
       slope: {
         degrees: {},
-        ratio: {},
-      },
+        ratio: {}
+      }
     },
     moisture: {
       dead: {
         category: {},
         tl100h: {},
         tl10h: {},
-        tl1h: {},
+        tl1h: {}
       },
       live: {
         category: {},
         herb: {},
-        stem: {},
-      },
+        stem: {}
+      }
     },
     slope: {
       direction: {
         aspect: {},
-        upslope: {},
+        upslope: {}
       },
       steepness: {
         degrees: {},
-        ratio: {},
-      },
+        ratio: {}
+      }
     },
     temperature: {
       air: {},
-      fuel: {},
+      fuel: {}
     },
     terrain: {
       ridgeValleyDistance: {},
       ridgeValleyElevation: {},
-      spotSourceLocation: {},
+      spotSourceLocation: {}
     },
     wind: {
       direction: {
         heading: {
           fromNorth: {},
-          fromUpslope: {},
+          fromUpslope: {}
         },
         source: {
           fromNorth: {},
-          fromUpslope: {},
-        },
+          fromUpslope: {}
+        }
       },
       speed: {
         at10m: {},
         at20ft: {},
-        atMidflame: {},
-      },
+        atMidflame: {}
+      }
     },
-    windSpeedAdjustmentFactor: {},
+    windSpeedAdjustmentFactor: {}
   },
   spotting: {
     burningPile: {
       firebrand: {
         criticalCoverHeight: {},
         drift: {},
-        height: {},
+        height: {}
       },
       flameHeight: {},
       spotDistance: {
         flatTerrain: {},
         flatTerrainWithDrift: {},
-        mountainTerrain: {},
-      },
+        mountainTerrain: {}
+      }
     },
     crownFire: {
       firebrand: {
         criticalCoverHeight: {},
         drift: {},
-        height: {},
+        height: {}
       },
       firebrandObject: {},
       firelineIntensity: {},
       spotDistance: {
         flatTerrain: {},
         flatTerrainWithDrift: {},
-        mountainTerrain: {},
-      },
+        mountainTerrain: {}
+      }
     },
     surfaceFire: {
       firebrand: {
         criticalCoverHeight: {},
         drift: {},
-        height: {},
+        height: {}
       },
       firelineIntensity: {},
       spotDistance: {
         flatTerrain: {},
         flatTerrainWithDrift: {},
-        mountainTerrain: {},
-      },
+        mountainTerrain: {}
+      }
     },
     torchingTrees: {
       count: {},
@@ -798,7 +798,7 @@ export const root = {
       firebrand: {
         criticalCoverHeight: {},
         drift: {},
-        height: {},
+        height: {}
       },
       flameDuration: {},
       flameHeight: {},
@@ -807,9 +807,9 @@ export const root = {
       spotDistance: {
         flatTerrain: {},
         flatTerrainWithDrift: {},
-        mountainTerrain: {},
-      },
-    },
+        mountainTerrain: {}
+      }
+    }
   },
   surface: {
     fire: {
@@ -818,21 +818,21 @@ export const root = {
           eccentricity: {},
           effectiveWindSpeed: {},
           f: {
-            spreadRate: {},
+            spreadRate: {}
           },
           g: {
-            spreadRate: {},
+            spreadRate: {}
           },
           h: {
-            spreadRate: {},
+            spreadRate: {}
           },
           lengthToWidthRatio: {},
           major: {
-            spreadRate: {},
+            spreadRate: {}
           },
           minor: {
-            spreadRate: {},
-          },
+            spreadRate: {}
+          }
         },
         back: {
           firelineIntensity: {},
@@ -841,7 +841,7 @@ export const root = {
           scorchHeight: {},
           spreadDistance: {},
           spreadRate: {},
-          treeMortality: {},
+          treeMortality: {}
         },
         beta: {
           firelineIntensity: {},
@@ -853,7 +853,7 @@ export const root = {
           spreadDistance: {},
           spreadRate: {},
           theta: {},
-          treeMortality: {},
+          treeMortality: {}
         },
         beta5: {
           firelineIntensity: {},
@@ -862,7 +862,7 @@ export const root = {
           scorchHeight: {},
           spreadDistance: {},
           spreadRate: {},
-          treeMortality: {},
+          treeMortality: {}
         },
         flank: {
           firelineIntensity: {},
@@ -871,7 +871,7 @@ export const root = {
           scorchHeight: {},
           spreadDistance: {},
           spreadRate: {},
-          treeMortality: {},
+          treeMortality: {}
         },
         head: {
           firelineIntensity: {},
@@ -880,17 +880,17 @@ export const root = {
           scorchHeight: {},
           spreadDistance: {},
           spreadRate: {},
-          treeMortality: {},
+          treeMortality: {}
         },
         heading: {
           fromNorth: {},
-          fromUpslope: {},
+          fromUpslope: {}
         },
         map: {
           area: {},
           length: {},
           perimeter: {},
-          width: {},
+          width: {}
         },
         psi: {
           firelineIntensity: {},
@@ -899,25 +899,25 @@ export const root = {
           scorchHeight: {},
           spreadDistance: {},
           spreadRate: {},
-          treeMortality: {},
+          treeMortality: {}
         },
         size: {
           area: {},
           length: {},
           perimeter: {},
-          width: {},
+          width: {}
         },
         vector: {
           fromHead: {},
           fromNorth: {},
-          fromUpslope: {},
+          fromUpslope: {}
         },
         wind: {
           speed: {
-            atMidflame: {},
-          },
-        },
-      },
+            atMidflame: {}
+          }
+        }
+      }
     },
     primary: {
       fuel: {
@@ -925,16 +925,16 @@ export const root = {
           bulkDensity: {},
           dead: {
             effective: {
-              mineralContent: {},
+              mineralContent: {}
             },
             effectiveFuel: {
               moistureContent: {},
               ovendryLoad: {},
-              waterLoad: {},
+              waterLoad: {}
             },
             extinction: {
               moistureContent: {},
-              moistureContentFactor: {},
+              moistureContentFactor: {}
             },
             heatOfCombustion: {},
             heatOfPreignition: {},
@@ -942,180 +942,180 @@ export const root = {
             moistureContent: {},
             moistureDamping: {},
             net: {
-              ovendryLoad: {},
+              ovendryLoad: {}
             },
             ovendryLoad: {},
             particle: {
               class1: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
                   ovendryLoad: {},
-                  waterLoad: {},
+                  waterLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
+                volume: {}
               },
               class2: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
                   ovendryLoad: {},
-                  waterLoad: {},
+                  waterLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
+                volume: {}
               },
               class3: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
                   ovendryLoad: {},
-                  waterLoad: {},
+                  waterLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
+                volume: {}
               },
               class4: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
                   ovendryLoad: {},
-                  waterLoad: {},
+                  waterLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
+                volume: {}
               },
               class5: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
                   ovendryLoad: {},
-                  waterLoad: {},
+                  waterLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
-              },
+                volume: {}
+              }
             },
             reactionIntensity: {},
             reactionIntensityDry: {},
             sizeClass: {
-              weightingFactor: {},
+              weightingFactor: {}
             },
             surfaceArea: {
-              weightingFactor: {},
+              weightingFactor: {}
             },
             surfaceAreaToVolumeRatio: {},
-            volume: {},
+            volume: {}
           },
           depth: {},
           heatOfPreignition: {},
           heatSink: {},
           live: {
             effective: {
-              mineralContent: {},
+              mineralContent: {}
             },
             effectiveFuel: {
-              ovendryLoad: {},
+              ovendryLoad: {}
             },
             extinction: {
               moistureContent: {},
-              moistureContentFactor: {},
+              moistureContentFactor: {}
             },
             heatOfCombustion: {},
             heatOfPreignition: {},
@@ -1123,172 +1123,172 @@ export const root = {
             moistureContent: {},
             moistureDamping: {},
             net: {
-              ovendryLoad: {},
+              ovendryLoad: {}
             },
             ovendryLoad: {},
             particle: {
               class1: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
+                volume: {}
               },
               class2: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
+                volume: {}
               },
               class3: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
+                volume: {}
               },
               class4: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
+                volume: {}
               },
               class5: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
-              },
+                volume: {}
+              }
             },
             reactionIntensity: {},
             reactionIntensityDry: {},
             sizeClass: {
-              weightingFactor: {},
+              weightingFactor: {}
             },
             surfaceArea: {
-              weightingFactor: {},
+              weightingFactor: {}
             },
             surfaceAreaToVolumeRatio: {},
-            volume: {},
+            volume: {}
           },
           noWindNoSlope: {
-            spreadRate: {},
+            spreadRate: {}
           },
           open: {
-            windSpeedAdjustmentFactor: {},
+            windSpeedAdjustmentFactor: {}
           },
           ovendryLoad: {},
           packingRatio: {
             optimum: {},
-            ratio: {},
+            ratio: {}
           },
           propagatingFluxRatio: {},
           reactionIntensity: {},
@@ -1297,7 +1297,7 @@ export const root = {
           reactionVelocityOptimum: {},
           savr15: {},
           surfaceArea: {},
-          surfaceAreaToVolumeRatio: {},
+          surfaceAreaToVolumeRatio: {}
         },
         fire: {
           effectiveWindSpeed: {},
@@ -1306,32 +1306,32 @@ export const root = {
           flameResidenceTime: {},
           heading: {
             fromNorth: {},
-            fromUpslope: {},
+            fromUpslope: {}
           },
           heatPerUnitArea: {},
           lengthToWidthRatio: {},
           limit: {
             effectiveWindSpeed: {
-              exceeded: {},
+              exceeded: {}
             },
             spreadRate: {
-              exceeded: {},
+              exceeded: {}
             },
-            windSlopeSpreadRateCoefficient: {},
+            windSlopeSpreadRateCoefficient: {}
           },
           maximumDirection: {
             slope: {
-              spreadRate: {},
+              spreadRate: {}
             },
             spreadRate: {},
             wind: {
-              spreadRate: {},
+              spreadRate: {}
             },
             xComponent: {},
-            yComponent: {},
+            yComponent: {}
           },
           noWindNoSlope: {
-            spreadRate: {},
+            spreadRate: {}
           },
           phiEffectiveWind: {},
           reactionIntensity: {},
@@ -1339,34 +1339,34 @@ export const root = {
           slope: {
             k: {},
             phi: {},
-            ratio: {},
+            ratio: {}
           },
           spread: {
             step1: {
               effectiveWindSpeed: {},
               phiEffectiveWind: {},
-              spreadRate: {},
+              spreadRate: {}
             },
             step2: {
               effectiveWindSpeed: {},
               phiEffectiveWind: {},
-              spreadRate: {},
+              spreadRate: {}
             },
             step3a: {
               effectiveWindSpeed: {},
               phiEffectiveWind: {},
-              spreadRate: {},
+              spreadRate: {}
             },
             step3b: {
               effectiveWindSpeed: {},
               phiEffectiveWind: {},
-              spreadRate: {},
+              spreadRate: {}
             },
             step4: {
               effectiveWindSpeed: {},
               phiEffectiveWind: {},
-              spreadRate: {},
-            },
+              spreadRate: {}
+            }
           },
           spreadRate: {},
           wind: {
@@ -1375,72 +1375,72 @@ export const root = {
               c: {},
               e: {},
               i: {},
-              k: {},
+              k: {}
             },
             heading: {
-              fromUpslope: {},
+              fromUpslope: {}
             },
             phi: {},
             speed: {
-              atMidflame: {},
-            },
+              atMidflame: {}
+            }
           },
-          windSpeedAdjustmentFactor: {},
+          windSpeedAdjustmentFactor: {}
         },
         model: {
           behave: {
             derived: {
               dead: {
                 herb: {
-                  ovendryLoad: {},
-                },
+                  ovendryLoad: {}
+                }
               },
               live: {
                 herb: {
-                  ovendryLoad: {},
-                },
-              },
+                  ovendryLoad: {}
+                }
+              }
             },
             domain: {},
             parms: {
               cured: {
                 herb: {
-                  fraction: {},
-                },
+                  fraction: {}
+                }
               },
               dead: {
                 extinction: {
-                  moistureContent: {},
+                  moistureContent: {}
                 },
                 heatOfCombustion: {},
                 tl100h: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 tl10h: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 tl1h: {
                   ovendryLoad: {},
-                  surfaceAreaToVolumeRatio: {},
-                },
+                  surfaceAreaToVolumeRatio: {}
+                }
               },
               depth: {},
               live: {
                 heatOfCombustion: {},
                 herb: {
-                  surfaceAreaToVolumeRatio: {},
+                  surfaceAreaToVolumeRatio: {}
                 },
                 stem: {
                   ovendryLoad: {},
-                  surfaceAreaToVolumeRatio: {},
-                },
+                  surfaceAreaToVolumeRatio: {}
+                }
               },
               total: {
                 herb: {
-                  ovendryLoad: {},
-                },
-              },
-            },
+                  ovendryLoad: {}
+                }
+              }
+            }
           },
           catalogKey: {},
           chaparral: {
@@ -1460,20 +1460,20 @@ export const root = {
               liveMediumLoad: {},
               liveSmallLoad: {},
               severeMortality: {},
-              totalLoad: {},
+              totalLoad: {}
             },
             domain: {},
             parms: {
               applied: {
-                totalLoad: {},
+                totalLoad: {}
               },
               chaparralType: {},
               observed: {
                 deadFuelFraction: {},
                 depth: {},
-                totalLoad: {},
-              },
-            },
+                totalLoad: {}
+              }
+            }
           },
           domain: {},
           palmettoGallberry: {
@@ -1485,46 +1485,46 @@ export const root = {
               depth: {},
               liveFineLoad: {},
               liveFoliageLoad: {},
-              liveSmallLoad: {},
+              liveSmallLoad: {}
             },
             domain: {},
             parms: {
               age: {},
               basalArea: {},
               cover: {},
-              height: {},
-            },
+              height: {}
+            }
           },
           westernAspen: {
             derived: {
               dead: {
                 fine: {
                   ovendryLoad: {},
-                  surfaceAreaToVolumeRatio: {},
+                  surfaceAreaToVolumeRatio: {}
                 },
                 small: {
-                  ovendryLoad: {},
-                },
+                  ovendryLoad: {}
+                }
               },
               depth: {},
               live: {
                 herb: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 stem: {
                   ovendryLoad: {},
-                  surfaceAreaToVolumeRatio: {},
-                },
-              },
+                  surfaceAreaToVolumeRatio: {}
+                }
+              }
             },
             domain: {},
             parms: {
               aspenType: {},
-              curingLevel: {},
-            },
-          },
-        },
-      },
+              curingLevel: {}
+            }
+          }
+        }
+      }
     },
     secondary: {
       fuel: {
@@ -1532,16 +1532,16 @@ export const root = {
           bulkDensity: {},
           dead: {
             effective: {
-              mineralContent: {},
+              mineralContent: {}
             },
             effectiveFuel: {
               moistureContent: {},
               ovendryLoad: {},
-              waterLoad: {},
+              waterLoad: {}
             },
             extinction: {
               moistureContent: {},
-              moistureContentFactor: {},
+              moistureContentFactor: {}
             },
             heatOfCombustion: {},
             heatOfPreignition: {},
@@ -1549,180 +1549,180 @@ export const root = {
             moistureContent: {},
             moistureDamping: {},
             net: {
-              ovendryLoad: {},
+              ovendryLoad: {}
             },
             ovendryLoad: {},
             particle: {
               class1: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
                   ovendryLoad: {},
-                  waterLoad: {},
+                  waterLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
+                volume: {}
               },
               class2: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
                   ovendryLoad: {},
-                  waterLoad: {},
+                  waterLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
+                volume: {}
               },
               class3: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
                   ovendryLoad: {},
-                  waterLoad: {},
+                  waterLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
+                volume: {}
               },
               class4: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
                   ovendryLoad: {},
-                  waterLoad: {},
+                  waterLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
+                volume: {}
               },
               class5: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
                   ovendryLoad: {},
-                  waterLoad: {},
+                  waterLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
-              },
+                volume: {}
+              }
             },
             reactionIntensity: {},
             reactionIntensityDry: {},
             sizeClass: {
-              weightingFactor: {},
+              weightingFactor: {}
             },
             surfaceArea: {
-              weightingFactor: {},
+              weightingFactor: {}
             },
             surfaceAreaToVolumeRatio: {},
-            volume: {},
+            volume: {}
           },
           depth: {},
           heatOfPreignition: {},
           heatSink: {},
           live: {
             effective: {
-              mineralContent: {},
+              mineralContent: {}
             },
             effectiveFuel: {
-              ovendryLoad: {},
+              ovendryLoad: {}
             },
             extinction: {
               moistureContent: {},
-              moistureContentFactor: {},
+              moistureContentFactor: {}
             },
             heatOfCombustion: {},
             heatOfPreignition: {},
@@ -1730,172 +1730,172 @@ export const root = {
             moistureContent: {},
             moistureDamping: {},
             net: {
-              ovendryLoad: {},
+              ovendryLoad: {}
             },
             ovendryLoad: {},
             particle: {
               class1: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
+                volume: {}
               },
               class2: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
+                volume: {}
               },
               class3: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
+                volume: {}
               },
               class4: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
+                volume: {}
               },
               class5: {
                 effective: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
                 effectiveFuel: {
                   heatingNumber: {},
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 fiberDensity: {},
                 heatOfCombustion: {},
                 heatOfPreignition: {},
                 moistureContent: {},
                 net: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 ovendryLoad: {},
                 sizeClass: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceArea: {
-                  weightingFactor: {},
+                  weightingFactor: {}
                 },
                 surfaceAreaToVolumeRatio: {},
                 total: {
-                  mineralContent: {},
+                  mineralContent: {}
                 },
-                volume: {},
-              },
+                volume: {}
+              }
             },
             reactionIntensity: {},
             reactionIntensityDry: {},
             sizeClass: {
-              weightingFactor: {},
+              weightingFactor: {}
             },
             surfaceArea: {
-              weightingFactor: {},
+              weightingFactor: {}
             },
             surfaceAreaToVolumeRatio: {},
-            volume: {},
+            volume: {}
           },
           noWindNoSlope: {
-            spreadRate: {},
+            spreadRate: {}
           },
           open: {
-            windSpeedAdjustmentFactor: {},
+            windSpeedAdjustmentFactor: {}
           },
           ovendryLoad: {},
           packingRatio: {
             optimum: {},
-            ratio: {},
+            ratio: {}
           },
           propagatingFluxRatio: {},
           reactionIntensity: {},
@@ -1904,7 +1904,7 @@ export const root = {
           reactionVelocityOptimum: {},
           savr15: {},
           surfaceArea: {},
-          surfaceAreaToVolumeRatio: {},
+          surfaceAreaToVolumeRatio: {}
         },
         fire: {
           effectiveWindSpeed: {},
@@ -1913,32 +1913,32 @@ export const root = {
           flameResidenceTime: {},
           heading: {
             fromNorth: {},
-            fromUpslope: {},
+            fromUpslope: {}
           },
           heatPerUnitArea: {},
           lengthToWidthRatio: {},
           limit: {
             effectiveWindSpeed: {
-              exceeded: {},
+              exceeded: {}
             },
             spreadRate: {
-              exceeded: {},
+              exceeded: {}
             },
-            windSlopeSpreadRateCoefficient: {},
+            windSlopeSpreadRateCoefficient: {}
           },
           maximumDirection: {
             slope: {
-              spreadRate: {},
+              spreadRate: {}
             },
             spreadRate: {},
             wind: {
-              spreadRate: {},
+              spreadRate: {}
             },
             xComponent: {},
-            yComponent: {},
+            yComponent: {}
           },
           noWindNoSlope: {
-            spreadRate: {},
+            spreadRate: {}
           },
           phiEffectiveWind: {},
           reactionIntensity: {},
@@ -1946,34 +1946,34 @@ export const root = {
           slope: {
             k: {},
             phi: {},
-            ratio: {},
+            ratio: {}
           },
           spread: {
             step1: {
               effectiveWindSpeed: {},
               phiEffectiveWind: {},
-              spreadRate: {},
+              spreadRate: {}
             },
             step2: {
               effectiveWindSpeed: {},
               phiEffectiveWind: {},
-              spreadRate: {},
+              spreadRate: {}
             },
             step3a: {
               effectiveWindSpeed: {},
               phiEffectiveWind: {},
-              spreadRate: {},
+              spreadRate: {}
             },
             step3b: {
               effectiveWindSpeed: {},
               phiEffectiveWind: {},
-              spreadRate: {},
+              spreadRate: {}
             },
             step4: {
               effectiveWindSpeed: {},
               phiEffectiveWind: {},
-              spreadRate: {},
-            },
+              spreadRate: {}
+            }
           },
           spreadRate: {},
           wind: {
@@ -1982,72 +1982,72 @@ export const root = {
               c: {},
               e: {},
               i: {},
-              k: {},
+              k: {}
             },
             heading: {
-              fromUpslope: {},
+              fromUpslope: {}
             },
             phi: {},
             speed: {
-              atMidflame: {},
-            },
+              atMidflame: {}
+            }
           },
-          windSpeedAdjustmentFactor: {},
+          windSpeedAdjustmentFactor: {}
         },
         model: {
           behave: {
             derived: {
               dead: {
                 herb: {
-                  ovendryLoad: {},
-                },
+                  ovendryLoad: {}
+                }
               },
               live: {
                 herb: {
-                  ovendryLoad: {},
-                },
-              },
+                  ovendryLoad: {}
+                }
+              }
             },
             domain: {},
             parms: {
               cured: {
                 herb: {
-                  fraction: {},
-                },
+                  fraction: {}
+                }
               },
               dead: {
                 extinction: {
-                  moistureContent: {},
+                  moistureContent: {}
                 },
                 heatOfCombustion: {},
                 tl100h: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 tl10h: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 tl1h: {
                   ovendryLoad: {},
-                  surfaceAreaToVolumeRatio: {},
-                },
+                  surfaceAreaToVolumeRatio: {}
+                }
               },
               depth: {},
               live: {
                 heatOfCombustion: {},
                 herb: {
-                  surfaceAreaToVolumeRatio: {},
+                  surfaceAreaToVolumeRatio: {}
                 },
                 stem: {
                   ovendryLoad: {},
-                  surfaceAreaToVolumeRatio: {},
-                },
+                  surfaceAreaToVolumeRatio: {}
+                }
               },
               total: {
                 herb: {
-                  ovendryLoad: {},
-                },
-              },
-            },
+                  ovendryLoad: {}
+                }
+              }
+            }
           },
           catalogKey: {},
           chaparral: {
@@ -2067,20 +2067,20 @@ export const root = {
               liveMediumLoad: {},
               liveSmallLoad: {},
               severeMortality: {},
-              totalLoad: {},
+              totalLoad: {}
             },
             domain: {},
             parms: {
               applied: {
-                totalLoad: {},
+                totalLoad: {}
               },
               chaparralType: {},
               observed: {
                 deadFuelFraction: {},
                 depth: {},
-                totalLoad: {},
-              },
-            },
+                totalLoad: {}
+              }
+            }
           },
           domain: {},
           palmettoGallberry: {
@@ -2092,71 +2092,71 @@ export const root = {
               depth: {},
               liveFineLoad: {},
               liveFoliageLoad: {},
-              liveSmallLoad: {},
+              liveSmallLoad: {}
             },
             domain: {},
             parms: {
               age: {},
               basalArea: {},
               cover: {},
-              height: {},
-            },
+              height: {}
+            }
           },
           westernAspen: {
             derived: {
               dead: {
                 fine: {
                   ovendryLoad: {},
-                  surfaceAreaToVolumeRatio: {},
+                  surfaceAreaToVolumeRatio: {}
                 },
                 small: {
-                  ovendryLoad: {},
-                },
+                  ovendryLoad: {}
+                }
               },
               depth: {},
               live: {
                 herb: {
-                  ovendryLoad: {},
+                  ovendryLoad: {}
                 },
                 stem: {
                   ovendryLoad: {},
-                  surfaceAreaToVolumeRatio: {},
-                },
-              },
+                  surfaceAreaToVolumeRatio: {}
+                }
+              }
             },
             domain: {},
             parms: {
               aspenType: {},
-              curingLevel: {},
-            },
-          },
-        },
-      },
+              curingLevel: {}
+            }
+          }
+        }
+      }
     },
     weighted: {
       fire: {
         arithmeticMean: {
-          spreadRate: {},
+          spreadRate: {}
         },
         effectiveWindSpeed: {},
         expectedValue: {
-          spreadRate: {},
+          spreadRate: {}
         },
         firelineIntensity: {},
         flameLength: {},
         harmonicMean: {
-          spreadRate: {},
+          spreadRate: {}
         },
         heading: {
           fromNorth: {},
-          fromUpslope: {},
+          fromUpslope: {}
         },
         heatPerUnitArea: {},
         lengthToWidthRatio: {},
         limit: {
           effectiveWindSpeed: {
-            exceeded: {},
-          },
+            exceeded: {}
+          }
         },
         primaryCover: {},
         reactionIntensity: {},
@@ -2164,11 +2164,11 @@ export const root = {
         spreadRate: {},
         wind: {
           speed: {
-            atMidflame: {},
-          },
+            atMidflame: {}
+          }
         },
-        windSpeedAdjustmentFactor: {},
-      },
-    },
-  },
- },
+        windSpeedAdjustmentFactor: {}
+      }
+    }
+  }
+}

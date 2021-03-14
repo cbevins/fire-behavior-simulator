@@ -33,7 +33,7 @@
     "build": "rollup -c",
     "compiler": "node ./src/fire-behavior-genome/compiler/GenomeCompiler.js",
     "fuelsLister": "node ./utils/fuelsLister.js",
-    "lint": "eslint \"**/*.js\"",
+    "lint": "eslint \"**/*.js\" -o eslint.output",
     "lint:fix": "prettier-eslint \"**/*.js\" --write",
     "variablesLister": "node ./utils/variablesLister.js",
     "prebuild": "rimraf dist",

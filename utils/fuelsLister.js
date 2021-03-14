@@ -7,7 +7,7 @@
 import { Alias, Model } from '../src/fire-behavior-models/FuelCatalogData.js'
 import * as fs from 'fs'
 
-function fuelsKeyLabelObject() {
+function fuelsKeyLabelObject () {
   let str = '  export const fuelModels = [\n'
   Array.from(Alias).forEach(alias => {
     // alias[0] may be a text string ('gs4'), a number string ('124'), or a number (124)

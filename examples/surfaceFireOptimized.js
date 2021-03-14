@@ -93,5 +93,5 @@ const results = dag.run()
 elapsed = Date.now() - elapsed
 
 const runs = results.runs
-let rps = (runs / (0.001 * elapsed)).toFixed(0)
+const rps = (runs / (0.001 * elapsed)).toFixed(0)
 console.log(header(`Optimized: ${runs} runs required ${elapsed} ms (${rps} runs/s): ${results.message}`))

@@ -1,8 +1,8 @@
 import * as Calc from './Calc.js'
 
 export function crownFillFraction (canopyCoverFraction, canopyBaseHeight, canopyTotalHeight) {
-    return Calc.fraction(crownRatio(canopyBaseHeight, canopyTotalHeight))
-      * Calc.fraction(canopyCoverFraction) / 3
+  return Calc.fraction(crownRatio(canopyBaseHeight, canopyTotalHeight)) *
+      Calc.fraction(canopyCoverFraction) / 3
 }
 
 export function crownLength (crownBaseHeight, crownTotalHeight) {
