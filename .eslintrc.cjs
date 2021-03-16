@@ -2,15 +2,23 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    // es6: true,
     node: true
   },
   extends: [
+    // 'google',
     'standard',
+    // 'airbnb-base',
     'plugin:jest/recommended',
     'plugin:jest/style'
   ],
+  // globals: {
+  //   Atomics: 'readonly',
+  //   SharedArrayBuffer: 'readonly',
+  // },
   parserOptions: {
     ecmaVersion: 12,
+    // ecmaVersion: 2018,
     sourceType: 'module'
   },
   plugins: ['jest'],
