@@ -13,6 +13,7 @@ export class DagPrivate {
   constructor (sim) {
     this._input = new Map() // Map of input DagNode refs => array of input values
     this._node = [] // array of DagNode references in Genome index order
+    this._configureClass = null
     this._runLimit = 1000000
     this._selected = new Set() // Set of selected DagNode references (needed?)
     this._sim = sim // reference to the master Sim (and its Genome and literals)
@@ -205,7 +206,7 @@ export class DagPrivate {
    * then determines DagNode depths and topological order
    */
   setTopology () {
-    // clear each DagNode'd consumers[], producers[], depth, order
+    // clear each DagNode's consumers[], producers[], depth, order
     this._node.forEach(node => { node.reset() })
     // set each DagNode's updater methods, parms, consumers, and producers
     this._node.forEach(node => { this.setNodeEdges(node) })

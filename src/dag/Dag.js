@@ -46,6 +46,7 @@ export class Dag extends DagPrivate {
       }
       node._value = value
     })
+    if (this._configureClass) this._configureClass.configure()
     this.setTopology()
     this.setRequiredNodes()
     return this
@@ -82,6 +83,8 @@ export class Dag extends DagPrivate {
    * @returns {DagNode} Reference to the passed node locator.
    */
   node (something) { return this.get(something) }
+
+  nodes () { return this._node }
 
   /**
    * @returns {Array} An array of references to all required Config DagNodes in topological order.
