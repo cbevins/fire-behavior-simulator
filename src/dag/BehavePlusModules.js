@@ -9,29 +9,23 @@
 export class BehavePlusModules {
   constructor (dag) {
     this._dag = dag
+    // Set *this* BehavePlusModules instance as the Dag.configure() callback hook
     this._dag._configureClass = this
-    // Discover all the defined Module DagNodes
-    this._module = {}
-    this._module._nodes = this._dag.nodes().filter(node => node.key().startsWith('module.'))
-    this._module._keys = this._module._nodes.map(node => node.key())
-    // Assign DagNodes to their Modules by their key prefixes
-    this._module._prefixes = new Map([
-      ['module.surfaceFire', ['surface.primary', 'surface.secondary', 'surface.weighted']],
-      ['module.surfaceSpot', ['spotting.surfaceFire']],
+    // Define the module DagNode keys and their member DagNode key prefixes
+    this._modules = [
+      ['module.surfaceFire', ['surface.primary.', 'surface.secondary.', 'surface.weighted.']],
+      ['module.surfaceSpot', ['spotting.surfaceFire.']],
       ['module.crownFire', ['crown.']],
       ['module.crownSpot', ['spotting.crownFire.']],
       ['module.fireEllipse', ['surface.fire.ellipse.']],
-      ['module.fireContain', ['contain']],
+      ['module.fireContain', ['contain.']],
       ['module.scorchHeight', ['scorch.']],
       ['module.treeMortality', ['mortality.']],
-      ['module.spotting', ['spotting.burningPile', 'spotting.torchingTrees']],
+      ['module.spotting', ['spotting.burningPile.', 'spotting.torchingTrees.']],
       ['module.ignitionProbability', ['ignition.']]
-    ])
-    // This is how to discover all the link DagNodes
-    this._link = {}
-    this._link._nodes = this._dag.nodes().filter(node => node.key().startsWith('link.'))
-    this._link._keys = this._link._nodes.map(node => node.key())
-    this._link._links = [
+    ]
+    // Define the link DagNode keys and their linkedTo* edge and consumer and producer dagNode keys
+    this._links = [
       ['link.crownFire', 'linkedToSurfaceFire', 'module.crownFire', 'module.surfaceFire'],
       ['link.crownSpot', 'linkedToCrownFire', 'module.crownSpot', 'module.crownFire'],
       ['link.fireContain', 'linkedToFireEllipse', 'module.fireContain', 'module.fireEllipse'],
@@ -56,45 +50,54 @@ export class BehavePlusModules {
   }
 
   // Activate modules specified in [<moduleKeys>]
-  activate (moduleKeys, setNodes = true) { return this._activate(moduleKeys, true, setNodes) }
+  activate (moduleKeys) {
+    moduleKeys = Array.isArray(moduleKeys) ? moduleKeys : [moduleKeys]
+    this._dag.configure(moduleKeys.map(moduleKey => [moduleKey, 'active']))
+  }
 
   // Activate all 10 modules
-  activateAll (setNodes = true) { return this._activate(this.moduleKeys(), true, setNodes) }
+  activateAll () { this._dag.configure(this._modules.map(mod => [mod[0], 'active'])) }
 
-  // Called by Dag.configure() AFTER setting the passed COnfig DagNode values,
+  // Called by Dag.configure() AFTER setting the passed Config DagNode values,
   // but BEFORE calling Dag.setTopology()
   configure () {
-    this._link._links.forEach(([linkKey, linkValue, consumerKey, producerKey]) => {
-      if (this._dag.node(consumerKey).value() === 'inactive' ||
-          this._dag.node(producerKey).value() === 'inactive') {
+    // Only link adjacent Modules if they are both active
+    this._links.forEach(([linkKey, linkedValue, consumerKey, producerKey]) => {
+      if (this._dag.node(consumerKey).value() === 'active' &&
+          this._dag.node(producerKey).value() === 'active') {
+        this._dag.node(linkKey)._value = linkedValue
+      } else {
         this._dag.node(linkKey)._value = 'standAlone'
       }
+    })
+    // Enable/disable DagNodes based on whether their Module is active/inactive
+    this._modules.forEach(([moduleKey, prefixes]) => {
+      this._dag.setEnabled(prefixes, this._dag.node(moduleKey).value() === 'active')
     })
   }
 
   // De-activate modules specified in [<moduleKeys>]
-  deactivate (moduleKeys, setNodes = true) { return this._activate(moduleKeys, false, setNodes) }
+  deactivate (moduleKeys) {
+    moduleKeys = Array.isArray(moduleKeys) ? moduleKeys : [moduleKeys]
+    this._dag.configure(moduleKeys.map(moduleKey => [moduleKey, 'inactive']))
+  }
 
   // De-activate all 10 modules
-  deactivateAll (setNodes = true) { return this._activate(this.moduleKeys(), false, setNodes) }
+  deactivateAll () { this._dag.configure(this._modules.map(mod => [mod[0], 'inactive'])) }
 
-  // Returns an array of all (7) 'link.*' configuration DagNode key strings
-  linkKeys () { return this._link._keys }
+  linkKeys () { return this._links.map(link => link[0]) }
 
-  // Returns an array of references to all (7) the 'link.*' configuration DagNodes
-  linkNodes () { return this._link._nodes }
+  linkNodes () { return this._links.map(link => this._dag.node(link[0])) }
 
-  // Returns an array of all (10) 'module.*' configuration DagNode key strings
-  moduleKeys () { return this._module._keys }
+  moduleKeys () { return this._modules.map(mod => mod[0]) }
 
   // Returns an array of references to all DagNodes that are members of moduleKey
-  moduleMembers (moduleKey) { return this.nodesThatStartWith(this.moduleNodePrefixes(moduleKey)) }
+  moduleMembers (moduleKey) {
+    const module = this._modules.find(mod => mod[0] === moduleKey)
+    return (module === undefined) ? [] : this.nodesThatStartWith(module[1])
+  }
 
-  // Returns an array of unique DagNode key prefixes for `moduleKey`
-  moduleNodePrefixes (moduleKey) { return this._module._prefixes.get(moduleKey) }
-
-  // Returns an array of references to all (10) the 'module.*' DagNodes
-  moduleNodes () { return this._module._nodes }
+  moduleNodes () { return this._modules.map(mod => this._dag.node(mod[0])) }
 
   // Returns an array of references to all DagNodes matching and of the [prefixes]
   nodesThatStartWith (prefixes) {

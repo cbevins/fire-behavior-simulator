@@ -1,5 +1,36 @@
 #  ![](favicon.png) Modules and Linkages
 
+The *fire-behavior-simulator* is a Javascript implementation of all the mathematical models contained within the *BehavePlus Fire Modeling System*, a C++ program that runs on the Windows operating system.
+
+As such, the *fire-behavior-simulator* is comprised of many inter-connected models; fuel model outputs are inputs for the fuel bed model; whose outputs are inputs to the fire spread rate and intensity model, whose outputs are inputs to surface fire spotting, crown fire, scorch height, and fire ellipse models, whose outputs are inputs to fire containement model, and so forth.  Some models are single equations, while others can require many equations and intermediate variables.
+
+The following is a summary of some of the models, generally arranged in their order of input-output dependencies:
+
+- The **herbaceous fuel curing model** estimates dead and live herb fuel loads from live herbaceous fuel moisture used by the fuel bed model.
+- The **chaparral dynamic fuel model** estimates chaparral fuel particles and bed depth used by the fuel bed model.
+- The **palmetto-gallberry dynamic** fuel model estimates palmetto-gallberry fuel particles and bed depth used by the fuel bed model.
+- The **western aspen dynamic fuel model** estimates western aspen fuel particles and bed depth used by the fuel bed model.
+- The **standard fuel catalog** provides pre-defined fuel conditions used by the fuel bed model.
+- The **fuel bed model** determines fuel array combustion characteristics from fuel particle life category, load, size, moisture, density, heat content, and mineral content, which are required by the **fire intensity and spread rate model.
+- The **wind speed adjustment model** estimates wind speed at midflame height from thet open-canopy 20-ft wind speed, canopy characteristics, and fuel bed depth.
+- The **fire intensity and spread rate model** uses fuel bed combustion characteristics along with slope steepness and midflame wind speed to determine maximum fireline intensity, spread rate, reaction intensity, residence time, and heat per unit area.
+- The **fire heading model** uses wind direction and slope steepness to determine the direction of maximum spread from upslope.
+- The **flame length model** estimates flame length from fireline intensity (or vice-versa).
+- The **fire behavior weighting model** estimates overall spread rate, fireline intensity, flame length, direction of maximum spread, heat per unit area for a surface fire with 2 fuel models.
+
+- The **surface fire spotting model** estimates firebrand height, drift, and distance over flat and mountaineous terrain from surface fire intensity, wind, and terrain inputs.
+
+- The **fire ellipse model** estimates fire ellipse perimeter, size, and fire behavior (spread rate, spread distance, intensity, flame length, scorch height, tree mortality) at the head, back, flanks, or other arbitrary vector given the surface fire spread rate, fireline intensity, and length-to-width ratio.
+
+- The **fire containment model**
+
+- The **Rothermel active crown fire model**
+
+- The **Scott & Reinhardt crown fire model**
+
+- The **crown fire spotting model**
+
+
 ##  ![](favicon.png) *fire-behavior-simulator* Module Use Cases
 
 When a *fire-behavior-simulator* DAG is initially created, it is constructed as one large continuous model.  To demonstrate, assume you want a table of tree mortality rates.  At its core, the tree mortality model requires just 5 inputs; a tree species, dbh, crown height, crown base height, and scorch height.
@@ -127,7 +158,7 @@ The dialog shows 7 possible linkages where a client Module binds one or more of 
   - Scorch Height (SCORCH) may link to Surface Fire (SURFACE), and
   - Tree Mortality (MORTALITY) may link to Scorch Height (SCORCH)
 
-The *fire-behavior-simulator* includes 7 corresponding configuration nodes:
+The *fire-behavior-simulator* genome is defined such that the models in the DAG are connected or unconnected by setting 7 corresponding configuration nodes:
 
 | Link Node Key | Allowable Values |
 |---|---|
@@ -138,6 +169,32 @@ The *fire-behavior-simulator* includes 7 corresponding configuration nodes:
 | link.surfaceSpot | 'linkedToSurfaceFire' or 'standAlone' |
 | link.scorchHeight | 'linkedToSurfaceFire' or 'standAlone' |
 | link.treeMortality | 'linkedToScorchHeight' |
+
+These flow through the DAg as follows:
+<!-- language: lang-none -->
+                                 /------------------/
+                                 /Surface Fire Model/
+                                 /------------------/
+                                           |
+                                           V
+            +-------------------+----------+----------+------------------+
+            |                   |                     |                  |
+            V                   V                     V                  V
+     <link.crownFire>   <link.fireEllipse>   <link.surfaceSpot>  <link.scorchHeight>
+            |                   |                     |                  |
+            V                   V                     V                  V
+    /----------------/ /------------------/ /------------------/ /---------------/
+    /Crown Fire Model/ /Fire Ellipse Model/ /Surface Spot Model/ /Scorch Ht Model/
+    /----------------/ /------------------/ /------------------/ /---------------/
+            |                   |                                        |
+            V                   V                                        V
+     <link.crownSpot>   <link.fireContain>                      <link.treeMortality>
+            |                   |                                        |
+            V                   V                                        V
+    /----------------/ /------------------/                    /-------------------/
+    /Crown Spot Model/ /Fire Contain Model/                   /Tree Mortality Model/
+    /----------------/ /------------------/                    /-------------------/
+
 
 ---
 
