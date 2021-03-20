@@ -102,6 +102,17 @@ test('4: deactivateAll(), then indivudally activate()', () => {
   mod.moduleKeys().forEach(key => { expect(dag.get(key).value()).toEqual('active') })
   mod.linkKeys().forEach(key => { expect(dag.get(key).value()).not.toEqual('standAlone') })
 
+  // Ensure deactivateAll() then activateAll() restores state
+  const allNodes = dag.nodes().length
+  mod.deactivateAll()
+  mod.moduleKeys().forEach(key => { expect(dag.get(key).value()).toEqual('inactive') })
+  mod.linkKeys().forEach(key => { expect(dag.get(key).value()).toEqual('standAlone') })
+
+  mod.activateAll()
+  mod.moduleKeys().forEach(key => { expect(dag.get(key).value()).toEqual('active') })
+  mod.linkKeys().forEach(key => { expect(dag.get(key).value()).not.toEqual('standAlone') })
+  expect(dag.enabledNodes()).toHaveLength(allNodes)
+
   // Start with no active modules
   mod.deactivateAll()
   mod.moduleKeys().forEach(key => { expect(dag.get(key).value()).toEqual('inactive') })

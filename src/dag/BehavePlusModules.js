@@ -36,19 +36,6 @@ export class BehavePlusModules {
     ]
   }
 
-  // Sets modules in [moduleKeys] to 'active' or 'inactive'
-  // if setNodes===true, then Module's DagNodes are enabled/disabled
-  _activate (moduleKeys, isActive, setNodes = true) {
-    if (!Array.isArray(moduleKeys)) moduleKeys = [moduleKeys]
-    const moduleValue = isActive ? 'active' : 'inactive'
-    this._dag.configure(moduleKeys.map(key => [key, moduleValue]))
-    if (setNodes) {
-      moduleKeys.forEach(moduleKey => {
-        this._dag.setEnabled(this.moduleNodePrefixes(moduleKey), isActive)
-      })
-    }
-  }
-
   // Activate modules specified in [<moduleKeys>]
   activate (moduleKeys) {
     moduleKeys = Array.isArray(moduleKeys) ? moduleKeys : [moduleKeys]
