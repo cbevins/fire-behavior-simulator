@@ -1,20 +1,33 @@
 # ![](favicon.png) cbevins/fire-behavior-simulator Variable Names
-[README.md](./README.md)
-# ![](favicon.png) Top-level Names
-- [configure Variables](#configure-variables)
-- [crown Variables](#crown-variables)
-- [docs Variables](#docs-variables)
-- [ignition Variables](#ignition-variables)
-- [link Variables](#link-variables)
-- [module Variables](#module-variables)
-- [mortality Variables](#mortality-variables)
-- [scorch Variables](#scorch-variables)
-- [site Variables](#site-variables)
-- [spotting Variables](#spotting-variables)
-- [surface Variables](#surface-variables)
+
+| Prev: [12 Author](./12_Author.md) | Next: [14 Table of Variables](./14_VariableNames.md) | [Back to Top](#top-level-names) |
+
 ---
-## ![](favicon.png) configure Variables
-[Table of Contents](../README.md)
+
+# ![](favicon.png) Top-level Names
+
+- [**configure**.* Variables](#configure-variables)
+- [**crown.canopy**.* Variables](#crown.canopy-variables)
+- [**crown.fire**.* Variables](#crown.fire-variables)
+- [**docs**.* Variables](#docs-variables)
+- [**ignition**.* Variables](#ignition-variables)
+- [**link**.* Variables](#link-variables)
+- [**module**.* Variables](#module-variables)
+- [**mortality**.* Variables](#mortality-variables)
+- [**scorch**.* Variables](#scorch-variables)
+- [**site**.* Variables](#site-variables)
+- [**spotting**.* Variables](#spotting-variables)
+- [**surface.fire.ellipse**.* Variables](#surface.fire.ellipse-variables)
+- [**surface.primary**.* Variables](#surface.primary-variables)
+- [**surface.secondary**.* Variables](#surface.secondary-variables)
+- [**surface.weighted**.* Variables](#surface.weighted-variables)
+
+---
+
+## ![](favicon.png) **configure**.* Variables
+
+[Back to Top](#top-level-names)
+
 | idx | Variable Key (Name) | Variant | Native Units |
 |---|---|---|---|
   | 1 | configure.fire.effectiveWindSpeedLimit | ConfigEffectiveWindSpeedLimit |  |
@@ -31,9 +44,13 @@
   | 12 | configure.slope.steepness | ConfigSlopeSteepness |  |
   | 13 | configure.wind.direction | ConfigWindDirection |  |
   | 14 | configure.wind.speed | ConfigWindSpeed |  |
+
 ---
-## ![](favicon.png) crown Variables
-[Table of Contents](../README.md)
+
+## ![](favicon.png) **crown.canopy**.* Variables
+
+[Back to Top](#top-level-names)
+
 | idx | Variable Key (Name) | Variant | Native Units |
 |---|---|---|---|
   | 15 | crown.canopy.fuel.bed.bulkDensity | FuelBedBulkDensity | lb/ft3 |
@@ -307,6 +324,15 @@
   | 283 | crown.canopy.fuel.fire.wind.phi | Factor |  |
   | 284 | crown.canopy.fuel.fire.wind.speed.atMidflame | WindSpeed | ft/min |
   | 285 | crown.canopy.fuel.fire.windSpeedAdjustmentFactor | WindSpeedAdjustmentFactor | ratio |
+
+---
+
+## ![](favicon.png) **crown.fire**.* Variables
+
+[Back to Top](#top-level-names)
+
+| idx | Variable Key (Name) | Variant | Native Units |
+|---|---|---|---|
   | 286 | crown.fire.active.firelineIntensity | FireFirelineIntensity | btu/ft/s |
   | 287 | crown.fire.active.flameLength | FireFlameLength | ft |
   | 288 | crown.fire.active.heatPerUnitArea | FireHeatPerUnitArea | btu/ft2 |
@@ -356,18 +382,26 @@
   | 332 | crown.fire.surface.firelineIntensity | FireFirelineIntensity | btu/ft/s |
   | 333 | crown.fire.surface.flameLength | FireFlameLength | ft |
   | 334 | crown.fire.surface.heatPerUnitArea | FireHeatPerUnitArea | btu/ft2 |
+
 ---
-## ![](favicon.png) docs Variables
-[Table of Contents](../README.md)
+
+## ![](favicon.png) **docs**.* Variables
+
+[Back to Top](#top-level-names)
+
 | idx | Variable Key (Name) | Variant | Native Units |
 |---|---|---|---|
   | 335 | docs.run.description | Documentation |  |
   | 336 | docs.run.mainTitle | Documentation |  |
   | 337 | docs.run.subTitle | Documentation |  |
   | 338 | docs.run.userName | Documentation |  |
+
 ---
-## ![](favicon.png) ignition Variables
-[Table of Contents](../README.md)
+
+## ![](favicon.png) **ignition**.* Variables
+
+[Back to Top](#top-level-names)
+
 | idx | Variable Key (Name) | Variant | Native Units |
 |---|---|---|---|
   | 339 | ignition.firebrand.probability | IgnitionProbability | ratio |
@@ -375,9 +409,13 @@
   | 341 | ignition.lightningStrike.fuel.depth | IgnitionFuelDepth | in |
   | 342 | ignition.lightningStrike.fuel.type | IgnitionFuelTypeOption |  |
   | 343 | ignition.lightningStrike.probability | IgnitionProbability | ratio |
+
 ---
-## ![](favicon.png) link Variables
-[Table of Contents](../README.md)
+
+## ![](favicon.png) **link**.* Variables
+
+[Back to Top](#top-level-names)
+
 | idx | Variable Key (Name) | Variant | Native Units |
 |---|---|---|---|
   | 344 | link.crownFire | ConfigLinkSurfaceFire |  |
@@ -387,9 +425,13 @@
   | 348 | link.scorchHeight | ConfigLinkSurfaceFire |  |
   | 349 | link.surfaceSpot | ConfigLinkSurfaceFire |  |
   | 350 | link.treeMortality | ConfigLinkScorchHeight |  |
+
 ---
-## ![](favicon.png) module Variables
-[Table of Contents](../README.md)
+
+## ![](favicon.png) **module**.* Variables
+
+[Back to Top](#top-level-names)
+
 | idx | Variable Key (Name) | Variant | Native Units |
 |---|---|---|---|
   | 351 | module.crownFire | ConfigModuleActive |  |
@@ -402,24 +444,36 @@
   | 358 | module.surfaceFire | ConfigModuleActive |  |
   | 359 | module.surfaceSpot | ConfigModuleActive |  |
   | 360 | module.treeMortality | ConfigModuleActive |  |
+
 ---
-## ![](favicon.png) mortality Variables
-[Table of Contents](../README.md)
+
+## ![](favicon.png) **mortality**.* Variables
+
+[Back to Top](#top-level-names)
+
 | idx | Variable Key (Name) | Variant | Native Units |
 |---|---|---|---|
   | 361 | mortality.crownLengthScorched | MortalityFraction | ratio |
   | 362 | mortality.crownVolumeScorched | MortalityFraction | ratio |
   | 363 | mortality.rate | MortalityFraction | ratio |
   | 364 | mortality.scorchHeight | FireScorchHeight | ft |
+
 ---
-## ![](favicon.png) scorch Variables
-[Table of Contents](../README.md)
+
+## ![](favicon.png) **scorch**.* Variables
+
+[Back to Top](#top-level-names)
+
 | idx | Variable Key (Name) | Variant | Native Units |
 |---|---|---|---|
   | 365 | scorch.height | FireScorchHeight | ft |
+
 ---
-## ![](favicon.png) site Variables
-[Table of Contents](../README.md)
+
+## ![](favicon.png) **site**.* Variables
+
+[Back to Top](#top-level-names)
+
 | idx | Variable Key (Name) | Variant | Native Units |
 |---|---|---|---|
   | 366 | site.canopy.cover | FuelCoverFraction | ratio |
@@ -494,9 +548,13 @@
   | 435 | site.wind.speed.at20ft | WindSpeed | ft/min |
   | 436 | site.wind.speed.atMidflame | WindSpeed | ft/min |
   | 437 | site.windSpeedAdjustmentFactor | WindSpeedAdjustmentFactor | ratio |
+
 ---
-## ![](favicon.png) spotting Variables
-[Table of Contents](../README.md)
+
+## ![](favicon.png) **spotting**.* Variables
+
+[Back to Top](#top-level-names)
+
 | idx | Variable Key (Name) | Variant | Native Units |
 |---|---|---|---|
   | 438 | spotting.burningPile.firebrand.criticalCoverHeight | TreeHeight | ft |
@@ -533,9 +591,13 @@
   | 469 | spotting.torchingTrees.spotDistance.flatTerrain | FireSpotDistance | ft |
   | 470 | spotting.torchingTrees.spotDistance.flatTerrainWithDrift | FireSpotDistance | ft |
   | 471 | spotting.torchingTrees.spotDistance.mountainTerrain | FireSpotDistance | ft |
+
 ---
-## ![](favicon.png) surface Variables
-[Table of Contents](../README.md)
+
+## ![](favicon.png) **surface.fire.ellipse**.* Variables
+
+[Back to Top](#top-level-names)
+
 | idx | Variable Key (Name) | Variant | Native Units |
 |---|---|---|---|
   | 472 | surface.fire.ellipse.axis.eccentricity | FireLengthToWidthRatio |  |
@@ -605,6 +667,15 @@
   | 536 | surface.fire.ellipse.vector.fromNorth | CompassAzimuth | deg |
   | 537 | surface.fire.ellipse.vector.fromUpslope | CompassAzimuth | deg |
   | 538 | surface.fire.ellipse.wind.speed.atMidflame | WindSpeed | ft/min |
+
+---
+
+## ![](favicon.png) **surface.primary**.* Variables
+
+[Back to Top](#top-level-names)
+
+| idx | Variable Key (Name) | Variant | Native Units |
+|---|---|---|---|
   | 539 | surface.primary.fuel.bed.bulkDensity | FuelBedBulkDensity | lb/ft3 |
   | 540 | surface.primary.fuel.bed.dead.effective.mineralContent | FuelEffectiveMineralContent | ratio |
   | 541 | surface.primary.fuel.bed.dead.effectiveFuel.moistureContent | FuelMoistureContent | ratio |
@@ -939,6 +1010,15 @@
   | 870 | surface.primary.fuel.model.westernAspen.domain | FuelModelDomainOption |  |
   | 871 | surface.primary.fuel.model.westernAspen.parms.aspenType | WesternAspenTypeOption |  |
   | 872 | surface.primary.fuel.model.westernAspen.parms.curingLevel | FuelDeadFraction | ratio |
+
+---
+
+## ![](favicon.png) **surface.secondary**.* Variables
+
+[Back to Top](#top-level-names)
+
+| idx | Variable Key (Name) | Variant | Native Units |
+|---|---|---|---|
   | 873 | surface.secondary.fuel.bed.bulkDensity | FuelBedBulkDensity | lb/ft3 |
   | 874 | surface.secondary.fuel.bed.dead.effective.mineralContent | FuelEffectiveMineralContent | ratio |
   | 875 | surface.secondary.fuel.bed.dead.effectiveFuel.moistureContent | FuelMoistureContent | ratio |
@@ -1273,6 +1353,15 @@
   | 1204 | surface.secondary.fuel.model.westernAspen.domain | FuelModelDomainOption |  |
   | 1205 | surface.secondary.fuel.model.westernAspen.parms.aspenType | WesternAspenTypeOption |  |
   | 1206 | surface.secondary.fuel.model.westernAspen.parms.curingLevel | FuelDeadFraction | ratio |
+
+---
+
+## ![](favicon.png) **surface.weighted**.* Variables
+
+[Back to Top](#top-level-names)
+
+| idx | Variable Key (Name) | Variant | Native Units |
+|---|---|---|---|
   | 1207 | surface.weighted.fire.arithmeticMean.spreadRate | FireSpreadRate | ft/min |
   | 1208 | surface.weighted.fire.effectiveWindSpeed | WindSpeed | ft/min |
   | 1209 | surface.weighted.fire.expectedValue.spreadRate | FireSpreadRate | ft/min |

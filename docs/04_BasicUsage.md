@@ -1,5 +1,7 @@
 #  ![](favicon.png) Basic Usage
-- [Table of Contents](../README.md)
+
+| Prev: [03 Capabilities](./03_Capabilities.md) | Next: [05 Client API](./05_ClientAPI.md) | [Table of Contents](../README.md) |
+
 ---
 
 This first example walks through the a basic yet complete Node application. Only 8 statements are actually required to produce a result:
@@ -167,3 +169,6 @@ console.log(nodeTable(selectedNodes,
   ['label', 'nativeValue', 'nativeUnits', 'displayValue', 'displayUnits'], 'Results'))
 ```
 
+---
+
+| Prev: [03 Capabilities](./03_Capabilities.md) | Next: [05 Client API](./05_ClientAPI.md) | [Table of Contents](../README.md) |

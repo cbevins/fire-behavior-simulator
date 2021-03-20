@@ -1,5 +1,7 @@
-##  ![](favicon.png) Capabilities
-- [Table of Contents](../README.md)
+#  ![](favicon.png) Capabilities
+
+| Prev: [02 Installation](./02_Installation.md) | Next: [04 Basic Usage](./04_BasicUsage.md) | [Table of Contents](../README.md) |
+
 ---
 
 *fire-behavior-simulator* implements most of the models, functionality, and configuration options of the BehavePlus Fire Modeling System application (version 6), which was written in C++ for the Windows operating system.  It also exposes all 1200+ variables, which means they may be easily included in outputs as needed.
@@ -48,3 +50,7 @@ In the context of BehavePlus, the fire-behavior-simulator Javascript package inc
 
 - **Fire Containment**
   - The BehavePlus CONTAIN Module is not yet implemented.
+
+---
+
+| Prev: [02 Installation](./02_Installation.md) | Next: [04 Basic Usage](./04_BasicUsage.md) | [Table of Contents](../README.md) |

@@ -1,5 +1,6 @@
-##  ![](favicon.png) Summary
-- [Table of Contents](../README.md)
+#  ![](favicon.png) Summary
+| Prev: [Table of Contents](../README.md) | Next: [02 Installation](./02_Installation.md) |
+
 ---
 
 The purpose of *fire-behavior-simulator* is to implement all the models, functionality, and configurability of the *BehavePlus Fire Modeling System* in a Javascript package.
@@ -13,5 +14,4 @@ The *fire-behavior-simulator* package is a totally re-engineered implementation 
 For more information, read the [Capabilities](./docs/03_Capabilities.md) section.
 
 ---
-
-- [Table of Contents](../README.md)
+| Prev: [Table of Contents](../README.md) | Next: [02 Installation](./02_Installation.md) |

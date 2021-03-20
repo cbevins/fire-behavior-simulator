@@ -1,5 +1,7 @@
-##  ![](favicon.png) Installation
-- [Table of Contents](../README.md)
+#  ![](favicon.png) Installation
+
+| Prev: [01 Summary](./01_Summary.md) | Next: [03 Capabilities](./03_Capabilities.md) | [Table of Contents](../README.md) |
+
 ---
 
 To work with a local copy of the *fire-behavior-simulator* source code:
@@ -16,3 +18,6 @@ To use the *fire-behavior-simulator* package as a node_module dependency in your
 npm i --save @cbevins/fire-behavior-simulator
 ```
 
+---
+
+| Prev: [01 Summary](./01_Summary.md) | Next: [03 Capabilities](./03_Capabilities.md) | [Table of Contents](../README.md) |

@@ -1,5 +1,9 @@
 #  ![](favicon.png) Modules and Linkages
 
+| Prev: [08 Configuration](./08_Configuration.md) | Next: [10 Design and Implementation](./10_DesignImplementation.md) | [Table of Contents](../README.md) |
+
+---
+
 The *fire-behavior-simulator* is a Javascript implementation of all the mathematical models contained within the *BehavePlus Fire Modeling System*, a C++ program that runs on the Windows operating system.
 
 As such, the *fire-behavior-simulator* is comprised of many inter-connected models; fuel model outputs are inputs for the fuel bed model; whose outputs are inputs to the fire spread rate and intensity model, whose outputs are inputs to surface fire spotting, crown fire, scorch height, and fire ellipse models, whose outputs are inputs to fire containement model, and so forth.  Some models are single equations, while others can require many equations and intermediate variables.
@@ -351,3 +355,7 @@ Surface Fire can be linked (provide input) to 4 other modules:
   - Scorch Height can use Surface Fire's
     - surface fireline intensity (or flame length)
     - wind speed at midflame height
+
+---
+
+| Prev: [08 Configuration](./08_Configuration.md) | Next: [10 Design and Implementation](./10_DesignImplementation.md) | [Table of Contents](../README.md) |

@@ -1,5 +1,7 @@
-##  ![](favicon.png) Configuration
-- [Table of Contents](../README.md)
+#  ![](favicon.png) Configuration
+
+| Prev: [07 Live Web Browser Examples](./07_LiveWebBrowserExamples.md) | Next: [09 Modules and Linkages](./09_ModuleLinkages.md) | [Table of Contents](../README.md) |
+
 ---
 
 - cured herb options = ['input', 'estimated']
@@ -61,3 +63,7 @@
   - input torching tree parameters
 
 #8 Ignition Probability (always stand-alone)
+
+---
+
+| Prev: [07 Live Web Browser Examples](./07_LiveWebBrowserExamples.md) | Next: [09 Modules and Linkages](./09_ModuleLinkages.md) | [Table of Contents](../README.md) |
