@@ -1,3 +1,4 @@
+/* eslint-disable jest/no-export */
 /**
  * @file behaveplus.js sinple example
  * @copyright 2021 Systems for Environmental Management
@@ -111,18 +112,27 @@ export class BehavePlus {
 }
 
 // Use our new fire behavior class
-const bp = new BehavePlus()
-console.log(header('behaveplus.js - fire-behavior-simulator example'))
-console.log('Wind Speed is 10 mph:')
-console.log(`spreadRate = ${bp.spreadRate}`)
-console.log(`flameLength = ${bp.flameLength}`)
-console.log(`fireHeadingFromUpslope = ${bp.fireHeadingFromUpslope}`)
-console.log(`fireHeadingFromNorth = ${bp.fireHeadingFromNorth}`)
+// Ensure this example runs as expected with each build and release by wrapping it in a test
+test('Example BehavePlus class', () => {
+  const bp = new BehavePlus()
+  console.log(header('behaveplus.js - fire-behavior-simulator example'))
+  console.log('Wind Speed is 10 mph:')
+  console.log(`spreadRate = ${bp.spreadRate}`)
+  console.log(`flameLength = ${bp.flameLength}`)
+  console.log(`fireHeadingFromUpslope = ${bp.fireHeadingFromUpslope}`)
+  console.log(`fireHeadingFromNorth = ${bp.fireHeadingFromNorth}`)
 
-bp.windSpeed = 20
-bp.run()
-console.log('Wind Speed is 20 mph:')
-console.log(`spreadRate = ${bp.spreadRate}`)
-console.log(`flameLength = ${bp.flameLength}`)
-console.log(`fireHeadingFromUpslope = ${bp.fireHeadingFromUpslope}`)
-console.log(`fireHeadingFromNorth = ${bp.fireHeadingFromNorth}`)
+  bp.windSpeed = 20
+  bp.run()
+  console.log('Wind Speed is 20 mph:')
+  console.log(`spreadRate = ${bp.spreadRate}`)
+  console.log(`flameLength = ${bp.flameLength}`)
+  console.log(`fireHeadingFromUpslope = ${bp.fireHeadingFromUpslope}`)
+  console.log(`fireHeadingFromNorth = ${bp.fireHeadingFromNorth}`)
+
+  // Ensure we get the expected results
+  expect(bp.spreadRate).toEqual(49.16436002585472)
+  expect(bp.flameLength).toEqual(10.95926988166438)
+  expect(bp.fireHeadingFromUpslope).toEqual(44.59531071638538)
+  expect(bp.fireHeadingFromNorth).toEqual(89.59531071638537)
+})

@@ -58,12 +58,17 @@
     "registry": "https://registry.npmjs.org"
   },
   "jest": {
+    "testMatch": [
+      "**/__tests__/**/*.[jt]s?(x)",
+      "**/?(*.)+(spec|test).[jt]s?(x)"
+    ],
     "testPathIgnorePatterns": [
       "<rootDir>/src/untracked"
     ],
     "collectCoverageFrom": [
       "**/*.{js,jsx}",
       "!**/index.js",
+      "!**/alt/**",
       "!**/coverage/**",
       "!**/dist/**",
       "!**/untracked/**",
