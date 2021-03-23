@@ -32,39 +32,34 @@ export const Status = {
 export const Tactic = { Head: 'Head', Rear: 'Rear' }
 export const Flank = { Left: 'Left', Right: 'Right', Both: 'Both' }
 
-// ------------------------------------------------------------------------------
-/*! \brief Contain constructor.
+/**
+ * Contain constructor.
  *
- *  \param reportSize Fire size at time of report (ac)
- *  \param reportRate Fire spread rate at time of report (ch/h).
- *  \param lwRatio    Fire length-to-width ratio.
- *  \param distStep   Simulation fire head distance step size (ch).
- *  \param flank      Apply ContainResources assigned to the Left or Right
- *                    flank.  ContainResources assigned to Both flanks have
- *                    half their production rate applied to this flank.
- *  \param force      Pointer to the ContainForce applied to the fire.
- *  \param attackTime Elapsed time since fire report that ContainForces
- *                    are first committed to the fire.  This may be after the
- *                    arrival of one or more resources.
- *  \param tactic     HeadAttack or RearAttack.
- *  \param attackDist Forces build fireline this far from the fire edge (ch).
- *  \param limitDist  Stop simulation after fire travels this distance (ch).
+ * @param {number} reportSize Fire size at time of report (ac)
+ * @param {number} reportRate Fire spread rate at time of report (ch/h).
+ * @param {number} lwRatio    Fire length-to-width ratio.
+ * @param {ContainForce} force Reference to the ContainForce applied to the fire.
+ * @param {string} tactic One of Tactic.Head ('Head') or Tactic.Rear ('Rear)
+ * @param {number} attackDist Forces build fireline this far from the fire edge (ch).
+ * @param {number} attackTime Minutes since fire report that ContainForces are first committed
+ *  to the fire.  This may be after the arrival of one or more resources.
+ * @param {number} distStep Simulation fire head distance step size (ch). (This is estimated by ContainSim as:
+ *  distStep = force.exhausted(Flank.Left) * (reportRate / 60) / (maxSteps - 2)
+ * @param {number} limitDist Stop simulation after fire travels this distance (ch). BehavePlus uses 1,000,000 ch.
+ * @param {string} flank Which flank to simulate. Flank.Left ('Left') or Flank.Right ('Right').
+ *  ContainResources are assigned to the Flank.Left ('Left'),  Flank.Right ('Right'),
+ *  or Flank.Both ('Both'), in which case half their production rate applied to this flank.
  */
 
 export class Contain {
-  constructor (reportSize, reportRate, lwRatio, distStep,
-    flank, // ContainFlank
-    force, // ContainForce
-    attackTime,
-    tactic, // ContainTactic
-    attackDist,
-    limitDist) {
+  constructor (reportSize, reportRate, lwRatio, force, tactic, attackDist,
+    attackTime, distStep, limitDist, flank) {
     this._reportSize = reportSize
     this._reportRate = reportRate
     this._lwRatio = lwRatio
     this._attackDist = attackDist
     this._attackTime = attackTime
-    this._distStep = 0.01
+    this._distStep = distStep
     this._limitDist = limitDist
     this._flank = flank
     this._tactic = tactic
@@ -89,6 +84,7 @@ export class Contain {
     this._h0 = 0
     this._x = 0
     this._y = 0
+    this._rkpr = [0, 0, 0]
     this._status = Status.Unreported
     // Set all the input parameters.
     this.setReport(reportSize, reportRate, lwRatio, distStep)
@@ -100,16 +96,17 @@ export class Contain {
     this._initialAttackBack = this._attackBack
   }
 
-  // ------------------------------------------------------------------------------
-  /*! \brief Determines the next value of the angle from the fire origin to the
- *  point of active fireline construction.
- *
- *  \retval Next value of the angle from the fire origin to the point of
- *              active fireline construction is stored in this._u.
- *  \retval Next value of free-burning head position is stored in this._h.
- *  \retval Current value of this._status may be reset to Overrun upon return!
- */
-
+  /**
+   * Determines the next value of the angle from the fire origin to the
+   * point of active fireline construction.
+   *
+   * The next value of the angle from the fire origin to the point of
+   * active fireline construction is stored in this._u.
+   *
+   * The next value of free-burning head position is stored in this._h.
+   *
+   * The current value of this._status may be reset to Status.Overrun upon return!
+  */
   calcU () {
     // Store the current u and h as the old u and h.
     this._u0 = this._u
@@ -122,19 +119,19 @@ export class Contain {
     this._rkpr[1] = this.productionRatio(this._h0 + (0.5 * this._distStep))
     this._rkpr[2] = this.productionRatio(this._h0 + this._distStep)
     // First constant
-    if (!this.calcUh(this._rkpr[0], this._h0, this._u0, /* & */ deriv)) { return }
+    if (!this.calcUh(this._rkpr[0], this._h0, this._u0, deriv)) { return }
     rk[0] = this._distStep * deriv.uh
     // Second constant
     if (!this.calcUh(this._rkpr[1], (this._h0 + 0.5 * this._distStep),
-      (this._u0 + 0.5 * rk[0]), /* & */ deriv)) { return }
+      (this._u0 + 0.5 * rk[0]), deriv)) { return }
     rk[1] = this._distStep * deriv.uh
     // Third constant
     if (!this.calcUh(this._rkpr[1], (this._h0 + 0.5 * this._distStep),
-      (this._u0 + 0.5 * rk[1]), /* & */ deriv)) { return }
+      (this._u0 + 0.5 * rk[1]), deriv)) { return }
     rk[2] = this._distStep * deriv.uh
     // Fourth constant
     if (!this.calcUh(this._rkpr[2], (this._h0 + this._distStep),
-      (this._u0 + rk[2]), /* & */ deriv)) { return }
+      (this._u0 + rk[2]), deriv)) { return }
     rk[3] = this._distStep * deriv.uh
 
     // Calculate 4th order Runga-Kutta approximation of u for next step.
@@ -144,30 +141,26 @@ export class Contain {
     this._h = this._attackHead + (this._step + 1) * this._distStep
   }
 
-  // ------------------------------------------------------------------------------
-  /*! \brief Determines du/dh for a particular u, h, and p,
- *  and returns the value in d.
- *
- *  If there is a negative term under the radical,
- *  which is indicative of the ContainResources being overrun by the fire,
- *  this._status is set to Overrun and the function returns FALSE.
- *  Similarly if a sign change occurs in du/dh.
- *
- *  \param p    Fireline production rate (ch/h).
- *  \param h    Current distance of free-burning fire head from the origin (ch).
- *  \param u    Current angle from the fire origin to the point of active
- *              fireline construction.
- *  \param deriv Object where
- *      deriv.dh is the change in fire perimeter distance at point of attack
- *      deriv.du is the change in angle of attack point from fire origin
- *      deriv.uh is  property where the du/dh derivative is returned,
- *      deriv.lastUh is yhe previous derive.uh value
- *
- *  \retval     TRUE if ContainResources are not overrun and d has valid result.
- *  \retval     FALSE if ContainResources are overrun, and this._status is
- *              set to Overrun.
- */
-
+  /**
+   * Determines du/dh for a particular u, h, and p, and returns the value in deriv.uh.
+   *
+   * If there is a negative term under the radical,
+   * which is indicative of the ContainResources being overrun by the fire,
+   * this._status is set to Status.Overrun and the function returns FALSE.
+   * Similarly if a sign change occurs in du/dh.
+   *
+   * @param {number} p Fireline production rate (ch/h).
+   * @param {number} h Current distance of free-burning fire head from the origin (ch).
+   * @param {number} u Current angle from the fire origin to the point of active fireline construction.
+   * @param {object} deriv Object with following properties:
+   *  - dh is the change in fire perimeter distance at point of attack
+   *  - du is the change in angle of attack point from fire origin
+   *  - uh is the du/dh derivative
+   *  - lastUh is the previous uh (du/dh derivative) value
+   *
+   * @returns TRUE if ContainResources are not overrun and d has valid result.
+   *  FALSE if ContainResources are overrun, and this._status is set to Status.Overrun.
+  */
   calcUh (p, h, u, deriv) {
     // lastUh is used to check sign change between previous and current step
     const cosU = Math.cos(u)
@@ -183,12 +176,8 @@ export class Contain {
     // as ros approaches the fireline production rate;
     // uh_radical approaches zero faster under VC6 than under gcc.
     // Enable the following containLog() calls to demonstrate.
-    this.containLog(false,
-      '\nStep %04d: p=%15.13f, h=%15.13f, u=%15.13f, sinU=%15.12f, cosU=%15.13f\n',
-      this._step + 1, p, h, u, sinU, cosU)
-    this.containLog(false,
-      '           x=%15.13f, this._eps=%15.13f, this._a=%15.13f, uh_radical=%15.13f\n',
-      x, this._eps, this._a, uhRadical)
+    let str = `\nStep ${this._step + 1}: p=${p}, h=${h}, u=${u}, sinU=${sinU}, cosU=${cosU}\n`
+    str += `           x=${x}, this._eps=${this._eps}, this._a=${this._a}, uhRadical=${uhRadical}\n`
 
     if (uhRadical <= 1.0e-10) {
       this._status = Status.Overrun
@@ -208,15 +197,14 @@ export class Contain {
       deriv.du = this._eps * sinU + (1 + this._eps) * Math.sqrt(uhRadical)
     }
     deriv.uh = deriv.du / deriv.dh
-    this.containLog(false,
-      '           sqrt(uh_radical)=%15.13f, du=%12.10f, dh=%12.10f, uh(du/dh)=%12.10f\n',
-      Math.sqrt(uhRadical), deriv.du, deriv.dh, deriv.uh)
+    str += `           sqrt(uh_radical)=${Math.sqrt(uhRadical)}, du=${deriv.du}, dh=${deriv.dh}, uh(du/dh)=${deriv.uh}\n`
+    this.log(str)
 
     // If "angular rotation" has reversed. firefighters may be overrun
     // and cannot even build line making NO rotational progress
     /* THE FOLLOWING CODE WAS REMOVED AT DIRECTION OF M.A.Finney and Fried
     if ( ( this._tactic === RearAttack && lastUh < 0. && uh >= 0. )
-       | ( this._tactic === HeadAttack && lastUh > 0. && uh <= 0. ) ) {
+      || ( this._tactic === HeadAttack && lastUh > 0. && uh <= 0. ) ) {
         if ( this._step ) {
             this._status = Overrun;
             return( false );
@@ -228,13 +216,11 @@ export class Contain {
     return true
   }
 
-  // ------------------------------------------------------------------------------
-  /*! \brief Determines the x- and y- coordinates ( this._x and this._y)
- *  for the current angle (this._u) and free-burning head position (this._h).
- */
-
+  /**
+   * Determines the x- and y- coordinates ( this._x and this._y)
+   *  for the current angle (this._u) and free-burning head position (this._h).
+  */
   calcCoordinates () {
-    // Determine the x and y coordinate.
     this._y = Math.sin(this._u) * this._h * this._a
     this._x = (Math.cos(this._u) + this._eps) * this._h / (1.0 + this._eps)
     if (this._attackDist > 0.001) {
@@ -244,63 +230,47 @@ export class Contain {
     }
   }
 
-  // ------------------------------------------------------------------------------
-  /*! \brief API access to the time when all the ContainResources ar exhausted.
- *
- *  \return Time when all the ContainResources are exhausted
- *          (minutes since report).
- */
-
+  /**
+   * Time (minutes since report) when all the ContainResources will be exhausted.
+  */
   exhausted () { return this._exhausted }
 
-  // ------------------------------------------------------------------------------
-  /*! \brief Determines the fire head position at the specified time.
- *
- *  \param minutesSinceReport The fire head position is determined for this
- *  many minutes since the fire was reported.
- *
- *  \note This function must be modified to support variable ROS fires.
- *
- *  \return Head position at the specified time (chains from fire origin).
- */
-
+  /**
+   * Determines the fire head position at the specified time.
+   * \TO DO Modify to support variable ROS fires.
+   *
+   * @param {number} minutesSinceReport The fire head position is determined for this
+   *  many minutes since the fire was reported.
+   * @returns {number} Head position at the specified time (chains from fire origin).
+  */
   headPosition (minutesSinceReport) {
     return this._reportHead + this._reportRate * minutesSinceReport / 60
   }
 
-  // ------------------------------------------------------------------------------
-  /*! \brief Determines the aggregate fireline production rate of the entire
- *  containment force on the specified flank when the free burning fire head
- *  would have reached the specified position.
- *  THIS IS HALF THE TOTAL PRODUCTION RATE FOR BOTH FLANKS,
- *  AND HALF THE PRODUCTION RATE ENTERED FOR EACH RESOURCE.
- *
- *  \param fireHeadPosition Position of the free-burning fire head (ch).
- *
- *  \return Aggregate containment force holdable fireline production rate
- *  (ch/h).
- */
+  /**
+   * Determines the aggregate fireline production rate of the entire containment force
+   * on the specified flank when the free burning fire head would have reached the specified position.
+   *
+   * NOTE: Forces committed to BOTH flanks half half their production assigned to EACH flank.
+   *
+   * @param {number} fireHeadPosition Position of the free-burning fire head (ch).
+   * @returns {number} Aggregate containment force holdable fireline production rate (ch/h).
+  */
   productionRate (fireHeadPosition) {
     const minutesSinceReport = this.timeSinceReport(fireHeadPosition)
     const prod = this._force.productionRate(minutesSinceReport, this._flank)
     return prod
   }
 
-  // ------------------------------------------------------------------------------
-  /*! \brief Determines the ratio of the aggregate fireline production rate of
- *  the entire containment force on the specified flank when the free burning
- *  fire head would have reached the specified position,
- *  to the fire head spread rate at that specified time.
- *
- *  THIS IS HALF THE TOTAL PRODUCTION RATE FOR BOTH FLANKS,
- *  AND HALF THE PRODUCTION RATE ENTERED FOR EACH RESOURCE.
- *
- *  \param fireHeadPosition Position of the free-burning fire head (ch).
- *
- *  \return Ratio of the aggregate containment force holdable fireline
- *  production rate to the fire head spread rate.
- */
-
+  /**
+   * Determines the ratio of the aggregate fireline production rate of the entire containment force
+   * on the specified flank when the free burning fire head would have reached the specified position,
+   *  to the fire head spread rate at that specified time.
+   *
+   * @param {number} fireHeadPosition Position of the free-burning fire head (ch).
+   * @returns {number} Ratio of the aggregate containment force holdable fireline production rate
+   * to the fire head spread rate.
+  */
   productionRatio (fireHeadPosition) {
     const minutesSinceReport = this.timeSinceReport(fireHeadPosition)
     const prod = this._force.productionRate(minutesSinceReport, this._flank)
@@ -309,11 +279,11 @@ export class Contain {
     return ratio
   }
 
-  // ------------------------------------------------------------------------------
-  /*! \brief Initializes the Contain state from the current parameter values.
- *
- *  Should be called after calling either setAttack() or setReport().
- */
+  /**
+   * Initializes the Contain state from the current parameter values.
+   *
+   *  Should be called after calling either setAttack() or setReport().
+   */
   reset () {
     // Eccentricity
     const r = 1 / this._lwRatio
@@ -360,89 +330,38 @@ export class Contain {
     // Initialization
     this._step = 0
     this._time = 0
-    this._rkpr[0] = this._rkpr[1] = this._rkpr[2] = 0
+    this._rkpr = [0, 0, 0]
     this._status = Status.Reported // Also means that we're initialized
 
     // Log it
-    this.containLog(false, '\n\nCONTAIN RESET-----------------------------\n\n')
-    this.containLog(false, 'Eta   = %12.10f\n', this._distStep)
-    this.containLog(false, 'eps   = %12.10f\n', this._eps)
-    this.containLog(false, 'EpsSq = %12.10f\n', this._eps2)
-    this.containLog(false, 'A     = %12.10f\n', this._a)
-    this.containLog(false, 'hr    = %12.10f\n', this._reportHead)
-    this.containLog(false, 'ho    = %12.10f\n', this._attackHead)
+    let str = '\n\nCONTAIN RESET-----------------------------\n\n'
+    str += `Eta   = ${this._distStep}\n`
+    str += `eps   = ${this._eps}\n`
+    str += `EpsSq = ${this._eps2}\n`
+    str += `A     = ${this._a}\n`
+    str += `hr    = ${this._reportHead}\n`
+    str += `ho    = ${this._attackHead}\n`
+    this.log(str)
   }
 
-  // ------------------------------------------------------------------------------
-  /*! \brief API access to the number of ContainResources in the containment force.
- *
- *  \return Number of ContainResources in the ContainForce.
- */
-  resources () { return this._force._count }
+  // resources () { return this._force._resources.length }
+  // resourceArrival (index) { return this._force.resourceArrival(index) }
+  // resourceDescription (index) { return this._force.resourceDescription(index) }
+  // resourceDuration (index) { return this._force.resourceDuration(index) }
+  // resourceProduction (index) { return this._force.resourceProduction(index) }
 
-  // ------------------------------------------------------------------------------
-  /*! \brief API access to the arrival time of the specified ContainmentResouce.
- *
- *  \param index Index (base 0) of the ContainResource.  Indices are
- *  assigned in the order that the ContainResources are added to the
- *  ContainForce.
- *
- *  \return ContainResource's arrival time (minutes since fire was reported).
- */
-
-  resourceArrival (index) { return this._force.resourceArrival(index) }
-
-  // ------------------------------------------------------------------------------
-  /*! \brief API access to the specified ContainmentResouce's description.
- *
- *  \param index Index (base 0) of the ContainResource.  Indices are
- *  assigned in the order that the ContainResources are added to the
- *  ContainForce.
- *
- *  \return ContainResource's description.
- */
-  resourceDescription (index) { return this._force.resourceDescription(index) }
-
-  // ------------------------------------------------------------------------------
-  /*! \brief API access to the duration time of the specified ContainmentResouce.
- *
- *  \param index Index (base 0) of the ContainResource.  Indices are
- *  assigned in the order that the ContainResources are added to the
- *  ContainForce.
- *
- *  \return ContainResource's duration time (minutes).
- */
-  resourceDuration (index) { return this._force.resourceDuration(index) }
-
-  // ------------------------------------------------------------------------------
-  /*! \brief API access to the holdable fireline production rate of the
- *  specified ContainmentResouce ON BOTH FLANKS.  The rate for one flank
- *  is half this amount, since the resource is assumed to be split in two
- *  and working on both flanks simultaneously.
- *
- *  \param index Index (base 0) of the ContainResource.  Indices are
- *  assigned in the order that the ContainResources are added to the
- *  ContainForce.
- *
- *  \return ContainResource's holdable fireline production rate (ch/h).
- */
-  resourceProduction (index) { return this._force.resourceProduction(index) }
-
-  // ------------------------------------------------------------------------------
-  /*! \brief Sets the Contain attack parameters.
- *
- *  \param flank      Apply ContainResources assigned to the Left or Right
- *                    flank.  ContainResources assigned to Both flanks have
- *                    half their production rate applied to this flank.
- *  \param force      Pointer to the ContainForce applied to the fire.
- *  \param attackTime Elapsed time since fire report that ContainForces
- *                    are first committed to the fire.  This may be after the
- *                    arrival of one or more resources.
- *  \param tactic     HeadAttack or RearAttack.
- *  \param attackDist Forces build fireline this far from the fire edge (ch).
- */
-  setAttack (/* ContainFlank */ flank, /* ContainForce */ force,
-    attackTime, /* ContainTactic */ tactic, attackDist) {
+  /**
+   * Sets the Contain attack parameters.
+   *
+   * @param {string} flank Apply ContainResources assigned to the Left or Right flank.
+   *  ContainResources assigned to Both flanks have half their production rate applied to this flank.
+   * @param {ContainForce} force Reference to the ContainForce applied to the fire.
+   * @param {number} attackTime Elapsed time since fire report that ContainForces
+   *  are first committed to the fire.  This may be after the arrival of one or more resources.
+   * @param {string} tactic     Tactic.Head ('Head') or tactic.Rear ('Rear')
+   *  \param attackDist Forces build fireline this far from the fire edge (ch).
+  */
+  setAttack (flank, force, attackTime, tactic, attackDist) {
     this._flank = flank
     this._force = force
     this._attackTime = attackTime
@@ -451,14 +370,14 @@ export class Contain {
     this._exhausted = this._force.exhausted(this._flank)
   }
 
-  // ------------------------------------------------------------------------------
-  /*! \brief Sets the Contain fire report time parameters.
- *
- *  \param reportSize Fire size at time of report (ac)
- *  \param reportRate Fire spread rate at time of report (ch/h).
- *  \param lwRatio    Fire length-to-width ratio
- *  \param distStep   Simulation fire head distance step size (ch).
- */
+  /**
+   * Sets the Contain fire report time parameters.
+   *
+   *  \param reportSize Fire size at time of report (ac)
+   *  \param reportRate Fire spread rate at time of report (ch/h).
+   *  \param lwRatio    Fire length-to-width ratio
+   *  \param distStep   Simulation fire head distance step size (ch).
+  */
   setReport (reportSize, reportRate, lwRatio, distStep) {
     this._reportSize = reportSize
     this._reportRate = reportRate
@@ -466,24 +385,23 @@ export class Contain {
     this._lwRatio = Math.max(lwRatio, 1)
   }
 
-  // ------------------------------------------------------------------------------
-  /*! \brief Determines the fire head spread rate at the specified time.
- *
- *  \param minutesSinceReport Minutes since the fire was reported.
- *          Currently UNUSED until support for variable ROS is added.
- *
- *  Note: This function must be modified to support variable ROS fires.
- *
- *  \return Fire head spread rate (ch/h).
- */
+  /**
+   * Determines the fire head spread rate at the specified time.
+   *
+   * \TODO Modify to support variable spread rate over time
+   *
+   *  \param minutesSinceReport Minutes since the fire was reported.
+   *          Currently UNUSED until support for variable ROS is added.
+   *  \return Fire head spread rate (ch/h).
+   */
   spreadRate (/* minutesSinceReport */) { return this._reportRate }
 
-  // ------------------------------------------------------------------------------
-  /*! \brief Performs one containment simulation step by incrementing the head
- *  position by the distance step \a this._distStep.
- *
- *  \retval Current fire status.
- */
+  /**
+   * Performs one containment simulation step by incrementing the head
+   *  position by the distance step \a this._distStep.
+   *
+   *  \retval Current fire status.
+   */
   step () {
     // Determine next angle and fire head position.
     this.calcU()
@@ -514,16 +432,21 @@ export class Contain {
     return this._status
   }
 
-  /*! \brief Determines time since fire report at which the free-burning fire
- *  head position reaches the specified distance from the fire origin (min).
- *
- *  \param headPos Free-burning fire head position (chains from origin).
- *
- *  Note: This function must be modified to support variable ROS fires.
- *
- *  \return Time since fire report (min).
- */
+  /**
+   * Determines time since fire report at which the free-burning fire
+   *  head position reaches the specified distance from the fire origin (min).
+   *
+   *  \param headPos Free-burning fire head position (chains from origin).
+   *
+   *  Note: This function must be modified to support variable ROS fires.
+   *
+   *  \return Time since fire report (min).
+  */
   timeSinceReport (headPos) {
     return (this._reportRate > 0) ? 60 * (headPos - this._reportHead) / this._reportRate : 0
+  }
+
+  log (str, doLog = false) {
+    if (doLog) console.log(str)
   }
 }

@@ -1,31 +1,30 @@
 /* eslint-disable brace-style */
-/*! \brief ContainSim custom constructor.
+/**
+ * ContainSim custom constructor.
  *
- *  ContainSim contains all the information to make a complete simulation run,
- *  and when completed, display the fire perimeter in Cartesian coordinates.
+ * ContainSim contains all the information to make a complete simulation run,
+ * and when completed, display the fire perimeter in Cartesian coordinates.
  *
- *  The following inputs are usually provided by the user:
- *  \param reportSize Fire size at time of report (ac)
- *  \param reportRate Fire spread rate at time of report (ch/h).
- *  \param lwRatio    Fire length-to-width ratio.
- *  \param force      Pointer to the ContainForce applied to the fire.
- *  \param tactic     HeadAttack or RearAttack.
- *  \param attackDist Forces build fireline this far from the fire edge (ch).
- *  \param limitDist  Stop simulation after fire travels this distance (ch).
+ * The following inputs are usually provided by the client:
+ * @param {number} reportSize Fire size at time of report (ac)
+ * @param {number} reportRate Fire spread rate at time of report (ch/h).
+ * @param {number} lwRatio Fire length-to-width ratio.
+ * @param {ContainForce} force Reference to the ContainForce applied to the fire.
+ * @param {string} tactic One of Tactic.Head ('Head') or Tactic.Rear ('Rear)
+ * @param {number} attackDist Forces build fireline this far from the fire edge (ch).
+ * @param {number} limitDist Stop simulation after fire travels this distance (ch). BehavePlus uses 1,000,000 ch.
  *
- *  The following inputs can usually be fixed parameters:
- *  \param minSteps   Minimum number of simulation distance steps.
- *  \param maxSteps   Maximum number of simulation distance steps.
- *  \param retry      If TRUE, if forces are overrun, the simulation is re-run
- *                    starting with the next later attack time.
+ * The following inputs can usually be fixed parameters:
+ * @param {number} minSteps Minimum number of simulation distance steps [200].
+ * @param {number} maxSteps Maximum number of simulation distance steps [1000].
+ * @param {boolean} retry If TRUE, if forces are overrun, the simulation is re-run
+ *   starting with the next later resource attack time.
  */
 import { Contain, Tactic, Status, Flank } from './Contain.js'
 
 export class ContainSim {
-  constructor (reportSize, reportRate, lwRatio,
-    /* ContainForce */ force,
-    /* ContainTactic */ tactic,
-    attackDist, limitDist, retry, minSteps, maxSteps) {
+  constructor (reportSize, reportRate, lwRatio, force, tactic, attackDist = 0,
+    limitDist = 1000000, retry = true, minSteps = 200, maxSteps = 1000) {
     this._finalCost = 0
     this._finalPerim = 0
     this._finalSize = 0
@@ -62,13 +61,13 @@ export class ContainSim {
     const attackTime = this._force.firstArrival(Flank.Left)
 
     // Create the left flank
-    this._left = new Contain(reportSize, reportRate, lwRatio, distStep,
-      Flank.Left, force, attackTime, tactic, attackDist, limitDist)
+    this._left = new Contain(reportSize, reportRate, lwRatio, force, tactic, attackDist,
+      attackTime, distStep, limitDist, Flank.Left)
 
     // Create the right flank
-    // attackTime = this._force->firstArrival( RightFlank );
-    // this._right = new Contain( reportSize, reportRate, lwRatio,  distStep,
-    //    RightFlank, force, attackTime, tactic, attackDist );
+    // attackTime = this._force->firstArrival( RightFlank )
+    // this._right = new Contain( reportSize, reportRate, lwRatio, distStep,
+    //    force, attackTime, tactic, Flank.Right, attackDist )
 
     // How big do the arrays need to be?
     this._size = (this._right) ? 2 * this._maxSteps : this._maxSteps
@@ -81,14 +80,14 @@ export class ContainSim {
     this._p = [] // Array of fireline perimeter (ch) constructed at each simulation step.
   }
 
-  // ------------------------------------------------------------------------------
-  /*! \brief Runs the simulation to completion.
- *
- *  The simulation is completed whenever:
- *  - the containment resources are overrun,
- *  - the fire is contained, or
- *  - all containment resources are exhausted.
- */
+  /**
+   * Runs the simulation to completion.
+   *
+   *  The simulation is completed whenever:
+   *  - the containment resources are overrun,
+   *  - the fire is contained, or
+   *  - all containment resources are exhausted.
+  */
   run () {
     let at, elapsed, factor
 
@@ -134,9 +133,9 @@ export class ContainSim {
       }
       // This is the main simulation loop!
       while (this._left._status !== Status.Overrun &&
-             this._left._status !== Status.Contained &&
-             this._left._status !== Status.LimitDist &&
-             this._left._step < this._maxSteps) {
+            this._left._status !== Status.Contained &&
+            this._left._status !== Status.LimitDist &&
+            this._left._step < this._maxSteps) {
         // Store angle and head position in the proper array element
         this._left.step()
 
@@ -291,6 +290,7 @@ export class ContainSim {
     // Special case for contained head tactic with non-zero offset
     if (this._left._status === Status.Contained &&
       this._left._tactic === Tactic.HeadAttack &&
+      // eslint-disable-next-line no-empty
       this._left._attackDist > 0.01) {
     }
     // Simulation complete: display results
