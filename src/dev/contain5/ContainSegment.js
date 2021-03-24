@@ -1,4 +1,4 @@
-/*! \file contain.cpp Fire containment algorithm.
+/*! \file ContainSegment.js Fire containment algorithm.
  *  \version BehavePlus3
  *  \author Copyright (C) 2002-2004 by Collin D. Bevins.  All rights reserved.
  *
@@ -29,17 +29,17 @@ export const Status = {
   SimOverflow: 'Sim Overflow', // 6
   LimitDist: 'LimitDist' // 7
 }
-export const Tactic = { Head: 'Head', Rear: 'Rear' }
+export const Tactic = { HeadAttack: 'HeadAttack', RearAttack: 'RearAttack' }
 export const Flank = { Left: 'Left', Right: 'Right', Both: 'Both' }
 
 /**
- * Contain constructor.
+ * ContainSegment class
  *
  * @param {number} reportSize Fire size at time of report (ac)
  * @param {number} reportRate Fire spread rate at time of report (ch/h).
  * @param {number} lwRatio    Fire length-to-width ratio.
  * @param {ContainForce} force Reference to the ContainForce applied to the fire.
- * @param {string} tactic One of Tactic.Head ('Head') or Tactic.Rear ('Rear)
+ * @param {string} tactic One of Tactic.HeadAttack ('HeadAttack') or Tactic.RearAttack ('RearAttack')
  * @param {number} attackDist Forces build fireline this far from the fire edge (ch).
  * @param {number} attackTime Minutes since fire report that ContainForces are first committed
  *  to the fire.  This may be after the arrival of one or more resources.
@@ -51,49 +51,54 @@ export const Flank = { Left: 'Left', Right: 'Right', Both: 'Both' }
  *  or Flank.Both ('Both'), in which case half their production rate applied to this flank.
  */
 
-export class Contain {
+export class ContainSegment {
   constructor (reportSize, reportRate, lwRatio, force, tactic, attackDist,
     attackTime, distStep, limitDist, flank) {
+    // These are set initially here by constructor, and may be later reset via setReport()
     this._reportSize = reportSize
     this._reportRate = reportRate
     this._lwRatio = lwRatio
+    this._distStep = distStep
+    this.setReport(reportSize, reportRate, lwRatio, distStep)
+
+    // These are set initially here by constructor, and may be later reset by setAttack()
     this._attackDist = attackDist
     this._attackTime = attackTime
-    this._distStep = distStep
-    this._limitDist = limitDist
     this._flank = flank
     this._tactic = tactic
     this._force = force
+    this._exhausted = force.exhausted(flank)
+    this.setAttack(flank, force, attackTime, tactic, attackDist)
+
+    this._limitDist = limitDist
+
+    // The following are calculated by reset()
     this._eps = 1
     this._eps2 = 1
     this._a = 1
-    this._reportHead = 0
-    this._reportTime = 0
-    this._backRate = 0
-    this._reportBack = 0
-    this._attackHead = 0
-    this._attackBack = 0
-    this._initialAttackHead = 0
-    this._initialAttackBack = 0
-    this._exhausted = 0
-    this._time = 0
-    this._step = 0
-    this._u = 0
-    this._u0 = 0
-    this._h = 0
-    this._h0 = 0
-    this._x = 0
-    this._y = 0
-    this._rkpr = [0, 0, 0]
+    this._reportHead = 0 // Fire head position at time of report (ch)
+    this._reportTime = 0 // Estimated elapsed time from fire start to time of report (min)
+    this._backRate = 0 // Backing fire rate
+    this._reportBack = 0 // Fire back position at first attack (estimated from _reportTime)
+    this._attackHead = 0 // fire head position at time of first attack
+    this._attackBack = 0 // fire back position at time of first attack (estimated from _reportTime)
+
+    // The following are initialized by reset(), updated by calcU(), calcUh(), and/or step()
+    this._time = 0 // Current step time since fire report (min), updated in step()
+    this._step = 0 // Incremented by step() after calcU(), updated in step()
+    this._u = 0 // attack angle at exit from function calcU()
+    this._u0 = 0 // attack angle at entry to function calcU()
+    this._h = 0 // head position at exit from function calcU()
+    this._h0 = 0 // head position at entry to function calcU()
+    this._x = 0 // x-coordinate of constructed line for current free burning head position and angle, with attack offset
+    this._y = 0 // y-coordinate of constructed line for current free burning head position and angle, with attack offset
+    this._rkpr = [0, 0, 0] // Constants used in the 4th order Runga-Kutta approximation.
     this._status = Status.Unreported
-    // Set all the input parameters.
-    this.setReport(reportSize, reportRate, lwRatio, distStep)
-    this.setAttack(flank, force, attackTime, tactic, attackDist)
-    // Set all the intermediate parameters.
     this.reset()
-    // Store the initial this._attackHead and this._attackBack variables
-    this._initialAttackHead = this._attackHead
-    this._initialAttackBack = this._attackBack
+
+    // Store the initial this._attackHead and this._attackBack variables in case of delayed IA
+    this._initialAttackHead = this._attackHead // NEVER USED ???
+    this._initialAttackBack = this._attackBack // NEVER USED ???
   }
 
   /**
@@ -113,29 +118,30 @@ export class Contain {
     this._h0 = this._h
     this._status = Status.Attacked
     // Calculate constants used in the 4th order Runga-Kutta approximation.
-    const rk = [0, 0, 0, 0]
-    const deriv = { du: 0, dh: 0, uh: 0, lastUh: 0 }
     this._rkpr[0] = (this._step) ? this._rkpr[2] : this.productionRatio(this._attackHead)
     this._rkpr[1] = this.productionRatio(this._h0 + (0.5 * this._distStep))
     this._rkpr[2] = this.productionRatio(this._h0 + this._distStep)
+
+    // Object to hold mutable results of calcUh(), especially deriv.uh and deriv.lastUh
+    const deriv = { du: 0, dh: 0, uh: 0, lastUh: 0 }
     // First constant
     if (!this.calcUh(this._rkpr[0], this._h0, this._u0, deriv)) { return }
-    rk[0] = this._distStep * deriv.uh
+    const rk1 = this._distStep * deriv.uh
     // Second constant
     if (!this.calcUh(this._rkpr[1], (this._h0 + 0.5 * this._distStep),
-      (this._u0 + 0.5 * rk[0]), deriv)) { return }
-    rk[1] = this._distStep * deriv.uh
+      (this._u0 + 0.5 * rk1), deriv)) { return }
+    const rk2 = this._distStep * deriv.uh
     // Third constant
     if (!this.calcUh(this._rkpr[1], (this._h0 + 0.5 * this._distStep),
-      (this._u0 + 0.5 * rk[1]), deriv)) { return }
-    rk[2] = this._distStep * deriv.uh
+      (this._u0 + 0.5 * rk2), deriv)) { return }
+    const rk3 = this._distStep * deriv.uh
     // Fourth constant
     if (!this.calcUh(this._rkpr[2], (this._h0 + this._distStep),
-      (this._u0 + rk[2]), deriv)) { return }
-    rk[3] = this._distStep * deriv.uh
+      (this._u0 + rk3), deriv)) { return }
+    const rk4 = this._distStep * deriv.uh
 
     // Calculate 4th order Runga-Kutta approximation of u for next step.
-    this._u = this._u0 + (rk[0] + rk[3] + 2.0 * (rk[1] + rk[2])) / 6
+    this._u = this._u0 + (rk1 + rk4 + 2.0 * (rk2 + rk3)) / 6
 
     // Calculate next free-burning fire head position (ch from origin)
     this._h = this._attackHead + (this._step + 1) * this._distStep
@@ -162,7 +168,7 @@ export class Contain {
    *  FALSE if ContainResources are overrun, and this._status is set to Status.Overrun.
   */
   calcUh (p, h, u, deriv) {
-    // lastUh is used to check sign change between previous and current step
+    // deriv.lastUh is used to check sign change between previous and current step
     const cosU = Math.cos(u)
     const sinU = Math.sin(u)
     deriv.uh = 0
@@ -203,22 +209,22 @@ export class Contain {
     // If "angular rotation" has reversed. firefighters may be overrun
     // and cannot even build line making NO rotational progress
     /* THE FOLLOWING CODE WAS REMOVED AT DIRECTION OF M.A.Finney and Fried
-    if ( ( this._tactic === RearAttack && lastUh < 0. && uh >= 0. )
-      || ( this._tactic === HeadAttack && lastUh > 0. && uh <= 0. ) ) {
+    if ( ( this._tactic === RearAttack && deriv.lastUh < 0 && deriv.uh >= 0)
+      || ( this._tactic === HeadAttack && deriv.lastUh > 0 && deriv.uh <= 0) ) {
         if ( this._step ) {
-            this._status = Overrun;
-            return( false );
+            this._status = Overrun
+            return false
         }
     }
-    */
-    // Store uh in lastUh and returned value
+    Store uh in lastUh and returned value
     deriv.lastUh = deriv.uh
+    */
     return true
   }
 
   /**
    * Determines the x- and y- coordinates ( this._x and this._y)
-   *  for the current angle (this._u) and free-burning head position (this._h).
+   * for the current angle (this._u) and free-burning head position (this._h).
   */
   calcCoordinates () {
     this._y = Math.sin(this._u) * this._h * this._a
@@ -358,7 +364,7 @@ export class Contain {
    * @param {ContainForce} force Reference to the ContainForce applied to the fire.
    * @param {number} attackTime Elapsed time since fire report that ContainForces
    *  are first committed to the fire.  This may be after the arrival of one or more resources.
-   * @param {string} tactic     Tactic.Head ('Head') or tactic.Rear ('Rear')
+   * @param {string} tactic One of Tactic.HeadAttack ('HeadAttack') or Tactic.RearAttack ('RearAttack')
    *  \param attackDist Forces build fireline this far from the fire edge (ch).
   */
   setAttack (flank, force, attackTime, tactic, attackDist) {
@@ -397,13 +403,13 @@ export class Contain {
   spreadRate (/* minutesSinceReport */) { return this._reportRate }
 
   /**
-   * Performs one containment simulation step by incrementing the head
-   *  position by the distance step \a this._distStep.
+   * Performs one containment simulation step by incrementing the fire head position
+   * by this._distStep.
    *
-   *  \retval Current fire status.
+   * @returns Current fire status.
    */
   step () {
-    // Determine next angle and fire head position.
+    // Determine next angle (u) and fire head position (h)
     this.calcU()
     // Increment step counter
     this._step++
@@ -415,13 +421,14 @@ export class Contain {
     }
     // If forces were overrun, simply return false
     if (this._status === Status.Overrun || this._status === Status.LimitDist) {
+      console.log(this._status, 'at step', this._step)
       return (this._status)
     }
     // If the forces contain the fire, interpolate the final u and h.
     if (this._tactic === Tactic.HeadAttack && this._u >= Math.PI) {
       this._status = Status.Contained
       this._h = this._h0 - this._distStep * this._u0 / (this._u0 + Math.abs(this._u))
-      this._u = this.PI
+      this._u = Math.PI
     } else if (this._tactic === Tactic.RearAttack && this._u <= 0) {
       this._status = Status.Contained
       this._h = this._h0 + this._distStep * this._u0 / (this._u0 + Math.abs(this._u))
@@ -429,18 +436,17 @@ export class Contain {
     }
     // Determine the x and y coordinate.
     this.calcCoordinates()
+    // console.log(this._status, 'at step', this._step)
     return this._status
   }
 
   /**
    * Determines time since fire report at which the free-burning fire
-   *  head position reaches the specified distance from the fire origin (min).
+   * head position reaches the specified distance from the fire origin (min).
+   * \TODO Modify this function to support variable ROS fires.
    *
-   *  \param headPos Free-burning fire head position (chains from origin).
-   *
-   *  Note: This function must be modified to support variable ROS fires.
-   *
-   *  \return Time since fire report (min).
+   * @param {number} headPos Free-burning fire head position (chains from origin).
+   * @returns {number} Minutes since fire report the fire head reachs the position.
   */
   timeSinceReport (headPos) {
     return (this._reportRate > 0) ? 60 * (headPos - this._reportHead) / this._reportRate : 0

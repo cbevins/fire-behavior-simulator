@@ -1,4 +1,4 @@
-import { Flank } from './Contain.js'
+import { Flank } from './ContainSegment.js'
 
 /*! \brief ContainResource
  *

@@ -1,5 +1,5 @@
 import { ContainResource } from './ContainResource.js'
-import { Flank } from './Contain.js'
+import { Flank } from './ContainSegment.js'
 
 export class ContainForce {
   constructor () {
@@ -27,9 +27,9 @@ export class ContainForce {
   *
   *  \return Pointer to the new ContainResource object.
   */
-  addResource (key, arrival, production, duration, flank, baseCost, hourCost) {
+  addResource (key, arrival, production, duration, baseCost, hourCost, flank) {
     // Create a new ContainResource record.
-    const resource = new ContainResource(key, arrival, production, duration, flank, baseCost, hourCost)
+    const resource = new ContainResource(key, arrival, production, duration, baseCost, hourCost, flank)
     this._resources.push(resource)
     this._resourceMap.set()
     return resource

@@ -10,7 +10,7 @@
  * @param {number} reportRate Fire spread rate at time of report (ch/h).
  * @param {number} lwRatio Fire length-to-width ratio.
  * @param {ContainForce} force Reference to the ContainForce applied to the fire.
- * @param {string} tactic One of Tactic.Head ('Head') or Tactic.Rear ('Rear)
+ * @param {string} tactic One of Tactic.HeadAttack ('HeadAttack') or Tactic.RearAttack ('RearAttack')
  * @param {number} attackDist Forces build fireline this far from the fire edge (ch).
  * @param {number} limitDist Stop simulation after fire travels this distance (ch). BehavePlus uses 1,000,000 ch.
  *
@@ -20,7 +20,7 @@
  * @param {boolean} retry If TRUE, if forces are overrun, the simulation is re-run
  *   starting with the next later resource attack time.
  */
-import { Contain, Tactic, Status, Flank } from './Contain.js'
+import { Contain, Tactic, Status, Flank } from './ContainSegment.js'
 
 export class ContainSim {
   constructor (reportSize, reportRate, lwRatio, force, tactic, attackDist = 0,
