@@ -20,10 +20,23 @@
  */
 import { ContainSegment, Tactic, Status, Flank } from './ContainSegment.js'
 
+function area (len, lwr) {
+  return Math.PI * len * len / (4 * lwr)
+}
+
+function perimeter (len, wid) {
+  const a = 0.5 * len
+  const b = 0.5 * wid
+  const xm = a + b <= 0 ? 0 : (a - b) / (a + b)
+  const xk = 1 + (xm * xm) / 4 + (xm * xm * xm * xm) / 64
+  return Math.PI * (a + b) * xk
+}
+
 export class ContainSim {
   constructor (reportSize, reportRate, lwRatio, force, tactic, attackDist = 0,
     limitDist = 1000000, retry = true, minSteps = 200, maxSteps = 1000) {
     this._force = force // ContainForces reference
+    this._lwRatio = lwRatio
     this._minSteps = minSteps
     this._maxSteps = Math.max(10, maxSteps)
     this._retry = retry
@@ -88,6 +101,10 @@ export class ContainSim {
     this._xMax = 0
     this._xMin = 0
     this._yMax = 0
+
+    const length = this._left._attackHead + this._left._attackBack
+    this._sizeAtAttack = area(length, this._lwRatio)
+    this.perimAtAttack = perimeter(length, length / this._lwRatio)
   }
 
   /**
