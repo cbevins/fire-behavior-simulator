@@ -36,6 +36,7 @@ export default [
         plugins: [terser()]
       }
     ],
+    external: ['fs'], // tells Rollup 'I know what I'm doing here'
     plugins: [
       resolve(),
       babel({
