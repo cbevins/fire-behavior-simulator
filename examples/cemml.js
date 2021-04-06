@@ -22,8 +22,8 @@ import { header } from './header.js'
 export class Cemml {
   constructor () {
     // Step 1 - create a fire behavior simulator with 1 directed acyclical graph (DAG)
-    this.sim = new Sim('dag1')
-    this.dag = this.sim.getDag('dag1')
+    this.sim = new Sim()
+    this.dag = this.sim.createDag('CEMML')
 
     // Step 2 - create a new StorageFile instance and inject it into the dag.
     this.store = new StorageFile(this.dag, 'cemmlResults.txt')

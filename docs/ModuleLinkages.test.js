@@ -2,8 +2,8 @@
 import { Sim } from '../src/index.js'
 
 test('1: Tree Mortality Rate required inputs for a fully linked DAG', () => {
-  const sim = new Sim('dag1')
-  const dag = sim.getDag('dag1')
+  const sim = new Sim()
+  const dag = sim.createDag('LinkedMortaloty')
 
   // Select mortality rate
   dag.select(['mortality.rate'])
@@ -34,8 +34,8 @@ test('1: Tree Mortality Rate required inputs for a fully linked DAG', () => {
 })
 
 test('2: Tree Mortality Rate required inputs when unlinked', () => {
-  const sim = new Sim('dag1')
-  const dag = sim.getDag('dag1')
+  const sim = new Sim()
+  const dag = sim.createDag('UnlinkedMortality')
 
   // Unlink the tree mortality model and select mortality rate
   dag.configure([['link.treeMortality', 'standAlone']])
@@ -56,8 +56,8 @@ test('2: Tree Mortality Rate required inputs when unlinked', () => {
 })
 
 test('3: Tree Mortality Rate required inputs when stand-alone Scorch Hieight - Tree Mortality models', () => {
-  const sim = new Sim('dag1')
-  const dag = sim.getDag('dag1')
+  const sim = new Sim()
+  const dag = sim.createDag('StandaloneScorchMortality')
 
   // Unlink the scorch height model tree mortality model and select mortality rate
   dag.configure([

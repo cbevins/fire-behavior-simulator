@@ -8,8 +8,8 @@ This first example walks through the a basic yet complete Node application. Only
 
 ```
 import { Sim } from '@cbevins/fire-behavior-simulator'
-const sim = new Sim('basicUsage') // create a simulator
-const dag = sim.getDag('basicUsage') // create a simulator directed acyclical graph
+const sim = new Sim() // create a simulator container
+const dag = sim.createDag('basicUsage') // create a simulator directed acyclical graph
 dag.select(['surface.fire.weighted.spreadRate']) // select 1 or more outputs
 dag.configure([array-of-configuration-variables]) // set computation and input preferences
 dag.input([input-variable-values]) // set input values
@@ -40,11 +40,11 @@ We have also imported the **nodeTable** function for generating some tables.
 ## Step 2 - **create** a fire behavior simulator with 1 directed acyclical graph (DAG)
 
 ```
-const sim = new Sim('basicUsage')
-const dag = sim.getDag('basicUsage')
+const sim = new Sim()
+const dag = sim.createDag('basicUsage')
 ```
 
-The **Sim** class contains the blueprint (genome) from which the individual fire simulators are generated.  It also serves as the container for one or more simulation DAGs (directed acyclical graphs).  In this example, we create a single DAG named 'basicUsage'.
+The **Sim** class contains the blueprint (genome) from which individual fire directed acyclocal graphs are generated.  It also serves as the container for one or more simulation DAGs.  In this example, we create a single DAG named 'basicUsage'.
 
 ---
 

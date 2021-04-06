@@ -50,8 +50,8 @@ import { Sim, UpdateOrthogonalStack } from '../src/dag/index.js'
 import { header } from './header.js'
 
 // Step 1 - create a BehavePlus directed acyclical graph (DAG)
-const sim = new Sim('dag1')
-const dag = sim.getDag('dag1')
+const sim = new Sim()
+const dag = sim.createDag('OneMillionRuns')
 
 // Step 2 - configure input choices and computational options
 dag.configure([

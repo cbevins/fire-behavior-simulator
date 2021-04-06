@@ -9,8 +9,8 @@ import { Sim } from '../src/dag/Sim.js'
 import { header } from './header.js'
 
 function fullDagRun () {
-  const sim = new Sim('dag1')
-  const dag = sim.getDag('dag1')
+  const sim = new Sim()
+  const dag = sim.createDag('FullDag')
   dag.configure([
     ['configure.fire.firelineIntensity', ['firelineIntensity', 'flameLength'][1]],
     ['configure.fire.vector', ['fromHead', 'fromUpslope', 'fromNorth'][2]],

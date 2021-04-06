@@ -72,8 +72,8 @@ const inputStandardFireEllipse = [
 ]
 
 export function createFireEllipseSim (dagKey = 'FireEllipseSim') {
-  const sim = new Sim(dagKey)
-  const dag = sim.getDag(dagKey)
+  const sim = new Sim()
+  const dag = sim.createDag(dagKey)
   const store = new StorageNodeMap(dag)
   const updater = new UpdateOrthogonalStack(dag)
   dag.configure(configStandardFireEllipse)

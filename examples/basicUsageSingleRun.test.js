@@ -14,8 +14,8 @@ import { Sim, nodeTable } from '../src/index.js'
 test('Example basic usage with a single run', () => {
   // -----------------------------------------------------------------------------
   // Step 2 - create a fire behavior simulator with 1 directed acyclical graph (DAG)
-  const sim = new Sim('basicUsage')
-  const dag = sim.getDag('basicUsage')
+  const sim = new Sim()
+  const dag = sim.createDag('BasicUsageSingleRun')
 
   // -----------------------------------------------------------------------------
   // Step 3 - select the fire behavior variables (DagNodes) of interest

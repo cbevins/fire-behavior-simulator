@@ -28,8 +28,8 @@ import { header } from './header.js'
 export class BehavePlus {
   constructor () {
     // Create a BehavePlus directed acyclical graph (DAG)
-    this.sim = new Sim('dag1')
-    this.dag = this.sim.getDag('dag1')
+    this.sim = new Sim()
+    this.dag = this.sim.createDag('BehavePlusIsh')
 
     // Select some outputs
     this.dag.select([

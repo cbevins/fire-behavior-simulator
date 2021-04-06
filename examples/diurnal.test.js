@@ -14,8 +14,8 @@ import { header } from './header.js'
 // Ensure this example runs as expected with each build and release by wrapping it in a test
 test('Example diurnal input', () => {
   // Step 1 - create a fire behavior simulator with 1 directed acyclical graph (DAG)
-  const sim = new Sim('dag1')
-  const dag = sim.getDag('dag1')
+  const sim = new Sim()
+  const dag = sim.createDag('DiurnalTest')
 
   // Step 2 - configure input choices and computational options
   dag.configure([

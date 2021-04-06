@@ -63,8 +63,8 @@ test('Example two fuel model run', () => {
   ]
 
   // Step 1 - create a fire behavior simulator with 1 directed acyclical graph (DAG)
-  const sim = new Sim('dag1')
-  const dag = sim.getDag('dag1')
+  const sim = new Sim()
+  const dag = sim.createDag('TwoFuels')
 
   // Step 2 - configure input choices and computational options
   dag.configure(config)

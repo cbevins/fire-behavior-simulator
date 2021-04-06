@@ -21,8 +21,8 @@ import { header } from './header.js'
 const fileName = 'surfaceFireOptimizedResults.txt'
 
 // Step 1 - create a fire behavior simulator with 1 directed acyclical graph (DAG)
-const sim = new Sim('dag1')
-const dag = sim.getDag('dag1')
+const sim = new Sim()
+const dag = sim.createDag('SaveToFile')
 
 // Step 2 - create a new StorageFile instance and inject it into the dag.
 const store = new StorageFile(dag, fileName)

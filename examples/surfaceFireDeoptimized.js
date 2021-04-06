@@ -22,8 +22,8 @@ import { header } from './header.js'
 
 console.log(header('surfaceFireDeoptimized - fire-behavior-simulator example'))
 // Step 1 - create a fire behavior simulator with 1 directed acyclical graph (DAG)
-const sim = new Sim('dag1')
-const dag = sim.getDag('dag1')
+const sim = new Sim()
+const dag = sim.createDag('De-Optimized')
 
 // Step 2 - configure input choices and computational options
 dag.configure([

@@ -45,8 +45,8 @@ But because the entire DAG is linked together, tree mortality rate will get its 
 import { Sim } from '../src/index.js'
 
 test('1: Tree Mortality Rate required inputs for a fully linked DAG', () => {
-  const sim = new Sim('dag1')
-  const dag = sim.getDag('dag1')
+  const sim = new Sim()
+  const dag = sim.createDag('LinkedMortality')
 
   // Select mortality rate
   dag.select(['mortality.rate'])
@@ -81,8 +81,8 @@ But consider the use case where we simply want to examine tree mortality rate ov
 
 ```js
 test('2: Tree Mortality Rate required inputs when unlinked', () => {
-  const sim = new Sim('dag1')
-  const dag = sim.getDag('dag1')
+  const sim = new Sim()
+  const dag = sim.createDag('UnlinkedMortality')
 
   // Unlink the tree mortality model and select mortality rate
   dag.configure([['link.treeMortality', 'standAlone']])
@@ -107,8 +107,8 @@ To solve this issue, BehavePlus employs the concept of **modules** to identify s
 
 ```js
 test('3: Tree Mortality Rate required inputs when stand-alone Scorch Hieight - Tree Mortality models', () => {
-  const sim = new Sim('dag1')
-  const dag = sim.getDag('dag1')
+  const sim = new Sim()
+  const dag = sim.createDag('StandaloneScorchMortality')
 
   // Unlink the scorch height model tree mortality model and select mortality rate
   dag.configure([
