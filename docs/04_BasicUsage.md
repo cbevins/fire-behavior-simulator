@@ -4,7 +4,7 @@
 
 ---
 
-This first example walks through the a basic yet complete Node application. Only 8 statements are actually required to produce a result:
+This first example walks through a basic yet complete Node.js runtime application. Only 8 statements are required to produce a result:
 
 ```js
 1 import { Sim } from '@cbevins/fire-behavior-simulator' // import the package
@@ -23,11 +23,11 @@ This first example walks through the a basic yet complete Node application. Only
 
 If you have installed *fire-behavior-simulator* as a node_module:
 
-```
+```js
 import { Sim, nodeTable } from '@cbevins/fire-behavior-simulator'
 ```
 
-If you have cloned the *fire-behavior-simulator* repo or are otherwise working directly with the source code, import the index.js file:
+If you have cloned the *fire-behavior-simulator* repo or are otherwise working directly with the source code, import the **index.js** file:
 
 ```js
 import { Sim, nodeTable } from '../src/index.js'
@@ -50,7 +50,7 @@ The **Sim** class contains the blueprint (genome) from which individual fire dir
 
 ## Step 3 - **select** the fire behavior variables (DagNodes) of interest
 
-In this example we just want to produce the weighted spread rate and flame length.  A complete list of all available variables (aka *nodes* or *DagNodes*) is available [here](./Variables.md)
+In this example we just want to estimate the weighted spread rate and flame length.  A complete list of all available variables (aka *nodes* or *DagNodes*) is available [here](./14_VariableNames.md)
 
 ```js
 const selectedNodes = [
@@ -121,7 +121,7 @@ You will initially need to see exactly which inputs are required for your curren
 const requiredInputs = dag.requiredInputNodes()  // returns an array of DagNode references
 ```
 
-... and you can display them in a table to the console:
+... and you can display their names (keys) and units-of-measure in a table to the console:
 
 ```js
 console.log(nodeTable(requiredInputs, ['index', 'key', 'nativeUnits'], 'Required Inputs'))
@@ -146,9 +146,9 @@ console.log(nodeTable(requiredInputs, ['index', 'key', 'nativeUnits'], 'Required
 
 ## Step 6 - set *input* values for the required input nodes and run()
 
-Now that you know the required input variables, give them each one or more values.  In this example, we give each input a single value.
+Now that you know the keys of the required input variables, give them each one or more values.  In this example, we give each input a single value:
 
-```
+```js
 dag.input([
   ['surface.primary.fuel.model.catalogKey', ['10']], // 'Timber litter & understory'
   ['site.moisture.dead.category', [0.05]],  // fraction of fuel ovendry weight
@@ -177,7 +177,7 @@ selectedNodes.forEach(node => {
 })
 ```
 
-... or use nodeTable to display them:
+... or use the **nodeTable()** utility function to display them:
 
 ```js
 console.log(nodeTable(selectedNodes,
@@ -187,7 +187,7 @@ console.log(nodeTable(selectedNodes,
 which looks like this:
 
 ```
- +--------------------------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------+
 |                                                  Results                                               |
 |------------------------------------|--------------------|--------------|---------------|---------------|
 | Label                              | Native Value       | Native Units | Display Value | Display Units |

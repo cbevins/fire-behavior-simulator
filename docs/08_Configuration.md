@@ -4,7 +4,7 @@
 
 ---
 
-  - configure.fire.effectiveWindSpeedLimit
+  - 'configure.fire.effectiveWindSpeedLimit'
     - 'applied'
     - 'ignored'
 

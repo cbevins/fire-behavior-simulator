@@ -4,7 +4,7 @@
 
 ---
 
-*fire-behavior-simulator* is a directed acyclical graph of the variables and equations comprising the *BehavePlus Fire Modeling System* Version 6.  Implemented as a Javascript (ES6)library package, it is designed for creating wildland fire behavior prediction, simulation, training, and management applications that operate within any modern web browser or the Node.js runtime environment.
+*fire-behavior-simulator* is a directed acyclical graph of the variables and equations comprising the *BehavePlus Fire Modeling System* Version 6.  Implemented as a Javascript (ES6) library package, it is designed for creating wildland fire behavior prediction, simulation, training, and management applications that operate within any modern web browser or the Node.js runtime environment.
 
 ---
 
