@@ -12,11 +12,12 @@ cd fire-behavior-simulator
 npm install
 ```
 
-To use the *fire-behavior-simulator* package as a node_module dependency in your own application:
+To use the *fire-behavior-simulator* package as a node_module dependency in your own application, run:
 
 ```
 npm i --save @cbevins/fire-behavior-simulator
 ```
+from the folder containing the project's **package.json** file.
 
 ---
 

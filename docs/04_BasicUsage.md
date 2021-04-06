@@ -6,15 +6,15 @@
 
 This first example walks through the a basic yet complete Node application. Only 8 statements are actually required to produce a result:
 
-```
-import { Sim } from '@cbevins/fire-behavior-simulator'
-const sim = new Sim() // create a simulator container
-const dag = sim.createDag('basicUsage') // create a simulator directed acyclical graph
-dag.select(['surface.fire.weighted.spreadRate']) // select 1 or more outputs
-dag.configure([array-of-configuration-variables]) // set computation and input preferences
-dag.input([input-variable-values]) // set input values
-dag.run() // update the DAG values
-const ros = dag.node('surface.fire.weighted.spreadRate').value() // get the result
+```js
+1 import { Sim } from '@cbevins/fire-behavior-simulator' // import the package
+2 const sim = new Sim() // create a simulator container
+3 const dag = sim.createDag('basicUsage') // add a directed acyclical graph
+4 dag.select(['surface.fire.weighted.spreadRate']) // select 1 or more outputs
+5 dag.configure([array-of-configuration-variables]) // configure DAG computation and input preferences
+6 dag.input([input-variable-values]) // set input variable values
+7 dag.run() // update the affected DAG variable values
+8 const ros = dag.node('surface.fire.weighted.spreadRate').value() // get the updated value
 ```
 
 ---
@@ -29,7 +29,7 @@ import { Sim, nodeTable } from '@cbevins/fire-behavior-simulator'
 
 If you have cloned the *fire-behavior-simulator* repo or are otherwise working directly with the source code, import the index.js file:
 
-```
+```js
 import { Sim, nodeTable } from '../src/index.js'
 ```
 
@@ -39,20 +39,20 @@ We have also imported the **nodeTable** function for generating some tables.
 
 ## Step 2 - **create** a fire behavior simulator with 1 directed acyclical graph (DAG)
 
-```
+```js
 const sim = new Sim()
 const dag = sim.createDag('basicUsage')
 ```
 
-The **Sim** class contains the blueprint (genome) from which individual fire directed acyclocal graphs are generated.  It also serves as the container for one or more simulation DAGs.  In this example, we create a single DAG named 'basicUsage'.
+The **Sim** class contains the blueprint (genome) from which individual fire directed acyclical graphs are generated.  It also serves as the container for one or more simulation DAGs.  In this example, we create a single DAG named 'basicUsage'.
 
 ---
 
 ## Step 3 - **select** the fire behavior variables (DagNodes) of interest
 
-In this example we just want to produce the weighted spread rate and flame length.  A complete list of all available variables (aka nodes or DagNodes) is available [here](./Variables.md)
+In this example we just want to produce the weighted spread rate and flame length.  A complete list of all available variables (aka *nodes* or *DagNodes*) is available [here](./Variables.md)
 
-```
+```js
 const selectedNodes = [
   dag.node('surface.weighted.fire.spreadRate'), // returns a DagNode reference for 'key'
   dag.node('surface.weighted.fire.flameLength')
@@ -60,22 +60,22 @@ const selectedNodes = [
 dag.select(selectedNodes) // selects weighted spread rate and flame length for computation
 ```
 
-The **Dag.node()** takes a variable key name and returns a reference to its DagNode instance.
+The **Dag.node()** function takes a variable key name and returns a reference to its **DagNode** instance.
 The array of selected nodes is then submitted to the **Dag.select()** method.
 
 ---
 
 ## Step 4 - **configure** input choices and computational options
 
-You can request an array of the configurations currently applicable to your selected variables:
+You can request an array of the configurations currently applicable to your selected variables as follows:
 
-```
+```js
 const activeConfigs = dag.requiredConfigNodes() // returns an array of DagNode references
 ```
 
-and you can display them in a table to the console:
+and display them in a table to the console:
 
-```
+```js
 console.log(nodeTable(activeConfigs, ['index', 'key', 'nativeValue'], 'Active Configuration Nodes'))
 ```
 
@@ -87,7 +87,7 @@ For this example, we configure for the fewest number of posssible inputs:
 
 See [here](./08_Configuration.md) for a complete list of all configuration options.
 
-```
+```js
 dag.configure([
   // The primary fuel is specified by a fuel model catalog key
   ['configure.fuel.primary', ['catalog', 'behave', 'chaparral', 'palmettoGallberry', 'westernAspen'][0]],
@@ -115,18 +115,33 @@ dag.configure([
 ---
 ## Step 5 - determine the required input variables
 
-You will initially need to see exactly which inputs are required for your currently selected variables and confoiguration settings
+You will initially need to see exactly which inputs are required for your currently selected variables and configuration settings:
 
-```
+```js
 const requiredInputs = dag.requiredInputNodes()  // returns an array of DagNode references
 ```
 
 ... and you can display them in a table to the console:
 
-```
+```js
 console.log(nodeTable(requiredInputs, ['index', 'key', 'nativeUnits'], 'Required Inputs'))
 ```
 
+... which looks like this:
+
+```
++--------------------------------------------------------------+
+|                         Required Inputs                      |
+|-------|---------------------------------------|--------------|
+| Index | Key                                   | Native Units |
+|-------|---------------------------------------|--------------|
+| 0     | site.moisture.live.category           | ratio        |
+| 1     | surface.primary.fuel.model.catalogKey |              |
+| 2     | site.moisture.dead.category           | ratio        |
+| 3     | site.slope.steepness.ratio            | ratio        |
+| 4     | site.wind.speed.atMidflame            | ft/min       |
+|-------|---------------------------------------|--------------|
+```
 ---
 
 ## Step 6 - set *input* values for the required input nodes and run()
@@ -138,14 +153,14 @@ dag.input([
   ['surface.primary.fuel.model.catalogKey', ['10']], // 'Timber litter & understory'
   ['site.moisture.dead.category', [0.05]],  // fraction of fuel ovendry weight
   ['site.moisture.live.category', [0.5]],  // fraction of fuel ovendry weight
-  ['site.wind.speed.atMidflame', [10*88]], // feet per minute (1 mpg = 88 ft/min)
+  ['site.wind.speed.atMidflame', [10*88]], // feet per minute (1 mph = 88 ft/min)
   ['site.slope.steepness.ratio', [0.25]], // vertical rise / horizontal reach
 ]).run()
 ```
 
-Note that we added the **.run()** method call after the **Dag.input()**.  We could have instead said:
+*Note* that we added the **.run()** method call after the **Dag.input()**.  We could have instead used 2 separate statements:
 
-```
+```js
 dag.input([...]) // as above
 dag.run()
 ```
@@ -154,9 +169,9 @@ dag.run()
 
 ## Step 7 - **access and display** the single result set
 
-You can access the results of individual variables directly from the DAG:
+You can loop through the array of selected variables to access their updated values directly from the DAG:
 
-```
+```js
 selectedNodes.forEach(node => {
   console.log(node.label(), '=', node.displayString())
 })
@@ -164,9 +179,22 @@ selectedNodes.forEach(node => {
 
 ... or use nodeTable to display them:
 
-```
+```js
 console.log(nodeTable(selectedNodes,
   ['label', 'nativeValue', 'nativeUnits', 'displayValue', 'displayUnits'], 'Results'))
+```
+
+which looks like this:
+
+```
+ +--------------------------------------------------------------------------------------------------------+
+|                                                  Results                                               |
+|------------------------------------|--------------------|--------------|---------------|---------------|
+| Label                              | Native Value       | Native Units | Display Value | Display Units |
+|------------------------------------|--------------------|--------------|---------------|---------------|
+| Surface Weighted Fire Spread Rate  | 38.894889923053256 | ft/min       | 38.89         | ft/min        |
+| Surface Weighted Fire Flame Length | 10.43340945465685  | ft           | 10.43         | ft            |
+|------------------------------------|--------------------|--------------|---------------|---------------|
 ```
 
 ---

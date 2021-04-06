@@ -22,7 +22,7 @@ export class ConfigModuleActive extends Config {
 export class ConfigLinkCrownFire extends Config {
   constructor () {
     super('ConfigLinkCrownFire',
-      'This crown spotting module inputs are', [
+      'The crown spotting module inputs are', [
         ['linkedToCrownFire', 'linked to the Crown Fire Module outputs'],
         ['standAlone', 'entered directly (stand-alone mode)']
       ])

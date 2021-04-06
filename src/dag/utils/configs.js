@@ -19,13 +19,13 @@ export const configDefault = [
   ['configure.slope.steepness', ['ratio', 'degrees', 'map'][0]],
   ['configure.wind.direction', ['sourceFromNorth', 'headingFromUpslope', 'upslope'][0]],
   ['configure.wind.speed', ['at10m', 'at20ft', 'atMidflame'][1]],
-  ['link.crownFire', 'linkedToSurfaceFire'],
-  ['link.crownSpot', 'linkedToCrownFire'],
-  ['link.fireContain', 'linkedToFireEllipse'],
-  ['link.fireEllipse', 'linkedToSurfaceFire'],
-  ['link.scorchHeight', 'linkedToSurfaceFire'],
-  ['link.surfaceSpot', 'linkedToSurfaceFire'],
-  ['link.treeMortality', 'linkedToScorchHeight']
+  ['link.crownFire', ['linkedToSurfaceFire', 'standAlone'][0]],
+  ['link.crownSpot', ['linkedToCrownFire', 'standAlone'][0]],
+  ['link.fireContain', ['linkedToFireEllipse', 'standAlone'][0]],
+  ['link.fireEllipse', ['linkedToSurfaceFire', 'standAlone'][0]],
+  ['link.scorchHeight', ['linkedToSurfaceFire', 'standAlone'][0]],
+  ['link.surfaceSpot', ['linkedToSurfaceFire', 'standAlone'][0]],
+  ['link.treeMortality', ['linkedToScorchHeight', 'standAlone'][0]]
 ]
 
 export const configMinimalInput = [

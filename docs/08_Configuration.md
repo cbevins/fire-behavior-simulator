@@ -4,65 +4,103 @@
 
 ---
 
-- cured herb options = ['input', 'estimated']
-- effective wind speed limit options
-- fire intensity options = ['firelineIntensity', 'flameLength']
-- fire vector options
-- fire weighting options
-- fuel moisture options = ['individual', 'liveCategory', 'category']
-- length-to-width options = ['input', 'estimated']
-- primary fuel options = []
-- secondary fuel options = []
-- chaparral fuel options = []
-- slope options = ['ratio', 'degrees', 'map']
-- wind speed options = ['midflame', 'at20ft', 'at10m']
-- wind speed adjustment options = ['input', 'fuelDepth', 'fuelKey']
+  - configure.fire.effectiveWindSpeedLimit
+    - 'applied'
+    - 'ignored'
 
-#1 Surface Fire with Surface Spotting, Crown Fire (S&R), Crown Spotting, Fire Ellipse, Scorch Height, Tree Mortality, Fire Containment
-  - disabled: none
-  - input primary fuel options
-  - input secondary fuel options
-  - input cured herb options
-  - input fuel moisture options
-  - input slope options
-  - wind speed options
-  - wind speed adjustment options
+  - 'configure.fire.firelineIntensity'
+    - 'firelineIntensity'
+    - 'flameLength'
 
-#2  Stand-alone Crown Fire with Crown Fire Spotting (omits Scott & Reinhardt)
-  - disabled: Surface Fire, Fire Ellipse, Tree Mortality
-  - input spread rate at head
-  - input fire intensity option at head
+  - 'configure.fire.lengthToWidthRatio'
+    - 'lengthToWidthRatio'
+    - 'effectiveWindSpeed'
 
-#3 Stand-alone Fire Ellipse with Surface Spotting, Scorch Height, Tree Mortality, Containment, Crown Fire, Crown Fire Spotting
-  - disabled Surface Fire
-  - input length-to-width ratio option
-  - input spread rate at head
-  - input fire intensity option at head
-  - input direction of maximum spread (?)
+  - 'configure.fire.weightingMethod'
+    - 'arithmetic'
+    - 'expected' **NOT IMPLEMENTED**
+    - 'harmonic'
 
-#4 Stand-alone Scorch Height with Tree Mortality
-  - input fire intensity option
-  - wind speed option
-  - wind speed adjustment option
-  - input air temperature
+  - 'configure.fire.vector'
+    - 'fromHead'
+    - 'fromUpslope'
+    - 'fromNorth'
 
-#5 Stand-alone Tree Mortality
-  - input scorch height
-  - input tree species
+  - 'configure.fuel.windSpeedAdjustmentFactor'
+    - 'input'
+    - 'estimated'
 
-#6 Stand-alone Fire Containment
-  - input length-to-width option
-  - input head fire spread rate
-  - input fire intenbsity option (to estimate crew hazard)
-  - input containment resources
+  - 'configure.fuel.chaparralTotalLoad'
+    - 'input'
+    - 'estimated'
 
-#7 Stand-alone Spotting
-  - input surface fire parameters
-  - input crown fire parameters
-  - input pile parameters
-  - input torching tree parameters
+  - 'configure.fuel.curedHerbFraction'
+    - 'input'
+    - 'estimated'
 
-#8 Ignition Probability (always stand-alone)
+  - 'configure.fuel.moisture'
+    - 'individual'
+    - 'liveCategory'
+    - 'category'
+    - 'catalog' **NOT IMPLEMENTED**
+
+  - 'configure.fuel.primary'
+    - 'catalog'
+    - 'behave'
+    - 'chaparral'
+    - 'palmettoGallberry'
+    - 'westernAspen'
+
+  - 'configure.fuel.secondary'
+    - 'none'
+    - 'catalog'
+    - 'behave'
+    - 'chaparral'
+    - 'palmettoGallberry'
+    - 'westernAspen'
+
+  - 'configure.slope.steepness'
+    - 'ratio'
+    - 'degrees'
+    - 'map'
+
+  - 'configure.wind.direction'
+    - 'sourceFromNorth'
+    - 'headingFromUpslope'
+    - 'upslope'
+
+  - 'configure.wind.speed'
+    - 'at10m'
+    - 'at20ft'
+    - 'atMidflame'
+
+  - 'link.crownFire'
+    - 'linkedToSurfaceFire'
+    - 'standAlone'
+
+  - 'link.crownSpot'
+    - 'linkedToCrownFire'
+    - 'standAlone'
+
+  - 'link.fireContain'
+    - 'linkedToFireEllipse'
+    - 'standAlone'
+
+  - 'link.fireEllipse'
+    - 'linkedToSurfaceFire'
+    - 'standAlone'
+
+  - 'link.scorchHeight'
+    - 'linkedToSurfaceFire',
+    - 'standAlone'
+
+  - 'link.surfaceSpot'
+    - 'linkedToSurfaceFire'
+    - 'standAlone'
+
+  - 'link.treeMortality'
+    - 'linkedToScorchHeight'
+    - 'standAlone'
 
 ---
 

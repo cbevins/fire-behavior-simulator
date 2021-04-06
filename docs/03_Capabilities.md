@@ -4,13 +4,13 @@
 
 ---
 
-*fire-behavior-simulator* implements most of the models, functionality, and configuration options of the BehavePlus Fire Modeling System application (version 6), which was written in C++ for the Windows operating system.  It also exposes all 1200+ variables, which means they may be easily included in outputs as needed.
+The *fire-behavior-simulator* package implements most of the models, functionality, and configuration options of the BehavePlus Fire Modeling System application (version 6), which was written in C++ for the Windows operating system.  It also exposes all 1200+ variables, which means they may be easily selected for output as needed.
 
-In the context of BehavePlus, the fire-behavior-simulator Javascript package includes:
+In the context of BehavePlus, the *fire-behavior-simulator* Javascript package includes:
 
 - **Surface Module**
   - calculates surface fire spread rate, spread distance, fireline intensity, flame length, scorch height, heat per unit area, direction of maximum spread, and hundreds of other intermediate fuel and fire variables
-  - may use either standard fuel models, or the input of custom fuel model properties
+  - may use either standard fuel models, or custom fuel model properties supplied as input
   - includes the 13 'original' static standard fuel models (Albini, Rothermel 1972, Anderson) and the 40 static and dynamic fuel models developed by Scott & Burgan
   - may use dynamic chaparral fuel models per Rothermel and Philpot (1973)
   - may use dynamic palmetto-gallberry fuel models per  Hough and Albini (1978)
@@ -25,12 +25,12 @@ In the context of BehavePlus, the fire-behavior-simulator Javascript package inc
 
 - **Size (Fire Ellipse) Module**
   - calculates elliptical fire length-to-width ratio, length, width, perimeter, and size
-  - calculates fire spread rate, spread distance, fireline intensity, flame length, scorch height, and tree mortality at the fire ellipse head, back, flank, or any other vector from either the point of ignition within the ellipse or the ellipse center
-  - fire ellipse (SIZE Module) inputs (spread rate, spread direction, length-to-width ratio) may be entred directly or linked to Surface Module output variables
+  - calculates fire spread rate, spread distance, fireline intensity, flame length, scorch height, and tree mortality at the fire ellipse head, back, flank, or any other vector from the point of ignition within the ellipse, or [New to BehavePlus V6] any vector from the ellipse center
+  - fire ellipse (SIZE Module) inputs (spread rate, spread direction, length-to-width ratio) may be entered directly or linked to Surface Module output variables
 
 - **Crown Module**
   - calculates Rothermel's (1991) original active crown fire spread rate, surface-to-crown transition probability, crown fireline intensity, crown fire flame length, crown fire heat per unit area, crown fire type (surface fire only, passive crown fire, or active crown fire), and whether the crown fire is wind-driven or plume-dominated
-  - calculates Scott & Reinhardt's (2001) extensions to determine critical surface-to-crown initiation conditions, active crown fire ratio, crown fraction burned, crowning index, and a graduated crown fire spread rate between Rothermel's *surface fire* and *active crown* fire states. [New to v6]
+  - calculates Scott & Reinhardt's (2001) extensions to determine critical surface-to-crown fire initiation conditions, active crown fire ratio, crown fraction burned, crowning index, and a graduated crown fire spread rate between Rothermel's *surface fire* and *active crown* fire states. [New to BehavePlus V6]
   - crown fire inputs may be entered directly or linked to Surface Module variables
 
 - **Spotting Module**
@@ -39,17 +39,19 @@ In the context of BehavePlus, the fire-behavior-simulator Javascript package inc
     - a burning pile
     - torching trees
     - a crown fire (may be linked to Crown Module variables) [New to BehavePlus v6]
-  - calculates spotting distances over flat and mountaineous terrain, accounting for firebrand source location (ridgetop, valley bottom, leeward, windward) and elevational difference
+  - calculates spotting distances over flat and mountaineous terrain
+  - accounts for firebrand source location (ridgetop, valley bottom, leeward, windward) and elevational difference
 
 - **Tree Mortality**
-  - fire-induced tree mortality for many common US species as described by First Order Fire Effects, (FOFEM version 6)
+  - calculates fire-induced tree mortality for many common US species as described by the First Order Fire Effects Model, (FOFEM version 6)
   - tree Mortality inputs may be entered directly or linked to the Fire Ellipse (SIZE) or Surface Fire Modules
 
 - **Ignition Probability**
   - calculates the probability of a surface fire ignition resulting from either a surface fire firebrand or a lightning discharge (Latham)
 
 - **Fire Containment**
-  - The BehavePlus CONTAIN Module is not yet implemented.
+  - The BehavePlus CONTAIN Module simulates fire perimeter growth and fireline construction over time.  As such, it is ill suited for the state-based DAG, and is not included in the *fire-behavior-simulator* package.
+  - A redesigned and more flexible containment model is under current development as a separate *fire-containment* package.  This package will allow development of applications that enable user interaction in dispatching initial attack resources to a fire with a spread rate that varies diurnally.
 
 ---
 

@@ -79,7 +79,7 @@ test('Example basic usage with a single run', () => {
     ['surface.primary.fuel.model.catalogKey', ['10']], // 'Timber litter & understory'
     ['site.moisture.dead.category', [0.05]], // fraction of fuel ovendry weight
     ['site.moisture.live.category', [0.5]], // fraction of fuel ovendry weight
-    ['site.wind.speed.atMidflame', [10 * 88]], // feet per minute (1 mpg = 88 ft/min)
+    ['site.wind.speed.atMidflame', [10 * 88]], // feet per minute (1 mph = 88 ft/min)
     ['site.slope.steepness.ratio', [0.25]] // vertical rise / horizontal reach
   ]).run()
 
