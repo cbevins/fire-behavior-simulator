@@ -6,7 +6,7 @@
 */
 
 /**
- * An example of a simple, yet complete, behaveplus-radical surface fire behavior run.
+ * An example of a simple, yet complete, fire-behavior-simulator surface fire behavior run.
  *
  * This example estimates maximum fire spread rate and flame length
  * using the fewest number of inputs.  It demonstrates how to:

@@ -9,7 +9,7 @@
  * surfaceFireDeoptimized.js
  *
  * This example manually runs each of the surfaceFireOptimized.js input cases,
- * but in the reverse order than behaveplus-radical would otherwise perform.
+ * but in the reverse order than fire-behavior-simulator would otherwise perform.
  *
  * On my old laptop, the performance difference over 240,000 runs is
  * - optimized: about 850 milliseconds, or 280,000 runs per second.

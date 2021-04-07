@@ -8,7 +8,7 @@
 /**
  * surfaceFireOptimized.js
  *
- * An example of how behaveplus-radical internally optimizes computation order
+ * An example of how fire-behavior-simulator internally optimizes computation order
  * to make 240,000 estimates of surface fire spread rate, flame length, and scorch height
  * under various fuel model, moisture, wind, slope, and temperature input values.
  *
