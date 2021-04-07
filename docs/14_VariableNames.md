@@ -1,6 +1,6 @@
 # ![](favicon.png) cbevins/fire-behavior-simulator Variable Names
 
-| Prev: [12 Author](./12_Author.md) | Next: [14 Table of Variables](./14_VariableNames.md) | [Back to Top](#top-level-names) |
+| Prev: [12 Author](./12_Author.md) | Next: [14 Table of Variables](./14_VariableNames.md) |  [Table of Contents](../README.md) |
 
 ---
 
@@ -1412,4 +1412,4 @@ This section lists all the *fire-behavior-simulator* variable names, also known 
 
 ---
 
-| Prev: [12 Author](./12_Author.md) | Next: [14 Table of Variables](./14_VariableNames.md) | [Back to Top](#top-level-names) |
+| Prev: [12 Author](./12_Author.md) | Next: [14 Table of Variables](./14_VariableNames.md) | [Back to Top](#top-level-names) |  [Table of Contents](../README.md) |
