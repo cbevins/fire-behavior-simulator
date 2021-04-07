@@ -3,16 +3,20 @@
 | Prev: [07 Live Web Browser Examples](./07_LiveWebBrowserExamples.md) | Next: [09 Modules and Linkages](./09_ModuleLinkages.md) | [Table of Contents](../README.md) |
 
 ---
+<a id='top'></a>
 
 ## ![](favicon.png) Contents
 
 - [**Dag.configure()**](#dag-configure)
-- [**Configure Variables**](#configure-variables)
+- [**Configuration Variables**](#configure-variables)
 - [**Module Linkage Variables**](#module-linkage-variables)
 
 ---
+<a id='dag-configure'></a>
 
 ## ![](favicon.png) Dag.configure()
+
+[Back to Top](#top)
 
 The **Dag.configure()** method is used to *configure* the directed acyclical graph; that is, to change the method or equation associated with one or more the edges of the graph.
 
@@ -64,8 +68,11 @@ dag.configure([
 ```
 
 ---
+<a id='configure-variables'></a>
 
 ## ![](favicon.png) Configuration Variables
+
+[Back to Top](#top)
 
 The following lists the keys (names) of the DAG configuration variables and their allowable values:
 
@@ -140,8 +147,11 @@ The following lists the keys (names) of the DAG configuration variables and thei
     - 'atMidflame': midflame height
 
 ---
+<a id='module-linkage-variables'></a>
 
 ## ![](favicon.png) Module Linkage Variables
+
+[Back to Top](#top)
 
 The following are more advanced configuration variables used to implement the BehavePlus notion of *modules* and *linkages*.  If your use case requires this, you may which to look at the *fire-simple-api* which implements many of the module-linkage use cases for you.  You may be able to invoke its classes and functions directly, or use them as example implementations of your user case.
 
