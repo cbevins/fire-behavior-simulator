@@ -11,3 +11,7 @@ While this is the initial release of the *fire-behavior-simulator* package, it i
 This release includes all the BehavePlus modeling capabilities with the following exceptions:
  - the fire containment module is currently under development and will be added in a future release, and
  - the 'expected value' method of estimating spread rate through 2 fuels is not implemented.
+
+---
+
+| Prev: [12 Author](./12_Author.md) | Next: [14 Variable Names](./14_VariableNames.md) | [Table of Contents](../README.md) |
