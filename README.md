@@ -19,7 +19,7 @@
 - [08 Configuration](./docs/08_Configuration.md)
 - [09 Module Linkages](./docs/09_ModuleLinkages.md)
 - [10 Design and Implementation (not yet available)](./docs/10_DesignImplementation.md)
-- [11 Performance and Tests](./docs/11_PerformanceTesting.md)
+- [11 Performance Testing](./docs/11_PerformanceTesting.md)
 - [12 Author](./docs/12_Author.md)
 - [13 Release Notes](./docs/13_RELEASE_NOTES.md)
 - [14 Variable Names](./docs/14_VariableNames.md)

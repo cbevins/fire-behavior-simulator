@@ -8,7 +8,7 @@
 
 # ![](favicon.png) Top-level Names
 
-This section lists all the *fire-behavior-simulator* variable names, also known as *keys*, along with thei Variant type and, for Quantity Variant's, their native units-of-measure.  This section is divided into the following subsections:
+This section lists all the *fire-behavior-simulator* variable names, also known as *keys*, along with their Variant type and, for Quantity Variants, their native units-of-measure.  This section is divided into the following subsections:
 
 - [**configure**.* Variables](#configure-variables)
 - [**crown.canopy**.* Variables](#crown-canopy-variables)
