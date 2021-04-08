@@ -61,20 +61,20 @@ dag.select(selectedNodes) // selects weighted spread rate and flame length for c
 ```
 
 The **Dag.node()** function takes a variable key name and returns a reference to its **DagNode** instance.
-The array of selected nodes is then submitted to the **Dag.select()** method.
+The array of *selected* nodes is then submitted to the **Dag.select()** method.
 
 We also could have accomplished the above with a single statement...
 
 ```js
 dag.select('surface.weighted.fire.spreadRate', 'surface.weighted.fire.flameLength')
 ```
-...but the first method lets use keep the selected DagNode references around for later use.
+...but the first method lets use keep the *selected* DagNode references around for later use.
 
 ---
 
 ## Step 4 - *configure* input choices and computational options
 
-You can request from the DAG an array of the configuration DagNodes that currently applicable to your selected variables as follows:
+You can request from the DAG an array of the *configuration* DagNodes that are currently applicable to your *selected* variables as follows:
 
 ```js
 const activeConfigs = dag.requiredConfigNodes() // returns an array of applicable DagNode references
@@ -91,8 +91,6 @@ For this example, we configure for the fewest number of posssible inputs:
   - dead and live category moisture contents,
   - upslope midflame windspeed, and
   - slope steepness
-
-See [08 Configuration](./08_Configuration.md) for a complete list of all configuration options.
 
 ```js
 dag.configure([
@@ -119,10 +117,12 @@ dag.configure([
 ])
 ```
 
----
-## Step 5 - determine the required input variables
+See [08 Configuration](./08_Configuration.md) for a complete list of all configuration options.
 
-You will initially need to see exactly which inputs are required for your currently selected variables and configuration settings:
+---
+## Step 5 - *request* the required input DagNodes
+
+You will initially need to see exactly which *input* variables are required for your currently *selected* variables and configuration settings:
 
 ```js
 const requiredInputs = dag.requiredInputNodes()  // returns an array of DagNode references
@@ -151,32 +151,46 @@ console.log(nodeTable(requiredInputs, ['index', 'key', 'nativeUnits'], 'Required
 ```
 ---
 
-## Step 6 - set *input* values for the required input nodes and run()
+## Step 6 - set *input* values for the required input DagNodes
 
-Now that you know the keys of the required input variables, give them each one or more values.  In this example, we give each input a single value:
+Now that you know the keys (names) of the required *input* variables, give each of them one or more values:
 
 ```js
 dag.input([
   ['surface.primary.fuel.model.catalogKey', ['10']], // 'Timber litter & understory'
-  ['site.moisture.dead.category', [0.05]],  // fraction of fuel ovendry weight
-  ['site.moisture.live.category', [0.5]],  // fraction of fuel ovendry weight
-  ['site.wind.speed.atMidflame', [10*88]], // feet per minute (1 mph = 88 ft/min)
-  ['site.slope.steepness.ratio', [0.25]], // vertical rise / horizontal reach
-]).run()
+  ['site.moisture.dead.category', [0.05, 0.1]],  // fraction of fuel ovendry weight
+  ['site.moisture.live.category', [0.5, 1, 2]],  // fraction of fuel ovendry weight
+  ['site.wind.speed.atMidflame', [0, 5*88, 10*88, 20*88]], // feet per minute (1 mph = 88 ft/min)
+  ['site.slope.steepness.ratio', [0, 0.25, 0.5, 1, 5]], // vertical rise / horizontal reach
+])
 ```
 
-*Note* that we added the **.run()** method call after the **Dag.input()**.  We could have instead used 2 separate statements:
-
-```js
-dag.input([...]) // as above
-dag.run()
-```
+**Dag.input()** adds input values for *any* specified variable into an *input pool*, so you can call **Dag.input()** on any variable, even if it is not a current *input* variable.
 
 ---
 
-## Step 7 - **access and display** the single result set
+## Step 7 - *run* the simulation for all the current input values
 
-You can loop through the array of selected variables to access their updated values directly from the DAG:
+```js
+dag.run()
+```
+
+**Dag.run()** determines all the *input* DagNodes based upon the currently *selected* (output) DagNodes and the current configuration.  For each *input* DagNode, it looks in the *input pool* for that node's input value (or values).  If *input pool* has no entry for the node, its current value is applied.
+
+In our example, the two *selected* variables (spread rate and flame length) and current configuration settings result in 5 *input* variables.  **Dag.run()** therefore iterates over
+  - 1 value of 'surface.primary.fuel.model.catalogKey',
+  - 2 values of 'site.moisture.dead.category',
+  - 3 values of 'site.moisture.live.category',
+  - 4 values of 'site.wind.speed.atMidflame', and
+  - 5 values 'site.slope.steepness.ratio'.
+
+**Dag.run()** will therefore make 120 iterations in the most optimal manner possible.
+
+---
+
+## Step 8 - **access and display** the single result set
+
+You can loop through the array of *selected* variables to access their updated values directly from the DAG:
 
 ```js
 selectedNodes.forEach(node => {
