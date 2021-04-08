@@ -19,7 +19,7 @@ This first example walks through a basic yet complete Node.js runtime applicatio
 
 ---
 
-## Step 1: **import** the *fire-behavior-simulator* package from node_modules or source folder
+## Step 1: *import* the *fire-behavior-simulator* package from node_modules or source folder
 
 If you have installed *fire-behavior-simulator* as a node_module:
 
@@ -37,7 +37,7 @@ In this example we have also imported the **nodeTable** function for generating 
 
 ---
 
-## Step 2 - **create** a fire behavior simulator with 1 directed acyclical graph (DAG)
+## Step 2 - *create* a fire behavior simulator with 1 directed acyclical graph (DAG)
 
 ```js
 const sim = new Sim()
@@ -48,7 +48,7 @@ The **Sim** class contains the blueprint (genome) from which individual fire beh
 
 ---
 
-## Step 3 - **select** the fire behavior variables (DagNodes) of interest
+## Step 3 - *select* the fire behavior variables (DagNodes) of interest
 
 In this example we just want to estimate the weighted spread rate (key 'surface.weighted.fire.spreadRate') and flame length ('surface.weighted.fire.flameLength').  A complete list of all available variables (aka *nodes* or *DagNodes*) is available in [14 Variable Names](./14_VariableNames.md)
 
@@ -63,7 +63,7 @@ dag.select(selectedNodes) // selects weighted spread rate and flame length for c
 The **Dag.node()** function takes a variable key name and returns a reference to its **DagNode** instance.
 The array of selected nodes is then submitted to the **Dag.select()** method.
 
-We also code have accomplished the above with a single statement...
+We also could have accomplished the above with a single statement...
 
 ```js
 dag.select('surface.weighted.fire.spreadRate', 'surface.weighted.fire.flameLength')
@@ -71,7 +71,7 @@ dag.select('surface.weighted.fire.spreadRate', 'surface.weighted.fire.flameLengt
 ...but the first method lets use keep the selected DagNode references around for later use.
 ---
 
-## Step 4 - **configure** input choices and computational options
+## Step 4 - *configure* input choices and computational options
 
 You can request an array of the configurations currently applicable to your selected variables as follows:
 
