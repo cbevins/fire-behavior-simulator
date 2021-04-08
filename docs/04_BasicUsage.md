@@ -13,8 +13,8 @@ This first example walks through a basic yet complete Node.js runtime applicatio
 4 dag.select(['surface.fire.weighted.spreadRate']) // select 1 or more outputs
 5 dag.configure([array-of-configuration-variables]) // configure DAG computation and input preferences
 6 dag.input([input-variable-values]) // set input variable values
-7 dag.run() // update the affected DAG variable values
-8 const ros = dag.node('surface.fire.weighted.spreadRate').value() // get the updated value
+7 dag.run() // update all the affected DAG variable values to produce the selected values
+8 const ros = dag.node('surface.fire.weighted.spreadRate').value() // get the updated value of the selected variables
 ```
 
 ---
@@ -27,13 +27,13 @@ If you have installed *fire-behavior-simulator* as a node_module:
 import { Sim, nodeTable } from '@cbevins/fire-behavior-simulator'
 ```
 
-If you have cloned the *fire-behavior-simulator* repo or are otherwise working directly with the source code, import the **index.js** file:
+If you have cloned the *fire-behavior-simulator* repo or are otherwise working directly with the source code, import the **Sim** class from the **index.js** file:
 
 ```js
 import { Sim, nodeTable } from '../src/index.js'
 ```
 
-We have also imported the **nodeTable** function for generating some tables.
+In this example we have also imported the **nodeTable** function for generating some tables.
 
 ---
 
@@ -44,13 +44,13 @@ const sim = new Sim()
 const dag = sim.createDag('basicUsage')
 ```
 
-The **Sim** class contains the blueprint (genome) from which individual fire directed acyclical graphs are generated.  It also serves as the container for one or more simulation DAGs.  In this example, we create a single DAG named 'basicUsage'.
+The **Sim** class contains the blueprint (genome) from which individual fire behavior directed acyclical graphs are generated.  It also serves as the container for the simulation DAGs it has created.  In this example, we create a single DAG named 'basicUsage'.
 
 ---
 
 ## Step 3 - **select** the fire behavior variables (DagNodes) of interest
 
-In this example we just want to estimate the weighted spread rate and flame length.  A complete list of all available variables (aka *nodes* or *DagNodes*) is available [here](./14_VariableNames.md)
+In this example we just want to estimate the weighted spread rate (key 'surface.weighted.fire.spreadRate') and flame length ('surface.weighted.fire.flameLength').  A complete list of all available variables (aka *nodes* or *DagNodes*) is available in [14 Variable Names](./14_VariableNames.md)
 
 ```js
 const selectedNodes = [
@@ -63,6 +63,12 @@ dag.select(selectedNodes) // selects weighted spread rate and flame length for c
 The **Dag.node()** function takes a variable key name and returns a reference to its **DagNode** instance.
 The array of selected nodes is then submitted to the **Dag.select()** method.
 
+We also code have accomplished the above with a single statement...
+
+```js
+dag.select('surface.weighted.fire.spreadRate', 'surface.weighted.fire.flameLength')
+```
+...but the first method lets use keep the selected DagNode references around for later use.
 ---
 
 ## Step 4 - **configure** input choices and computational options

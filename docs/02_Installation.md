@@ -19,6 +19,8 @@ npm i --save @cbevins/fire-behavior-simulator
 ```
 from the folder containing the project's **package.json** file.
 
+*fire-behavior-simulator* is a fully independent package and requires no other modules to be installed.
+
 ---
 
 | Prev: [01 Summary](./01_Summary.md) | Next: [03 Capabilities](./03_Capabilities.md) | [Table of Contents](../README.md) |
