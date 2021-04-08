@@ -9,8 +9,8 @@ This first example walks through a basic yet complete Node.js runtime applicatio
 ```js
 1 import { Sim } from '@cbevins/fire-behavior-simulator' // import the package
 2 const sim = new Sim() // create a simulator container
-3 const dag = sim.createDag('basicUsage') // add a directed acyclical graph
-4 dag.select(['surface.fire.weighted.spreadRate']) // select 1 or more outputs
+3 const dag = sim.createDag('basicUsage') // add a directed acyclical graph to the Sim container
+4 dag.select(['surface.fire.weighted.spreadRate']) // select 1 or more variables of interest
 5 dag.configure([array-of-configuration-variables]) // configure DAG computation and input preferences
 6 dag.input([input-variable-values]) // set input variable values
 7 dag.run() // update all the affected DAG variable values to produce the selected values
@@ -33,7 +33,7 @@ If you have cloned the *fire-behavior-simulator* repo or are otherwise working d
 import { Sim, nodeTable } from '../src/index.js'
 ```
 
-In this example we have also imported the **nodeTable** function for generating some tables.
+In this example we have also imported the **nodeTable()** utility function for printing node tables to the console.
 
 ---
 
@@ -50,11 +50,11 @@ The **Sim** class contains the blueprint (genome) from which individual fire beh
 
 ## Step 3 - *select* the fire behavior variables (DagNodes) of interest
 
-In this example we just want to estimate the weighted spread rate (key 'surface.weighted.fire.spreadRate') and flame length ('surface.weighted.fire.flameLength').  A complete list of all available variables (aka *nodes* or *DagNodes*) is available in [14 Variable Names](./14_VariableNames.md)
+In this example we just want to estimate the weighted spread rate (key = 'surface.weighted.fire.spreadRate') and flame length (key = 'surface.weighted.fire.flameLength').  A complete list of all available variables (aka *nodes* or *DagNodes*) is available in [14 Variable Names](./14_VariableNames.md).
 
 ```js
 const selectedNodes = [
-  dag.node('surface.weighted.fire.spreadRate'), // returns a DagNode reference for 'key'
+  dag.node('surface.weighted.fire.spreadRate'), // node() returns a DagNode reference for 'key'
   dag.node('surface.weighted.fire.flameLength')
 ]
 dag.select(selectedNodes) // selects weighted spread rate and flame length for computation
@@ -68,7 +68,7 @@ We also could have accomplished the above with a single statement...
 ```js
 dag.select('surface.weighted.fire.spreadRate', 'surface.weighted.fire.flameLength')
 ```
-...but the first method lets use keep the *selected* DagNode references around for later use.
+...but the first method lets use keep an array of *selected* DagNode references around for later use.
 
 ---
 
@@ -86,7 +86,7 @@ and display them in a table to the console:
 console.log(nodeTable(activeConfigs, ['index', 'key', 'nativeValue'], 'Active Configuration Nodes'))
 ```
 
-For this example, we configure for the fewest number of posssible inputs:
+For this example, we configure for the fewest number of possible inputs:
   - a single primary fuel,
   - dead and live category moisture contents,
   - upslope midflame windspeed, and
@@ -120,9 +120,9 @@ dag.configure([
 See [08 Configuration](./08_Configuration.md) for a complete list of all configuration options.
 
 ---
-## Step 5 - *request* the required input DagNodes
+## Step 5 - request the *required input* DagNodes
 
-You will initially need to see exactly which *input* variables are required for your currently *selected* variables and configuration settings:
+You will initially need to see exactly which *input* variables are *required* for your currently *selected* variables and configuration settings:
 
 ```js
 const requiredInputs = dag.requiredInputNodes()  // returns an array of DagNode references
@@ -151,9 +151,9 @@ console.log(nodeTable(requiredInputs, ['index', 'key', 'nativeUnits'], 'Required
 ```
 ---
 
-## Step 6 - set *input* values for the required input DagNodes
+## Step 6 - set *input* values for the *required input* DagNodes
 
-Now that you know the keys (names) of the required *input* variables, give each of them one or more values:
+Now that you know the keys (names) of the *required input* variables, give each of them one or more values:
 
 ```js
 dag.input([
@@ -175,7 +175,7 @@ dag.input([
 dag.run()
 ```
 
-**Dag.run()** determines all the *input* DagNodes based upon the currently *selected* (output) DagNodes and the current configuration.  For each *input* DagNode, it looks in the *input pool* for that node's input value (or values).  If *input pool* has no entry for the node, its current value is applied.
+**Dag.run()** determines all the *required input* DagNodes based upon the currently *selected* (output) DagNodes and the current configuration.  For each *required input* DagNode, it looks in the *input pool* for that node's input value (or values).  If *input pool* has no entry for the node, its current value is applied.
 
 In our example, the two *selected* variables (spread rate and flame length) and current configuration settings result in 5 *input* variables.  **Dag.run()** therefore iterates over
   - 1 value of 'surface.primary.fuel.model.catalogKey',
@@ -185,6 +185,15 @@ In our example, the two *selected* variables (spread rate and flame length) and 
   - 5 values 'site.slope.steepness.ratio'.
 
 **Dag.run()** will therefore make 120 iterations in the most optimal manner possible.
+
+You only have to specify the changed input values between runs.  For example...
+
+```js
+dag.input([['surface.primary.fuel.model.catalogKey', ['gs4']]) // Grass-shrub 124
+dag.run()
+```
+
+... makes another 120 iterations, but using fuel model 'gs4' instead of fuel model '10'.
 
 ---
 
