@@ -29,7 +29,7 @@
 - ### Sim.hasDag(string: dagKey)
   - Returns TRUE if the Sim instance has a DAG with the key **dagKey**.
 
-### Example Usage
+### Example Sim Method Usage
 ```js
 import { Sim } from '@cbevins/fire-behavior-simulator'
 const sim = new Sim() // returns a new Sim container instance
@@ -48,7 +48,7 @@ sim.deleteDag('dag1') // Deletes the Dag named 'dag1'
 ## Dag Class
 
 - ### Dag.clearInputs()
-  - Removes all DagNode input values from the *input* list.
+  - Removes all DagNode input values from the *input pool*.
   - Returns a reference to this Dag.
 
 - ### Dag.clearSelected()
@@ -58,8 +58,8 @@ sim.deleteDag('dag1') // Deletes the Dag named 'dag1'
 - ### Dag.configure(array: cfg-key-value-pairs)
   - Sets the value of one or more *configuration* DagNodes then reconfigures the Dag.
   - *cfg-key-value-pairs* is an array of 2-element arrays where:
-   - element 0 is a Config DagNode reference or string key (see  [08 Configuration](./08_Configuration.md))
-   - element 1 is the Config option value (see [08 Configuration](./08_Configuration.md))
+    - element 0 is a Config DagNode reference or string key (see  [08 Configuration](./08_Configuration.md))
+    - element 1 is the Config option value (see [08 Configuration](./08_Configuration.md))
   - Returns a reference to this Dag.
 
 - ### Dag.input(array: node-key-valueArray-pairs)

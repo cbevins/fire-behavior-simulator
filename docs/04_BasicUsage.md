@@ -68,7 +68,7 @@ We also could have accomplished the above with a single statement...
 ```js
 dag.select('surface.weighted.fire.spreadRate', 'surface.weighted.fire.flameLength')
 ```
-...but the first method lets use keep an array of *selected* DagNode references around for later use.
+...but the first method lets use keep an array of *selected* DagNode references around for later use such as extracting values and printing.
 
 ---
 
@@ -91,6 +91,8 @@ For this example, we configure for the fewest number of possible inputs:
   - dead and live category moisture contents,
   - upslope midflame windspeed, and
   - slope steepness
+
+as follows:
 
 ```js
 dag.configure([
@@ -175,7 +177,7 @@ dag.input([
 dag.run()
 ```
 
-**Dag.run()** determines all the *required input* DagNodes based upon the currently *selected* (output) DagNodes and the current configuration.  For each *required input* DagNode, it looks in the *input pool* for that node's input value (or values).  If *input pool* has no entry for the node, its current value is applied.
+**Dag.run()** determines all the *required input* DagNodes based upon the currently *selected* (output) DagNodes and the current configuration.  For each *required input* DagNode, it looks in the *input pool* for that node's input value (or values).  If the *input pool* has no entry for the node, its current value is applied.
 
 In our example, the two *selected* variables (spread rate and flame length) and current configuration settings result in 5 *input* variables.  **Dag.run()** therefore iterates over
   - 1 value of 'surface.primary.fuel.model.catalogKey',
@@ -186,7 +188,7 @@ In our example, the two *selected* variables (spread rate and flame length) and 
 
 **Dag.run()** will therefore make 120 iterations in the most optimal manner possible.
 
-You only have to specify the changed input values between runs.  For example...
+Subsequently, you only have to specify the *changed* input values between runs.  For example...
 
 ```js
 dag.input([['surface.primary.fuel.model.catalogKey', ['gs4']]) // Grass-shrub 124
@@ -214,7 +216,7 @@ console.log(nodeTable(selectedNodes,
   ['label', 'nativeValue', 'nativeUnits', 'displayValue', 'displayUnits'], 'Results'))
 ```
 
-which looks like this:
+which looks like this for the first iteration:
 
 ```
 +--------------------------------------------------------------------------------------------------------+
