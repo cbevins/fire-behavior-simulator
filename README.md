@@ -8,6 +8,8 @@
 
 ---
 
+If you are reading this **README** from the *fire-behavior-simulator* **GitHub repository**, you can access the docs directly from the table of contents below.  Otherwise, you will need access the docs from the [repository](https://github.com/cbevins/fire-behavior-simulator)
+
 ## ![](favicon.png) Contents
 - [01 Summary](./docs/01_Summary.md)
 - [02 Installation](./docs/02_Installation.md)

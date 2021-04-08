@@ -63,8 +63,9 @@ sim.deleteDag('dag1') // Deletes the Dag named 'dag1'
   - Returns a reference to this Dag.
 
 - ### Dag.input(array: node-key-valueArray-pairs)
-  - Adds (or replaces) an array of input values for one or more DagNodes.
-  - Note that this function stores the DagNode's input values regardless of whether the DagNode is actually an input node under the current configuration-selection. Its input values remain unchanged until they are reset by the another **input()** or a **clearInputs()**.
+  - Adds (or replaces) an array of input values for one or more DagNodes in the *input pool*.
+  - When **Dag.run()** is invoked, all required input variables get their (1 or more) input values from the input pool.
+  - Note that **Dag.input()** stores the DagNode's input values regardless of whether the DagNode is actually an input node under the current configuration-selection. Its input values remain unchanged until they are reset by the another **input()** or a **clearInputs()**.
   - *node-key-valueArray-pairs* is an array of 2-element arrays where
     - element 0 is a DagNode reference or string key (see [14 Variable Names](./14_VariableNames.md)), and
     - element 1 is the array of one or more input *native* values.
@@ -84,7 +85,8 @@ sim.deleteDag('dag1') // Deletes the Dag named 'dag1'
   - Returns an array of references to all required *input* DagNodes (for the set of currently *selected* DagNodes) in topological order.
 
 - ### Dag.run()
-  - Iterates through all the current *input* values, updating all DagNode values with each iteration, and invoking the storage class **store()** method at the end of each iteration.
+  - Iterates through all the current *input pool* values of all required input variables, updating all DagNode values with each iteration.  At the end of each iteration, the storage class **store()** method is invoked to do something useful with the newly updated values.
+  - When **Dag.run()** is invoked, all the required input variables get their (1 or more) input values from the *input pool*.  If the input variable has no entries in the input pool, the variables current value is applied.
   - Returns a reference to this Dag.
 
 - ### Dag.select(array: nodeKeysOrRefs)

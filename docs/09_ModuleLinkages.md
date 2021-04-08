@@ -37,7 +37,7 @@ The following is a summary of some of the models, generally arranged in their or
 
 ##  ![](favicon.png) *fire-behavior-simulator* Module Use Cases
 
-When a *fire-behavior-simulator* DAG is initially created, it is constructed as one large continuous model.  To demonstrate, assume you want a table of tree mortality rates.  At its core, the tree mortality model requires just 5 inputs; a tree species, dbh, crown height, crown base height, and scorch height.
+When a *fire-behavior-simulator* DAG is initially created, it is constructed as one large continuous directed acyclical graph.  To demonstrate, assume you want a table of tree mortality rates.  At its most basic, the tree mortality model requires just 5 inputs; a tree species, dbh, crown height, crown base height, and scorch height.
 
 But because the entire DAG is linked together, tree mortality rate will get its scorch height input from the scorch height model. The scorch height model, in turn, requires fireline intensity as an input.  Because the DAG is fully linked, fireline intensity will be provided by the surface fire model, which in turn can require a lot of inputs.  The resulting list of 16 required inputs includes fuel parameters, fuel moistures, slope, wind speed, wind direction, canopy parameters, and air temperature:
 
