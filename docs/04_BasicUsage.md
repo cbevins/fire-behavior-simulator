@@ -69,6 +69,7 @@ We also could have accomplished the above with a single statement...
 dag.select('surface.weighted.fire.spreadRate', 'surface.weighted.fire.flameLength')
 ```
 ...but the first method lets use keep the selected DagNode references around for later use.
+
 ---
 
 ## Step 4 - *configure* input choices and computational options
