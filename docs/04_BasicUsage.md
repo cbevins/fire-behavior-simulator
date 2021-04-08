@@ -74,10 +74,10 @@ dag.select('surface.weighted.fire.spreadRate', 'surface.weighted.fire.flameLengt
 
 ## Step 4 - *configure* input choices and computational options
 
-You can request an array of the configurations currently applicable to your selected variables as follows:
+You can request from the DAG an array of the configuration DagNodes that currently applicable to your selected variables as follows:
 
 ```js
-const activeConfigs = dag.requiredConfigNodes() // returns an array of DagNode references
+const activeConfigs = dag.requiredConfigNodes() // returns an array of applicable DagNode references
 ```
 
 and display them in a table to the console:
@@ -92,7 +92,7 @@ For this example, we configure for the fewest number of posssible inputs:
   - upslope midflame windspeed, and
   - slope steepness
 
-See [here](./08_Configuration.md) for a complete list of all configuration options.
+See [08 Configuration](./08_Configuration.md) for a complete list of all configuration options.
 
 ```js
 dag.configure([
