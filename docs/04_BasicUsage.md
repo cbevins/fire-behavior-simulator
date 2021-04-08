@@ -1,4 +1,4 @@
-#  ![](favicon.png) Basic Usage
+#  ![](favicon.png) 4 Basic Usage
 
 | Prev: [03 Capabilities](./03_Capabilities.md) | Next: [05 Client API](./05_ClientAPI.md) | [Table of Contents](../README.md) |
 

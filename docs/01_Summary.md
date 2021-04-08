@@ -1,4 +1,4 @@
-#  ![](favicon.png) Summary
+#  ![](favicon.png) 1 Summary
 
 | Prev: [Table of Contents](../README.md) | Next: [02 Installation](./02_Installation.md) |
 

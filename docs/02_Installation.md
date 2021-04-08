@@ -1,4 +1,4 @@
-#  ![](favicon.png) Installation
+#  ![](favicon.png) 2 Installation
 
 | Prev: [01 Summary](./01_Summary.md) | Next: [03 Capabilities](./03_Capabilities.md) | [Table of Contents](../README.md) |
 

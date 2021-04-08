@@ -1,4 +1,4 @@
-#  ![](favicon.png) Configuration
+#  ![](favicon.png) 8 Configuration
 
 | Prev: [07 Live Web Browser Examples](./07_LiveWebBrowserExamples.md) | Next: [09 Modules and Linkages](./09_ModuleLinkages.md) | [Table of Contents](../README.md) |
 
@@ -154,6 +154,8 @@ The following lists the keys (names) of the DAG configuration variables and thei
 [Back to Top](#top)
 
 The following are more advanced configuration variables used to implement the BehavePlus notion of *modules* and *linkages*.  If your use case requires this, you may which to look at the *fire-simple-api* which implements many of the module-linkage use cases for you.  You may be able to invoke its classes and functions directly, or use them as example implementations of your user case.
+
+For a detailed, **TLDR;** discussion of how *fore-behavior-simulator* implements the BehavePlus *modules* and *links* concepts, see [09 Modules and Linkages](./09_ModuleLinkages.md).
 
   - 'link.crownFire': Surface fire variables required by the Crown Module are
     - 'linkedToSurfaceFire': linked to the corresponding Surface Module variables

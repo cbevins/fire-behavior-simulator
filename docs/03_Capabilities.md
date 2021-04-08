@@ -1,4 +1,4 @@
-#  ![](favicon.png) Capabilities
+#  ![](favicon.png) 3 Capabilities
 
 | Prev: [02 Installation](./02_Installation.md) | Next: [04 Basic Usage](./04_BasicUsage.md) | [Table of Contents](../README.md) |
 
