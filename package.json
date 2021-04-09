@@ -1,6 +1,6 @@
 {
   "name": "@cbevins/fire-behavior-simulator",
-  "version": "0.4.0",
+  "version": "0.5.1",
   "description": "fire-behavior-simulator is a directed acyclical graph of the BehavePlus V6 variables and equations",
   "author": "Collin D. Bevins <cbevins@montana.com>",
   "license": "MIT",
@@ -25,7 +25,6 @@
   "files": [
     "dist",
     "README.md",
-    "RELEASE_NOTES.md",
     "LICENSE",
     "package.json"
   ],
@@ -46,8 +45,9 @@
     "test:coveralls": "jest --coverage && coveralls < coverage/lcov.info",
     "test:watch": "jest --watchAll"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+  "publishConfigX": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   },
   "publishConfigGithub": {
     "access": "public",
