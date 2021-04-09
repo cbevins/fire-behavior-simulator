@@ -64,11 +64,11 @@ sim.deleteDag('dag1') // Deletes the Dag named 'dag1'
 
 - ### Dag.input(array: node-key-valueArray-pairs)
   - Adds (or replaces) an array of input values for one or more DagNodes in the *input pool*.
-  - When **Dag.run()** is invoked, all *required input* variables get their (1 or more) input values from the *input pool*.
-  - Note that **Dag.input()** stores the DagNode's input values regardless of whether the DagNode is actually a *required input* node under the current configuration and selection. Its input values remain unchanged until they are reset by the another **input()** or a **clearInputs()**.
+  - When **Dag.run()** is invoked, all *required input* variables are assigned their (1 or more) input values from the *input pool*.
+  - Note that **Dag.input()** stores the DagNode's input values regardless of whether the DagNode is actually a *required input* node under the current configuration and selection. A DagNode's input values remain unchanged until they are reset by the another **input()** or a **clearInputs()**.
   - *node-key-valueArray-pairs* is an array of 2-element arrays where
     - element 0 is a DagNode reference or string key (see [14 Variable Names](./14_VariableNames.md)), and
-    - element 1 is the array of one or more input *native* values.
+    - element 1 is an array of one or more input *native* values.
   - Returns a reference to this Dag.
 
 - ### Dag.node(string: nodeKey)
@@ -85,8 +85,8 @@ sim.deleteDag('dag1') // Deletes the Dag named 'dag1'
   - Returns an array of references to all *required input* DagNodes for the set of currently *selected* DagNodes and configuration.  The array is in computational topological order.
 
 - ### Dag.run()
-  - Iterates through all the current *input pool* values of all *required input* variables, updating all DagNode values with each iteration.  At the end of each iteration, the storage class **store()** method is invoked to do something useful (store, save, print)with the newly updated values.
-  - When **Dag.run()** is invoked, all the *required input* variables get their (1 or more) input values from the *input pool*.  If the input variable has no entries in the *input pool*, the variables current value is applied.
+  - Iterates through all the current *input pool* values of all *required input* variables, updating all impacted DagNode values with each iteration.  At the end of each iteration, the storage class **store()** method is invoked to do something useful (store, save, print) with the newly updated values.
+  - When **Dag.run()** is invoked, all the *required input* variables get their (1 or more) input values from the *input pool*.  If the input DagNode has no entry in the *input pool*, the variable's current value is applied.
   - Returns a reference to this Dag.
 
 - ### Dag.select(array: nodeKeysOrRefs)
@@ -102,7 +102,7 @@ sim.deleteDag('dag1') // Deletes the Dag named 'dag1'
   - Returns a reference to this Dag.
 
 - ### Dag.setStorageClass(StorageAbstract: storageClass)
-  - Sets a storage class containing a **store()** method that is invoked at the end of each **run()** iteration.  That is, if a **run()** has input values for 1000 iterations, this class' **store()** method is called 1000 times.
+  - Sets a storage class containing a **store()** method that is invoked at the end of each **run()** iteration.  That is, if there are 5 *required input* DagNodes, each with 100 values in the *input pool*, at the time *Dag.run()* is invoked, the storage class' **store()** method is called 500 times.
   - **storageClass** is an instance of a class derived from **StorageAbstract** that has a **store()** method.
   - The storage class **store()** method is responsible for accessing DagNode values and storing them as required by the application.
   - The **StorageAbstract** class is pretty minimal; here it is in ites entirety:
