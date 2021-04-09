@@ -106,7 +106,6 @@ sim.deleteDag('dag1') // Deletes the Dag named 'dag1'
   - **storageClass** is an instance of a class derived from **StorageAbstract** that has a **store()** method.
   - The storage class **store()** method is responsible for accessing DagNode values and storing them as required by the application.
   - The **StorageAbstract** class is pretty minimal; here it is in its entirety:
-
 ```js
 export class StorageAbstract {
   constructor (dag) {
@@ -115,13 +114,13 @@ export class StorageAbstract {
     }
     this._dag = dag
   }
-  init () {}
-  store () {}
-  end () {}
+  init () {} // called at the start of each Dag.run()
+  store () {} // called at the end of each Dag.run() input variable-value iteration
+  end () {} // called at the end of each Dag.run()
 }
 ```
 
-See the [**src/dag/StorageNodeMap.js**](https://github.com/cbevins/fire-behavior-simulator/blob/master/src/dag/StorageNodeMap.js) and [**src/dag/StorageFile.js**](https://github.com/cbevins/fire-behavior-simulator/blob/master/src/dag/StorageFile.js) files for some examples.
+  - See the [**src/dag/StorageNodeMap.js**](https://github.com/cbevins/fire-behavior-simulator/blob/master/src/dag/StorageNodeMap.js) and [**src/dag/StorageFile.js**](https://github.com/cbevins/fire-behavior-simulator/blob/master/src/dag/StorageFile.js) files for some examples.
 
 - ### Dag.sortedNodes()
   - Returns an array of references to **all** DagNodes in topological order.
