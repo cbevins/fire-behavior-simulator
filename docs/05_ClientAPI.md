@@ -85,8 +85,8 @@ sim.deleteDag('dag1') // Deletes the Dag named 'dag1'
   - Returns an array of references to all *required input* DagNodes for the set of currently *selected* DagNodes and configuration.  The array is in computational topological order.
 
 - ### Dag.run()
-  - Iterates through all the current *input pool* values of all *required input* variables, updating all impacted DagNode values with each iteration.  At the end of each iteration, the storage class **store()** method is invoked to do something useful (store, save, print) with the newly updated values.
-  - When **Dag.run()** is invoked, all the *required input* variables get their (1 or more) input values from the *input pool*.  If the input DagNode has no entry in the *input pool*, the variable's current value is applied.
+  - Iterates through all the current *input pool* values of all *required input* variables, updating all impacted DagNode values with each iteration.  At the end of each iteration, the storage class **store()** method is invoked to do something useful (store, save, print) with/to the newly updated values.
+  - When **Dag.run()** is invoked, all the *required input* variables get their (1 or more) input values from the *input pool*.  If the input DagNode has no entry in the *input pool*, the DagNode's current value is applied.
   - Returns a reference to this Dag.
 
 - ### Dag.select(array: nodeKeysOrRefs)
@@ -105,7 +105,8 @@ sim.deleteDag('dag1') // Deletes the Dag named 'dag1'
   - Sets a storage class containing a **store()** method that is invoked at the end of each **run()** iteration.  That is, if there are 5 *required input* DagNodes, each with 100 values in the *input pool*, at the time *Dag.run()* is invoked, the storage class' **store()** method is called 500 times.
   - **storageClass** is an instance of a class derived from **StorageAbstract** that has a **store()** method.
   - The storage class **store()** method is responsible for accessing DagNode values and storing them as required by the application.
-  - The **StorageAbstract** class is pretty minimal; here it is in ites entirety:
+  - The **StorageAbstract** class is pretty minimal; here it is in its entirety:
+
 ```js
 export class StorageAbstract {
   constructor (dag) {
@@ -119,6 +120,8 @@ export class StorageAbstract {
   end () {}
 }
 ```
+
+See the [**src/dag/StorageNodeMap.js**](https://github.com/cbevins/fire-behavior-simulator/blob/master/src/dag/StorageNodeMap.js) and [**src/dag/StorageFile.js**](https://github.com/cbevins/fire-behavior-simulator/blob/master/src/dag/StorageFile.js) files for some examples.
 
 - ### Dag.sortedNodes()
   - Returns an array of references to **all** DagNodes in topological order.
