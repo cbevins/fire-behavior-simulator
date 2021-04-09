@@ -225,6 +225,8 @@ The Crown Fire Module may link to the Surface Fire Module by setting **link.crow
       <td>surface.weighted.fire.heatPerUnitArea</td></tr>
 </table>
 
+The **site.fire.observed.** DagNodes are always client input.
+
 ---
 
 ##  ![](favicon.png) link.crownSpot - Crown Fire Spotting Module Bindings
@@ -275,8 +277,14 @@ The Fire Ellipse Module may link to the Surface Fire Module by setting **link.fi
       <td>surface.weighted.fire.wind.speed.atMidflame</td></tr>
 </table>
 
+
+The **site.fire.observed.** DagNodes are always client input.
+
 ---
 ##  ![](favicon.png) link.fireContain - Fire Containment Module Bindings
+
+The Fire CONTAIN Module is not implemented!!  But if it were...
+
 The Fire Containment Module my link to the Fire Ellipse Module by setting **link.fireContain** to 'linkedToFireEllipse' to obtain its required inputs:
   - spread rate at head
   - length-to-width ratio
@@ -295,6 +303,8 @@ The Surface Spotting Module may link to the Surface Fire Module by setting **lin
       <td>surface.weighted.fire.firelineIntensity</td></tr>
 </table>
 
+The **site.fire.observed.** DagNodes are always client input.
+
 ---
 
 ##  ![](favicon.png) link.scorchHeight - Scorch Height Module Bindings
@@ -312,6 +322,8 @@ The Scorch Height Module may link to the Surface Fire Module by setting **link.s
       <td>site.wind.speed.atMidflame</td>
       <td>surface.weighted.fire.wind.speed.atMidflame</td></tr>
 </table>
+
+The **site.fire.observed.** DagNodes are always client input.
 
 Note that 3 scorch height variables are always available from within the Surface Fire Module whether or not the 'Scorch Height Module' is active or linked:
   - surface.primary.fuel.fire.scorchHeight,
@@ -339,6 +351,8 @@ The Tree Mortality Module may link to the Scorch Height Module by setting *link.
       <td>site.fire.observed.scorchHeight</td>
       <td>scorch.height</td></tr>
 </table>
+
+The **site.fire.observed.** DagNodes are always client input.
 
 ---
 

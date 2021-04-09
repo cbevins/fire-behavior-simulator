@@ -1,4 +1,4 @@
-# ![](favicon.png) 14 cbevins/fire-behavior-simulator Variable Names
+# ![](favicon.png) 14 Variable Names
 
 | Prev: [12 Author](./12_Author.md) | Next: [14 Table of Variables](./14_VariableNames.md) |  [Table of Contents](../README.md) |
 

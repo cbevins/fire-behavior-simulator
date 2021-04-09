@@ -4,7 +4,7 @@
 
 ---
 
-The **examples** folder contains 3 programs for testing *fire-behavior-simulator* performance.  Please keep in mind that Javascript engines, whether in a web browser or the Node.js runtime environment, perform automatic garbage collection.  Bear in mind that when and how often garbage collection occurs during a program influences its performance and can introduce variance into performance timing tests.
+The **examples** folder contains 3 programs for testing *fire-behavior-simulator* performance.  Please keep in mind that Javascript engines, whether in a web browser or the Node.js runtime environment, perform automatic garbage collection; when and how often garbage collection occurs during a program influences its performance and can introduce variance into performance timing tests.
 
 The example program **oneMillionRuns.js** performs runs for:
  - 10 fuel models
@@ -25,9 +25,9 @@ The example program **oneMillionRuns.js** performs runs for:
  - surface.fire.ellipse.{head|back|flank}.spreadDistance
  - surface.fire.ellipse.{head|back|flank}.spreadrate
 
- On my circa 2015 laptop, the following runs per second were recorded:
+ On my circa 2015 laptop, the following runs per second (r/s) were recorded over 3 tests:
 
- | Description      | Depth | Runs     | Millsec | Run 1 | Run 2 | Run 3 |
+ | Description      | Depth | Runs     | Millsec | r/s 1 | r/s 2 | r/s 3 |
  |---------------------|----|----------|---------|-------|-------|-------|
  | Midflame Wind Speed | 2  |  100,000 |   1,592 | 62,814 | 63,131 | 65,189 |
  | Wind Dir Upslope    | 52 |  100,000 |   1,224 | 81,699 | 78,740 | 79,491 |
@@ -38,17 +38,17 @@ The example program **oneMillionRuns.js** performs runs for:
  | 10 of Each          |    |1,000,000 |  14,553 | 68,714 | 66,885 | 63,637 |
 
 Synopsis:
-- As expected, changing just the fuel model key value (which has the greatest DAG topological depth) has the lowest performance at about 11,000 runs per second.
-- As expected, changing just the midflame wind speed value (which has the least DAG topological depth) has the greatest performance at about 63,000 runs per second.
+- As expected, changing just the fuel model key value (which has the greatest DAG computational topological depth) has the lowest performance at about 11,000 runs per second.
+- As expected, changing just the midflame wind speed value (which has the least DAG computational topological depth) has the greatest performance at about 63,000 runs per second.
 - Changing all 6 variables over 1 million runs averages about 65,000 runs per second.
 
 ---
 
-The **surfaceFireOptimized.js** demonstrates how the *fire-behavior-simulator* DAG internally optimizes computation order to make 240,000 estimates of surface fire spread rate, flame length, and scorch height under various fuel model, moisture, wind, slope, and temperature input values.
+The **surfaceFireOptimized.js** demonstrates how the *fire-behavior-simulator* DAG internally optimizes computational order to make 240,000 estimates of surface fire spread rate, flame length, and scorch height under various fuel model, moisture, wind, slope, and temperature input values.
 
 Again, on my circa 2016 laptop running the Node.js runtime environment, 240,000 runs requires from 735 to 1300 millseconds, or 180,000 to 326,000 runs per second.
 
-Compare those results with **surfaceFireDeoptimized.js**, which manually runs each of the surfaceFireOptimized.js input cases, but in the worst case scenario **reverse order** than *fire-behavior-simulator* would otherwise perform.  The 240,000 runs now require about 34,440 milliseconds, or 7400 runs per second.
+Compare those results with **surfaceFireDeoptimized.js**, which manually runs each of the surfaceFireOptimized.js input cases, but in the worst case scenario **reversetopological order** than *fire-behavior-simulator* would otherwise perform.  The 240,000 runs now require about 34,440 milliseconds, or 7400 runs per second.
 
 ---
 
