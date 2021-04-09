@@ -166,7 +166,7 @@ The dialog shows 7 possible linkages where a client Module binds one or more of 
   - Scorch Height (SCORCH) may link to Surface Fire (SURFACE), and
   - Tree Mortality (MORTALITY) may link to Scorch Height (SCORCH)
 
-The *fire-behavior-simulator* genome is defined such that the models in the DAG are connected or unconnected by setting 7 corresponding configuration nodes:
+The *fire-behavior-simulator* genome is defined such that the models in the DAG are connected or unconnected by setting 7 corresponding *link configuration* DagNodes:
 
 | Link Node Key | Allowable Values |
 |---|---|
@@ -178,7 +178,7 @@ The *fire-behavior-simulator* genome is defined such that the models in the DAG 
 | link.scorchHeight | 'linkedToSurfaceFire' or 'standAlone' |
 | link.treeMortality | 'linkedToScorchHeight' |
 
-These flow through the DAg as follows:
+These flow through the DAG as follows:
 <!-- language: lang-none -->
                                  /------------------/
                                  /Surface Fire Model/
@@ -208,12 +208,12 @@ These flow through the DAg as follows:
 
 ## ![](favicon.png) link.crownFire - Crown Fire Module Bindings
 
-The Crown Fire Module may link to the Surface Fire Module by setting link.crownFire to 'linkedToSurfaceFire' to obtain:
+The Crown Fire Module may link to the Surface Fire Module by setting **link.crownFire** to 'linkedToSurfaceFire' to obtain its required inputs:
 - surface fireline intensity or flame length
 - surface fire heat per unit area
 
 <table border>
-  <tr><th>WHen link.crownFire</th><th>is 'standAlone'</th><th>is 'linkedToSurfaceFire'</th></tr>
+  <tr><th>When link.crownFire</th><th>is 'standAlone'</th><th>is 'linkedToSurfaceFire'</th></tr>
   <tr><td>crown.fire.surface.firelineIntensity</td>
       <td>site.fire.observed.firelineIntensity</td>
       <td>surface.weighted.fire.firelineIntensity</td></tr>
@@ -229,7 +229,7 @@ The Crown Fire Module may link to the Surface Fire Module by setting link.crownF
 
 ##  ![](favicon.png) link.crownSpot - Crown Fire Spotting Module Bindings
 
-The Crown Fire Spotting Module may link to the Crown Fire Module by setting link.crownSpot to 'linkedToCrownFire' to obtain:
+The Crown Fire Spotting Module may link to the Crown Fire Module by setting **link.crownSpot** to 'linkedToCrownFire' to obtain its required input:
   - active crown fire fireline intensity
 
 <table border>
@@ -243,7 +243,7 @@ The Crown Fire Spotting Module may link to the Crown Fire Module by setting link
 
 ##  ![](favicon.png) link.fireEllipse - Fire Ellipse Module Bindings
 
-The Fire Ellipse Module may link to the Surface Fire Module by setting link.fireEllipse to 'linkedToSurfaceFire' to obtain:
+The Fire Ellipse Module may link to the Surface Fire Module by setting **link.fireEllipse** to 'linkedToSurfaceFire' to obtain its required inputs:
   - spread rate at fire head
   - heading direction from upslope
   - fireline intensity (or flame length) at head
@@ -277,7 +277,7 @@ The Fire Ellipse Module may link to the Surface Fire Module by setting link.fire
 
 ---
 ##  ![](favicon.png) link.fireContain - Fire Containment Module Bindings
-The Fire Containment Module my link to the Fire Ellipse Module be stting link.fireContain to 'linkedToFireEllipse' to obtain:
+The Fire Containment Module my link to the Fire Ellipse Module by setting **link.fireContain** to 'linkedToFireEllipse' to obtain its required inputs:
   - spread rate at head
   - length-to-width ratio
 
@@ -285,7 +285,7 @@ The Fire Containment Module my link to the Fire Ellipse Module be stting link.fi
 
 ##  ![](favicon.png) link.surfaceSpot - Surface Spotting Module Bindings
 
-The Surface Spotting Module may link th the Surface Fire Module by setting link.surfaceSpot to 'linkedToSurfaceFire' to obtain:
+The Surface Spotting Module may link to the Surface Fire Module by setting **link.surfaceSpot** to 'linkedToSurfaceFire' to obtain its required input:
   - surface fireline intensity (or flame length)
 
 <table border>
@@ -299,7 +299,7 @@ The Surface Spotting Module may link th the Surface Fire Module by setting link.
 
 ##  ![](favicon.png) link.scorchHeight - Scorch Height Module Bindings
 
-The Scorch Height Module may link to the Surface Fire Module by setting link.scorchHeight to 'linkedToSurfaceFire' to obtain:
+The Scorch Height Module may link to the Surface Fire Module by setting **link.scorchHeight** to 'linkedToSurfaceFire' to obtain its required inputs:
   - surface fireline intensity (or flame length)
   - wind speed at midflame height
 
@@ -313,12 +313,12 @@ The Scorch Height Module may link to the Surface Fire Module by setting link.sco
       <td>surface.weighted.fire.wind.speed.atMidflame</td></tr>
 </table>
 
-Note that 3 scorch height variables are always available from the Surface Fire Module whether or not the 'Scorch Height Module' is active or linked:
+Note that 3 scorch height variables are always available from within the Surface Fire Module whether or not the 'Scorch Height Module' is active or linked:
   - surface.primary.fuel.fire.scorchHeight,
   - surface.secondary.fuel.fire.scorchHeight,
   - surface.weighted.fire.scorchHeight,
 
-Also note that 6 scorch height variables are always available from the Fire Ellipse Module whether or not the 'Scorch Height Module' is active or linked:
+Similarly, note that 6 scorch height variables are always available from within the Fire Ellipse Module whether or not the 'Scorch Height Module' is active or linked:
   - surface.fire.ellipse.back.scorchHeight
   - surface.fire.ellipse.beta.scorchHeight
   - surface.fire.ellipse.beta5.scorchHeight
@@ -330,7 +330,7 @@ Also note that 6 scorch height variables are always available from the Fire Elli
 
 ##  ![](favicon.png) link.treeMortality - Tree Mortality Module Bindings
 
-The Tree Mortality Module may link to the Scorch Height Module by setting link.treeMortality to 'linkedToScorchHeight' to obtain:
+The Tree Mortality Module may link to the Scorch Height Module by setting *link.treeMortality* to 'linkedToScorchHeight' to obtain its required input:
   - scorch height
 
 <table border>
