@@ -77,7 +77,7 @@ test('1: Tree Mortality Rate required inputs for a fully linked DAG', () => {
 })
 ```
 
-But consider the use case where we simply want to examine tree mortality rate over a range of scorch heights.  We want to just enter the desired scorch height values directly rather than try to generate them from a myrad of surface fire module inputs.  That is, we just want to enter the bare minimum 5 inputs.  Tod do so, we *unlink* the Tree Mortality module from the rest of the DAG:
+But consider the use case where we simply want to examine tree mortality rate over a range of scorch heights.  We want to just enter the desired scorch height values directly rather than try to generate them from a myrad of surface fire module inputs.  That is, we just want to enter the bare minimum 5 inputs.  To do so, we *unlink* the Tree Mortality module from the rest of the DAG:
 
 ```js
 test('2: Tree Mortality Rate required inputs when unlinked', () => {
@@ -103,7 +103,9 @@ test('2: Tree Mortality Rate required inputs when unlinked', () => {
 })
 ```
 
-To solve this issue, BehavePlus employs the concept of **modules** to identify subsets of the DAG that can be run as 'stand-alone' models.  As shown above, the 'Tree Mortality Module' in stand-alone mode requires just the 4 tree parameters plus scorch height.  When it is 'linked' to the 'Scorch Height Module', the required scorch height input is calculated from 3 other inputs: air temperature, midflame wind speed, and fireline intensity:
+To solve this issue, *BehavePlus* employs the concept of **modules** to identify subsets of the DAG that can be run as 'stand-alone' models.  As shown above, the 'Tree Mortality Module' in stand-alone mode requires just the 4 tree parameters plus scorch height.
+
+When Tree Mortality is 'linked' to the stand-alone 'Scorch Height Module', the required scorch height input is calculated from 3 other inputs: air temperature, midflame wind speed, and fireline intensity:
 
 ```js
 test('3: Tree Mortality Rate required inputs when stand-alone Scorch Hieight - Tree Mortality models', () => {
@@ -134,7 +136,7 @@ test('3: Tree Mortality Rate required inputs when stand-alone Scorch Hieight - T
 })
 ```
 
- When 'Scorch Height Module' is linked to the 'Surface Fire Module', then a lot more inputs are required to determine fireline intensity.
+ But when 'Scorch Height Module' is linked to the 'Surface Fire Module', we see that a lot more inputs are required to determine the required fireline intensity variable.
 
 ---
 
@@ -142,6 +144,7 @@ test('3: Tree Mortality Rate required inputs when stand-alone Scorch Hieight - T
 
 The BehavePlus Windows program has a 'Configure' dialog that allows linking some of its 10 Modules as follows:
 
+---
 - &#9745; Surface Fire
     - &#9745; Crown Fire
         - &#9745; Crown Fire Spotting
@@ -152,6 +155,7 @@ The BehavePlus Windows program has a 'Configure' dialog that allows linking some
         - &#9745; Tree Mortality
 - &#9745; Spotting from Burning Pile or Torching Trees
 - &#9745; Ignition Probability
+---
 
 The dialog shows 7 possible linkages where a client Module binds one or more of its required inputs to a provider Module's outputs:
   - Crown Fire (CROWN) may link to Surface Fire (SURFACE),

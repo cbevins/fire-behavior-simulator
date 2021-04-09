@@ -123,7 +123,7 @@ export class StorageAbstract {
   - See the [**src/dag/StorageNodeMap.js**](https://github.com/cbevins/fire-behavior-simulator/blob/master/src/dag/StorageNodeMap.js) and [**src/dag/StorageFile.js**](https://github.com/cbevins/fire-behavior-simulator/blob/master/src/dag/StorageFile.js) files for some examples.
 
 - ### Dag.sortedNodes()
-  - Returns an array of references to **all** DagNodes in topological order.
+  - Returns an array of references to **all** DagNodes in computational topological order.
 
 - ### Dag.unselect(array: nodeKeysOrRefs)
   - Removes all DagNodes mentioned in the array from the *selected* list.
@@ -132,20 +132,20 @@ export class StorageAbstract {
 
 - ### Dag.validateDisplayInputs (array: node-key-textValue-pairs)
   - Validates one or more DagNode display text input pairs whose values are strings (usually from a text file or browser input element) that must be translated, cast, and converted into native values, usually prior to calling **Dag.input()**.
-  - Each variables value is validated against the variable's **Variant** class validation rules (min value, max value, set membership, etc).
-  - *node-key-textValue-pairs* is an array whose elements are 2-element arrays
-    - first element is a DagNode reference or a dag key string(see [14 Variable Names](./14_VariableNames.md)),
-    - second element is the text string representation of the value to be tested.  For numeric input, the text string would be something like '1.234'.
+  - Each value is validated against its DagNode's **Variant** class validation rules (min value, max value, set membership, etc).
+  - *node-key-textValue-pairs* is an array whose elements are 2-element arrays where
+    - element 0 is a DagNode reference or a dag key string(see [14 Variable Names](./14_VariableNames.md)),
+    - element 1 is the text string representation of the value to be tested.  For numeric input, the text string would be something like '1.234'.
   - Primarily intended to validate input from an HTML form or text file stream.
-  - Returns an array with one ValidationResult object {valid:, value:, message:, node:} for each *raw input text* DagNode value.
+  - Returns an array with one ValidationResult object {valid: bool, value: any, message: string, node: DagNodeRef} for each *raw input text* DagNode value.
 
 - ### Dag.validateNativeInputs  (array: node-key-textValue-pairs)
-  - Similar to *Dag.validateDisplayInput()*, but the variable values must be of the appropriate type (number, string, etc), and if the node is a Quantity Variant, its value must be expressed in the native units-of-measure.
-  - Each variables value is validated against the variable's **Variant** class validation rules (min value, max value, set membership, etc).
-  - *node-key-textValue-pairs* is an array whose elements are 2-element arrays
-    - first element is a DagNode reference or a dag key string (see [14 Variable Names](./14_VariableNames.md)),
-    - second element is the *native* value to be tested.
-  - Returns an array with one ValidationResult object {valid: bool, value: any, message: string, node: DagNode} for each *invalid* DagNode value.
+  - Similar to *Dag.validateDisplayInput()*, but the variable values must be of the appropriate type (number, string, etc), and if the DagNode is a Quantity Variant, its value must be expressed in the *native* units-of-measure.
+  - Each value is validated against its DagNode's **Variant** class validation rules (min value, max value, set membership, etc).
+  - *node-key-textValue-pairs* is an array whose elements are 2-element arrays where
+    - element 0 is a DagNode reference or a dag key string (see [14 Variable Names](./14_VariableNames.md)),
+    - element 1 is the *native* value to be tested.
+  - Returns an array with one ValidationResult object {valid: bool, value: any, message: string, node: DagNodeRef} for each *invalid* DagNode value.
 
 - [Back to top](#top)
 
@@ -155,25 +155,25 @@ export class StorageAbstract {
 ## DagNode Class
 
   - DagNode.displayString()
-    - Returns the DagNode's current display value as a text string.  If the DagNode is a Quantity Variant, the value is converted into the current display units-of-measure and decimal digits, and is appended with the units-of-measure.
+    - Returns the DagNode's current *display* value as a text string.  If the DagNode is a Quantity Variant, the value is converted into the current display units-of-measure and decimal digits, and is appended with the DagNode's Variant's current *display* units-of-measure.
 
   - Dag.displayUnits()
-    - Returns the DagNode's current display units-of-measure as a text string.
+    - Returns the DagNode's Variant's current *display* units-of-measure as a text string.
 
   - Dag.displayValue()
-      - Returns the DagNode's current display value as a text string.  If the DagNode is a Quantity Variant, it is converted into the current display units-of-measure and decimal digits.
+      - Returns the DagNode's current *display* value as a text string.  If the DagNode is a Quantity Variant, it is converted into the current display units-of-measure and decimal digits.
 
   - Dag.key()
     - Returns the DagNode's key string.
 
   - Dag.label()
-    - Returns the DagNode's label (if assigned), or a prettified key string.
+    - Returns the DagNode's label (if assigned), or a prettified version of its key string.
 
   - Dag.nativeUnits()
-    - Returns the native units-of-measure of a Quantity Variant DagNode.
+    - Returns the *native* (internal) units-of-measure of a Quantity Variant DagNode.
 
   - Dag.value()
-    - Returns the DagNode's current *native* value.
+    - Returns the DagNode's current *native* (internal) value.
 
 - [Back to top](#top)
 

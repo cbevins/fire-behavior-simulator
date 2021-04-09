@@ -20,7 +20,7 @@
 
 The **Dag.configure()** method is used to *configure* the directed acyclical graph; that is, to change the method or equation associated with one or more of the edges of the graph.
 
-The following code demonstrates the verbose way of invoking Dag.configure(); all allowable options are listed in an array for documentary purposes, and one of the array elements is selected by the treiling index:
+The following code demonstrates the verbose way of invoking **Dag.configure()**; all allowable options are listed in an array for documentary purposes, and one of the array elements is selected by the trailing index:
 
 ```js
 dag.configure([
@@ -153,7 +153,7 @@ The following lists the keys (names) of the DAG configuration variables and thei
 
 [Back to Top](#top)
 
-The following are more advanced configuration variables used to implement the BehavePlus notion of *modules* and *linkages*.  If your use case requires this, you may which to look at the *fire-simple-api* repo or package which implements many of the module-linkage use cases for you.  You may be able to invoke its classes and functions directly, or use them as example implementations of your user case.
+The following are more advanced configuration variables used to implement the *BehavePlus* notion of *modules* and *linkages*.  If your use case requires this, you may wish to look at the *fire-simple-api* repo or package which implements many of the module-linkage use cases for you.  You may be able to invoke its classes and functions directly, or use them as example implementations of your situation.
 
 For a detailed, **TLDR;** discussion of how *fire-behavior-simulator* implements the BehavePlus *modules* and *links* concepts, see [09 Modules and Linkages](./09_ModuleLinkages.md).
 
