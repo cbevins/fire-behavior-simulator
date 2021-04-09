@@ -64,8 +64,8 @@ sim.deleteDag('dag1') // Deletes the Dag named 'dag1'
 
 - ### Dag.input(array: node-key-valueArray-pairs)
   - Adds (or replaces) an array of input values for one or more DagNodes in the *input pool*.
-  - When **Dag.run()** is invoked, all required input variables get their (1 or more) input values from the input pool.
-  - Note that **Dag.input()** stores the DagNode's input values regardless of whether the DagNode is actually an input node under the current configuration-selection. Its input values remain unchanged until they are reset by the another **input()** or a **clearInputs()**.
+  - When **Dag.run()** is invoked, all *required input* variables get their (1 or more) input values from the *input pool*.
+  - Note that **Dag.input()** stores the DagNode's input values regardless of whether the DagNode is actually a *required input* node under the current configuration and selection. Its input values remain unchanged until they are reset by the another **input()** or a **clearInputs()**.
   - *node-key-valueArray-pairs* is an array of 2-element arrays where
     - element 0 is a DagNode reference or string key (see [14 Variable Names](./14_VariableNames.md)), and
     - element 1 is the array of one or more input *native* values.
@@ -76,17 +76,17 @@ sim.deleteDag('dag1') // Deletes the Dag named 'dag1'
   - Returns a reference to the DagNode instance named **nodeKey**, or throws an Error() if **nodeKey** doesn't exist.
 
 - ### Dag.requiredConfigNodes()
-  - Returns an array of references to all required *configuration* DagNodes (for the set of currently *selected* DagNodes) in topological order.
+  - Returns an array of references to all *required configuration* DagNodes for the set of currently *selected* DagNodes).  The array is in computational topological order.
 
 - ### Dag.requiredNodes()
-  - Returns an array of references to all required DagNodes (for the set of currently *selected* DagNodes) in topological order.
+  - Returns an array of references to all *required* input, intermediate, configuration, and selected DagNodes for the set of currently *selected* DagNodes and configuration.  The array is in computational topological order.
 
 - ### Dag.requiredInputNodes()
-  - Returns an array of references to all required *input* DagNodes (for the set of currently *selected* DagNodes) in topological order.
+  - Returns an array of references to all *required input* DagNodes for the set of currently *selected* DagNodes and configuration.  The array is in computational topological order.
 
 - ### Dag.run()
-  - Iterates through all the current *input pool* values of all required input variables, updating all DagNode values with each iteration.  At the end of each iteration, the storage class **store()** method is invoked to do something useful with the newly updated values.
-  - When **Dag.run()** is invoked, all the required input variables get their (1 or more) input values from the *input pool*.  If the input variable has no entries in the input pool, the variables current value is applied.
+  - Iterates through all the current *input pool* values of all *required input* variables, updating all DagNode values with each iteration.  At the end of each iteration, the storage class **store()** method is invoked to do something useful (store, save, print)with the newly updated values.
+  - When **Dag.run()** is invoked, all the *required input* variables get their (1 or more) input values from the *input pool*.  If the input variable has no entries in the *input pool*, the variables current value is applied.
   - Returns a reference to this Dag.
 
 - ### Dag.select(array: nodeKeysOrRefs)
@@ -98,13 +98,27 @@ sim.deleteDag('dag1') // Deletes the Dag named 'dag1'
   - Returns an array of references to all currently *selected* DagNodes.
 
 - ### Dag.setRunLimit(integer: maxRuns)
-  - Sets the maximum number of run iterations allowed for a single **run()** invocation [default is 1,000,000]
+  - Sets the maximum number of run iterations allowed for a single **run()** invocation [default is 1,000,000].
   - Returns a reference to this Dag.
 
 - ### Dag.setStorageClass(StorageAbstract: storageClass)
-  - Sets a storage class containing a **store()** method that is invoked at the end of each **run()** iteration,  That is, if a **run()** has inputs for 1000 iterations, this class' **store()** method is called 1000 times.
+  - Sets a storage class containing a **store()** method that is invoked at the end of each **run()** iteration.  That is, if a **run()** has input values for 1000 iterations, this class' **store()** method is called 1000 times.
   - **storageClass** is an instance of a class derived from **StorageAbstract** that has a **store()** method.
   - The storage class **store()** method is responsible for accessing DagNode values and storing them as required by the application.
+  - The **StorageAbstract** class is pretty minimal; here it is in ites entirety:
+```js
+export class StorageAbstract {
+  constructor (dag) {
+    if (typeof dag !== 'object') {
+      throw new Error('Dag Storage<Something>() class constructors require arg 1 to be an instance of the Dag class')
+    }
+    this._dag = dag
+  }
+  init () {}
+  store () {}
+  end () {}
+}
+```
 
 - ### Dag.sortedNodes()
   - Returns an array of references to **all** DagNodes in topological order.
