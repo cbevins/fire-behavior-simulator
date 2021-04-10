@@ -58,3 +58,14 @@ test('2: Ensure all aliases and keys are correct', () => {
     }
   })
 })
+
+test('3: Numeric aliases work as well as text', () => {
+  expect(FuelCatalog.behaveDead1Load('10')).toEqual(0.138)
+  expect(FuelCatalog.behaveDead1Load(10)).toEqual(0.138)
+
+  const load1 = 0.0872359963269054
+  expect(FuelCatalog.behaveDead1Load('124')).toEqual(load1)
+  expect(FuelCatalog.behaveDead1Load(124)).toEqual(load1)
+  expect(FuelCatalog.behaveDead1Load('gs4')).toEqual(load1)
+  expect(() => { FuelCatalog.behaveDead1Load('GS4') }).toThrow()
+})

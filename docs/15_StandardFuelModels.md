@@ -4,7 +4,7 @@
 
 ---
 
-The **standard** fuel models may be selected via their **key** strings.
+The **standard** fuel models may be selected via their **key** strings ('124', 'gs4') or number (124).  Note that key *strings* are case-sensitive; there is a fuel model with key 'gs4', but not one with key 'GS4' or 'Gs4'.
 
 The 13 original standard fuel models specified by Rothermel (1972) and illustrated in Anderson's (1982) photo guide are listed below.  All 13 original fuel models are *static*; there is no transfer of cured herbaceous fuel loads from the live into the dead fuel category.
 
