@@ -1,6 +1,6 @@
 # ![](favicon.png) 14 Variable Names
 
-| Prev: [12 Author](./12_Author.md) | Next: [14 Table of Variables](./14_VariableNames.md) |  [Table of Contents](../README.md) |
+| Prev:  [13 Release Notes](./13_RELEASE_NOTES.md) | Next: [15 Standard Fuel Models](./15_StandardFuelModels.md) |  [Table of Contents](../README.md) |
 
 ---
 
