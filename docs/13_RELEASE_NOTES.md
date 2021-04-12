@@ -4,10 +4,17 @@
 
 ---
 
+## 0.6.0 April 12, 2021
+
+- Added **fire-behavior-models/FuelMoisture.js**, which includes Fosberg's dead fuel moisture tables.
+
+---
+
 ## 0.5.0 April 8, 2021
 
-This release updates all the documentation.
+- This release updates all the documentation.
 
+---
 
 ## 0.4.0 Beta
 
