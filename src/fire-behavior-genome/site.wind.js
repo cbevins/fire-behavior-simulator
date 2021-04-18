@@ -1,16 +1,10 @@
 /**
- * @file Site WInd genome
+ * @file Site Wind genome
  * @copyright 2021 Systems for Environmental Management
  * @author Collin D. Bevins, <cbevins@montana.com>
  * @license MIT
 */
 export const genome = [
-  ['site.temperature.air', [['AirTemperature'], [['finally', 'Dag.input']]]],
-  ['site.temperature.fuel', [['AirTemperature'], [
-    ['finally', 'IgnitionProbability.fuelTemperature',
-      'site.temperature.air',
-      'site.canopy.fuel.shading']]]
-  ],
   ['site.wind.direction.heading.fromUpslope', [['CompassAzimuth'], [
     ['when', 'configure.wind.direction', 'equals', 'headingFromUpslope', 'Dag.input'],
     ['when', 'configure.wind.direction', 'equals', 'sourceFromNorth',

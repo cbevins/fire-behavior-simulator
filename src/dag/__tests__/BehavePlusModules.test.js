@@ -118,7 +118,7 @@ test('4: deactivateAll(), then indivudally activate()', () => {
   mod.moduleKeys().forEach(key => { expect(dag.get(key).value()).toEqual('inactive') })
 
   // Only 71 site.*, 4 docs.*, 5 site.doc.*, 10 configure.*, 7 link.*, and 10 module.* Nodes should be enabled
-  expect(dag.enabledNodes()).toHaveLength(107)
+  expect(dag.enabledNodes()).toHaveLength(135) // NOTE: this will change when the genome changes!!
 
   // What about linkages?
   mod.linkKeys().forEach(key => { expect(dag.get(key).value()).toEqual('standAlone') })
@@ -129,7 +129,7 @@ test('4: deactivateAll(), then indivudally activate()', () => {
   expect(dag.get('module.treeMortality').value()).toEqual('active')
   expect(dag.get('link.treeMortality').value()).toEqual('standAlone')
   expect(dag.get('scorch.height').isEnabled()).toEqual(false)
-  expect(dag.enabledNodes()).toHaveLength(111)
+  expect(dag.enabledNodes()).toHaveLength(139) // NOTE: this will change when the genome changes!!
 
   // Activating scorchHeight enables 1 additional Node and auto-links with treeMortality
   mod.activate('module.scorchHeight')
@@ -137,7 +137,7 @@ test('4: deactivateAll(), then indivudally activate()', () => {
   expect(dag.get('link.scorchHeight').value()).toEqual('standAlone')
   expect(dag.get('module.treeMortality').value()).toEqual('active')
   expect(dag.get('link.treeMortality').value()).toEqual('linkedToScorchHeight')
-  expect(dag.enabledNodes()).toHaveLength(112)
+  expect(dag.enabledNodes()).toHaveLength(140) // NOTE: this will change when the genome changes!!
 
   // Activating surfaceSpot enables a 7 more Nodes with no additional links
   mod.activate(['module.surfaceSpot'])
@@ -146,7 +146,7 @@ test('4: deactivateAll(), then indivudally activate()', () => {
   expect(dag.get('link.scorchHeight').value()).toEqual('standAlone')
   expect(dag.get('module.treeMortality').value()).toEqual('active')
   expect(dag.get('link.treeMortality').value()).toEqual('linkedToScorchHeight')
-  expect(dag.enabledNodes(dag)).toHaveLength(119)
+  expect(dag.enabledNodes(dag)).toHaveLength(147) // NOTE: this will change when the genome changes!!
 
   // Activating surfaceFire enables 686 more Nodes
   // and links it with surfaceSpot, scorchHeight and treeMortality
@@ -158,7 +158,7 @@ test('4: deactivateAll(), then indivudally activate()', () => {
   expect(dag.get('link.scorchHeight').value()).toEqual('linkedToSurfaceFire')
   expect(dag.get('module.treeMortality').value()).toEqual('active')
   expect(dag.get('link.treeMortality').value()).toEqual('linkedToScorchHeight')
-  expect(dag.enabledNodes(dag)).toHaveLength(805)
+  expect(dag.enabledNodes(dag)).toHaveLength(833) // NOTE: this will change when the genome changes!!
 
   // Activating crownFire enables 320 more Nodes and links it with surfaceFire
   mod.activate('module.crownFire')
@@ -171,7 +171,7 @@ test('4: deactivateAll(), then indivudally activate()', () => {
   expect(dag.get('link.scorchHeight').value()).toEqual('linkedToSurfaceFire')
   expect(dag.get('module.treeMortality').value()).toEqual('active')
   expect(dag.get('link.treeMortality').value()).toEqual('linkedToScorchHeight')
-  expect(dag.enabledNodes(dag)).toHaveLength(1125)
+  expect(dag.enabledNodes(dag)).toHaveLength(1153) // NOTE: this will change when the genome changes!!
 
   // Activating crownSpot enables 8 more Nodes and links it with crownFire
   mod.activate('module.crownSpot')
@@ -186,7 +186,7 @@ test('4: deactivateAll(), then indivudally activate()', () => {
   expect(dag.get('link.scorchHeight').value()).toEqual('linkedToSurfaceFire')
   expect(dag.get('module.treeMortality').value()).toEqual('active')
   expect(dag.get('link.treeMortality').value()).toEqual('linkedToScorchHeight')
-  expect(dag.enabledNodes(dag)).toHaveLength(1133)
+  expect(dag.enabledNodes(dag)).toHaveLength(1161) // NOTE: this will change when the genome changes!!
 
   // Activating spotting enables 19 more Nodes and no new links
   mod.activate('module.spotting')
@@ -202,7 +202,7 @@ test('4: deactivateAll(), then indivudally activate()', () => {
   expect(dag.get('link.scorchHeight').value()).toEqual('linkedToSurfaceFire')
   expect(dag.get('module.treeMortality').value()).toEqual('active')
   expect(dag.get('link.treeMortality').value()).toEqual('linkedToScorchHeight')
-  expect(dag.enabledNodes(dag)).toHaveLength(1152)
+  expect(dag.enabledNodes(dag)).toHaveLength(1180) // NOTE: this will change when the genome changes!!
 
   // Activating fireEllipse enables 67 more Nodes and links it to surfaceFire
   mod.activate('module.fireEllipse')
@@ -220,7 +220,7 @@ test('4: deactivateAll(), then indivudally activate()', () => {
   expect(dag.get('link.scorchHeight').value()).toEqual('linkedToSurfaceFire')
   expect(dag.get('module.treeMortality').value()).toEqual('active')
   expect(dag.get('link.treeMortality').value()).toEqual('linkedToScorchHeight')
-  expect(dag.enabledNodes(dag)).toHaveLength(1219)
+  expect(dag.enabledNodes(dag)).toHaveLength(1247) // NOTE: this will change when the genome changes!!
 
   // Activating ignitionProbability enables 5 more Nodes and no new links
   mod.activate('module.ignitionProbability')
@@ -239,7 +239,7 @@ test('4: deactivateAll(), then indivudally activate()', () => {
   expect(dag.get('link.scorchHeight').value()).toEqual('linkedToSurfaceFire')
   expect(dag.get('module.treeMortality').value()).toEqual('active')
   expect(dag.get('link.treeMortality').value()).toEqual('linkedToScorchHeight')
-  expect(dag.enabledNodes(dag)).toHaveLength(1224)
+  expect(dag.enabledNodes(dag)).toHaveLength(1252) // NOTE: this will change when the genome changes!!
 
   // Activating fireContain enables 0 more Nodes and links it to fireEllipse
   mod.activate('module.fireContain')
@@ -260,25 +260,25 @@ test('4: deactivateAll(), then indivudally activate()', () => {
   expect(dag.get('link.scorchHeight').value()).toEqual('linkedToSurfaceFire')
   expect(dag.get('module.treeMortality').value()).toEqual('active')
   expect(dag.get('link.treeMortality').value()).toEqual('linkedToScorchHeight')
-  expect(dag.enabledNodes(dag)).toHaveLength(1224)
+  expect(dag.enabledNodes(dag)).toHaveLength(1252) // NOTE: this will change when the genome changes!!
 
   // De-activating ignitionProbability disables 5 Nodes and affects no links
   mod.deactivate(['module.ignitionProbability'])
-  expect(dag.enabledNodes(dag)).toHaveLength(1219)
+  expect(dag.enabledNodes(dag)).toHaveLength(1247) // NOTE: this will change when the genome changes!!
 
   // De-activating spotting disables 19 Nodes and affects no links
   mod.deactivate(['module.spotting'])
-  expect(dag.enabledNodes(dag)).toHaveLength(1200)
+  expect(dag.enabledNodes(dag)).toHaveLength(1228) // NOTE: this will change when the genome changes!!
 
   // De-activating fireContain disables 0 Nodes and affects 1 link to fireEllipse
   mod.deactivate('module.fireContain')
   expect(dag.get('module.fireContain').value()).toEqual('inactive')
   expect(dag.get('link.fireContain').value()).toEqual('standAlone')
-  expect(dag.enabledNodes(dag)).toHaveLength(1200)
+  expect(dag.enabledNodes(dag)).toHaveLength(1228) // NOTE: this will change when the genome changes!!
 
   // De-activating surface fire disables 686 Nodes and 4 links to surfaceFire
   mod.deactivate('module.surfaceFire')
-  expect(dag.enabledNodes(dag)).toHaveLength(514)
+  expect(dag.enabledNodes(dag)).toHaveLength(542) // NOTE: this will change when the genome changes!!
   expect(dag.get('link.crownFire').value()).toEqual('standAlone')
   expect(dag.get('link.crownSpot').value()).toEqual('linkedToCrownFire')
   expect(dag.get('link.fireContain').value()).toEqual('standAlone')
@@ -289,7 +289,7 @@ test('4: deactivateAll(), then indivudally activate()', () => {
 
   // De-activating scorch height disables 1 Nodes and 1 link
   mod.deactivate('module.scorchHeight')
-  expect(dag.enabledNodes(dag)).toHaveLength(513)
+  expect(dag.enabledNodes(dag)).toHaveLength(541) // NOTE: this will change when the genome changes!!
   expect(dag.get('link.crownFire').value()).toEqual('standAlone')
   expect(dag.get('link.crownSpot').value()).toEqual('linkedToCrownFire')
   expect(dag.get('link.fireContain').value()).toEqual('standAlone')
@@ -300,7 +300,7 @@ test('4: deactivateAll(), then indivudally activate()', () => {
 
   // De-activating fire ellipse disables 67 Nodes
   mod.deactivate('module.fireEllipse')
-  expect(dag.enabledNodes(dag)).toHaveLength(446)
+  expect(dag.enabledNodes(dag)).toHaveLength(474) // NOTE: this will change when the genome changes!!
   expect(dag.get('link.crownFire').value()).toEqual('standAlone')
   expect(dag.get('link.crownSpot').value()).toEqual('linkedToCrownFire')
   expect(dag.get('link.fireContain').value()).toEqual('standAlone')
@@ -311,7 +311,7 @@ test('4: deactivateAll(), then indivudally activate()', () => {
 
   // De-activating crown fire disables 320 Nodes and 1 link
   mod.deactivate(['module.crownFire'])
-  expect(dag.enabledNodes(dag)).toHaveLength(126)
+  expect(dag.enabledNodes(dag)).toHaveLength(154) // NOTE: this will change when the genome changes!!
   expect(dag.get('link.crownFire').value()).toEqual('standAlone')
   expect(dag.get('link.crownSpot').value()).toEqual('standAlone')
   expect(dag.get('link.fireContain').value()).toEqual('standAlone')
@@ -322,15 +322,15 @@ test('4: deactivateAll(), then indivudally activate()', () => {
 
   // De-activating crown spotting disables 8 Nodes and no links
   mod.deactivate(['module.crownSpot'])
-  expect(dag.enabledNodes(dag)).toHaveLength(118)
+  expect(dag.enabledNodes(dag)).toHaveLength(146) // NOTE: this will change when the genome changes!!
 
   // De-activating surface spotting disables 7 Nodes and no links
   mod.deactivate('module.surfaceSpot')
-  expect(dag.enabledNodes(dag)).toHaveLength(111)
+  expect(dag.enabledNodes(dag)).toHaveLength(139) // NOTE: this will change when the genome changes!!
 
   // De-activating tree mortality disables 4 Nodes and no links
   mod.deactivate('module.treeMortality')
-  expect(dag.enabledNodes(dag)).toHaveLength(107)
+  expect(dag.enabledNodes(dag)).toHaveLength(135) // NOTE: this will change when the genome changes!!
 })
 
 test('5: Module selection', () => {
@@ -340,11 +340,11 @@ test('5: Module selection', () => {
   dag.configure(config) // Standard configuration
 
   mod.deactivateAll()
-  expect(dag.enabledNodes(dag)).toHaveLength(107)
+  expect(dag.enabledNodes(dag)).toHaveLength(135) // NOTE: this will change when the genome changes!!
 
   // Part 1: activating surface fire spotting enables 7 Nodes in standAlone mode
   mod.activate('module.surfaceSpot')
-  expect(dag.enabledNodes(dag)).toHaveLength(114)
+  expect(dag.enabledNodes(dag)).toHaveLength(142) // NOTE: this will change when the genome changes!!
 
   dag.select(['spotting.surfaceFire.spotDistance.mountainTerrain'])
     .run()

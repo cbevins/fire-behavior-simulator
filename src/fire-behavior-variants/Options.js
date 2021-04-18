@@ -26,6 +26,12 @@ export class CrownFireInitiationTypeOption extends Option {
   }
 }
 
+export class EastWestOption extends Option {
+  constructor () {
+    super('EastWestOption', 'Longitude East or West', ['east', 'west'])
+  }
+}
+
 export class FuelModelDomainOption extends Option {
   constructor () {
     super('FuelModelDomainOption', 'Fuel model domain', Lib.FuelCatalog.Domains)
@@ -49,6 +55,12 @@ export class IgnitionLightningChargeOption extends Option {
   constructor () {
     super('IgnitionLightningChargeOption', 'Ignition lightning charge',
       Lib.IgnitionProbability.LightningCharges)
+  }
+}
+
+export class NorthSouthOption extends Option {
+  constructor () {
+    super('NorthSouthOption', 'Latitude North or South', ['north', 'south'])
   }
 }
 

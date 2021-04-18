@@ -124,7 +124,7 @@ test('Variant constructors', () => {
 
 test('VariantMap', () => {
   const vmap = new VariantMap()
-  expect(vmap.size).toEqual(109)
+  expect(vmap.size).toEqual(127) // NOTE: this will change when the genome changes!!
   expect(vmap.has('FuelSurfaceAreaToVolumeRatio')).toEqual(true)
   const v = vmap.get('FuelSurfaceAreaToVolumeRatio')
   expect(v.key()).toEqual('FuelSurfaceAreaToVolumeRatio')

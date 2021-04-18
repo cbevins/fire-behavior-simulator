@@ -1,9 +1,9 @@
 import { Sim } from '../index.js'
 
 const cfgWindDirKey = 'configure.wind.direction'
-const cfgWindDirIdx = 24
+const cfgWindDirIdx = 24 // NOTE: this will change when the genome changes!!
 const windDirUpKey = 'site.wind.direction.heading.fromUpslope'
-const windDirUpIdx = 101
+const windDirUpIdx = 129 // NOTE: this will change when the genome changes!!
 const windDirNoKey = 'site.wind.direction.source.fromNorth'
 
 test('Dag.get()', () => {

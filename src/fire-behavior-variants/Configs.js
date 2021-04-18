@@ -115,9 +115,10 @@ export class ConfigSecondaryFuels extends Config {
 export class ConfigMoistureContents extends Config {
   constructor () {
     super('ConfigMoistureContents',
-      'When required as input, fuel moisture is entered for', [
-        ['individual', 'the 3 dead and 2 live fuel moisture classes'],
-        ['liveCategory', 'the 3 dead moisture classes and a singe live category moisture'],
+      'When required as input, fuel moisture is', [
+        ['individual', 'entered for the 3 dead and 2 live fuel moisture classes'],
+        ['liveCategory', 'entered for the 3 dead moisture classes and a singe live category moisture'],
+        ['fosberg', 'estimated from Fosbergs tables'],
         ['category', 'the dead and live category moistures only']])
     // ['catalog' // 'a fuel moisture catalog key']
   }

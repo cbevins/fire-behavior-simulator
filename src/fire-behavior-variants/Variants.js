@@ -5,7 +5,7 @@
  * @author Collin D. Bevins, <cbevins@montana.com>
  * @license MIT
 */
-import { ArrayIndex, Bool, Count, Float, Fraction, Obj, Quantity, Ratio, Text } from '../variant/index.js'
+import { ArrayIndex, Bool, Count, Float, Fraction, Integer, Obj, Quantity, Ratio, Text } from '../variant/index.js'
 
 /**
  * Declares the specialized BehavePlus numeric (Quantity, Float, Integer) Variants.
@@ -101,9 +101,44 @@ export class CrownTransitionRatio extends NonNegativeFactor {
   constructor () { super('CrownTransitionRatio') }
 }
 
+export class DateDayOfMonth extends Integer {
+  // (key, defaultValue = 0, minValue = 1 - Number.MAX_VALUE, maxValue = Number.MAX_VALUE, stepValue = 1)
+  constructor () { super('DateDayOfMonth', 1, 1, 31, 1) }
+}
+
+export class DateDayOfYear extends Integer {
+  // (key, defaultValue = 0, minValue = 1 - Number.MAX_VALUE, maxValue = Number.MAX_VALUE, stepValue = 1)
+  constructor () { super('DateDayOfYear', 1, 1, 366, 1) }
+}
+
+export class DateJulian extends Integer {
+  // (key, defaultValue = 0, minValue = 1 - Number.MAX_VALUE, maxValue = Number.MAX_VALUE, stepValue = 1)
+  constructor () { super('DateJulian', 21100, 0, 40000, 1) }
+}
+
+export class DateMonth extends Integer {
+  // (key, defaultValue = 0, minValue = 1 - Number.MAX_VALUE, maxValue = Number.MAX_VALUE, stepValue = 1)
+  constructor () { super('DateMonth', 1, 1, 12, 1) }
+}
+
+export class DateYear extends Integer {
+  // (key, defaultValue = 0, minValue = 1 - Number.MAX_VALUE, maxValue = Number.MAX_VALUE, stepValue = 1)
+  constructor () { super('DateYear', 2020, 1000, 3000, 1) }
+}
+
 export class Documentation extends Text {
   // Text(key, defaultValue = '', minLength = 0, maxLength = 999999)
   constructor () { super('Documentation', '', 0, 80) }
+}
+
+export class Elevation extends Quantity {
+  // Quantity(key, unitsOptions, maxValue, defaultValue=0, minValue = 0, stepValue = 1 )
+  constructor () { super('Elevation', ['ft', 'm'], 30000, 0, -1000, 100) }
+}
+
+export class ElevationDiff extends Quantity {
+  // Quantity(key, unitsOptions, maxValue, defaultValue=0, minValue = 0, stepValue = 1 )
+  constructor () { super('ElevationDiff', ['ft', 'm'], 5000, 0, -5000, 100) }
 }
 
 export class FireArea extends Quantity {
@@ -344,6 +379,11 @@ export class FuelVolume extends Quantity {
   constructor () { super('FuelVolume', ['ft3', 'm3']) }
 }
 
+export class GmtDiff extends Integer {
+  // (key, defaultValue = 0, minValue = 1 - Number.MAX_VALUE, maxValue = Number.MAX_VALUE, stepValue = 1)
+  constructor () { super('GmtDiff', 0, -14, +14, 1) }
+}
+
 export class IgnitionFuelDepth extends Quantity {
   // Quantity(key, unitsOptions, maxValue, defaultValue=0, minValue = 0, stepValue = 1 )
   constructor () { super('IgnitionFuelDepth', ['in', 'cm']) }
@@ -351,6 +391,16 @@ export class IgnitionFuelDepth extends Quantity {
 
 export class IgnitionProbability extends Fraction {
   constructor () { super('IgnitionProbability') }
+}
+
+export class Latitude extends Quantity {
+  // Quantity(key, unitsOptions, maxValue, defaultValue=0, minValue = 0, stepValue = 1 )
+  constructor () { super('Latitude', ['deg'], 90, 0, 0, 5) }
+}
+
+export class Longitude extends Quantity {
+  // Quantity(key, unitsOptions, maxValue, defaultValue=0, minValue = 0, stepValue = 1 )
+  constructor () { super('Longitude', ['deg'], 180, 0, 0, 5) }
 }
 
 export class MapArea extends Quantity {
@@ -381,6 +431,15 @@ export class MortalityFraction extends Fraction {
   constructor () { super('MortalityFraction') }
 }
 
+export class RelativeHumidity extends Fraction {
+  // Fraction(key, defaultValue=0, stepValue = 0.01 )
+  constructor () { super('RelativeHumidity') }
+}
+
+export class ShadingFraction extends Fraction {
+  constructor () { super('ShadingFraction') }
+}
+
 export class SlopeSteepnessDegrees extends Quantity {
   // Quantity(key, unitsOptions, maxValue, defaultValue=0, minValue = 0, stepValue = 1 )
   constructor () { super('SlopeSteepnessDegrees', ['deg'], 89, 0, 0, 1) }
@@ -402,6 +461,26 @@ export class SpottingFirebrandObject extends Obj {
       layer: 0
     })
   }
+}
+
+export class TimeHour extends Integer {
+  // (key, defaultValue = 0, minValue = 1 - Number.MAX_VALUE, maxValue = Number.MAX_VALUE, stepValue = 1)
+  constructor () { super('TimeHour', 0, 0, 24, 1) }
+}
+
+export class TimeMinute extends Integer {
+  // (key, defaultValue = 0, minValue = 1 - Number.MAX_VALUE, maxValue = Number.MAX_VALUE, stepValue = 1)
+  constructor () { super('TimeMinute', 0, 0, 60, 1) }
+}
+
+export class TimeSecond extends Integer {
+  // (key, defaultValue = 0, minValue = 1 - Number.MAX_VALUE, maxValue = Number.MAX_VALUE, stepValue = 1)
+  constructor () { super('TimeSecond', 0, 0, 60, 1) }
+}
+
+export class TimeStamp extends Integer {
+  // (key, defaultValue = 0, minValue = 1 - Number.MAX_VALUE, maxValue = Number.MAX_VALUE, stepValue = 1)
+  constructor () { super('TimeStamp') }
 }
 
 export class TreeBarkThickness extends Quantity {
