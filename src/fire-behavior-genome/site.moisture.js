@@ -21,16 +21,16 @@ export const genome = [
       'site.location.elevation.diff'
     ]
   ]]],
-  ['site.moisture.dead.fosberg.tl1', [['FuelMoistureContent'], [
+  ['site.moisture.dead.fosberg.tl1h', [['FuelMoistureContent'], [
     ['finally', 'FuelMoisture.fosbergDead1h',
-      'site.moisture.dead.tl1h.fosberg.reference',
-      'site.moisture.dead.tl1h.fosberg.correction']
+      'site.moisture.dead.fosberg.reference',
+      'site.moisture.dead.fosberg.correction']
   ]]],
   ['site.moisture.dead.fosberg.tl10h', [['FuelMoistureContent'], [
-    ['finally', 'FuelMoisture.fosbergDead10h', 'site.moisture.dead.fosberg.tl1']
+    ['finally', 'FuelMoisture.fosbergDead10h', 'site.moisture.dead.fosberg.tl1h']
   ]]],
   ['site.moisture.dead.fosberg.tl100h', [['FuelMoistureContent'], [
-    ['finally', 'FuelMoisture.fosbergDead100h', 'site.moisture.dead.fosberg.tl1']
+    ['finally', 'FuelMoisture.fosbergDead100h', 'site.moisture.dead.fosberg.tl1h']
   ]]],
   ['site.moisture.dead.tl1h', [['FuelMoistureContent'], [
     ['when', 'configure.fuel.moisture', 'equals', 'category',
