@@ -34,6 +34,8 @@ import { Quantity } from '../variant/index.js'
 const VariantQuantitySlate = new Map([
   ['AirTemperature', { us: 'oF', si: 'oC' }],
   ['CompassAzimuth', { us: 'deg', si: 'deg' }],
+  ['Elevation', { us: 'ft', si: 'm' }],
+  ['ElevationDiff', { us: 'ft', si: 'm' }],
   ['FireArea', { us_fine: 'ft2', us: 'ac', us_gross: 'mi2', si_fine: 'm2', si: 'ha', si_gross: 'km2' }],
   ['FireElapsedTime', { us: 'min', us_gross: 'h', si: 'min', si_gross: 'h' }],
   ['FireFirelineIntensity', { us: 'btu/ft/s', si: 'J/m/s', si_w: 'W/m' }],
