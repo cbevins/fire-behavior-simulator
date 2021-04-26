@@ -34,6 +34,7 @@ export const genome = [
   ['configure.fuel.curedHerbFraction', [['ConfigCuredHerbFraction'], config]],
   ['configure.fuel.chaparralTotalLoad', [['ConfigChaparralTotalLoad'], config]],
   ['configure.slope.steepness', [['ConfigSlopeSteepness'], config]],
+  ['configure.temperature.humidity', [['ConfigTemperatureHumidity'], config]],
   ['configure.wind.direction', [['ConfigWindDirection'], config]],
   ['configure.wind.speed', [['ConfigWindSpeed'], config]],
   ['configure.fire.firelineIntensity', [['ConfigFirelineIntensity'], config]],

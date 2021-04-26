@@ -149,6 +149,15 @@ export class ConfigSlopeSteepness extends Config {
   }
 }
 
+export class ConfigTemperatureHumidity extends Config {
+  constructor () {
+    super('ConfigTemperatureHumidity',
+      'When relative humidity or dew point are required, prefer to', [
+        ['humidity', 'enter relative humidity and calculate dew point temperature'],
+        ['dewpoint', 'enter dew point temperature and calculate relative humidity']])
+  }
+}
+
 // bp6 #5 Surface > Input  > Wind Speed > Wind is:
 // [always upslope, specified]
 export class ConfigWindDirection extends Config {
