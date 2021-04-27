@@ -13,7 +13,8 @@ test('DagPrivate.findNodeUpdater()', () => {
   expect(dag.get(cfgWindDirKey).value()).toEqual('headingFromUpslope')
   const node = dag.get(windDirUpKey)
   // DEPRECATED TEST, CHANGES WITH GENOME, BUT HAS PROVEN TO WORK FINE
-  // expect(dag.findNodeUpdater(node)).toEqual([[dag.get(24), dag.literal(4)], [2]])
+  // [25,`configure.wind.direction`,13,[[[],[1]]]],
+  // expect(dag.findNodeUpdater(node)).toEqual([[dag.get(25), dag.literal(4)], [2]])
   dag.setNodeEdges(node)
   expect(node.method().name).toEqual('input')
   expect(node.method()).toEqual(Lib.Dag.input)
