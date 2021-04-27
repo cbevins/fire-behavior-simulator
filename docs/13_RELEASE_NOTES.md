@@ -6,7 +6,7 @@
 
 ## 0.7.1 April 27, 2021
 
-- Added export of all methods in the fire-behavior-models and fire-behavior-variants folders.
+- Added export of all the fire-behavior-models methods.
 
 ---
 
