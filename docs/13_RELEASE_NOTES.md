@@ -4,6 +4,18 @@
 
 ---
 
+## 0.7.0 April 27, 2021
+
+- Added **fire-behavior-models/TemperatureHumidity.js** to support dead fuel moisture estimates using Fosberg's tables.
+- Docs have been updated to reflect added configurations and variables.
+- Test coverage is at:
+  - statements: 2022 / 2030 (99.61%)
+  - branches: 877 / 884 (99.21%)
+  - functions 824 / 825 (99.88%)
+  - lines: 1929 / 1935 (99.69%)
+
+---
+
 ## 0.6.0 April 12, 2021
 
 - Added **fire-behavior-models/FuelMoisture.js**, which includes Fosberg's dead fuel moisture tables.
