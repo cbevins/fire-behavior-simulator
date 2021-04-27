@@ -18,6 +18,7 @@ export function dewPoint (dbf, wbf, elev = 0) {
   const e3 = Math.max(0.001, (e2 - d * p / 1000))
   const dpc = -240.97 / (1 - 17.502 / Math.log(e3 / 6.1121))
   const dpf = Math.max(-40, (32 + dpc * 9 / 5))
+  // console.log(`dewPoint(${dbf}, ${wbf}, ${elev}) => ${dpf}`)
   return dpf
 }
 
@@ -45,7 +46,9 @@ export function reaDewPoint (dbf, rh) {
  * @returns {number} Relative humidity (fraction [0..1]).
  */
 export function relativeHumidity (dbf, dpf) {
-  return (dpf >= dbf) ? 1 : (Math.exp(-7469 / (dpf + 398) + 7469 / (dbf + 398)))
+  const rh = (dpf >= dbf) ? 1 : (Math.exp(-7469 / (dpf + 398) + 7469 / (dbf + 398)))
+  // console.log(`relativeHumidity(${dbf}, ${dpf}) => ${rh}`)
+  return rh
 }
 
 /**

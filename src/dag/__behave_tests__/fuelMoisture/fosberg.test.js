@@ -1,7 +1,5 @@
-/* eslint-disable no-unused-vars */
 import { Sim } from '../../index.js'
 import * as DagJest from '../../utils/matchers.js'
-import { FuelMoisture } from '../../../fire-behavior-models/index.js'
 
 const value = DagJest.value
 expect.extend({ value })

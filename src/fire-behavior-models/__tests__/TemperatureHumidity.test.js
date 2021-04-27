@@ -24,6 +24,11 @@ test('1 dewPoint(), relativeHumidity(), reaRh(), and reaDewPoint()', () => {
   expect(T.reaRh(90, dp)).toBeCloseTo(rh, 4)
   expect(T.reaDewPoint(90, rh)).toBeCloseTo(dp, 1)
 
+  db = 90
+  dp = 30
+  expect(T.reaRh(db, dp)).toEqual(0.1169685522771074)
+  expect(T.relativeHumidity(db, dp)).toEqual(0.11699703216855946)
+
   dp = T.dewPoint(90, 55, 0)
   rh = T.relativeHumidity(90, dp)
   expect(dp).toEqual(0.6631788009199404)
@@ -37,6 +42,9 @@ test('1 dewPoint(), relativeHumidity(), reaRh(), and reaDewPoint()', () => {
   expect(rh).toEqual(0.11809965668845734)
   expect(T.reaRh(90, dp)).toBeCloseTo(rh, 4)
   expect(T.reaDewPoint(90, rh)).toBeCloseTo(dp, 1)
+
+  expect(T.reaDewPoint(90, 0.11809965668845734)).toEqual(30.232993161242188)
+  expect(T.reaDewPoint(90, 0.1)).toEqual(26.18432695711639)
 
   dp = T.dewPoint(50, 60)
   rh = T.relativeHumidity(50, dp)
