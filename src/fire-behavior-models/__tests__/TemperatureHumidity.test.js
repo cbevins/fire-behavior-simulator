@@ -1,15 +1,24 @@
 import { TemperatureHumidity as T } from '../index.js'
 
 test('1 dewPoint(), relativeHumidity(), reaRh(), and reaDewPoint()', () => {
-  let dp = T.dewPoint(80, 60, 0)
+  let db = 80
+  let wb = 60
+  let el = 0
+  let dp = T.dewPoint(db, wb, el)
+  let wbd = T.wetBulbDepression(db, wb)
   let rh = T.relativeHumidity(80, dp)
   expect(dp).toEqual(44.82398987900015)
   expect(rh).toEqual(0.2890303643500842)
+  expect(wbd).toEqual(db - wb)
   expect(T.reaRh(80, dp)).toBeCloseTo(rh, 5)
   expect(T.reaDewPoint(80, rh)).toBeCloseTo(dp, 1)
 
+  db = 90
+  wb = 60
+  el = 0
   dp = T.dewPoint(90, 60, 0)
   rh = T.relativeHumidity(90, dp)
+  wbd = T.wetBulbDepression(db, wb)
   expect(dp).toEqual(32.840736794428075)
   expect(rh).toEqual(0.13126403584785518)
   expect(T.reaRh(90, dp)).toBeCloseTo(rh, 4)
