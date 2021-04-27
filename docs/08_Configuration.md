@@ -136,7 +136,12 @@ The following lists the keys (names) of the DAG configuration variables and thei
     - 'degrees': entered as degrees of angle above the horizontal plane
     - 'map': estimated from map measurements
 
-  - 'configure.wind.direction': 'When required as input, wind direction is
+  - 'configure.temperature.humidity': When relative humidity or dew point are required, prefer to:
+    - 'humidity': enter dry bulb and relative humidity and calculate dew point
+    - 'wetBulb': enter dry bulb, wet bulb, and elev and calculate dew point, relative humidity
+    - 'dewPoint': enter dry bulb and dew point and calculate relative humidity
+
+  - 'configure.wind.direction': When required as input, wind direction is
     - 'sourceFromNorth': the direction FROM which the wind is blowing (degrees from NORTH)
     - 'headingFromUpslope': the direcion TOWARDS which the wind is blowing (degrees from UPSLOPE)
     - 'upslope': assumed to be blowing upslope

@@ -131,4 +131,4 @@ function write (str, fileName) {
 // hierarchicalOrder('../docs/NodeList_HierarchicalOrder.js')
 // topoOrder('../docs/NodeList_TopologicalOrder.js')
 // nodeMarkdownTable('../docs/Variables.md')
-configMarkdownList('../docs/ConfigurationVariables.md')
+configMarkdownList('ConfigurationVariables.md')
