@@ -21,6 +21,7 @@ const vClasses = [
   C.ConfigMoistureContents,
   C.ConfigWindSpeedAdjustmentFactor,
   C.ConfigSlopeSteepness,
+  C.ConfigTemperatureHumidity,
   C.ConfigWindDirection,
   C.ConfigWindSpeed,
   C.ConfigFirelineIntensity,

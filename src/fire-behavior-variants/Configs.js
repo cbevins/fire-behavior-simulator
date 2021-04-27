@@ -153,8 +153,9 @@ export class ConfigTemperatureHumidity extends Config {
   constructor () {
     super('ConfigTemperatureHumidity',
       'When relative humidity or dew point are required, prefer to', [
-        ['humidity', 'enter relative humidity and calculate dew point temperature'],
-        ['dewpoint', 'enter dew point temperature and calculate relative humidity']])
+        ['humidity', 'enter dry bulb and relative humidity and calculate dew point'],
+        ['wetBulb', 'enter dry bulb, wet bulb, and elev and calculate dew point, relative humidity'],
+        ['dewPoint', 'enter dry bulb and dew point and calculate relative humidity']])
   }
 }
 

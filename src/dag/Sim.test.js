@@ -4,9 +4,9 @@ import { Sim, Dag } from './index.js'
 import * as Lib from '../fire-behavior-models/index.js'
 
 const cfgWindDirKey = 'configure.wind.direction'
-const cfgWindDirIdx = 24 // NOTE: this will change when the genome changes!!
+const cfgWindDirIdx = 25 // NOTE: this will change when the genome changes!!
 const windDirUpKey = 'site.wind.direction.heading.fromUpslope'
-const windDirUpIdx = 129 // NOTE: this will change when the genome changes!!
+const windDirUpIdx = 130 // NOTE: this will change when the genome changes!!
 
 test('new Sim()', () => {
   const sim = new Sim()

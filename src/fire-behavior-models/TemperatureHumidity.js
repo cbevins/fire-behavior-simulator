@@ -133,6 +133,8 @@ export function summerSimmerIndex (at, rh) {
   return 1.98 * (at - (0.55 - 0.0055 * rh) * (at - 58)) - 56.83
 }
 
+export function wetBulbDepression (db, wb) { return db - wb }
+
 /**
  * Calculates the wind chill temperature.
  *
