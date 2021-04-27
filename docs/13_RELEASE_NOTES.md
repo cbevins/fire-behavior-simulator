@@ -4,6 +4,12 @@
 
 ---
 
+## 0.7.1 April 27, 2021
+
+- Added export of all methods in the fire-behavior-models and fire-behavior-variants folders.
+
+---
+
 ## 0.7.0 April 27, 2021
 
 - Added **fire-behavior-models/TemperatureHumidity.js** to support dead fuel moisture estimates using Fosberg's tables.

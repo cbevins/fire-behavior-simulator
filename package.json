@@ -1,6 +1,6 @@
 {
   "name": "@cbevins/fire-behavior-simulator",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "fire-behavior-simulator is a directed acyclical graph of the BehavePlus V6 variables and equations",
   "author": "Collin D. Bevins <cbevins@montana.com>",
   "license": "MIT",
