@@ -12,7 +12,7 @@ import * as fs from 'fs'
 import { createFireEllipseSim } from '../examples/FireEllipseSim.js'
 
 // Step 1 - create a BehavePlus directed acyclical graph (DAG)
-const [sim, dag, store] = createFireEllipseSim()
+const [, dag] = createFireEllipseSim()
 
 function alphaOrder (fileName) {
   let str = 'export const alphabeticalOrder = [\n'
@@ -42,45 +42,56 @@ function configMarkdownList (fileName) {
   write(header + str, fileName)
 }
 
-function markdownList (fileName) {
-  let lastPart = ''
-  let contents = '# ![](favicon.png) Top-level Names\n'
-  let str = ''
-  const nodeKeys = dag._node.map(node => node.key())
-  nodeKeys.sort().forEach((key, idx) => {
-    const parts = key.split('.')
-    if (parts[0] !== lastPart) {
-      lastPart = parts[0]
-      str += `---\n## ![](favicon.png) ${lastPart} Variables\n[top](#top-level-names)\n`
-      contents += `- [${lastPart} Variables](#${lastPart}-variables)\n`
-    }
-    str += `  - ${idx + 1}: ${key}\n`
-  })
-  const header = '# ![](favicon.png) cbevins/fire-behavior-simulator Variable Names\n' +
-    '[README.md](./README.md)\n'
-  write(header + contents + str, fileName)
-}
-
+const Sections = [
+  'configure',
+  'crown.canopy',
+  'crown.fire',
+  'docs',
+  'ignition',
+  'link',
+  'module',
+  'mortality',
+  'scorch',
+  'site',
+  'spotting',
+  'surface.fire.ellipse',
+  'surface.primary',
+  'surface.secondary',
+  'surface.weighted'
+]
 function nodeMarkdownTable (fileName) {
-  let lastPart = ''
-  let contents = '# ![](favicon.png) Top-level Names\n'
+  let section = ''
+  let top = '# ![](favicon.png) 14 Variable Names\n\n'
+  top += '| Prev:  [13 Release Notes](./13_RELEASE_NOTES.md) | Next: [15 Standard Fuel Models](./15_StandardFuelModels.md) |  [Table of Contents](../README.md) |\n\n'
+  top += '---\n\n'
+  top += "<a id='top'></a>\n\n"
+  top += '# ![](favicon.png) Top-level Names\n\n'
+  top += 'This section lists all the *fire-behavior-simulator* variable names, also known as *keys*, along with their Variant type and, for Quantity Variants, their native units-of-measure.  This section is divided into the following subsections:\n\n'
+  let contents = ''
   const hdr = '| idx | Variable Key (Name) | Variant | Native Units |\n|---|---|---|---|\n'
   let str = ''
   const nodeKeys = dag._node.map(node => node.key())
   nodeKeys.sort().forEach((key, idx) => {
-    const parts = key.split('.')
-    if (parts[0] !== lastPart) {
-      lastPart = parts[0]
-      str += `---\n## ![](favicon.png) ${lastPart} Variables\n[Table of Contents](../README.md)\n`
+    let keySection = ''
+    for (let s = 0; s < Sections.length; s++) {
+      if (key.startsWith(Sections[s])) {
+        keySection = Sections[s]
+        break
+      }
+    }
+    if (keySection !== section) {
+      section = keySection
+      const slug = section.replace(/\./g, '-') + '-variables'
+      str += `\n---\n<a id='${slug}'></a>\n\n`
+      str += `## ![](favicon.png) **${section}**.* Variables\n\n`
+      str += '[Back to Top](#top)\n\n'
       str += hdr
-      contents += `- [${lastPart} Variables](#${lastPart}-variables)\n`
+      contents += `- [**${section}**.* Variables](#${slug})\n`
     }
     const node = dag.node(key)
     str += `  | ${idx + 1} | ${key} | ${node.variant().key()} | ${node.variant().nativeUnits()} |\n`
   })
-  const header = '# ![](favicon.png) cbevins/fire-behavior-simulator Variable Names\n' +
-    '[README.md](./README.md)\n'
-  write(header + contents + str, fileName)
+  write(top + contents + str, fileName)
 }
 
 function recurse (obj, name, lvl) {
@@ -130,5 +141,5 @@ function write (str, fileName) {
 // alphaOrder('../docs/NodeList_AlphabeticalOrder.js')
 // hierarchicalOrder('../docs/NodeList_HierarchicalOrder.js')
 // topoOrder('../docs/NodeList_TopologicalOrder.js')
-// nodeMarkdownTable('../docs/Variables.md')
-configMarkdownList('ConfigurationVariables.md')
+nodeMarkdownTable('Variables.md')
+// configMarkdownList('ConfigurationVariables.md')
