@@ -113,6 +113,7 @@ The following lists the keys (names) of the DAG configuration variables and thei
   - 'configure.fuel.moisture': When required as input, fuel moisture is entered for
     - 'individual': the 3 dead and 2 live fuel moisture classes
     - 'liveCategory': the 3 dead moisture classes and a singe live category moisture
+    - 'fosberg': calculated from temperature, humidity, slope, aspect, month, time
     - 'category': the dead and live category moistures only
     - 'catalog' **NOT IMPLEMENTED**
 
