@@ -13,7 +13,8 @@
  */
 
 // NOTE: Replace import to use '@cbevins/fire-behavior-simulator'
-import { Sim, StorageFile } from '../src/dag/index.js'
+import { Sim } from '../src/dag/index.js'
+import { StorageFile } from './StorageFile.js'
 import { header } from './header.js'
 
 /**

@@ -5,7 +5,7 @@
  * @license MIT
 */
 import * as fs from 'fs'
-import { StorageAbstract } from './StorageAbstract.js'
+import { StorageAbstract } from '../src/dag/StorageAbstract.js'
 
 export class StorageFile extends StorageAbstract {
   constructor (dag, fileName) {

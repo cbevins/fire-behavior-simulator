@@ -120,7 +120,7 @@ export class StorageAbstract {
 }
 ```
 
-  - See the [**src/dag/StorageNodeMap.js**](https://github.com/cbevins/fire-behavior-simulator/blob/master/src/dag/StorageNodeMap.js) and [**src/dag/StorageFile.js**](https://github.com/cbevins/fire-behavior-simulator/blob/master/src/dag/StorageFile.js) files for some examples.
+  - See the [**src/dag/StorageNodeMap.js**](https://github.com/cbevins/fire-behavior-simulator/blob/master/src/dag/StorageNodeMap.js) and [**examples/StorageFile.js**](https://github.com/cbevins/fire-behavior-simulator/blob/master/examples/StorageFile.js) files for some examples.
 
 - ### Dag.sortedNodes()
   - Returns an array of references to **all** DagNodes in computational topological order.

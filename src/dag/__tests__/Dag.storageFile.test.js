@@ -4,7 +4,8 @@
  * This increases the processing time to about 1650 milliseconds, or 145,000 runs per second
  * With Node.displayValue() formatting, its about 4500 milliseconds, or 53,000 runs per second
  */
-import { Sim, StorageFile } from '../index.js'
+import { Sim } from '../index.js'
+import { StorageFile } from '../../../examples/StorageFile.js'
 import { Cemml } from '../../../examples/cemml.js'
 
 test('CEMML StorageFile use', () => {

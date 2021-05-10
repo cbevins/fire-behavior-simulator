@@ -15,7 +15,8 @@
  * Node.displayValue()   3500            67,000
  */
 // NOTE: Replace import to use the '@cbevins/fire-behavior-simulator' package
-import { Sim, StorageFile } from '../src/dag/index.js'
+import { Sim } from '../src/dag/index.js'
+import { StorageFile } from './StorageFile.js'
 import { header } from './header.js'
 
 const fileName = 'surfaceFireOptimizedResults.txt'
