@@ -4,6 +4,17 @@
 
 ---
 
+## 0.7.2 May 10, 2021
+
+- Moved StorageFile.js out of the package distribution and into the /examples folder, as it requires Node's 'fs' package, which isn't available on browsers.
+
+- Changed the distribution file names to:
+  - ./dist/cjs/index.js (Common JS 'require()')
+  - ./dist/esm/index.js (EcmaScript Modules 'import')
+  - ./dist/@cbevins/fire-behavior-simulator.min.js (UMD)
+
+---
+
 ## 0.7.1 April 27, 2021
 
 - Added export of all the fire-behavior-models methods.
