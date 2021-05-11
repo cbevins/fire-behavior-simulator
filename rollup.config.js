@@ -1,32 +1,28 @@
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
-import babel from '@rollup/plugin-babel'
-import pkg from './package.json'
-const input = ['src/index.js']
 
 export default [
   {
-    // UMD
-    input,
-    plugins: [
-      nodeResolve(),
-      babel({
-        babelHelpers: 'bundled'
-      }),
-      terser()
-    ],
-    output: {
-      file: `dist/${pkg.name}.min.js`,
-      format: 'umd',
-      name: 'myLibrary', // this is the name of the global object
-      esModule: false,
-      exports: 'named',
-      sourcemap: true
-    }
-  }, // ESM and CJS
-  {
-    input,
+    input: ['src/index.js'],
     plugins: [nodeResolve()],
+    output: {
+      file: 'dist/umd/fire-behavior-simulator.js',
+      format: 'umd',
+      name: 'fire',
+      esModule: false,
+      plugins: [terser()]
+    }
+  },
+  {
+    input: {
+      index: 'src/index.js',
+      dag: 'src/dag/index.js',
+      genome: 'src/fire-behavior-genome/index.js',
+      models: 'src/fire-behavior-models/index.js',
+      variants: 'src/fire-behavior-variants/index.js',
+      uom: 'src/uom/index.js',
+      variantCore: 'src/variant/index.js'
+    },
     output: [
       {
         dir: 'dist/esm',

@@ -17,7 +17,7 @@
     "url": "https://github.com/cbevins/fire-behavior-simulator/issues"
   },
   "homepage": "https://github.com/cbevins/fire-behavior-simulator/readme",
-  "main": "/dist/cjs/index.js",
+  "main": "/dist/umd/fire-behavior-simulator.js",
   "module": "/dist/esm/index.js",
   "type": "module",
   "sideEffects": false,
@@ -34,15 +34,16 @@
     "lint": "eslint \"**/*.js\"",
     "lint:log": "eslint \"**/*.js\" -o eslint.log",
     "lint:fix": "prettier-eslint \"**/*.js\" --write",
-    "variablesLister": "node ./utils/variablesLister.js",
     "prebuild": "rimraf dist",
+    "prepare": "rollup -c",
     "publish:github": "npm publish --registry https://npm.pkg.github.com --access public",
     "publish:npm": "npm publish --registry https://registry.npmjs.org --access public",
     "test": "jest",
     "test:clear": "jest --clearCache",
     "test:coverage": "jest --coverage",
     "test:coveralls": "jest --coverage && coveralls < coverage/lcov.info",
-    "test:watch": "jest --watchAll"
+    "test:watch": "jest --watchAll",
+    "variablesLister": "node ./utils/variablesLister.js"
   },
   "publishConfigX": {
     "access": "public",
