@@ -1,6 +1,6 @@
 {
   "name": "@cbevins/fire-behavior-simulator",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "fire-behavior-simulator is a directed acyclical graph of the BehavePlus V6 variables and equations",
   "author": "Collin D. Bevins <cbevins@montana.com>",
   "license": "MIT",
@@ -17,8 +17,8 @@
     "url": "https://github.com/cbevins/fire-behavior-simulator/issues"
   },
   "homepage": "https://github.com/cbevins/fire-behavior-simulator/readme",
-  "main": "/dist/umd/fire-behavior-simulator.js",
-  "module": "/dist/esm/index.js",
+  "main": "dist/umd/fire-behavior-simulator.js",
+  "module": "dist/esm/index.js",
   "type": "module",
   "sideEffects": false,
   "files": [

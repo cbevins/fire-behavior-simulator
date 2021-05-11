@@ -4,7 +4,16 @@
 
 ---
 
+## 0.7.3 May 11, 2021
+
+- In package.json, removed leading '/' from:
+  "main": "dist/umd/fire-behavior-simulator.js",
+  "module": "dist/esm/index.js",
+
+---
+
 ## 0.7.2 May 10, 2021
+
 
 - Moved StorageFile.js out of the package distribution and into the /examples folder, as it requires Node's 'fs' package, which isn't available on browsers.
 
