@@ -1,48 +1,45 @@
-import { babel, getBabelOutputPlugin } from '@rollup/plugin-babel'
-import resolve from '@rollup/plugin-node-resolve'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
-
-const dist = 'dist'
-const packageName = 'bundle'
-const bundle = `${dist}/${packageName}`
-
-// const production = !process.env.ROLLUP_WATCH
+import babel from '@rollup/plugin-babel'
+import pkg from './package.json'
+const input = ['src/index.js']
 
 export default [
   {
-    input: 'src/index.js',
+    // UMD
+    input,
+    plugins: [
+      nodeResolve(),
+      babel({
+        babelHelpers: 'bundled'
+      }),
+      terser()
+    ],
+    output: {
+      file: `dist/${pkg.name}.min.js`,
+      format: 'umd',
+      name: 'myLibrary', // this is the name of the global object
+      esModule: false,
+      exports: 'named',
+      sourcemap: true
+    }
+  }, // ESM and CJS
+  {
+    input,
+    plugins: [nodeResolve()],
     output: [
       {
-        file: `${bundle}.esm.js`,
-        format: 'esm'
-      },
-      {
-        file: `${bundle}.esm.min.js`,
+        dir: 'dist/esm',
         format: 'esm',
-        plugins: [terser()]
+        exports: 'named',
+        sourcemap: true
       },
       {
-        file: `${bundle}.es5.js`,
-        format: 'esm',
-        plugins: [getBabelOutputPlugin({ presets: ['@babel/preset-env'] })]
-      },
-      {
-        file: `${bundle}.cjs.js`,
-        format: 'cjs'
-      },
-      {
-        file: `${bundle}.cjs.min.js`,
+        dir: 'dist/cjs',
         format: 'cjs',
-        plugins: [terser()]
+        exports: 'named',
+        sourcemap: true
       }
-    ],
-    external: ['fs'], // tells Rollup 'I know what I'm doing here'
-    plugins: [
-      resolve(),
-      babel({
-        babelHelpers: 'bundled',
-        exclude: 'node_modules/**'
-      })
     ]
   }
 ]
