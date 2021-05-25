@@ -4,6 +4,14 @@
 
 ---
 
+## 0.7.4 May 25, 2021
+
+- In package.json and rollup.config.js, reverted back to old naming scheme:
+  "main": "./dist/bundle.js",
+  "module": "./dist/bundle.mjs",
+
+- Fixed bug when calculating the aspect category for Fosberg fuel moisture tables.
+
 ## 0.7.3 May 11, 2021
 
 - In package.json, removed leading '/' from:
