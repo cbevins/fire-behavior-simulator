@@ -98,7 +98,7 @@ const Correction = [
 ]
 
 // Mapping from compass quadrant to aspect index
-const Aspect = [0, 1, 1, 2, 2, 3, 3, 4, 4, 0] // N=0, E=1, S=2, W=3
+const Aspect = [0, 1, 1, 2, 2, 3, 3, 0, 0, 0] // N=0, E=1, S=2, W=3
 
 // Mapping from month to correction table index
 //             x, J, F, M, A, M, J, J, A, S, O, N, D
