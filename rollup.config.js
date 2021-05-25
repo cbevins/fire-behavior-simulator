@@ -1,41 +1,48 @@
-import { nodeResolve } from '@rollup/plugin-node-resolve'
+import { babel, getBabelOutputPlugin } from '@rollup/plugin-babel'
+import resolve from '@rollup/plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
+
+const dist = 'dist'
+const packageName = 'bundle'
+const bundle = `${dist}/${packageName}`
+
+// const production = !process.env.ROLLUP_WATCH
 
 export default [
   {
-    input: ['src/index.js'],
-    plugins: [nodeResolve()],
-    output: {
-      file: 'dist/umd/fire-behavior-simulator.js',
-      format: 'umd',
-      name: 'fire',
-      esModule: false,
-      plugins: [terser()]
-    }
-  },
-  {
-    input: {
-      index: 'src/index.js',
-      dag: 'src/dag/index.js',
-      genome: 'src/fire-behavior-genome/index.js',
-      models: 'src/fire-behavior-models/index.js',
-      variants: 'src/fire-behavior-variants/index.js',
-      uom: 'src/uom/index.js',
-      variantCore: 'src/variant/index.js'
-    },
+    input: 'src/index.js',
     output: [
       {
-        dir: 'dist/esm',
-        format: 'esm',
-        exports: 'named',
-        sourcemap: true
+        file: `${bundle}.esm.js`,
+        format: 'esm'
       },
       {
-        dir: 'dist/cjs',
+        file: `${bundle}.esm.min.js`,
+        format: 'esm',
+        plugins: [terser()]
+      },
+      {
+        file: `${bundle}.es5.js`,
+        format: 'esm',
+        plugins: [getBabelOutputPlugin({ presets: ['@babel/preset-env'] })]
+      },
+      {
+        file: `${bundle}.cjs.js`,
+        format: 'cjs'
+      },
+      {
+        file: `${bundle}.cjs.min.js`,
         format: 'cjs',
-        exports: 'named',
-        sourcemap: true
+        plugins: [terser()]
       }
+    ],
+    external: ['fs'], // tells Rollup 'I know what I'm doing here'
+    plugins: [
+      resolve(),
+      babel({
+        babelHelpers: 'bundled',
+        exclude: 'node_modules/**'
+      })
     ]
   }
 ]
